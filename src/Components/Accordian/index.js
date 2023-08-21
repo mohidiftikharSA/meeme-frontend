@@ -12,7 +12,7 @@ const AccordianData = ({ following = "" }) => {
   };
 
   return (
-    <Accordion className={`${activeIndex !== null ? "active" : ""}`}>
+    <Accordion className={`${activeIndex !== null ? "active" : ""}`} style={{height:'100%'}}>
       {following ? (
         <div className={`py-5 px-4 following`}>
           <Accordion.Item eventKey="3">

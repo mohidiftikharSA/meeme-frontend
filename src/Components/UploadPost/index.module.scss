@@ -1,9 +1,33 @@
 .postWrapper{
     .formGroup{
+        position: relative;
+        cursor: pointer;
         input{
             background: rgba(32, 30, 35, 0.33);
             border: none;
             padding: 20px;
+            padding-left: 75px;
+            border-radius: 15px;
+            color: #fff;
+            &::placeholder{
+                color: #fff;
+            }
+        }
+        img{
+            width: 40px;
+            position: absolute;
+            top: 50%;
+            left:20px;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            border: 2px solid #fff;
+            &.attachmentes{
+                right: 20px;
+                left: unset;
+                width: 25px;
+                border: none;
+               
+            }   
         }
     }
 }

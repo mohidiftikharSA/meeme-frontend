@@ -103,7 +103,6 @@ const Stories = () => {
         show={modalShow}
         onHide={() => setModalShow(false)}
         selectedStory={otherUserStories[selectedStoryIndex]}
-        // onlyView={selectedStoryIndex}
       />
     </>
   );
