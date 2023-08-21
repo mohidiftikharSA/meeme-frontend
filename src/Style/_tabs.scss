@@ -3,18 +3,50 @@
   border-bottom: 0;
   font-family: $pt;
   font-weight: 600;
+
+  &.modalTabs {
+    background: transparent;
+
+    .nav-item {
+      flex: 0 0 auto;
+      padding: 0 10px;
+      justify-content: flex-start;
+    }
+
+    .nav-link {
+      width: 100%;
+      background: transparent !important;
+      border-radius: 0;
+      color: #fff !important;
+      border: none !important;
+      padding: 0 40px !important;
+
+      &:hover {
+        border: none !important;
+      }
+
+      &.active {
+        background: none;
+        color: #f9bf29 !important;
+      }
+    }
+  }
+
   .nav-item {
     flex: 0 0 33.33%;
+
     &:first-child {
       .nav-link {
         border-radius: 30px 0 0 30px;
       }
     }
+
     &:last-child {
       .nav-link {
         border-radius: 0px 30px 30px 0px;
       }
     }
+
     .nav-link {
       width: 100%;
       background: #201e23;
@@ -22,6 +54,7 @@
       color: #b6b6b6;
       border: 1px solid #201e23;
       padding: 14px;
+
       &:hover {
         border: 1px solid #fedc84;
       }
@@ -33,9 +66,10 @@
     }
   }
 }
+
 .CustTabContent {
-    background: #2c2930;
-    border-radius: 30px;
-    padding: 32px;
-    margin: 20px;
-  }
+  background: #2c2930;
+  border-radius: 30px;
+  padding: 32px;
+  margin: 20px;
+}
