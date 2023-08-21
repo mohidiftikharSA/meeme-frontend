@@ -6,7 +6,11 @@
     border-radius: 30px;
     margin: 15px 0;
     padding: 12px 22px;
-    &:placeholder{
+    font-family: Gilroy;
+    font-weight: 600;
+    color: #6d6771;
+    &::placeholder{
+      color: #6d6771;
       font-size: 12px;
     }
   }

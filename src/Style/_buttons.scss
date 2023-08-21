@@ -26,25 +26,25 @@
   }
 
   &.btn-outline-light {
-    margin: 10px auto;
-    min-width: 275px;
+    width: 100%;
     text-align: start;
-    height: 50px;
     position: relative;
+    height: 52px;
+    line-height: 52px;
+    margin-bottom: 15px;
     padding-left: 65px;
-    font-style: normal;
-    font-weight: 700;
-
-    img {
+    font-weight: 400;
+    font-family: 'PT Sans', sans-serif;
+    svg{
       position: absolute;
+      font-size: 16px;
       left: 40px;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 18px;
     }
-
     &:hover {
       background: linear-gradient(180deg, #FFE299 0%, #F6B202 100%);
       color: #000;
+      font-weight: 700;
     }
   }
 
@@ -101,19 +101,37 @@
     font-weight: 700;
     position: relative;
 
+    &.authButton{
+      height: 48px;
+      line-height: 48px;
+      padding: 0 !important;
+    }
+
     &.icon-btn {
       background: transparent !important;
       color: #FCF5A2 !important;
       border:1px solid #FFEB65 !important;
       font-family: "Gilroy-Bold", sans-serif !important;
-
-
-      .fa {
+      position: relative;
+      &:hover{
+        svg{
+          display: block;
+        }
+      }
+      svg {
         position: absolute;
-        left: 6%;
-        top: 32%;
+        position: absolute;
+        left: 20px;
+        top: 50%;
         font-size: 20px;
-        color:#000;
+        color: #fff;
+        background: #000;
+        border-radius: 50%;
+        padding: 5px;
+        width: 25px;
+        height: 25px;
+        transform: translateY(-50%);
+        box-shadow: (0px 10px 10px rgba(0, 0, 0, 0.50));
         display: none;
       }
 

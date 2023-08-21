@@ -1,13 +1,18 @@
 .footer{
 background: #232323;
 margin: 0;
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+padding: 10px 0;
   .rightSide {
-    display: flex;
-    align-items: center;
-    padding: 8px 0 8px 150px;
-
-    .nav-ps .Link {
-      padding-right: 50px !important;
+    width: calc(100% - 130px);
+    [class*="navBar"]{
+      align-items: center;
+      [class*="navbar-nav"]{
+        gap: 25px;
+      }
     }
 }
 }

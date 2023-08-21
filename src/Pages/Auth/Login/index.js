@@ -1,31 +1,57 @@
-import Logo from 'Components/Logo'
-import React from 'react'
-import classes from '../index.module.scss'
-import { Button } from 'react-bootstrap'
-import mail from "../../../Images/mail.png"
-import google from "../../../Images/google.png"
-import facebook from "../../../Images/facebook.png"
-import { Link } from 'react-router-dom/dist'
+import Logo from "Components/Logo";
+import React from "react";
+import classes from "../index.module.scss";
+import { Button } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom/dist";
+import { MdMail } from "react-icons/md";
+import { FcGoogle } from "react-icons/fc";
+import { BsFacebook, BsTwitter } from "react-icons/bs";
+import Footer from "Components/Footer";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const nextPage = () => {
+    navigate(`/login`);
+  };
+
   return (
-        <>
-        <Logo login/>
-        <div className={classes.Login}>
-        <div className='formHolder'>
-        <Button variant="outline-light"><img src={mail} alt='icon'/>Continue with Email</Button>
-        <Button variant="outline-light"><img src={google} alt='icon'/>Continue with google</Button>
-        <Button variant="outline-light"><img src={facebook} alt='icon'/>Continue with Facebook</Button>
-        <Button variant="outline-light">Continue with Twitter</Button>
+    <>
+      <section className={`${classes.section} ${classes.dotBg}`} >
+        <Logo login />
+        <div className={classes.authHolder}>
+          <Button variant="outline-light" onClick={nextPage}>
+            <MdMail />
+            Continue with Email
+          </Button>
+          <Button variant="outline-light">
+            <FcGoogle />
+            Continue with google
+          </Button>
+          <Button variant="outline-light">
+            <BsFacebook style={{ color: "#5090ff" }} />
+            Continue with Facebook
+          </Button>
+          <Button className="mb-0" variant="outline-light">
+            <BsTwitter />
+            Continue with Twitter
+          </Button>
         </div>
         <div className={classes.loginLinks}>
-        <p className={ classes.dark}>New to memee?<Link className={ classes.light} to="/">Sign up</Link></p>
-        <p>By continuing you agree Memee’s <Link to="/">ms of Services & Privacy Policy. </Link></p>
+          <p className={classes.dark}>
+            New to memee?
+            <Link className={classes.light} to="/signUp">
+              Sign up
+            </Link>
+          </p>
+          <p className="mb-0">
+            By continuing you agree Memee’s
+            <span> Terms of Services & Privacy Policy.</span>
+          </p>
         </div>
-        </div>
-        </>
-        
-  )
-}
+      </section>
+      <Footer />
+    </>
+  );
+};
 
 export default Login;

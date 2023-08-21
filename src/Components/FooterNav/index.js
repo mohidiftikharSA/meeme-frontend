@@ -12,7 +12,7 @@ const FooterNav = () => {
   return (
     <>
       <Navbar expand="lg" className="navBar aside bg-body-tertiary px-3">
-        <Nav className="me-auto nav-ps">
+        <Nav className="nav-ps">
           <Nav.Link href="#" onClick={() => setAboutUsModalShow(true)}>
             About Us
           </Nav.Link>

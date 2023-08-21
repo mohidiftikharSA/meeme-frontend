@@ -1,78 +1,135 @@
-.Login {
-    display: flex;
-    flex-direction: column;
-    padding: 50px 0 0 0;
+.section {
+  padding: 0;
+  max-width: 275px;
+  margin: auto;
+  height: unset;
+  min-height: unset;
+  overflow: unset;
+
+  &.dotBg {
+    position: relative;
+    &:after {
+      position: absolute;
+      content: "";
+      background-image: url("../../Images/dotBg.png");
+      position: absolute;
+      left: 70%;
+      top: -100%;
+      bottom: 0;
+      width: 1000%;
+      z-index: -1;
+    }
+  }
 }
-
+.authHolder {
+  padding: 75px 0;
+}
 .loginLinks {
-    text-align: center;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  .dark {
+    color: #888;
+  }
+  .light {
+    color: #ffcd2f;
+    text-decoration: none;
+    &:hover {
+      color: #ffcd2f;
+    }
+  }
+  span {
+    text-decoration: underline;
+  }
+
+  a {
     color: #fff;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
 
-    .dark {
-        color: #888;
-        font-size: 14px;
+    &:hover {
+      color: #fff;
     }
-
-    .light {
-        color: #ffcd2f;
-        text-decoration: none;
-        font-size: 14px;
-
-        &:hover {
-            color: #ffcd2f;
-        }
-    }
-
-    a {
-        color: #fff;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-
-        &:hover {
-            color: #fff;
-        }
-    }
+  }
 }
 
 .loginFrom {
-    padding: 50px 0 0 0;
+  color: #fff;
+  font-style: normal;
+  position: relative;
+  clear: both;
+  padding: 35px 0;
+  &.nobefore{
+    padding-bottom: 0;
+    &:before{
+        display: none;
+    }
+    &:after{
+        top: 0;
+    }
+  }
+  &:before {
+    position: absolute;
+    content: "";
+    background-image: url("../../Images/coin.png");
+    right: -100px;
+    bottom: -100px;
+    width: 100px;
+    height: 100px;
+    background-size: 80px;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+  &:after {
+    position: absolute;
+    content: "";
+    background-image: url("../../Images/coin.png");
+    left: -100px;
+    top: -100px;
+    width: 100px;
+    height: 70px;
+    background-repeat: no-repeat;
+    background-size: 50px;
+    z-index: -1;
+  }
+
+  h1 {
     color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  h4 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 30px;
+    margin-bottom: 30px;
+    max-width: 350px;
+  }
+
+  .password {
+    color: #f00;
+    font-size: 12px;
     font-style: normal;
+    font-weight: 600;
+    text-align: right;
+    margin-bottom: 30px;
+    cursor: pointer;
+  }
 
-    h1 {
-        color: #fff;
-        font-size: 40px;
-        font-weight: 700;
+  .light {
+    color: #ffcd2f;
+    padding: 0 0 0 5px;
+
+    &:hover {
+      color: #ffcd2f;
     }
+  }
 
-    h4 {
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 30px;
-        padding-right: 150px;
-    }
-
-    .password {
-        color: #f00;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 600;
-        text-align: right;
-    }
-
-    .light {
-        color: #ffcd2f;
-        padding: 0 0 0 5px;
-
-        &:hover {
-            color: #ffcd2f;
-        }
-    }
-
-    .dark {
-        padding: 50px 0 0 0;
-        margin: 0;
-    }
-
+  .dark {
+    padding: 50px 0 0 0;
+    margin: 0;
+  }
 }

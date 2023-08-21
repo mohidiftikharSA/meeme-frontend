@@ -1,7 +1,6 @@
 import React from "react";
 import classes from "./index.module.scss";
 import { Col, Row } from "react-bootstrap";
-import Footer from "Components/Footer";
 
 const AuthLayout = ({ children }) => {
   return (
@@ -16,7 +15,6 @@ const AuthLayout = ({ children }) => {
           </Col>
         </Row>
       </div>
-      <Footer/>
     </div>
   );
 };

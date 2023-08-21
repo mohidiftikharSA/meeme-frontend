@@ -1,15 +1,20 @@
-#wrapper{
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    background-image: url(../../Images/login-bg.png);
-    background-position: left center;
-    background-repeat: no-repeat;
-    background-size: 40%;
-    height: 100vh;
-    overflow: auto;
-    min-height: 100vh;
-  }
-.loginFrom{
-  padding: 75px  0;
+#wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background-image: url(../../Images/login-bg.png);
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100vh;
+  overflow: auto;
+  min-height: 100vh;
+  
+}
+.loginFrom {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

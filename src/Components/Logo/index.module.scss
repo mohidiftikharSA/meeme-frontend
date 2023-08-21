@@ -2,8 +2,14 @@
   position: relative;
   width: 130px;
   float: left;
+  &.logoStart{
+    float: left;
+    width: 180px;
+  }
   &.login{
     margin: auto;
+    float: unset;
+    width: 180px;
   }
 
   a{

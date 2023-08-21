@@ -6,7 +6,7 @@ import logo from "../../Images/logo.png";
 const Logo = (props) => {
     return(
         <>
-            <div className={props.login? `${classes.logo} ${classes.login}` : `${classes.logo}`}>
+            <div className={props.login? `${classes.logo} ${classes.login}` : `${classes.logo} ${props.start? `${classes.logoStart}` : ""}` }>
                 <Link to={"/home"}>
                     <img src={logo} alt={"Memee"} />
                 </Link>

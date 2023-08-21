@@ -4,13 +4,19 @@ import classes from "../index.module.scss";
 import Logo from "Components/Logo";
 import AuthHeader from "Components/AuthHeader";
 import ResetEmail from "Components/ResetEmail";
+import { BsCheckLg } from 'react-icons/bs';
+import { useNavigate } from "react-router";
 
 
 const Forgetpassword = () => {
+    const navigate = useNavigate();
+    const nextPage = () => {
+      navigate(`/PhoneVerification`);
+    };
     const [smShow, setSmShow] = useState(false);
     return (
         <>
-            <Logo login start />
+            <Logo start />
             <div className={classes.loginFrom}>
                 <AuthHeader
                     title={"Forgot Password?"}
@@ -20,10 +26,10 @@ const Forgetpassword = () => {
                 />
                 <div className="formHolder">
                     <Button className="btn-primary icon-btn w-100 p-2 h-auto mt-5" href="#" onClick={() => setSmShow(true)}>
-                        <i class="fa fa-check-circle" aria-hidden="true"></i> Email Verification
+                    <BsCheckLg/> Email Verification
                     </Button>
-                    <Button className="btn-primary icon-btn  w-100 p-2 h-auto mt-4">
-                        Phone Verification
+                    <Button className="btn-primary icon-btn  w-100 p-2 h-auto mt-4" onClick={nextPage}>
+                    <BsCheckLg/>  Phone Verification
                     </Button>
                 </div>
             </div>

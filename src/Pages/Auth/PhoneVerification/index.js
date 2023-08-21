@@ -12,7 +12,7 @@ const PhoneVerification = () => {
         <>
         <Logo login start/>
             <div className={classes.loginFrom}>
-            <AuthHeader title={'Verify your phone'} description={'Verification code sent to your phone +1 234 567 8901'}/>
+            <AuthHeader title={'Verify your phone'} description={'Verification code sent to your phone'} phone={'+1 234 567 8901'} margin/>
             <div className="my-3 phonverify">
             <ReactInputVerificationCode length={6}/>
             </div>
