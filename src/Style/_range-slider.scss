@@ -1,0 +1,18 @@
+.rc-slider{
+    .rc-slider-rail{
+        height: 8px;
+    }
+    .rc-slider-track{
+        background: linear-gradient(180deg, #FFE299 0%, #F6B202 100%);
+        height: 8px;
+    }
+    .rc-slider-step{
+        height: 8px;
+    }
+    .rc-slider-handle{
+        width: 15px;
+        height: 15px;
+        margin: 0 5px;
+        margin-top: -4px;
+    }
+}

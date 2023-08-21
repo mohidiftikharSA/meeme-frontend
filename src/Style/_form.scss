@@ -1,0 +1,290 @@
+
+.formHolder{
+  max-width:380px;
+  .form-control {
+    width: 100%;
+    border-radius: 30px;
+    margin: 15px 0;
+    padding: 12px 22px;
+    &:placeholder{
+      font-size: 12px;
+    }
+  }
+  
+}
+.login-form {
+  text-align: center;
+  width: 50%;
+}
+.form-group{
+  position: relative;
+}
+.form-control{
+  font-size: 14px;
+  border-radius: 50px;
+  border: 1.5px solid #FFF; 
+  padding: 0.575rem 0.75rem;
+  color: #fff;
+  background-color: #fff;
+
+  // &:hover{
+  //   background: linear-gradient(180deg, #FFE299 0%, #F6B202 100%);
+  //   color: #000;
+  // }
+  &:focus{
+    box-shadow: none;
+  }
+}
+
+// .form_holder {
+//   min-height: calc(100vh - 563px);
+//   display: flex;
+//   align-items: center;
+//   padding: 100px 0;
+//   form {
+//     max-width: 480px;
+//     margin: auto;
+//     display: flex;
+//     flex-direction: column;
+//     font-family: "Poppins";
+//     width: 100%;
+//     input {
+//       padding: 0;
+//     }
+//     &.signUpForm {
+//       max-width: 100%;
+//       .btn {
+//         float: right;
+//         max-width: 212px !important;
+//         width: 100%;
+//       }
+//     }
+//     &.card_form {
+//       max-width: 100%;
+//       .btn {
+//         float: right;
+//         max-width: 212px !important;
+//         width: 100%;
+//       }
+
+//       .right-box {
+//         font-size: 16px;
+//         line-height: 24px;
+//         color: #6a6a6a;
+//         color: #6a6a6a;
+//         padding: 85px 75px 85px 65px;
+//         .form-select {
+//           padding: 25px 35px;
+//           background-position: right 1.75rem center;
+//           font-weight: 600;
+//           font-size: 16px;
+//           line-height: 24px;
+//           color: #444444;
+//           &:focus {
+//             border-color: #f28e1c;
+//             box-shadow: none;
+//             outline: none;
+//           }
+//         }
+//       }
+//       .row {
+//         background: #ffffff;
+//         border: 1px solid #efefef;
+//         border-radius: 5px;
+//         [class*="col"] {
+//           padding: 0;
+//         }
+//       }
+//     }
+//     &.upload_form {
+//       max-width: 780px;
+//       h6 {
+//         max-width: 440px;
+//         margin: 0 auto 28px;
+//       }
+//       .btn {
+//         float: right;
+//         max-width: 212px !important;
+//         width: 100%;
+//       }
+//     }
+//     .form_title {
+//       font-weight: 400;
+//       font-size: 14px;
+//       line-height: 21px;
+//       margin-bottom: 28px;
+//       color: rgba(106, 106, 106, 1);
+
+//     }
+//     .btn {
+//       font-weight: 400 !important;
+//     }
+//   }
+
+//   .form-group {
+//     &.cust-from-group {
+//       border: 1px solid rgba(98, 204, 98, 1);
+//       position: relative;
+//       &:before {
+//         position: absolute;
+//         content: "";
+//         top: 50%;
+//         right: 23px;
+//         width: 22px;
+//         height: 22px;
+//         border-radius: 50%;
+//         background-color: rgba(98, 204, 98, 1);
+//         transform: translateY(-50%);
+//       }
+//     }
+//     display: flex;
+//     flex-direction: column;
+//     width: 100%;
+//     background: #fff;
+//     padding: 20px 18px;
+//     border: none;
+//     margin-bottom: 15px;
+//     border: 1px solid #efefef;
+//     border-radius: 5px;
+//     label {
+//       font-weight: 400;
+//       font-size: 14px;
+//       line-height: 21px;
+//       color: #223430;
+//       margin-bottom: 5px;
+//       span {
+//         color: rgba(244, 67, 54, 1);
+//       }
+//     }
+//     select {
+//       border: none;
+//       padding: 0;
+//       font-weight: 400;
+//       font-size: 16px;
+//       line-height: 24px;
+//       color: #a9a9a9;
+//       margin-top: -4px;
+//       // background-image: none;
+//       // position: relative;
+//       // &:before {
+//       //   position: absolute;
+//       //   content: "";
+//       //   top: 0;
+//       //   right: 0;
+//       //   width: 0;
+//       //   height: 0;
+//       //   border-style: solid;
+//       //   border-width: 12px 6px 0 6px;
+//       //   border-color: #000000 transparent transparent transparent;
+//       // }
+//       option {
+//        color: #000;
+//        font-size: 14px;
+//       }
+
+//       &:focus {
+//         box-shadow: none;
+//       }
+//     }
+//     input,
+//     textarea,
+//     .form-control {
+//       border: none;
+//       font-size: 14px;
+//       color: rgba(255, 160, 0, 1);
+//       box-shadow: none;
+//       &::placeholder {
+//         font-size: 16px;
+//         line-height: 24px;
+//         color: #a9a9a9;
+//       }
+//       &:focus-visible {
+//         outline: none;
+//       }
+//     }
+//   }
+//   .forget_password {
+//     font-size: 14px;
+//     line-height: 21px;
+//     color: #ff2121;
+//     margin-bottom: 30px;
+//     &:hover {
+//       color: #ff0d0d;
+//     }
+//   }
+
+//   .sign_up {
+//     font-weight: 400;
+//     font-size: 14px;
+//     line-height: 21px;
+//     color: #6a6a6a;
+//     a {
+//       text-decoration: underline;
+//       color: #f28e1c;
+//     }
+//   }
+
+//   .proflie-upload {
+//     margin-right: 50px;
+//     label {
+//       width: 180px;
+//       height: 180px;
+//       position: relative;
+//       background: #f8f8f8;
+//       border: 1px dashed #cdcdcd;
+//       border-radius: 50%;
+//       cursor: pointer;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       font-size: 55px;
+//       &:before {
+//         position: absolute;
+//         content: "+";
+//         color: #292d32;
+//         width: 47px;
+//         height: 47px;
+//         background: #fceeb2;
+//         border-radius: 50%;
+//         bottom: 0;
+//         right: 0;
+//         font-size: 24px;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//       }
+//       i {
+//         color: rgba(235, 235, 235, 1);
+//       }
+//     }
+//     #upload-photo {
+//       opacity: 0;
+//       position: absolute;
+//       z-index: -1;
+//     }
+//   }
+// }
+
+// /* Chrome, Safari, Edge, Opera */
+// input::-webkit-outer-spin-button,
+// input::-webkit-inner-spin-button {
+//   -webkit-appearance: none;
+//   margin: 0;
+// }
+
+// /* Firefox */
+// input[type=number] {
+//   -moz-appearance: textfield;
+// }
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// /* Firefox */
+// input[type=number] {
+//   -moz-appearance: textfield;
+// }

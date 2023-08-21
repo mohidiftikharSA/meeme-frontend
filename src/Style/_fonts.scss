@@ -1,0 +1,73 @@
+/* FONTS */
+$font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+  "Droid Sans", "Helvetica Neue", sans-serif;
+
+$font-base-size-large-screens: 20px;
+$font-base-size-medium-screens: 18px;
+$font-base-size-small-screens: 16px;
+$bitter: 'Bitter', serif;
+$Questrial: 'Questrial', sans-serif;
+$Poppins: 'Poppins', sans-serif;
+
+/* FONT WEIGHTS */
+$font-weight-big: 900;
+$font-weight-bold: 500;
+$font-weight-heavy: 700;
+$font-weight-light: 100;
+$font-weight-regular: 400;
+
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../Fonts/icomoon.eot?xwgsnw');
+  src:  url('../Fonts/icomoon.eot?xwgsnw#iefix') format('embedded-opentype'),
+  url('../Fonts/icomoon.ttf?xwgsnw') format('truetype'),
+  url('../Fonts/icomoon.woff?xwgsnw') format('woff'),
+  url('../Fonts/icomoon.svg?xwgsnw#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-analysis:before {
+  content: "\e906";
+}
+.icon-meeting:before {
+  content: "\e907";
+}
+.icon-presentation:before {
+  content: "\e908";
+}
+.icon-Group-889:before {
+  content: "\e900";
+}
+.icon-icon-2:before {
+  content: "\e901";
+}
+.icon-id-card:before {
+  content: "\e902";
+}
+.icon-rating-1:before {
+  content: "\e903";
+}
+.icon-setting:before {
+  content: "\e904";
+}
+.icon-user-3:before {
+  content: "\e905";
+}

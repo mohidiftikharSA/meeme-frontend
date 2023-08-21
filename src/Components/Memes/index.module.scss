@@ -1,0 +1,35 @@
+.flexBox {
+    column-count: 2;
+    column-gap: 0;
+  .imgBox {
+    position: relative;
+    display: inline-block;
+    padding: 12px;
+    vertical-align: top;
+    &:first-child{
+        margin-top: 35px;
+    }
+    img {
+      border-radius: 18px;
+      display: block;
+      height: auto;
+      width: 100%;
+    }
+    .profileDetail {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      margin: 20px;
+      font-size: 12px;
+      img {
+        width: 35px;
+        margin-right: 8px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+      }
+    }
+  }
+}

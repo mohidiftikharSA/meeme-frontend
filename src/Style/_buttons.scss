@@ -1,0 +1,181 @@
+.btn {
+  padding: 0 25px;
+  border-radius: 30px;
+  height: 38px;
+  line-height: 38px;
+  text-decoration: none;
+  font-family: "Gilroy-Bold", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all ease 0.6;
+
+  .btnHolder {
+    max-width: 430px;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 0 0 0;
+
+    &.btn-outline-light {
+      width: 100%;
+      border-radius: 30px;
+      margin: 15px 0;
+      padding: 12px 22px;
+      border: 1.5px solid #ffcd2f;
+    }
+
+  }
+
+  &.btn-outline-light {
+    margin: 10px auto;
+    min-width: 275px;
+    text-align: start;
+    height: 50px;
+    position: relative;
+    padding-left: 65px;
+    font-style: normal;
+    font-weight: 700;
+
+    img {
+      position: absolute;
+      left: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &:hover {
+      background: linear-gradient(180deg, #FFE299 0%, #F6B202 100%);
+      color: #000;
+    }
+  }
+
+
+  &.btn-bg {
+    text-align: left;
+    border-radius: 0px 30px 30px 0px;
+    position: relative;
+    width: 100%;
+    height: 54px;
+    line-height: 54px;
+    overflow: hidden;
+    font-family: $Poppins;
+
+    i {
+      margin-right: 8px;
+    }
+
+    &:after {
+      position: absolute;
+      content: "";
+      right: -25px;
+      top: 0;
+      width: 200px;
+      height: 50px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &.store {
+      &:after {
+        background-image: url("../Images/store.png");
+      }
+    }
+
+    &.trophy {
+      &:after {
+        background-image: url("../Images/trophy.png");
+        opacity: 0.6;
+      }
+    }
+
+    &.judge {
+      &:after {
+        background-image: url("../Images/judge.png");
+      }
+    }
+  }
+
+  &.btn-primary {
+    color: #000 !important;
+    border-color: rgba(255, 160, 0, 0.35);
+    background: linear-gradient(180deg, #ffe299 0%, #f6b202 100%);
+    font-weight: 700;
+    position: relative;
+
+    &.icon-btn {
+      background: transparent !important;
+      color: #FCF5A2 !important;
+      border:1px solid #FFEB65 !important;
+      font-family: "Gilroy-Bold", sans-serif !important;
+
+
+      .fa {
+        position: absolute;
+        left: 6%;
+        top: 32%;
+        font-size: 20px;
+        color:#000;
+        display: none;
+      }
+
+    }
+    &.uploadButton{
+      width: 100%;
+      height: 350px;
+      background: #2C2930;
+      border: none;
+  }
+
+    &:hover {
+      background: linear-gradient(180deg, #FFE299 0%, #F6B202 100%) !important;
+      color: #000 !important;
+    }
+    &:hover .fa {
+display: block;
+    }
+  }
+
+
+  &.btn-secondary {
+    color: #fff;
+    border-color: rgba(255, 160, 0, 0.35);
+    background: #f28e1c;
+    border-radius: 4px;
+
+    &:hover {
+      background: #e58310;
+    }
+  }
+
+  &.btnIcon {
+    color: rgba(38, 50, 56, 1);
+    height: 50px;
+    line-height: 50px;
+
+    &:hover {
+
+      i,
+      img {
+        transform: translateX(3px);
+        transition: all ease 0.3s;
+      }
+    }
+
+    i {
+      background-color: rgba(255, 255, 255, 0.34);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      line-height: 30px;
+      text-align: center;
+      margin-left: 10px;
+      transform: translateX(0px);
+      transition: all ease 0.3s;
+    }
+
+    img {
+      transform: translateX(0px);
+      transition: all ease 0.3s;
+      width: 42px;
+    }
+  }
+}

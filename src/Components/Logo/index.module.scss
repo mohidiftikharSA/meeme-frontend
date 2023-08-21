@@ -1,0 +1,18 @@
+.logo{
+  position: relative;
+  width: 130px;
+  float: left;
+  &.login{
+    margin: auto;
+  }
+
+  a{
+    display: block;
+  }
+
+  img{
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}

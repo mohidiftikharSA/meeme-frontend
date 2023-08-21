@@ -1,0 +1,252 @@
+@import "~bootstrap/scss/bootstrap";
+@import "Style/base";
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Questrial&display=swap");
+@import url("https://fonts.cdnfonts.com/css/gilroy-bold");
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
+@import url("https://fonts.cdnfonts.com/css/product-sans");
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0b0213;
+  font-family: $Poppins;
+  color: #9b9b9b;
+  font-size: 14px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+// input,.form-control{
+//   border: 1px solid transparent !important;
+//   color: #fff !important;
+//   &:focus{
+//     background: rgba(255, 255, 255, 0.13);
+//     border: 1px solid rgba(255, 255, 255, 0.2) !important;
+//     box-shadow: none;
+//     outline: none;
+//   }
+// }
+.container {
+  max-width: 1170px !important;
+}
+
+nav {
+  font-family: $Poppins;
+}
+
+section {
+  padding: 50px;
+  overflow: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+#aisde {
+  min-height: 100vh;
+  height: 100%;
+  border-right: 1px solid rgba(255, 255, 255, 0.31);
+}
+
+.navBar {
+  margin: 0 20px;
+
+  &.aside {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+  }
+
+  .nav-link {
+    color: #9b9b9b;
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    &.active,
+    &:hover {
+      color: #ffcd2f;
+    }
+  }
+}
+
+.accordion {
+  font-family: $pt;
+  .following {
+    min-height: 100vh;
+    height: 100%;
+    border-left: 1px solid rgba(255, 255, 255, 0.31);
+  }
+  &.active {
+    border-radius: 14px;
+
+    .accordion-item {
+      background-color: #1c1c1c;
+
+      .accordion-header {
+        .accordion-button {
+          border-radius: 14px 14px 0 0;
+        }
+      }
+
+      .accordion-collapse {
+        border-radius: 0 0 14px 14px;
+      }
+    }
+  }
+
+  .accordion-item {
+    background: rgba(255, 255, 255, 0.11);
+    border-radius: 14px;
+    color: #fff;
+    border: none;
+    margin-bottom: 12px;
+
+    .accordion-header {
+      .accordion-button {
+        background: rgba(255, 255, 255, 0.11);
+        border-radius: 14px;
+        padding: 10px;
+        color: #fff;
+
+        &:after {
+          background-image: url("../Images/chevron-down.png");
+          background-color: rgba(255, 255, 255, 0.11);
+          padding: 12px;
+          border-radius: 50%;
+          background-position: center;
+        }
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+    .accordion-collapse {
+      background: rgba(255, 255, 255, 0.11);
+
+      &:active {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+.badge {
+  border-radius: 25px;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+
+  &.active {
+    background-color: #ffcd2f !important;
+    color: #000;
+  }
+}
+
+.phonverify .gVxunN {
+  border-radius: 100px;
+  border: 1px solid #dec761;
+  width: 52px;
+  height: 73px;
+  box-shadow: none;
+  margin: 0 8px;
+
+  &.cTCtsH {
+    display: flex;
+    position: relative;
+    justify-content: flex-start !important;
+  }
+
+  &:focus-visible {
+    outline: none !important;
+  }
+}
+
+.modal {
+  &.uploadModal{
+    .modal-body{
+      background-color: transparent;
+    }
+  }
+  .btn-close{
+    filter: brightness(0) invert(1);
+    opacity: 1;
+    color: #fff;
+  }
+  .modal-content {
+    background: #3c3a40;
+    border-radius: 30px;
+    padding: 10px;
+  }
+
+  .modal-header {
+    border: none;
+
+    .modal-title {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      .fa {
+        font-weight: 400;
+        font-size: 20px;
+      }
+      h6{
+        font-size: 13px;
+        margin-bottom: 0;
+        margin-left: 12px;
+
+      }
+    }
+  }
+  .title {
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    padding-left: 20px;
+  }
+
+  .modal-body {
+    background: #2c2930;
+    border-radius: 30px;
+    padding: 32px;
+    margin: 20px 5px;
+    text-align: center;
+    &.subTitle {
+      color: #fff;
+      text-align: center;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    .aboutLogo {
+      display: flex;
+    }
+  }
+}
+
+.aboutModal{
+  .modalContant {
+    max-height: 484px;
+    overflow: scroll;
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+    overflow-x: hidden;
+}
+
+}
