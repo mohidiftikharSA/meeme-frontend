@@ -6,7 +6,6 @@ import mail from "../../../Images/mail.png"
 import google from "../../../Images/google.png"
 import facebook from "../../../Images/facebook.png"
 import { Link } from 'react-router-dom/dist'
-import Footer from 'Components/Footer'
 
 const Login = () => {
   return (

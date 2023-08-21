@@ -15,7 +15,7 @@ const FooterTabs = (props) => {
           <i class="fa fa-angle-left" aria-hidden="true"></i>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{background:'transparent'}} >
+      <Modal.Body style={{background:'transparent' , padding: '0' , margin: '0'}} >
         <Tabs className='modalTabs'>
           <Tab eventKey="terms" title="Terms of Services" className='CustTabContent'>
             <div className={classes.modalContant}>
