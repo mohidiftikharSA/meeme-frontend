@@ -27,13 +27,9 @@ const Posts = ({ postData }) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-1"><i className="far fa-flag"></i> Flag Post</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2"><i className="fas fa-exclamation"></i>Report</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3"><i className="fas fa-download"></i>Download</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
