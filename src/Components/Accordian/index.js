@@ -4,6 +4,25 @@ import BuyCoin from "Components/BuyCoin";
 import ContactList from "Components/ContactList";
 import React, { useState } from "react";
 import { Accordion } from "react-bootstrap";
+import AccordionBody from "react-bootstrap/esm/AccordionBody";
+
+const data = [
+  {
+    title: "Funny",
+  },
+  {
+    title: "CanadaPolitics",
+  },
+  {
+    title: "TrumpSeason",
+  },
+  {
+    title: "XaviarQuotes",
+  },
+  {
+    title: "SmilyCats",
+  },
+];
 
 const AccordianData = ({ following = "" }) => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -29,7 +48,9 @@ const AccordianData = ({ following = "" }) => {
             <Accordion.Header onClick={() => toggleActive(1)}>
               Trending Tags
             </Accordion.Header>
-            <AccordianBadge />
+            <AccordionBody>
+            <AccordianBadge data={data}/>
+            </AccordionBody>
           </Accordion.Item>
           <Accordion.Item eventKey="1">
             <Accordion.Header onClick={() => toggleActive(2)}>

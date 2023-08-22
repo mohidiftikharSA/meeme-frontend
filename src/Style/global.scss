@@ -6,6 +6,7 @@
 @import url("https://fonts.cdnfonts.com/css/gilroy-bold");
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
 @import url("https://fonts.cdnfonts.com/css/product-sans");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap');
 
 body {
   margin: 0;
@@ -146,7 +147,12 @@ section {
   border-radius: 25px;
   cursor: pointer;
   display: block;
-  font-size: 14px;
+  font-size: 12px;
+  &.explore-badge{
+    background-color: transparent !important;
+    border: 1px solid #676767;
+    margin-bottom: 35px;
+  }
 
   &.active {
     background-color: #ffcd2f !important;
@@ -175,13 +181,7 @@ section {
 }
 
 .modal {
-  &.alignRight{
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    transform: translateX(0);
-    align-items: flex-end;
-  }
+  
   &.uploadModal{
     .modal-body{
       background-color: transparent;
@@ -195,6 +195,7 @@ section {
     background: #3c3a40;
     border-radius: 30px;
     padding: 10px;
+
   }
 
   .modal-header {
@@ -231,6 +232,24 @@ section {
     padding: 32px;
     margin: 20px 5px;
     text-align: center;
+    &.checkEmail{
+      background: #201E23;
+      border:none !important;
+      padding: 0;
+      margin:0;
+      color: #fff;
+      i{
+        background: linear-gradient(180deg, #44FFBC 0%, #0D6344 100%);
+        color: #fff;
+        border-radius: 50px;
+        padding: 10px;
+        margin: 20px 0;
+      }
+      .reset-btn{
+        padding: 0 50px;
+        margin: 20px 0;
+      }
+    }
     &.subTitle {
       color: #fff;
       text-align: center;
@@ -238,6 +257,14 @@ section {
       font-style: normal;
       font-weight: 400;
       line-height: 20px;
+    }
+    .faqTitle{
+      font-size: 16px;
+      color: #fff;
+    }
+    .faqSubTitle{
+      font-size: 14px;
+      color: #fff;
     }
 
     .aboutLogo {
@@ -256,4 +283,33 @@ section {
     overflow-x: hidden;
 }
 
+}
+
+.imgBox{
+  width: 100%;
+  img{
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+}
+.alignRight{
+  .modal-content {
+    background: #201E23;
+    border-radius: 10px ;
+    border: 1px solid #fff;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    max-width: 294px;
+    margin: 50px;
+  }
+}
+.resetPassword{
+  .modal-content {
+    background: #201E23;
+    border-radius: 20px ;
+    border: 1px solid #fff;   
+    max-width: 294px;
+  }
 }
