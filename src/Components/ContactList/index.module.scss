@@ -4,31 +4,59 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 13px;
+  font-size: 12px;
   font-family: $Poppins;
+  font-weight: 500;
+  line-height: 20px;
+  overflow-y: auto;
+  max-height: 500px;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border-radius: 15px;
+    background: #3D3745;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.32);
+    border-radius: 15px;
+
+  }
 
   li {
     display: flex;
     align-items: center;
     position: relative;
     margin-bottom: 15px;
-
-    img {
-      width: 36px;
-      height: 37px;
-      flex-shrink: 0;
+    gap: 15px;
+    &:last-child{
+      margin: 0;
     }
 
-    p {
-      color: #FFF;
-      font-feature-settings: 'clig' off, 'liga' off;
-      font-family: Poppins;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      padding-left: 15px;
-      margin: 0;
+    .profile {
+      position: relative;
+
+      .status {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: block;
+        background: #00CC52;
+        z-index: 9;
+
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+
+      img {
+        width: 36px;
+      }
     }
   }
 }

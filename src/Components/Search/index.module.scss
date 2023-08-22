@@ -1,15 +1,26 @@
 .search {
-  &.fullWidth{
+  &.contactList {
+    input {
+      margin-bottom: 0;
+      border-radius: 30px !important;
+      background: #2D2933;
+    }
+  }
+
+  &.fullWidth {
     margin-bottom: 35px;
-    input{
+
+    input {
       background: #201E23;
       border-radius: 30px !important;
       padding: 15px 50px;
-      &:focus{
+
+      &:focus {
         color: #fff;
       }
     }
   }
+
   span {
     position: absolute;
     left: 10px;
@@ -18,15 +29,18 @@
     cursor: pointer;
     z-index: 999;
   }
+
   input {
     background: rgba(255, 255, 255, 0.13);
     border: 8px;
     border-radius: 8px !important;
     padding: 10px 35px;
+
     &:placeholder {
       color: rgba(255, 255, 255, 0.2);
     }
-    &:focus{
+
+    &:focus {
       color: #fff;
       background: rgba(255, 255, 255, 0.13);
     }

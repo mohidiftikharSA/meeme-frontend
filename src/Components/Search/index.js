@@ -4,9 +4,9 @@ import searchIcon from "../../Images/Search.png"
 import searchIcon2 from "../../Images/Searchwhite.png"
 import classes from "./index.module.scss"
 
-const Search = ({expolore, text}) => {
+const Search = ({expolore, text,contactList}) => {
   return (
-    <InputGroup className={ `${classes.search}  ${expolore? `${classes.fullWidth}` : ""}`}>
+    <InputGroup className={ `${classes.search}  ${expolore? `${classes.fullWidth}` : ""}  ${contactList? `${classes.contactList}` : ""}`}>
     <span>
         <img src={expolore? searchIcon2  : searchIcon} alt='icon'/>
     </span>
