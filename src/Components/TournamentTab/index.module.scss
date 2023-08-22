@@ -1,0 +1,24 @@
+.contentHolder {
+  text-align: end;
+  [class*="imgBox"] {
+    position: relative;
+    top: -20px;
+  }
+}
+.icon {
+  width: 35px;
+  height: 35px;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(180deg, #ff6f91 0%, #ae6fff 100%);
+  border-radius: 14px;
+  display: inline-block;
+  border: 2px solid #FF6F91;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  svg {
+    font-size: 22px;
+  }
+}

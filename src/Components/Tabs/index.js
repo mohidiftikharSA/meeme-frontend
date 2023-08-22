@@ -14,8 +14,7 @@ import meme5 from "../../Images/meme5.png";
 import meme6 from "../../Images/meme6.png";
 import meme7 from "../../Images/meme7.png";
 import meme8 from "../../Images/meme8.png";
-
-
+import TournamentTabs from "Components/TournamentTab";
 
 const newMemesData = [
   {
@@ -117,23 +116,43 @@ const newMemesData2 = [
   },
 ];
 
-const TabDetails = () => {
+const TabDetails = ({ tournament,first }) => {
   return (
-    <Tabs
-      defaultActiveKey="following"
-      id="uncontrolled-tab-example"
-      className="mb-5 px-4"
-    >
-      <Tab eventKey="following" title="Following">
-        <FollowingContent />
-      </Tab>
-      <Tab eventKey="memes" title="New Memes">
-        <MemesDetails newMemesData={newMemesData} />
-      </Tab>
-      <Tab eventKey="trending" title="Trending">
-        <MemesDetails newMemesData={newMemesData2}/>
-      </Tab>
-    </Tabs>
+    <>
+      {tournament ? 
+       <Tabs
+       defaultActiveKey={first}
+       id="uncontrolled-tab-example"
+       className="mb-3"
+     >
+         <Tab eventKey="tournament" title="Tournament">
+           <TournamentTabs/>
+         </Tab>
+         <Tab eventKey="store" title="Store">
+         
+         </Tab>
+         <Tab eventKey="judge" title="Judge">
+           
+         </Tab>
+     </Tabs>  
+       : 
+       <Tabs
+       defaultActiveKey={first}
+       id="uncontrolled-tab-example"
+       className="mb-5 px-4"
+     >
+       <Tab eventKey="following" title="Following">
+           <FollowingContent />
+         </Tab>
+         <Tab eventKey="memes" title="New Memes">
+           <MemesDetails newMemesData={newMemesData} />
+         </Tab>
+         <Tab eventKey="trending" title="Trending">
+           <MemesDetails newMemesData={newMemesData2} />
+         </Tab>
+         </Tabs>
+      }
+      </>
   );
 };
 

@@ -9,6 +9,8 @@ import Restsetpassword from "Pages/Auth/RestsetPassword";
 import EmailVerification from "Pages/Auth/EmailVerification";
 import PhoneVerification from "Pages/Auth/PhoneVerification";
 import Forgetpassword from "Pages/Auth/ForgetPassword";
+import Explore from "Pages/Explore";
+import Tournament from "Pages/Tournament";
 
 
 const routes = [
@@ -51,6 +53,16 @@ const routes = [
         path: "/PhoneVerification",
         layout: AuthLayout,
         component: PhoneVerification,
+    },
+    {
+        path: "/explore",
+        layout: MainLayout,
+        component: Explore,
+    },
+    {
+        path: "/tornament",
+        layout: MainLayout,
+        component: Tournament,
     },
 
     { path: "*", component: NotFound, layout: MainLayout },

@@ -1,8 +1,8 @@
 import React from 'react'
 import classes from "./index.module.scss"
-const MemesDetails = ({newMemesData}) => {
+const MemesDetails = ({newMemesData,expolore}) => {
   return (
-   <div className={classes.flexBox}>
+   <div className={`${classes.flexBox} ${expolore? `${classes.exploreBox}` : ""}`}>
     {
          newMemesData.map((item,ind)=>{
             return(
