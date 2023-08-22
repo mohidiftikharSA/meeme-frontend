@@ -6,6 +6,8 @@
 
   &.modalTabs {
     background: transparent;
+    justify-content: left !important;
+
 
     .nav-item {
       flex: 0 0 auto;
@@ -70,6 +72,7 @@
 .CustTabContent {
   background: #2c2930;
   border-radius: 30px;
-  padding: 32px;
-  margin: 20px;
+  padding: 15px;
+  margin: 10px;
+  font-size: 12px;
 }

@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import classes from "../index.module.scss";
 import Logo from "Components/Logo";
 import AuthHeader from "Components/AuthHeader";
-import ResetEmail from "Components/ResetEmail";
+import ResetEmailModal from "Components/ResetEmailModal";
 import { BsCheckLg } from 'react-icons/bs';
 import { useNavigate } from "react-router";
 
@@ -33,7 +33,7 @@ const Forgetpassword = () => {
                     </Button>
                 </div>
             </div>
-            <ResetEmail
+            <ResetEmailModal
                 show={smShow}
                 onHide={() => setSmShow(false)}
             />
