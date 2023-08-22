@@ -3,7 +3,6 @@ import classes from "./index.module.scss"
 import img from "../../Images/tournament.png"
 import { BiInfoCircle } from 'react-icons/bi';
 import { Button } from 'react-bootstrap';
-import AboutusModal from 'Components/AboutusModal';
 import InfoModal from 'Components/InfoModal';
 
 
