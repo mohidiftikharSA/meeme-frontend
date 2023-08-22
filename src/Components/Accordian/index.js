@@ -1,6 +1,7 @@
 import AccordianBadge from "Components/AccordainBadge";
 import AccordianPrize from "Components/AccordainPrize";
 import BuyCoin from "Components/BuyCoin";
+import ContactList from "Components/ContactList";
 import React, { useState } from "react";
 import { Accordion } from "react-bootstrap";
 
@@ -12,14 +13,14 @@ const AccordianData = ({ following = "" }) => {
   };
 
   return (
-    <Accordion className={`${activeIndex !== null ? "active" : ""}`} style={{height:'100%'}}>
+    <Accordion className={`${activeIndex !== null ? "active" : ""}`} style={{ height: '100%' }}>
       {following ? (
         <div className={`py-5 px-4 following`}>
           <Accordion.Item eventKey="3">
             <Accordion.Header onClick={() => toggleActive(0)}>
               Followings
             </Accordion.Header>
-            <AccordianPrize />
+            <ContactList /> 
           </Accordion.Item>
         </div>
       ) : (

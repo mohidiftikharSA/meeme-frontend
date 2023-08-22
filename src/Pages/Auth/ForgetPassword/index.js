@@ -9,10 +9,12 @@ import { useNavigate } from "react-router";
 
 
 const Forgetpassword = () => {
+    
     const navigate = useNavigate();
     const nextPage = () => {
       navigate(`/PhoneVerification`);
     };
+
     const [smShow, setSmShow] = useState(false);
     return (
         <>
