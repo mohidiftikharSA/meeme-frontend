@@ -32,18 +32,21 @@ const AccordianData = ({ following = "" }) => {
   };
 
   return (
-    <Accordion className={`${activeIndex !== null ? "active" : ""}`} style={{ height: '100%' }}>
-      {following ? (
+    <>
+     {following ? (
+        <Accordion className={`${activeIndex !== null ? "active following-active" : ""}`} style={{ height: '100%' }}>
         <div className={`py-5 px-4 following`}>
-          <Accordion.Item eventKey="3">
+          <Accordion.Item eventKey="3" style={{background: '#201E23', textAlign:'center'}}>
             <Accordion.Header onClick={() => toggleActive(0)}>
-              Followings
+            <span style={{ marginRight: "60px",marginLeft: "20px", color: "#F6CC38",fontWeight:"700",fontSize:"14px"}}>All</span>Followings
             </Accordion.Header>
             <ContactList /> 
           </Accordion.Item>
         </div>
+          </Accordion>
       ) : (
-        <>
+    
+        <Accordion className={`${activeIndex !== null ? "active" : ""}`} style={{ height: '100%' }}>
           <Accordion.Item eventKey="0">
             <Accordion.Header onClick={() => toggleActive(1)}>
               Trending Tags
@@ -64,9 +67,12 @@ const AccordianData = ({ following = "" }) => {
             </Accordion.Header>
             <AccordianPrize />
           </Accordion.Item>
-        </>
+          </Accordion>
+       
       )}
-    </Accordion>
+    </>
+     
+   
   );
 };
 

@@ -88,6 +88,11 @@ section {
     border-left: 1px solid rgba(255, 255, 255, 0.31);
   }
   &.active {
+    &.following-active{
+      .accordion-item{
+        background: #201E23;
+      }
+    }
     border-radius: 14px;
 
     .accordion-item {
@@ -312,4 +317,10 @@ section {
     border: 1px solid #fff;   
     max-width: 294px;
   }
+}
+.card{
+  position: relative;
+  background: #211F24;
+  padding:8px;
+   border-radius: 8px;
 }

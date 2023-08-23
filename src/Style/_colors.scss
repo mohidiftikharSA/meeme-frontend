@@ -1,3 +1,4 @@
+
 @function shade($color, $percentage) {
   @return mix(#000, $color, $percentage);
 }
@@ -42,3 +43,9 @@ $color-light-blue: rgba(79, 139, 224, 0.904);
 $color-white-fade: rgba(255, 255, 255, 0.6);
 $color-navy-blue: #0068af;
 $color-space-blue: #193153;
+
+
+
+h1,h2,h3,h4,h5,h6{
+  color: #fff;
+}

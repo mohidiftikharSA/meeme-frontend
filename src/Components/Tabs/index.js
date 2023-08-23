@@ -15,6 +15,8 @@ import meme6 from "../../Images/meme6.png";
 import meme7 from "../../Images/meme7.png";
 import meme8 from "../../Images/meme8.png";
 import TournamentTabs from "Components/TournamentTab";
+import Store from "Components/Store";
+import classes from "./index.module.scss"
 
 const newMemesData = [
   {
@@ -116,10 +118,29 @@ const newMemesData2 = [
   },
 ];
 
-const TabDetails = ({ tournament,first }) => {
+const TabDetails = ({ tournament,first,main }) => {
   return (
     <>
-      {tournament ? 
+     {
+        main && 
+        <Tabs
+        defaultActiveKey={first}
+        id="uncontrolled-tab-example"
+        className="mb-5 px-4"
+      >
+        <Tab eventKey="following" title="Following">
+            <FollowingContent />
+          </Tab>
+          <Tab eventKey="memes" title="New Memes">
+            <MemesDetails newMemesData={newMemesData} />
+          </Tab>
+          <Tab eventKey="trending" title="Trending">
+            <MemesDetails newMemesData={newMemesData2} />
+          </Tab>
+          </Tabs>
+      }
+      {tournament &&
+       <div className={classes.contentHolder}>
        <Tabs
        defaultActiveKey={first}
        id="uncontrolled-tab-example"
@@ -129,28 +150,14 @@ const TabDetails = ({ tournament,first }) => {
            <TournamentTabs/>
          </Tab>
          <Tab eventKey="store" title="Store">
-         
+          <Store/>
          </Tab>
          <Tab eventKey="judge" title="Judge">
            
          </Tab>
      </Tabs>  
-       : 
-       <Tabs
-       defaultActiveKey={first}
-       id="uncontrolled-tab-example"
-       className="mb-5 px-4"
-     >
-       <Tab eventKey="following" title="Following">
-           <FollowingContent />
-         </Tab>
-         <Tab eventKey="memes" title="New Memes">
-           <MemesDetails newMemesData={newMemesData} />
-         </Tab>
-         <Tab eventKey="trending" title="Trending">
-           <MemesDetails newMemesData={newMemesData2} />
-         </Tab>
-         </Tabs>
+     </div>
+      
       }
       </>
   );
