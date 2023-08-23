@@ -1,5 +1,5 @@
 import React from "react";
-import { Dropdown, Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 
 const Navigation = ({ header, footer }) => {
   return (
@@ -32,20 +32,7 @@ const Navigation = ({ header, footer }) => {
     </Nav.Link>
   </Nav>
 }
-  <Dropdown className="navDropdown">
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                <i class="fa fa-cog" aria-hidden="true">Setting</i>
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1"><i className="far fa-flag"></i>Account Details</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2"><i className="fas fa-exclamation"></i>Billing Details</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3"><i className="fas fa-download"></i>Notifications</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3"><i className="fas fa-download"></i>Support</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3"><i className="fas fa-download"></i>FAQ</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3"><i className="fas fa-download"></i>Log Out</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+  
   </Navbar>
   );
 };
