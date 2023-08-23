@@ -31,7 +31,8 @@ const Navigation = ({ header, footer }) => {
       <i className="fas fa-trophy"></i>Store
     </Nav.Link>
   </Nav>
-    }
+}
+  
   </Navbar>
   );
 };
