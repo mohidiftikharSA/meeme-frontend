@@ -15,7 +15,7 @@ const LandingPage = () => {
     <Col md={6}> 
     <section>
     <Container>
-    <TabDetails first={'following'}/>
+    <TabDetails first={'following'} main/>
     </Container>
   </section>
     </Col>
