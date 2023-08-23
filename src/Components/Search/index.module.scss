@@ -1,4 +1,15 @@
 .search {
+  &.fullWidth{
+    margin-bottom: 35px;
+    input{
+      background: #201E23;
+      border-radius: 30px !important;
+      padding: 15px 50px;
+      &:focus{
+        color: #fff;
+      }
+    }
+  }
   span {
     position: absolute;
     left: 10px;
@@ -10,11 +21,14 @@
   input {
     background: rgba(255, 255, 255, 0.13);
     border: 8px;
-    border-top-left-radius: 8px !important;
-    border-bottom-left-radius: 8px !important;
+    border-radius: 8px !important;
     padding: 10px 35px;
     &:placeholder {
       color: rgba(255, 255, 255, 0.2);
+    }
+    &:focus{
+      color: #fff;
+      background: rgba(255, 255, 255, 0.13);
     }
   }
 }

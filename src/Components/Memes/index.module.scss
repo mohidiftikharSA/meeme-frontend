@@ -1,6 +1,14 @@
 .flexBox {
     column-count: 2;
     column-gap: 0;
+    &.exploreBox{
+      column-count: 4;
+      .imgBox{
+        &:first-child{
+          margin: 0;
+        }
+      }
+    }
   .imgBox {
     position: relative;
     display: inline-block;

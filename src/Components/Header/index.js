@@ -15,7 +15,7 @@ const Header = () => {
         <div className="d-flex align-items-center justify-content-between">
           <Logo />
           <div className={classes.rightSide}>
-            <Search />
+            <Search text={"Search"} />
             <Navigation header/>
             <ButtonGroup className="align-items-center">
               <Link to={"#"} className={`btn ${classes.iconBtn}`}>
