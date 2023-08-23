@@ -1,4 +1,15 @@
 .dropdown {
+  &.navDropdown{
+    .dropdown-menu{
+      background: rgba(255, 255, 255, 0.11) !important;
+      a {
+        &:hover {
+          background: none;
+        }
+      }       
+  }
+ }
+ 
   button {
     background-color: transparent;
     border: none;
@@ -44,3 +55,4 @@
     }
   }
 }
+
