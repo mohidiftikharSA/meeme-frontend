@@ -12,7 +12,7 @@ const AboutusModal = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <i className="fa fa-angle-left" aria-hidden="true"></i>
                 </Modal.Title>
             </Modal.Header>
             <h4 className='title'>About Us</h4>

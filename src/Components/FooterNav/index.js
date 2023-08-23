@@ -3,11 +3,18 @@ import FooterTabs from "Components/FooterTabs";
 import React, { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 
+
+
 const FooterNav = () => {
   const [aboutUsModalShow, setAboutUsModalShow] = useState(false);
-  const [termsOfServiceModalShow, setTermsOfServiceModalShow] = useState(false);
-  const [privacyPolicyModalShow, setPrivacyPolicyModalShow] = useState(false);
-  const [fAQModalShow, setFAQModalShow] = useState(false);
+  const [show, setshow] = useState(false);
+  const [tabTitles, settabTitle] = useState(false);
+
+  const clickHandler = (type)=>{
+    setshow(true);
+    settabTitle(type)
+  }
+
 
   return (
     <>
@@ -16,13 +23,13 @@ const FooterNav = () => {
           <Nav.Link href="#" onClick={() => setAboutUsModalShow(true)}>
             About Us
           </Nav.Link>
-          <Nav.Link href="#" onClick={() => setTermsOfServiceModalShow(true)}>
+          <Nav.Link href="#" onClick={() => clickHandler('terms')}>
             Terms of Services
           </Nav.Link>
-          <Nav.Link href="#" onClick={() => setPrivacyPolicyModalShow(true)}>
+          <Nav.Link href="#" onClick={() => clickHandler('policy')}>
             Privacy Policy
           </Nav.Link>
-          <Nav.Link href="#" onClick={() => setFAQModalShow(true)}>
+          <Nav.Link href="#" onClick={() => clickHandler('faq')}>
             FAQ
           </Nav.Link>
           <Nav.Link href="#">Tutorial</Nav.Link>
@@ -35,17 +42,11 @@ const FooterNav = () => {
       />
 
       <FooterTabs
-        show={termsOfServiceModalShow}
-        onHide={() => setTermsOfServiceModalShow(false)}
+        show={show}
+        tabTitles={tabTitles}
+        onHide={() => setshow(false)}
       />
-      <FooterTabs
-        show={privacyPolicyModalShow}
-        onHide={() => setPrivacyPolicyModalShow(false)} 
-      />
-      <FooterTabs
-        show={fAQModalShow}
-        onHide={() => setFAQModalShow(false)}
-      />
+      
     </>
   );
 };

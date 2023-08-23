@@ -4,6 +4,7 @@ import img from "../../Images/tournament.png";
 import { BiInfoCircle } from "react-icons/bi";
 import { Button } from "react-bootstrap";
 import InfoModal from "Components/InfoModal";
+import { style } from "@mui/system";
 
 const TournamentTabs = () => {
   const [show, setShow] = useState(false);
@@ -19,7 +20,7 @@ const TournamentTabs = () => {
         <BiInfoCircle />
       </span>
      </div>
-      <div className={"imgBox mb-4"}>
+      <div className={"imgBox mb-4 position-relative"} style={{top:"-30px"}}>
         <img src={img} alt="img" />
       </div>
       <div className="px-5">

@@ -1,9 +1,9 @@
 import React from "react";
 import { Card, } from "react-bootstrap";
-import amazon from "../../Images/Amazonicon.png";
+import amazon from "../../Images/amazon.png";
 import classes from "./index.module.scss"
 import { Link } from "react-router-dom";
-import coin from "../../Images/coin.png"
+import coin from "../../Images/coin.png";
 
 const GiftCard = ({ data }) => {
   return (
@@ -21,9 +21,9 @@ const GiftCard = ({ data }) => {
                   </div>
                 </div>
               </Card>
-              <Link  className={`btn ${classes.iconBtn}`}>
+              <Link  className={"btn iconBtncust"}>
                 <img src={coin} alt="icon" />
-                <span className={classes.text}>{item.coin}</span>
+                <span className={"text"}>{item.coin}</span>
               </Link>
             </div>
           );

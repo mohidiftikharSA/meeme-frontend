@@ -9,7 +9,7 @@ const ResetPasswordModal = (props) => {
             centered
         >
             <Modal.Body className='checkEmail'>
-            <i class="fa fa-check" aria-hidden="true"></i>
+            <i className="fa fa-check" aria-hidden="true"></i>
             <p>Password Reset Successful!</p>
             <Button onClick={props.onHide} className='reset-btn'>Ok</Button>
             </Modal.Body>

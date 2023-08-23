@@ -14,7 +14,7 @@ const EmailVerification = () => {
             <div className="formHolder">       
             <Button className="btn-primary icon-btn w-100 p-2 h-auto mt-5 ">
             Email Verification</Button>  
-            <Button className="btn-primary icon-btn w-100 p-2 h-auto mt-4"><i class="fa fa-check-circle" aria-hidden="true"></i>Phone Verification</Button>
+            <Button className="btn-primary icon-btn w-100 p-2 h-auto mt-4"><i className="fa fa-check-circle" aria-hidden="true"></i>Phone Verification</Button>
                 </div> 
         </>
     );

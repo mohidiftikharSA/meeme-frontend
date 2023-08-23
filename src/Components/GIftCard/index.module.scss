@@ -4,7 +4,7 @@
     justify-content: flex-start;
     margin-bottom: 35px;
     .item{
-        flex: 0 0 28%;
+        flex: 0 0 25%;
         margin-right: 15px;
     }
     .box{
@@ -21,25 +21,5 @@
         transform: translateX(-50%);
 
     }
-    .iconBtn {
-        background: linear-gradient(321deg, #73ff66 0%, #19850f 100%);
-        border-radius: 30px !important;
-        padding: 0 10px;
-        color: #fff;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Gilroy;
-        max-width: 108px;
-        margin: auto;
-        &:hover{
-            color: #fff;
-            opacity: 0.9;
-        }    
-        img {
-          width: 20px;
-          margin-right: 5px;
-        }
-      }
+    
 }

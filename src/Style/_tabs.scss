@@ -3,6 +3,26 @@
   border-bottom: 0;
   font-family: $pt;
   font-weight: 600;
+  &.noBg{
+    border-bottom: 1px solid #2C2948;;
+    .nav-item{  
+      flex: 1 0 auto;
+      .nav-link{
+        background-color: transparent;
+        border: none;
+        border-radius: 0 !important;
+        color: #544e5a;
+        &:hover{
+          border: none;
+        }
+        &.active {
+          background: none;
+          border-bottom: 1px solid #f9bf29;
+          color: #fff !important;
+        }
+    }
+    }
+  }
 
   &.modalTabs {
     background: transparent;

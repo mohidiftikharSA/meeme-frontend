@@ -1,5 +1,6 @@
 import GiftCard from 'Components/GIftCard'
 import StoreItems from 'Components/StoreItems'
+import TabDetails from 'Components/Tabs'
 import React from 'react'
 
 const data =[
@@ -23,6 +24,8 @@ const Store = () => {
     <>
     <GiftCard data={data}/>
     <StoreItems/>
+    <TabDetails storeitems/>
+    
     
     </>
   )

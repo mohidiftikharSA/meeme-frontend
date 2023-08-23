@@ -22,7 +22,7 @@ const UploadModal = (props) => {
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter modal-title">
           <i
-            class="fa fa-angle-left"
+            className="fa fa-angle-left"
             aria-hidden="true"
             onClick={props.onHide}
           ></i>
