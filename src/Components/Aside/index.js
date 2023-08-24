@@ -24,7 +24,7 @@ export const Aside = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1"><span><img src={Profile} alt="Profile"/></span>Account Details</Dropdown.Item>
+                  <Dropdown.Item href="/profile-setting"><span><img src={Profile} alt="Profile"/></span>Account Details</Dropdown.Item>
                   <Dropdown.Item href="#/action-2"><span><img src={Wallet} alt="Wallet"/></span>Billing Details</Dropdown.Item>
                   <Dropdown.Item href="#/action-3"><span><img src={Notification} alt="Notification"/></span>Notifications</Dropdown.Item>
                   <Dropdown.Item href="#/action-3"><span><img src={support} alt="support"/></span>Support</Dropdown.Item>

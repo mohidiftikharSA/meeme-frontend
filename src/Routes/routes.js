@@ -11,6 +11,7 @@ import PhoneVerification from "Pages/Auth/PhoneVerification";
 import Forgetpassword from "Pages/Auth/ForgetPassword";
 import Explore from "Pages/Explore";
 import Tournament from "Pages/Tournament";
+import ProfileSetting from "Pages/ProfileSetting";
 
 
 const routes = [
@@ -63,6 +64,11 @@ const routes = [
         path: "/tornament",
         layout: MainLayout,
         component: Tournament,
+    },
+    {
+        path: "/profile-setting",
+        layout: MainLayout,
+        component: ProfileSetting,
     },
 
     { path: "*", component: NotFound, layout: MainLayout },
