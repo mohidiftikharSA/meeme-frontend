@@ -13,6 +13,7 @@ import del from "../../Images/delete.png"
 import Heading from "Components/Heading";
 import EditProfile from "Components/EditProfile";
 import NotificationCard from "Components/NotificationCard";
+import Transaction from "Components/Transaction";
 
 
 
@@ -62,7 +63,7 @@ const ProfileSetting = () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="wallet" onClick={handleTabClick}>
+                    <Nav.Link eventKey="transaction" onClick={handleTabClick}>
                       <span>
                         <img src={documents} alt="document-icon" />
                       </span>
@@ -153,6 +154,9 @@ const ProfileSetting = () => {
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">Second tab content</Tab.Pane>
                   <Tab.Pane eventKey="notifications"><NotificationCard/></Tab.Pane>
+                  <Tab.Pane eventKey="transaction">
+                  <Transaction /></Tab.Pane>
+                 
                 </Tab.Content>
               </Col>
             </Row>
