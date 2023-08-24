@@ -1,42 +1,38 @@
-.card {
-  border-radius: 30px;
-  padding: 20px;
-  .Profile {
-    .profilDetails {
-      text-align: center;
-      padding: 35px 0;
-      .Uploader {
-        position: relative;
-        display: inline-block;
-        margin-bottom: 10px;
-        img {
-          width: 120px;
-          height: 120px;
-          border-radius: 50%;
-          object-fit: cover;
-          border: 2px solid #fff;
-        }
-      }
-      .textBox{
-        font-size: 12px;
-      }
-      .uploadBtn {
-        position: absolute;
-        bottom: 0;
-        right: 8px;
-        background-color: #fbcb50;
-        border: 2px solid #000;
-        font-size: 18px;
+.Profile {
+  .profilDetails {
+    text-align: center;
+    padding: 20px 0;
+    .Uploader {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 10px;
+      img {
+        width: 120px;
+        height: 120px;
         border-radius: 50%;
-        width: 35px;
-        height: 35px;
-        line-height: 30px;
-        color: #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
+        object-fit: cover;
+        border: 2px solid #fff;
       }
+    }
+    .textBox {
+      font-size: 12px;
+    }
+    .uploadBtn {
+      position: absolute;
+      bottom: 0;
+      right: 8px;
+      background-color: #fbcb50;
+      border: 2px solid #000;
+      font-size: 18px;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      line-height: 30px;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
     }
   }
 }

@@ -12,6 +12,7 @@ import msg from "../../Images/msg.png"
 import del from "../../Images/delete.png"
 import Heading from "Components/Heading";
 import EditProfile from "Components/EditProfile";
+import NotificationCard from "Components/NotificationCard";
 
 
 
@@ -83,7 +84,7 @@ const ProfileSetting = () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="wallet" onClick={handleTabClick}>
+                    <Nav.Link eventKey="notifications" onClick={handleTabClick}>
                       <span>
                         <img src={Notification} alt="notification-icon" />
                       </span>
@@ -151,6 +152,7 @@ const ProfileSetting = () => {
                     <EditProfile />
                   </Tab.Pane>
                   <Tab.Pane eventKey="second">Second tab content</Tab.Pane>
+                  <Tab.Pane eventKey="notifications"><NotificationCard/></Tab.Pane>
                 </Tab.Content>
               </Col>
             </Row>

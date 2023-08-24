@@ -13,7 +13,7 @@ const UltraRare = ({ data , data2 }) => {
               <div className={classes.themeHolder}>
                 <p className="mb-0">{item.title}</p>
                 <div className={"imgBox mb-3"}>
-                  <img height={'50px'} src={item.img} alt="img" />
+                  <img  src={item.img} alt="img" style={{height:'50px'}} />
                 </div>
 
                 <Link  className={"btn iconBtncust"} style={{maxWidth:'85px',height:"30px"}}>

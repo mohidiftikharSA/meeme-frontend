@@ -319,6 +319,10 @@ section {
   background: #211f24;
   padding: 12px;
   border-radius: 8px;
+  &.profileCard{
+    border-radius: 30px !important;
+  padding: 20px !important;
+  }
 }
 
 .iconBtncust {
