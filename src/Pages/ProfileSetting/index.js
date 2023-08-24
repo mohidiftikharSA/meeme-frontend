@@ -1,19 +1,29 @@
 import React, { useState } from "react";
 import { Col, Container, Nav, Row, Tab } from "react-bootstrap";
 import Profile from "../../Images/Profile.png";
+import Heading from "Components/Heading";
+import EditProfile from "Components/EditProfile";
 
 const ProfileSetting = () => {
   const [tabClicked, setTabClicked] = useState(false);
 
   const handleTabClick = () => {
-    console.log(tabClicked)
+    console.log(tabClicked);
     setTabClicked(true);
   };
 
   return (
     <section>
       <Container>
-        <div className="vertical-NavHolder" style={tabClicked? {maxWidth:"100%"} : {maxWidth:"600px", margin:"auto"}} >
+        <div
+          className="vertical-NavHolder"
+          style={
+            tabClicked
+              ? { maxWidth: "100%" }
+              : { maxWidth: "600px", margin: "auto" }
+          }
+        >
+          <Heading title="Setting" />
           <Tab.Container id="verticalNav">
             <Row>
               <Col sm={tabClicked ? 6 : 12}>
@@ -126,7 +136,9 @@ const ProfileSetting = () => {
               </Col>
               <Col sm={tabClicked ? 6 : 12}>
                 <Tab.Content>
-                  <Tab.Pane eventKey="account">First tab content</Tab.Pane>
+                  <Tab.Pane eventKey="account">
+                    <EditProfile />
+                  </Tab.Pane>
                   <Tab.Pane eventKey="second">Second tab content</Tab.Pane>
                 </Tab.Content>
               </Col>
