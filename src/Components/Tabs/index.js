@@ -374,7 +374,8 @@ const TabDetails = ({
           <Tab eventKey="Icons" title="Icons">
             <SubTabs icon/>
           </Tab>
-          <Tab eventKey="trending" title="Trending">
+          <Tab eventKey="themes" title="Themes">
+          <SubTabs theme/>
           </Tab>
           <Tab eventKey="overlay" title="Background Overlay">
           </Tab>

@@ -19,8 +19,8 @@ export const Aside = () => {
             <AccordianData />
           </div>
           <Dropdown className="navDropdown">
-                <Dropdown.Toggle   variant="success" id="dropdown-basic">
-                <img src={setting} alt="Profile"/> Setting
+                <Dropdown.Toggle   variant="success" id="dropdown-basic" style={{fontSize:'14px',display:"flex",alignItems:"center"}}>
+                <img src={setting} style={{marginRight:"8px"}} alt="Profile"/> Setting
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>

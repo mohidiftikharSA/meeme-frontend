@@ -1,4 +1,4 @@
-import UltraRare from "Components/UltraRare";
+
 import React from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import img1 from "../../Images/rare1.png";
@@ -10,6 +10,7 @@ import img6 from "../../Images/rare6.png";
 import img7 from "../../Images/rare7.png";
 import img8 from "../../Images/rare8.png";
 import img9 from "../../Images/rare9.png";
+import UltraRare from "Components/UltraRare";
 
 const data = [
   {
@@ -60,7 +61,7 @@ const data = [
 
 ]
 
-const SubTabs = ({ icon }) => {
+const SubTabs = ({ icon ,theme}) => {
   return (
     <>
       {icon && (
@@ -73,10 +74,23 @@ const SubTabs = ({ icon }) => {
           </Tab>
           <Tab eventKey="rare" title="Rare"></Tab>
           <Tab eventKey="ultra" title="Ultra Rare">
-            <UltragitRare data={data} />
+            <UltraRare data={data} />
           </Tab>
         </Tabs>
       )}
+      {theme && 
+      <Tabs
+      defaultActiveKey={"ultra"}
+      id="uncontrolled-tab-example"
+      className="mb-5"
+    >
+      <Tab eventKey="common" title="Common">
+      </Tab>
+      <Tab eventKey="rare" title="Rare"></Tab>
+      <Tab eventKey="ultra" title="Ultra Rare">
+        
+      </Tab>
+    </Tabs>}  
     </>
   );
 };
