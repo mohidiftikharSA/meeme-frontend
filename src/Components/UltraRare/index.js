@@ -3,7 +3,7 @@ import { Card, Col, Row } from "react-bootstrap";
 import classes from "./index.module.scss";
 import { Link } from "react-router-dom";
 import coin from "../../Images/coin.png";
-const UltraRare = ({ data }) => {
+const UltraRare = ({ data , data2 }) => {
   return (
     <Row>
       {data.map((item, ind) => {

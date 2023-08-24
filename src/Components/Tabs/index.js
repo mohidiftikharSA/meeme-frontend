@@ -14,10 +14,18 @@ import meme5 from "../../Images/meme5.png";
 import meme6 from "../../Images/meme6.png";
 import meme7 from "../../Images/meme7.png";
 import meme8 from "../../Images/meme8.png";
+import img13 from "../../Images/bg1.png";
+import img14 from "../../Images/bg2.png";
+import img15 from "../../Images/bg3.png";
+import img16 from "../../Images/Profile01.png";
+import img17 from "../../Images/Profile2.png";
+import img18 from "../../Images/Profile3.png";
 import TournamentTabs from "Components/TournamentTab";
 import Store from "Components/Store";
 import classes from "./index.module.scss";
 import SubTabs from "Components/SubTabs";
+import BackgroundOverlay from "Components/BackgroundOverlay";
+import ProfileOverlay from "Components/ProfileOverlay";
 
 const newMemesData = [
   {
@@ -118,6 +126,42 @@ const newMemesData2 = [
     memeImg: meme8,
   },
 ];
+const backgroundOverlayData = [
+  {
+    
+    img: img13,
+    coin: "100"
+  },
+  {
+    
+    img: img14,
+    coin: "100"
+  },
+  {
+    
+    img: img15,
+    coin: "100"
+  },
+  
+]
+const ProfileOverlayData = [
+  {
+    
+    img: img16,
+    coin: "100"
+  },
+  {
+    
+    img: img17,
+    coin: "100"
+  },
+  {
+    
+    img: img18,
+    coin: "100"
+  },
+  
+]
 
 const TabDetails = ({
   tournament,
@@ -375,11 +419,13 @@ const TabDetails = ({
             <SubTabs icon/>
           </Tab>
           <Tab eventKey="themes" title="Themes">
-          <SubTabs theme/>
+          <SubTabs themes/>
           </Tab>
           <Tab eventKey="overlay" title="Background Overlay">
+          <BackgroundOverlay data={backgroundOverlayData}/>
           </Tab>
           <Tab eventKey="profile" title="Profile Overlay">
+          <ProfileOverlay  data={ProfileOverlayData}/>
           </Tab>
         </Tabs>
       )}

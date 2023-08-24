@@ -10,7 +10,12 @@ import img6 from "../../Images/rare6.png";
 import img7 from "../../Images/rare7.png";
 import img8 from "../../Images/rare8.png";
 import img9 from "../../Images/rare9.png";
+import Theme1 from "../../Images/Theme1.png";
+import Theme2 from "../../Images/Theme2.png";
+import Theme3 from "../../Images/Theme3.png";
+import ThemeRare from "Components/ThemeRare";
 import UltraRare from "Components/UltraRare";
+
 
 const data = [
   {
@@ -61,7 +66,27 @@ const data = [
 
 ]
 
-const SubTabs = ({ icon ,theme}) => {
+const data2 = [
+  {
+    
+    img: Theme1,
+    coin: "100"
+  },
+  {
+    
+    img: Theme2,
+    coin: "100"
+  },
+  {
+    
+    img: Theme3,
+    coin: "100"
+  },
+  
+]
+
+
+const SubTabs = ({ icon ,themes }) => {
   return (
     <>
       {icon && (
@@ -78,19 +103,21 @@ const SubTabs = ({ icon ,theme}) => {
           </Tab>
         </Tabs>
       )}
-      {theme && 
-      <Tabs
-      defaultActiveKey={"ultra"}
-      id="uncontrolled-tab-example"
-      className="mb-5"
-    >
-      <Tab eventKey="common" title="Common">
-      </Tab>
-      <Tab eventKey="rare" title="Rare"></Tab>
-      <Tab eventKey="ultra" title="Ultra Rare">
-        
-      </Tab>
-    </Tabs>}  
+      {themes && (
+        <Tabs
+          defaultActiveKey={"ultra"}
+          id="uncontrolled-tab-example"
+          className="mb-5"
+        >
+          <Tab eventKey="common" title="Common">
+          </Tab>
+          <Tab eventKey="rare" title="Rare"></Tab>
+          <Tab eventKey="ultra" title="Ultra Rare">
+            <ThemeRare data2={data2} />
+          </Tab>
+        </Tabs>
+      )}
+      
     </>
   );
 };
