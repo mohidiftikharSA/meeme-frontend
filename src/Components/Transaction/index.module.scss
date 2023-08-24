@@ -1,0 +1,38 @@
+.transaction { 
+    li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 15px;
+        background: #292929;
+        box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.20);
+        padding: 10px;
+        margin: 10px 0;
+
+        .head{
+            display: flex;
+        }
+
+        img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .title {
+            color: #FFF;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: normal;
+            margin: 0;
+        }
+        span {
+            color: #7C7C7C;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }  
+    }
+}
