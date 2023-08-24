@@ -2,9 +2,14 @@
   &.navDropdown {
     .dropdown-toggle {
       background: none;
-
+      font-size: 1rem;
+      font-weight: 400;
       &:hover {
         color: #fff;
+      }
+
+      span {
+        margin-right: 10px;
       }
     }
 

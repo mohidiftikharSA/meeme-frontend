@@ -20,7 +20,7 @@ export const Aside = () => {
           </div>
           <Dropdown className="navDropdown">
                 <Dropdown.Toggle   variant="success" id="dropdown-basic">
-                <img src={setting} alt="Profile"/> Setting
+                <span><img src={setting} alt="Profile"/></span> Setting
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
