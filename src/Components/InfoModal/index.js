@@ -17,7 +17,7 @@ const InfoModal = (props) => {
             </Modal.Header>
             <Modal.Body className='m-0'>
                 <h6>Rules & Regulations</h6>
-                <ul className={`${classes.ruleList} mb-4`}>
+                <ul className={`ruleList mb-4`}>
                     <li>Meme user can post their memes and join the tournament.</li>
                     <li>To qualify for coin rewards, you need to judge 100 memes per day.</li>
                     <li>The judging of memes resets daily.</li>

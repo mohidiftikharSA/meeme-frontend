@@ -1,0 +1,28 @@
+.modalContant {
+    max-height: 435px;
+    overflow: scroll;
+    width: 100%;
+    text-align: justify;
+    padding: 15px;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+        width: 8px;
+      }
+    
+      /* Track */
+      &::-webkit-scrollbar-track {
+        border-radius: 15px;
+        background: #3D3745;
+      }
+    
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: #fff;
+        border-radius: 15px;
+    
+      }
+    p{
+        color: #fff;
+        font-size: 12px;
+    }
+}

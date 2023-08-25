@@ -1,6 +1,5 @@
-
-.formHolder{
-  max-width:380px;
+.formHolder {
+  max-width: 380px;
   .form-control {
     width: 100%;
     border-radius: 30px;
@@ -9,54 +8,52 @@
     font-family: Gilroy;
     font-weight: 500;
     color: #6d6771;
-    &::placeholder{
+    &::placeholder {
       color: #6d6771;
       font-size: 12px;
     }
   }
-  
 }
 .login-form {
   text-align: center;
   width: 50%;
 }
-.form-group{
+.form-group {
   position: relative;
 }
-.form-control{
+.form-control {
   font-size: 14px;
   border-radius: 50px;
-  border: 1.5px solid #FFF; 
+  border: 1.5px solid #fff;
   padding: 0.575rem 0.75rem;
   color: #fff;
   background-color: #fff;
 
-  &:focus{
+  &:focus {
     box-shadow: none;
   }
 }
-.userFrom{
-  .form-group{
+.userFrom {
+  .form-group {
     border-bottom: 1px solid #454545;
     margin-bottom: 10px;
-    .form-control{
+    .form-control {
       background-color: transparent;
       border-radius: 0;
       border: none;
       padding: 5px 0 10px 0;
       font-size: 16px;
       font-weight: 400;
-      &:focus{
+      &:focus {
         color: #fff;
       }
     }
-    .form-label{
+    .form-label {
       font-size: 12px;
       margin: 0;
     }
   }
 }
-
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -64,9 +61,8 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-
-.form-switch{
-  .form-check-input{
+.form-switch {
+  .form-check-input {
     background-color: rgba(96, 96, 96, 1);
     background-image: url(../Images/knob.png);
     height: 25px;
@@ -74,16 +70,18 @@ input::-webkit-inner-spin-button {
     background-position: -5px -1px;
     background-size: 30px;
     border: none;
-    &:checked{
+    &:checked {
       background-color: rgb(251, 203, 80);
-    background-position: 15px -1px;
-    background-size: 30px;
-    }
-    &:focus{
-      background-image: url(../Images/knob.png);
+      background-position: 14px -2px;
       background-size: 30px;
+    }
+    &:focus {
+      background-image: url(../Images/knob.png);
+      height: 25px;
+      width: 40px;
+      background-size: 32px;
+      border: none;
       box-shadow: none;
-      background-position-y: -1px;
-        }
+    }
   }
 }

@@ -19,7 +19,7 @@ const transactionData = [
 ]
 const Transaction = () => {
     return (
-        <Card className={classes.profileCard}>
+        <Card className={'profileCard'}>
             <Heading title={'Transaction History'} />
             <ul className={classes.transaction}>
                 {

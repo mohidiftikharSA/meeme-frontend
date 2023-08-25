@@ -12,6 +12,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-bottom: 35px;
+            &:last-child{
+                margin: 0;
+            }
             .box{
                 display: flex;
                 align-items: center;
