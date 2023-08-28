@@ -153,7 +153,6 @@ const ProfileSetting = () => {
                   </Tab.Pane>
                   <Tab.Pane eventKey="transaction">
                   <Transaction /></Tab.Pane>
-                 
                 </Tab.Content>
               </Col>
             </Row>
