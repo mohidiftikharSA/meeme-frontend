@@ -1,0 +1,29 @@
+.card {
+  border-radius: 30px !important;
+  padding: 20px !important;
+}
+
+.notificationHolder{
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 35px;
+            &:last-child{
+                margin: 0;
+            }
+            .box{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                img{
+                    width: 30px;
+                }
+            }
+        }
+    }
+}

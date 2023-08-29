@@ -26,6 +26,7 @@ import classes from "./index.module.scss";
 import SubTabs from "Components/SubTabs";
 import BackgroundOverlay from "Components/BackgroundOverlay";
 import ProfileOverlay from "Components/ProfileOverlay";
+import Judge from "Components/Judge";
 
 const newMemesData = [
   {
@@ -203,7 +204,9 @@ const TabDetails = ({
             <Tab eventKey="store" title="Store">
               <Store />
             </Tab>
-            <Tab eventKey="judge" title="Judge"></Tab>
+            <Tab eventKey="judge" title="Judge">
+              <Judge/>
+            </Tab>
           </Tabs>
         </div>
       )}
@@ -212,7 +215,7 @@ const TabDetails = ({
           <Tab
             eventKey="terms"
             title="Terms of Services"
-            className="CustTabContent"
+            className="CustTabContent scroller"
           >
             <div className={classes.modalContant}>
               <p>Welcome to MeMee!</p>

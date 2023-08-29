@@ -25,8 +25,6 @@ const Store = () => {
     <GiftCard data={data}/>
     <StoreItems/>
     <TabDetails storeitems/>
-    
-    
     </>
   )
 }

@@ -12,7 +12,11 @@ import msg from "../../Images/msg.png"
 import del from "../../Images/delete.png"
 import Heading from "Components/Heading";
 import EditProfile from "Components/EditProfile";
+import NotificationCard from "Components/NotificationCard";
 import Transaction from "Components/Transaction";
+import FAQ from "Components/Faq";
+import RuleList from "Components/RuleList";
+import BilingDetails from "Components/BillingDetails";
 
 
 
@@ -73,7 +77,7 @@ const ProfileSetting = () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="wallet" onClick={handleTabClick}>
+                    <Nav.Link eventKey="billing" onClick={handleTabClick}>
                       <span>
                         <img src={Wallet} alt="wallet-icon" />
                       </span>
@@ -84,7 +88,7 @@ const ProfileSetting = () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="wallet" onClick={handleTabClick}>
+                    <Nav.Link eventKey="notifications" onClick={handleTabClick}>
                       <span>
                         <img src={Notification} alt="notification-icon" />
                       </span>
@@ -95,7 +99,7 @@ const ProfileSetting = () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="wallet" onClick={handleTabClick}>
+                    <Nav.Link eventKey="support" onClick={handleTabClick}>
                       <span>
                         <img src={support} alt="support-icon" />
                       </span>
@@ -105,7 +109,7 @@ const ProfileSetting = () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="wallet" onClick={handleTabClick}>
+                    <Nav.Link eventKey="faq" onClick={handleTabClick}>
                       <span>
                         <img src={Faq} alt="faq-icon" />
                       </span>
@@ -115,7 +119,7 @@ const ProfileSetting = () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="wallet" onClick={handleTabClick}>
+                    <Nav.Link eventKey="rule" onClick={handleTabClick}>
                       <span>
                         <img src={file} alt="file-icon" />
                       </span>
@@ -125,7 +129,7 @@ const ProfileSetting = () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="wallet" onClick={handleTabClick}>
+                    <Nav.Link eventKey="tutorial" onClick={handleTabClick}>
                       <span>
                         <img src={msg} alt="msg-icon" />
                       </span>
@@ -135,7 +139,7 @@ const ProfileSetting = () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="wallet" onClick={handleTabClick}>
+                    <Nav.Link eventKey="Delete" onClick={handleTabClick}>
                       <span>
                         <img src={del} alt="del-icon" />
                       </span>
@@ -148,11 +152,12 @@ const ProfileSetting = () => {
               </Col>
               <Col sm={tabClicked ? 6 : 12}>
                 <Tab.Content>
-                  <Tab.Pane eventKey="account">
-                    <EditProfile />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="transaction">
-                  <Transaction /></Tab.Pane>
+                  <Tab.Pane eventKey="account"><EditProfile /></Tab.Pane>
+                  <Tab.Pane eventKey="notifications"><NotificationCard/></Tab.Pane>
+                  <Tab.Pane eventKey="faq"><FAQ/></Tab.Pane>
+                  <Tab.Pane eventKey="transaction"><Transaction /></Tab.Pane>
+                  <Tab.Pane eventKey="rule"><RuleList/></Tab.Pane>
+                  <Tab.Pane eventKey="billing"><BilingDetails/></Tab.Pane>
                 </Tab.Content>
               </Col>
             </Row>
