@@ -2,7 +2,7 @@ import DeleteConfirmationModal from 'Components/DeleteConfirmationModal'
 import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 const DeleteAccountModal = (props) => {
-const [deleteConfirmationModalShow, setDeleteConfirmationModalShow] = useState(false);
+const [modalShow, setModalShow] = useState(false);
     return (
 <>
         <Modal className='delAccountModal'
@@ -19,13 +19,13 @@ const [deleteConfirmationModalShow, setDeleteConfirmationModalShow] = useState(f
             </Modal.Header>
             <Modal.Body className='delAccounts' >
             <p className='py-2'>Deleting your account will remove all of your account’s data, contacts, and other information. Are you sure you want to proceed?</p>
-            <Button className='del-btn w-100 mb-2' onClick={() => setDeleteConfirmationModalShow(true)}>Delete</Button><br />
+            <Button className='del-btn w-100 mb-2' onClick={() => setModalShow(true)}>Delete</Button><br />
             <Button onClick={props.onHide} className='del-button'>Cancel</Button>
             </Modal.Body>
         </Modal>
         <DeleteConfirmationModal
-show={deleteConfirmationModalShow}
-onHide={() => setDeleteConfirmationModalShow(false)}/> 
+show={modalShow}
+onHide={() => setModalShow(false)}/> 
 </>
     )
 }
