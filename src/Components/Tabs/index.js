@@ -366,7 +366,7 @@ const TabDetails = ({
               </p>
             </div>
           </Tab>
-          <Tab eventKey="faq" title="FAQ" className="CustTabContent">
+          <Tab eventKey="faq" title="FAQ" className="CustTabContent faq">
             <div className={classes.modalContant}>
               <h3 className="faqTitle">How can we help you</h3>
               <p className="faqSubTitle">How do I buy coins?</p>

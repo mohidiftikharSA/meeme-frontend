@@ -101,6 +101,32 @@
     background: linear-gradient(180deg, #ffe299 0%, #f6b202 100%);
     font-weight: 700;
     position: relative;
+    &.del-btn {
+      border-radius: 46px;
+      background: #F00;
+      border: none;
+      color: #fff !important;
+      font-size: 12px;
+      padding: 22px;
+      line-height: 0;
+
+      &:hover {
+        background: #F00 !important;
+        color: #fff !important;
+      }
+    }
+
+    &.del-button {
+      border: none;
+      background: none;
+      color: #fff !important;
+      font-size: 12px;
+      &:hover{
+        border: none;
+        background: none !important;
+        color: #fff !important;
+      }
+    }
 
     &.authButton{
       height: 48px;

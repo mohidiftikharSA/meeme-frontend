@@ -91,17 +91,20 @@ section {
 
 .accordion {
   font-family: $pt;
+
   .following {
     min-height: 100vh;
     height: 100%;
     border-left: 1px solid rgba(255, 255, 255, 0.31);
   }
+
   &.active {
     &.following-active {
       .accordion-item {
         background: #201e23;
       }
     }
+
     border-radius: 14px;
 
     .accordion-item {
@@ -162,6 +165,7 @@ section {
   cursor: pointer;
   display: block;
   font-size: 12px;
+
   &.explore-badge {
     background-color: transparent !important;
     border: 1px solid #676767;
@@ -200,10 +204,12 @@ section {
       background-color: transparent;
     }
   }
+
   .btn-close {
     filter: brightness(0) invert(1);
     opacity: 1;
   }
+
   .modal-content {
     background: #3c3a40;
     border-radius: 30px;
@@ -217,10 +223,12 @@ section {
       display: flex;
       align-items: center;
       color: #fff;
+
       i {
         font-weight: 400;
         font-size: 20px;
       }
+
       h6 {
         font-size: 13px;
         margin-bottom: 0;
@@ -228,6 +236,7 @@ section {
       }
     }
   }
+
   .title {
     color: #fff;
     font-size: 16px;
@@ -243,12 +252,14 @@ section {
     padding: 32px;
     margin: 20px 5px;
     text-align: center;
+
     &.checkEmail {
       background: #201e23;
       border: none !important;
       padding: 0;
-      margin: 0;
+      margin: 0 auto;
       color: #fff;
+
       i {
         background: linear-gradient(180deg, #44ffbc 0%, #0d6344 100%);
         color: #fff;
@@ -256,11 +267,13 @@ section {
         padding: 10px;
         margin: 20px 0;
       }
+
       .reset-btn {
         padding: 0 50px;
         margin: 20px 0;
       }
     }
+
     &.subTitle {
       color: #fff;
       text-align: center;
@@ -269,6 +282,7 @@ section {
       font-weight: 400;
       line-height: 20px;
     }
+
     .aboutLogo {
       display: flex;
     }
@@ -288,12 +302,14 @@ section {
 
 .imgBox {
   width: 100%;
+
   img {
     display: block;
     height: auto;
     width: 100%;
   }
 }
+
 .alignRight {
   .modal-content {
     background: #201e23;
@@ -306,22 +322,77 @@ section {
     margin: 50px;
   }
 }
+
 .resetPassword {
   .modal-content {
     background: #201e23;
     border-radius: 20px;
     border: 1px solid #fff;
     max-width: 294px;
+    margin: 0 auto;
   }
 }
+
+.delAccountModal {
+  background-color: #07010c;
+
+  .modal-content {
+    background: #201e23;
+    border-radius: 20px;
+    padding: 0px 10px 10px 10px;
+    max-width: 400px;
+    margin: 0 auto;
+
+    .title {
+      padding-top: 8px;
+    }
+  }
+
+  .delAccounts {
+    background: #201e23;
+    margin: 0;
+    color: #fff;
+    padding: 10px 33px;
+    font-size: 12px;
+  }
+  .form-control {
+    padding: 0.8rem 0.75rem;
+  }
+}
+
+.successModal {
+  background-color: #07010c;
+
+  .modal-content {
+    background: #F55;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  .succcess {
+    border-radius: 12px;
+    background: none;
+    padding: 0;
+    margin: 5px;
+    text-align: left;
+    color: #fff;
+
+    img {
+      margin-right: 15px;
+    }
+  }
+}
+
 .card {
   position: relative;
   background: #211f24;
   padding: 12px;
   border-radius: 8px;
-  &.profileCard{
+
+  &.profileCard {
     border-radius: 30px !important;
-  padding: 20px !important;
+    padding: 20px !important;
   }
 }
 
@@ -337,21 +408,23 @@ section {
   font-family: Gilroy;
   max-width: 108px;
   margin: auto;
+
   &:hover {
     color: #fff;
     opacity: 0.9;
   }
+
   img {
     width: 20px;
     margin-right: 5px;
   }
 }
 
-
 .vertical-NavHolder {
   .nav {
     .nav-item {
       position: relative;
+
       &:after {
         position: absolute;
         content: "";
@@ -367,17 +440,21 @@ section {
         align-items: flex-start;
         padding: 20px;
         max-height: 80px;
+
         &.active {
           background: rgba(32, 30, 35, 0.4);
           border-radius: 10px;
         }
+
         .profileDetails {
           color: #9a9a9a;
           font-size: 12px;
+
           p {
             margin: 0;
           }
         }
+
         span {
           border-radius: 12px;
           background: #2f2c35;
@@ -400,6 +477,7 @@ section {
   font-family: $Poppins ;
   font-weight: 700;
 }
+
 .faqSubTitle {
   font-size: 14px !important;
   color: #fff;
@@ -416,24 +494,24 @@ section {
   text-align: start;
   font-size: 12px;
   counter-reset: section;
+
   li {
     display: block;
     position: relative;
     padding-left: 28px;
     margin-bottom: 18px;
+
     &:after {
       position: absolute;
       counter-increment: section;
       content: counter(section) ".";
       left: 0;
       top: 0;
-      background: linear-gradient(
-        180deg,
-        #ffe486 0%,
-        #ffcc4e 51.56%,
-        #ffd02b 100%,
-        #d2a61b 100%
-      );
+      background: linear-gradient(180deg,
+          #ffe486 0%,
+          #ffcc4e 51.56%,
+          #ffd02b 100%,
+          #d2a61b 100%);
       width: 20px;
       height: 20px;
       border-radius: 50%;
@@ -445,11 +523,12 @@ section {
       line-height: 20px;
       padding-left: 1px;
     }
-    &:before{
+
+    &:before {
       position: absolute;
       content: "";
       left: 1px;
-      top:1px;
+      top: 1px;
       background: transparent;
       width: 12px;
       height: 12px;

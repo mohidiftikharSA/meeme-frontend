@@ -3,24 +3,30 @@
   border-bottom: 0;
   font-family: $pt;
   font-weight: 600;
-  &.noBg{
-    border-bottom: 1px solid #2C2948;;
-    .nav-item{  
+
+  &.noBg {
+    border-bottom: 1px solid #2C2948;
+    ;
+
+    .nav-item {
       flex: 1 0 auto;
-      .nav-link{
+
+      .nav-link {
         background-color: transparent;
         border: none;
         border-radius: 0 !important;
         color: #544e5a;
-        &:hover{
+
+        &:hover {
           border: none;
         }
+
         &.active {
           background: none;
           border-bottom: 1px solid #f9bf29;
           color: #fff !important;
         }
-    }
+      }
     }
   }
 
@@ -41,7 +47,8 @@
       border-radius: 0;
       color: #fff !important;
       border: none !important;
-      padding: 0 40px !important;
+      padding: 0 0 0 30px !important;
+      // padding: 0 40px !important;
 
       &:hover {
         border: none !important;
@@ -95,5 +102,9 @@
   padding: 15px;
   margin: 10px;
   font-size: 12px;
-  
+  color: #9892A5;
+
+  &.faq {
+    color: #fff;
+  }
 }
