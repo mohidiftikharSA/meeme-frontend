@@ -26,7 +26,7 @@ const Header = () => {
                 <img src={coin} alt="icon" />
               </Link>
 
-              <Link to={"#"} className={`btn ${classes.profileBtn}`}>
+              <Link to={"/profile"} className={`btn ${classes.profileBtn}`}>
                 <img src={profile} alt="icon" />
               </Link>
             </ButtonGroup>

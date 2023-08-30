@@ -12,6 +12,8 @@ import Forgetpassword from "Pages/Auth/ForgetPassword";
 import Explore from "Pages/Explore";
 import Tournament from "Pages/Tournament";
 import ProfileSetting from "Pages/ProfileSetting";
+import JudgePage from "Pages/Judge";
+import ProfilePage from "Pages/Profile";
 
 
 const routes = [
@@ -69,6 +71,16 @@ const routes = [
         path: "/profile-setting",
         layout: MainLayout,
         component: ProfileSetting,
+    },
+    {
+        path: "/judge",
+        layout: MainLayout,
+        component: JudgePage,
+    },
+    {
+        path: "/profile",
+        layout: MainLayout,
+        component: ProfilePage,
     },
 
     { path: "*", component: NotFound, layout: MainLayout },
