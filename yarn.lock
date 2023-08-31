@@ -8212,6 +8212,14 @@ react-transition-group@^4.4.2, react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+<<<<<<< HEAD
+=======
+react-use-wizard@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.npmjs.org/react-use-wizard/-/react-use-wizard-2.2.3.tgz"
+  integrity sha512-Oh3EfpmWwF7vW1YZ2EgSLoU9VKJ13+TyLNmT56rBhLoXr3FXZoDEmtyxZ46GVkcicl/8qiHX0C42M6n2oKDkEQ==
+
+>>>>>>> f58d3a1e8fc26851bd875d1c8f5381e894f6f68b
 react@*, "react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", "react@^17.0.0 || ^18.0.0", react@^18.0.0, react@^18.2.0, "react@>= 16", "react@>= 16.8.0", react@>=0.14.0, react@>=15.0.0, react@>=16.0.0, react@>=16.14.0, react@>=16.6.0, react@>=16.8, react@>=16.8.0, react@>=16.9.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
