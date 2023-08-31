@@ -4,7 +4,7 @@ import { ButtonGroup, Container } from "react-bootstrap";
 import classes from "./index.module.scss";
 import Search from "Components/Search";
 import Navigation from "Components/Nav";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import coin from "../../Images/coin.png";
 import profile from "../../Images/profile1.png"
 

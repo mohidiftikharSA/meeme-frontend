@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./index.module.scss";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import coin from "../../Images/coin.png";
 import { Link } from "react-router-dom";
 const CoinCard = ({ data }) => {
