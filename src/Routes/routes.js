@@ -14,6 +14,9 @@ import Tournament from "Pages/Tournament";
 import ProfileSetting from "Pages/ProfileSetting";
 import JudgePage from "Pages/Judge";
 import ProfilePage from "Pages/Profile";
+import CustomizeProfile from "Pages/CustomizeProfile";
+import BuyCoin from "Pages/BuyCoin";
+
 
 
 const routes = [
@@ -81,6 +84,16 @@ const routes = [
         path: "/profile",
         layout: MainLayout,
         component: ProfilePage,
+    },
+    {
+        path: "/CustomizeProfile",
+        layout: MainLayout,
+        component: CustomizeProfile,
+    },
+    {
+        path: "/BuyCoin",
+        layout: MainLayout,
+        component: BuyCoin,
     },
 
     { path: "*", component: NotFound, layout: MainLayout },

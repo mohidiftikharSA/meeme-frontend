@@ -8,7 +8,7 @@ const Tournament = () => {
    <section className='py-3'>
     <Container>
     <h5 className={classes.heading}>Tournaments</h5>
-   <div className={classes.tournamentHolder}>
+   <div className={'sectionHolder'}>
    <TabDetails first={'tournament'} tournament /> 
     </div>   
     </Container>

@@ -1,11 +1,18 @@
-import Banner from 'Components/Bannner'
-import React from 'react'
-import { Container } from 'react-bootstrap'
+import Banner from "Components/Bannner";
+import EarnBadge from "Components/EarnBadge";
+import TabDetails from "Components/Tabs";
+import React from "react";
 
 const ProfilePage = () => {
   return (
-  <Banner/>
-  )
-}
+    <>
+      <Banner />
+      <div className="sectionHolder py-5">
+      <EarnBadge />
+      <TabDetails profile/>
+      </div>
+    </>
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;

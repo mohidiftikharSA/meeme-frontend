@@ -1,0 +1,13 @@
+.cardHolder {
+    text-align: center;
+  [class*="imgBox"] {
+    margin: auto;
+    width: 50px;
+    margin-bottom: 10px;
+  }
+  h5 {
+    background: linear-gradient(180deg, #ffebb8 27.4%, #ffb800 64.9%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

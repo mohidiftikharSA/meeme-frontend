@@ -20,6 +20,9 @@ import img15 from "../../Images/bg3.png";
 import img16 from "../../Images/Profile01.png";
 import img17 from "../../Images/Profile2.png";
 import img18 from "../../Images/Profile3.png";
+import img19 from "../../Images/purplecolor.png"
+import img20 from "../../Images/pinkColor.png"
+import img21 from "../../Images/orangeColor.png"
 import TournamentTabs from "Components/TournamentTab";
 import Store from "Components/Store";
 import classes from "./index.module.scss";
@@ -27,6 +30,27 @@ import SubTabs from "Components/SubTabs";
 import BackgroundOverlay from "Components/BackgroundOverlay";
 import ProfileOverlay from "Components/ProfileOverlay";
 import Judge from "Components/Judge";
+import ProfilePost from "Components/ProfilePost";
+
+import profile1 from "../../Images/profilePost.png";
+import profile2 from "../../Images/profilePost2.png";
+import profile3 from "../../Images/profilePost3.png";
+import profile4 from "../../Images/profilePost4.png";
+
+import img1 from "../../Images/rare1.png";
+import img2 from "../../Images/rare2.png";
+import img3 from "../../Images/rare3.png";
+import img4 from "../../Images/rare4.png";
+import img5 from "../../Images/rare5.png";
+import img6 from "../../Images/rare6.png";
+import img7 from "../../Images/rare7.png";
+import img8 from "../../Images/rare8.png";
+import img9 from "../../Images/rare9.png";
+import Theme1 from "../../Images/Theme1.png";
+import Theme2 from "../../Images/Theme2.png";
+import Theme3 from "../../Images/Theme3.png";
+import UltraRare from "Components/UltraRare";
+import ThemeRare from "Components/ThemeRare";
 
 const newMemesData = [
   {
@@ -129,40 +153,123 @@ const newMemesData2 = [
 ];
 const backgroundOverlayData = [
   {
-    
     img: img13,
-    coin: "100"
+    coin: "100",
+    title:"Pink Sky"
   },
   {
-    
     img: img14,
-    coin: "100"
+    coin: "100",
+    title:"Galaxy"
   },
   {
-    
     img: img15,
-    coin: "100"
+    coin: "100",
+    title:"Cloudy Sky"
   },
-  
-]
+];
 const ProfileOverlayData = [
   {
-    
     img: img16,
-    coin: "100"
+    coin: "100",
+    title:"Purple"
   },
   {
-    
     img: img17,
-    coin: "100"
+    coin: "100",
+    title:"Pink"
   },
   {
-    
     img: img18,
-    coin: "100"
+    coin: "100",
+    title:"Orange",
   },
-  
-]
+];
+const ProfileOverlayDataProfile = [
+  {
+    img: img19,
+    coin: "100",
+    title:"Purple"
+  },
+  {
+    img: img20,
+    coin: "100",
+    title:"Pink"
+  },
+  {
+    img: img21,
+    coin: "100",
+    title:"Orange",
+  },
+];
+const post = [
+  {
+    img: profile1,
+  },
+  {
+    img: profile2,
+  },
+  {
+    img: profile3,
+  },
+  {
+    img: profile4,
+  },
+];
+
+const data = [
+  {
+    title: "Sunflower Theme",
+    img: img1,
+  },
+  {
+    title: "Nature Theme",
+    img: img2,
+  },
+  {
+    title: "Military Theme",
+    img: img3,
+  },
+  {
+    title: "Camping Theme",
+    img: img4,
+  },
+  {
+    title: "Psychedelic Theme",
+    img: img5,
+  },
+  {
+    title: "Banana Theme",
+    img: img6,
+  },
+  {
+    title: "Mango Theme",
+    img: img7,
+  },
+  {
+    title: "Fire Theme",
+    img: img8,
+  },
+  {
+    title: "Water Theme",
+    img: img9,
+  },
+];
+
+const data2 = [
+  {
+    img: Theme1,
+    title: "Camouflage theme",
+  },
+  {
+    img: Theme2,
+    title: "Sunflower theme",
+  },
+  {
+    img: Theme3,
+    title: "Green theme",
+  },
+];
 
 const TabDetails = ({
   tournament,
@@ -171,6 +278,8 @@ const TabDetails = ({
   footer,
   tabTitle,
   storeitems,
+  profile,
+  customizeProfile,
 }) => {
   return (
     <>
@@ -205,7 +314,7 @@ const TabDetails = ({
               <Store />
             </Tab>
             <Tab eventKey="judge" title="Judge">
-              <Judge/>
+              <Judge />
             </Tab>
           </Tabs>
         </div>
@@ -414,21 +523,51 @@ const TabDetails = ({
       )}
       {storeitems && (
         <Tabs
-          defaultActiveKey={'Icons'}
+          defaultActiveKey={"Icons"}
           id="uncontrolled-tab-example"
           className="mb-5 noBg"
         >
           <Tab eventKey="Icons" title="Icons">
-            <SubTabs icon/>
+            <SubTabs icon />
           </Tab>
           <Tab eventKey="themes" title="Themes">
-          <SubTabs themes/>
+            <SubTabs themes />
           </Tab>
           <Tab eventKey="overlay" title="Background Overlay">
-          <BackgroundOverlay data={backgroundOverlayData}/>
+            <BackgroundOverlay data={backgroundOverlayData} />
           </Tab>
           <Tab eventKey="profile" title="Profile Overlay">
-          <ProfileOverlay  data={ProfileOverlayData}/>
+            <ProfileOverlay data={ProfileOverlayData} />
+          </Tab>
+        </Tabs>
+      )}
+      {profile && (
+        <Tabs defaultActiveKey={"post"} className="mb-5 double">
+          <Tab eventKey="post" title="Post">
+            <ProfilePost data={post} />
+          </Tab>
+          <Tab eventKey="tournament" title="Tournament Entry">
+            <ProfilePost data={post} />
+          </Tab>
+        </Tabs>
+      )}
+      {customizeProfile && (
+        <Tabs
+          defaultActiveKey={"Icons"}
+          id="uncontrolled-tab-example"
+          className="mb-5 noBg"
+        >
+          <Tab eventKey="Icons" title="Icons">
+            <UltraRare noCoin data={data} />
+          </Tab>
+          <Tab eventKey="themes" title="Themes">
+            <ThemeRare card data2={data2} />
+          </Tab>
+          <Tab eventKey="overlay" title="Background Overlay">
+            <BackgroundOverlay noCoin data={backgroundOverlayData} />
+          </Tab>
+          <Tab eventKey="profile" title="Profile Overlay">
+            <ProfileOverlay noCoin data={ProfileOverlayDataProfile} />
           </Tab>
         </Tabs>
       )}

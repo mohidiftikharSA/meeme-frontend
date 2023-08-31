@@ -1,0 +1,25 @@
+.postHolder {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    h4{
+        color: #b5b3b8;
+        font-family: Gilroy;
+        font-weight: 600;
+    }
+  }
+  .box {
+    column-count: 2;
+    column-gap: 0;
+    .imgBox {
+        width: 100%;
+        img{
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+  }
+}

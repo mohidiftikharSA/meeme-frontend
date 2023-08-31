@@ -3,6 +3,18 @@
   border-bottom: 0;
   font-family: $pt;
   font-weight: 600;
+  &.double{
+    background: #201e23;
+    border-radius: 30px;
+    .nav-item{
+      flex: 0 0 50%;
+      button{
+       &:first-child{
+        border-radius: 30px;
+       }
+      }
+    }
+  }
 
   &.noBg {
     border-bottom: 1px solid #2C2948;

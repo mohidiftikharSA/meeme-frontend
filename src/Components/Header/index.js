@@ -4,11 +4,12 @@ import { ButtonGroup, Container } from "react-bootstrap";
 import classes from "./index.module.scss";
 import Search from "Components/Search";
 import Navigation from "Components/Nav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import coin from "../../Images/coin.png";
 import profile from "../../Images/profile1.png"
 
 const Header = () => {
+ 
   return (
     <header className={classes.header}>
       <Container fluid>
@@ -18,7 +19,7 @@ const Header = () => {
             <Search text={"Search"} />
             <Navigation header/>
             <ButtonGroup className="align-items-center">
-              <Link to={"#"} className={`btn ${classes.iconBtn}`}>
+              <Link to={"/BuyCoin"} className={`btn ${classes.iconBtn}`}>
                 <span className={classes.icon}>
                 <i className="fas fa-plus"></i>
                 </span>
