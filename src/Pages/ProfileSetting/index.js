@@ -18,6 +18,7 @@ import FAQ from "Components/Faq";
 import RuleList from "Components/RuleList";
 import BilingDetails from "Components/BillingDetails";
 import DeleteAccountModal from "Components/DeleteAccountModal";
+import Support from "Components/Support";
 
 
 const ProfileSetting = () => {
@@ -160,6 +161,7 @@ const ProfileSetting = () => {
               <Tab.Pane eventKey="transaction"><Transaction /></Tab.Pane>
               <Tab.Pane eventKey="rule"><RuleList/></Tab.Pane>
               <Tab.Pane eventKey="billing"><BilingDetails/></Tab.Pane>
+              <Tab.Pane eventKey="support"><Support/></Tab.Pane>
             </Tab.Content>
           </Col>
         </Row>

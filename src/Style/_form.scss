@@ -21,6 +21,22 @@
 .form-group {
   position: relative;
 }
+.forms{
+  .form-control {
+    font-size: 14px;
+    border-radius: 0;
+    border-bottom: 1px solid #454545 !important;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding: 1rem 0.75rem;
+    color: #fff;
+    background-color: transparent;
+    &:focus {
+      box-shadow: none;
+    }
+}
+}
 .form-control {
   font-size: 14px;
   border-radius: 50px;
