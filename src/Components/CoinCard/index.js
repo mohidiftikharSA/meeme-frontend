@@ -5,7 +5,7 @@ import coin from "../../Images/coin.png";
 import { Link } from "react-router-dom";
 const CoinCard = ({ data }) => {
   return (
-    <Row>
+    <Row className="mb-4">
       {data.map((item, ind) => {
         return (
           <Col md={3}>

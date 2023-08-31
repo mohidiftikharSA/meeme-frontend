@@ -39,3 +39,17 @@
         }  
     }
 }
+.headingBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    a{
+         color: #FFCD2F;
+         text-decoration: none;
+    }
+}
+
+.card{
+    background-color: transparent;
+}
