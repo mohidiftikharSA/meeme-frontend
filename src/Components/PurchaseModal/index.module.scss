@@ -1,0 +1,15 @@
+.btnBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    button{
+      flex: 0 0 48%;
+      height: 48px;
+      line-height: 48px;
+      &:last-child{
+        background: #fff;
+      }
+      
+    }
+  }
