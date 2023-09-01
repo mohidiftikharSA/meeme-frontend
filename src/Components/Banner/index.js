@@ -1,36 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./index.module.scss";
-import profile from "../../Images/profile1.png";
+import profile from "../../Images/following2.png";
 import { Button } from "react-bootstrap";
 import setting from "../../Images/SettingIcon.png";
 import edit from "../../Images/editUser.png";
 import { useNavigate } from "react-router-dom";
-const Banner = () => {
+import FollowModal from "Components/FollowModal";
+const Banner = ({other}) => {
+  const [show, setShow] = useState(false);
+  const [follwers, setfollowrshow] = useState(false);
   const navigate = useNavigate();
   const nextPage = () => {
     navigate(`/CustomizeProfile`);
   };
   return (
-    <div className="banner pb-4">
+    <>
+    <div className={`banner pb-4 ${other&& `banner pb-4 otherBanner`  }`}>
       <div className="sectionHolder" style={{ maxWidth: "350px" }}>
         <div className={classes.profileDetail}>
           <div className={classes.profileDetails}>
             <img src={profile} alt="" />
             <h4>Mr Astronut</h4>
           </div>
+         {
+          other && 
+          <div className={classes.btnBox}>
+          <Button>Follow</Button>
+          <Button>Message</Button>
+        </div>
+         }
           <ul className={classes.userInfoBox}>
             <li>
-              <h5>
+              <h5 >
                 37 <span>Posts</span>
               </h5>
             </li>
             <li>
-              <h5>
+              <h5 onClick={() => {setfollowrshow(true)}}>
                 283k <span>Followers</span>
               </h5>
             </li>
             <li>
-              <h5>
+              <h5 onClick={() => {setShow(true)}}>
                 488 <span>Followings</span>
               </h5>
             </li>
@@ -49,7 +60,11 @@ const Banner = () => {
           </div>
         </div>
       </div>
+      
     </div>
+    <FollowModal following show={show} onHide={() => setShow(false)} />
+    <FollowModal followers show={follwers} onHide={() => setfollowrshow(false)} />
+    </>
   );
 };
 

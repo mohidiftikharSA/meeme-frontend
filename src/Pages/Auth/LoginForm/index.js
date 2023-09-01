@@ -11,6 +11,10 @@ const LoginFrom = () => {
     navigate(`/forgetPassword`);
   };
 
+  const homePage = () => {
+    navigate(`/home`);
+  };
+
   return (
     <>
       <Logo start />
@@ -25,7 +29,7 @@ const LoginFrom = () => {
           <p className={classes.password} onClick={nextPage}>
             Forgot password?
           </p>
-          <Button className="w-100 p-2 authButton">Sign in</Button>
+          <Button onClick={homePage} className="w-100 p-2 authButton">Sign in</Button>
         </Form>
       </div>
     </>

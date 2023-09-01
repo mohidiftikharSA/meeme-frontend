@@ -16,6 +16,7 @@ import JudgePage from "Pages/Judge";
 import ProfilePage from "Pages/Profile";
 import CustomizeProfile from "Pages/CustomizeProfile";
 import BuyCoin from "Pages/BuyCoin";
+import OtherProfile from "Pages/OtherProfile";
 
 
 
@@ -84,6 +85,11 @@ const routes = [
         path: "/profile",
         layout: MainLayout,
         component: ProfilePage,
+    },
+    {
+        path: "/otherPrfolile",
+        layout: MainLayout,
+        component: OtherProfile,
     },
     {
         path: "/CustomizeProfile",

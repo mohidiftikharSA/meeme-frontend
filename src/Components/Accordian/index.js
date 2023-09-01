@@ -5,6 +5,7 @@ import ContactList from "Components/ContactList";
 import React, { useState } from "react";
 import { Accordion } from "react-bootstrap";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
+import user from "../../Images/user44.png"
 
 const data = [
   {
@@ -24,6 +25,65 @@ const data = [
   },
 ];
 
+const contactData = [
+  {
+      name: "Jaxson George",
+      img: user,
+      status: false
+  },
+  {
+      name: "Cheyenne Gouse",
+      img: user,
+      status: false
+  },
+  {
+      name: "Nolan Botosh",
+      img: user,
+      status: true
+  },
+  {
+      name: "Ahmad Levin",
+      img: user,
+      status: true
+  },
+  {
+      name: "Angel Vetrovs",
+      img: user,
+      status: true
+  },
+  {
+      name: "Giana Curtis",
+      img: user,
+      status: true
+  },
+  {
+      name: "Kadin Carder",
+      img: user,
+      status: true
+  },
+  {
+      name: "Charlie Lubin",
+      img: user,
+      status: true
+  },
+  {
+      name: "Omar Gouse",
+      img: user,
+      status: true
+  },
+  {
+      name: "Martin Baptista",
+      img: user,
+      status: true
+  },
+  {
+      name: "Brandon Dokidis",
+      img: user,
+      status: true
+  },
+
+]
+
 const AccordianData = ({ following = "" }) => {
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -40,7 +100,9 @@ const AccordianData = ({ following = "" }) => {
             <Accordion.Header onClick={() => toggleActive(0)}>
             <span style={{ marginRight: "60px",marginLeft: "20px", color: "#F6CC38",fontWeight:"700",fontSize:"14px"}}>All</span>Followings
             </Accordion.Header>
-            <ContactList /> 
+           <AccordionBody>
+           <ContactList contact data={contactData}  /> 
+           </AccordionBody>
           </Accordion.Item>
         </div>
           </Accordion>

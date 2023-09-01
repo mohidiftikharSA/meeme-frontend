@@ -10,7 +10,7 @@ const Restsetpassword = () => {
     return (
         <>
         <Logo login start/>
-            <div className={classes.loginFrom}>
+            <div className={classes.loginFrom} style={{minWidth:'350px'}}>
             <AuthHeader title={'Reset Password'} description={'Enter your new password below'}/>
                 <Form className="formHolder">
                     <Form.Control type="password" placeholder="New Password" />

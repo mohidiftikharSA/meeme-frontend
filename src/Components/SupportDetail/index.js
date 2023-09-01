@@ -11,9 +11,9 @@ const SupportDetail = () => {
         <>
             <div className={classes.supportDropdown}>
                 <Heading title={'Support'} />
-                <Form.Select className={classes.select} aria-label="Select Subject">
+                <Form.Select aria-label="Select Subject">
                 <option>Select Subject</option>
-                    <option className={classes.option}value="1">Abuse</option>
+                    <option value="1">Abuse</option>
                     <option value="2">Payment</option>
                     <option value="3">Image</option>
                     <option value="1">Profile</option>
@@ -26,7 +26,7 @@ const SupportDetail = () => {
                 <img src={pic} alt='icon'/>
                 <p className={classes.text}>Attach images or proof</p>
             </div>
-            <div className={classes.postionBtn}>
+            <div className={'postionBottom'}>
             <button
               type="button"
               class="w-100 p-2 mt-4 authButton btn btn-primary"

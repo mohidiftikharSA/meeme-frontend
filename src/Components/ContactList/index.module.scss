@@ -9,10 +9,21 @@
   font-weight: 500;
   line-height: 20px;
   overflow-y: auto;
-  max-height: 500px;
+  max-height: 350px;
+&.modalList{
+  color: #fff;
+  &::-webkit-scrollbar-track {
+    background: #3D3745;
+  }
 
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #fff;
+    
+  }
+}
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
   }
 
   /* Track */
@@ -34,6 +45,7 @@
     position: relative;
     margin-bottom: 15px;
     gap: 15px;
+    cursor: pointer;
     &:last-child{
       margin: 0;
     }
@@ -56,6 +68,7 @@
 
       img {
         width: 36px;
+        border-radius: 50%;
       }
     }
   }

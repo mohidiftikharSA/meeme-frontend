@@ -46,7 +46,6 @@
     background: transparent;
     justify-content: left !important;
 
-
     .nav-item {
       flex: 0 0 auto;
       padding: 0 10px;
@@ -60,6 +59,7 @@
       color: #fff !important;
       border: none !important;
       padding: 0 0 0 30px !important;
+      font-size: 14px;
       // padding: 0 40px !important;
 
       &:hover {

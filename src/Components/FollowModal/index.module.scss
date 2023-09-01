@@ -1,0 +1,10 @@
+.modal{
+    [class*="modal-content"]{
+        background-color:#201E23 !important;
+    }
+    [class*="modal-body"]{
+        background-color: transparent !important;
+        padding: 0;
+    }
+
+}

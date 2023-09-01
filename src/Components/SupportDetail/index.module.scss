@@ -1,15 +1,6 @@
 .supportDropdown {
-    .select {
-        background: none;
-        border-radius: 20px;
-        border: 1px solid #454545;
-        color: #fff;
-        padding: 15px;
-        &:focus {
-            box-shadow: none;
-            border: none;
-          }
-    }
+    padding: 0 0 40px 40px;
+   
 }
 
 
@@ -37,11 +28,3 @@ option {
     }
 }
 
-.postionBtn{
-    position: absolute;
-    bottom: 0;
-    width: 300px;
-    left: 50%;
-    margin: 10px;
-    transform: translateX(-50%);
-}

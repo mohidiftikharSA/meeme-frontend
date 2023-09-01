@@ -101,6 +101,7 @@
     background: linear-gradient(180deg, #ffe299 0%, #f6b202 100%);
     font-weight: 700;
     position: relative;
+    transition: all linear 0.3s;
     &.del-btn {
       border-radius: 46px;
       background: #F00;
@@ -171,8 +172,9 @@
   }
 
     &:hover {
-      background: linear-gradient(180deg, #FFE299 0%, #F6B202 100%) !important;
+      background: linear-gradient(299deg, #FFE299 0%, #F6B202 100%) !important;
       color: #000 !important;
+      transition: all linear 0.3s;
     }
     &:hover .fa {
 display: block;

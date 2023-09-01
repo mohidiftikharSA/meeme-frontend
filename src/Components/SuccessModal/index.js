@@ -9,7 +9,7 @@ const SuccessModal = (props) => {
                 centered
             >
                 <Modal.Body className='succcess' >
-                <div onClick={props.onHide}><i class="fa fa-check" aria-hidden="true"></i>Account deleted</div>
+                <div onClick={props.onHide}><img width={'18px'} src={check} alt='check'/>Account deleted</div>
                 </Modal.Body>
                 </Modal>
     )
