@@ -36,3 +36,12 @@ option {
         font-size: 14px;
     }
 }
+
+.postionBtn{
+    position: absolute;
+    bottom: 0;
+    width: 300px;
+    left: 50%;
+    margin: 10px;
+    transform: translateX(-50%);
+}

@@ -21,7 +21,7 @@ const Navigation = ({ header, footer }) => {
     <Nav.Link href="/home" className="mb-3">
       <i className="fas fa-home"></i> Home
     </Nav.Link>
-    <Nav.Link className="btn btn-primary btn-bg trophy mb-3">
+    <Nav.Link href="/tornament" className="btn btn-primary btn-bg trophy mb-3">
       <i className="fas fa-trophy"></i>Tournament
     </Nav.Link>
     <Nav.Link className="btn btn-primary btn-bg store mb-3">
