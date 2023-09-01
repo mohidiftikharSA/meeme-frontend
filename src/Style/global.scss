@@ -9,6 +9,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Roboto:ital,wght@1,300;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap');
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -49,17 +50,19 @@ section {
   min-height: 100vh;
 }
 
-.banner{
+.banner {
   background-image: url("../Images/bannerBg.png");
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
   background-size: cover;
   padding: 50px 0;
-  &.otherBanner{
+
+  &.otherBanner {
     background-image: url(../Images/otherBanner.png);
   }
 }
+
 #aisde {
   min-height: 100vh;
   height: 100%;
@@ -202,6 +205,7 @@ section {
 }
 
 .modal {
+
   &.uploadModal {
     .modal-body {
       background-color: transparent;
@@ -216,7 +220,7 @@ section {
   .modal-content {
     background: #3c3a40;
     border-radius: 30px;
-    padding:  20px;
+    padding: 20px;
   }
 
   .modal-header {
@@ -330,6 +334,9 @@ section {
 }
 
 .resetPassword {
+  // background: rgba(11, 2, 19, 0.70);
+  // backdrop-filter: blur(5px);
+
   .modal-content {
     background: #201e23;
     border-radius: 20px;
@@ -361,6 +368,7 @@ section {
     padding: 10px 33px;
     font-size: 12px;
   }
+
   .form-control {
     padding: 0.8rem 0.75rem;
   }
@@ -546,23 +554,25 @@ section {
   }
 }
 
-.sectionHolder{
+.sectionHolder {
   width: 100%;
-    max-width: 600px;
-    overflow: hidden;
-    position: relative;
-    margin: auto;
+  max-width: 600px;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
 }
-.tab-card-box{
+
+.tab-card-box {
   background: #201E23;
   border-radius: 18px;
   padding: 20px 15px;
   text-align: center;
-  h6{
+
+  h6 {
     color: #828184;
     font-size: 16px;
     margin-bottom: 20px;
-    
+
   }
 }
 
@@ -572,17 +582,43 @@ select {
   border: 1px solid #454545;
   color: #fff;
   padding: 15px;
+
   &:focus {
-      box-shadow: none;
-      border: 1px solid #454545;
-    }
+    box-shadow: none;
+    border: 1px solid #454545;
+  }
 }
 
-.postionBottom{
+.postionBottom {
   position: absolute;
   bottom: 0;
   width: 300px;
   left: 50%;
   margin: 10px;
   transform: translateX(-50%);
+}
+::-webkit-scrollbar-track {
+  background: #3D3745;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 15px;
+  background: #3D3745;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.32);
+  border-radius: 15px;
+
 }

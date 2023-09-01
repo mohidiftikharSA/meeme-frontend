@@ -102,6 +102,7 @@
     font-weight: 700;
     position: relative;
     transition: all linear 0.3s;
+
     &.del-btn {
       border-radius: 46px;
       background: #F00;
@@ -172,7 +173,7 @@
   }
 
     &:hover {
-      background: linear-gradient(299deg, #FFE299 0%, #F6B202 100%) !important;
+      background-color:#F6B202 !important;
       color: #000 !important;
       transition: all linear 0.3s;
     }
