@@ -21,7 +21,14 @@ const SupportDetail = () => {
                     <option value="3">Coins</option>
                     <option value="3">Plagiarism</option>
                 </Form.Select>
+                <div>
+            <p className={classes.texts}>Your message</p>
+            <Form.Group className="forms mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Type here</Form.Label>
+            <Form.Control as="textarea" rows={1} />
+          </Form.Group>
             </div>
+            </div> 
             <div className={classes.box}>
                 <img src={pic} alt='icon'/>
                 <p className={classes.text}>Attach images or proof</p>
