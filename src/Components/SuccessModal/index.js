@@ -1,6 +1,5 @@
 import React from 'react'
 import {Modal } from 'react-bootstrap'
-import check from '../../Images/check.png'
 const SuccessModal = (props) => {
     return (
             <Modal className='successModal'
@@ -10,7 +9,7 @@ const SuccessModal = (props) => {
                 centered
             >
                 <Modal.Body className='succcess' >
-                <div onClick={props.onHide}><img src={check} alt='check'/>Account deleted</div>
+                <div onClick={props.onHide}><i class="fa fa-check" aria-hidden="true"></i>Account deleted</div>
                 </Modal.Body>
                 </Modal>
     )
