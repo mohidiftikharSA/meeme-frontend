@@ -1,13 +1,28 @@
 @import "../../Style/base";
 .box {
+  &.cardBox{
+    background-color: #292929;
+    padding: 20px 0;
+    border-radius: 20px;
+    button{
+      font-weight: 500;
+      height: 52px;
+      line-height: 52px;
+    }
+    h3{
+      font-size:32px;
+    }
+    input{
+      text-align: center !important;
+    }
+  }
   .header {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 12px;
     h3 {
-      font-weight: 900;
-      font-family: $pt;
+      font-weight: 700;
       text-shadow: 0 0 0px #c7943c, 0 0 3px #c7943c;
       margin: 0;
       margin-left: 10px;

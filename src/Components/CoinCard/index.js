@@ -22,6 +22,7 @@ const CoinCard = ({ data }) => {
                 <h5>{item.coin}</h5>
                 <Link
                   onClick={handleClose}
+                  
                   className={"btn iconBtncust w-100"}
                   style={{ maxWidth: "100%" }}
                 >

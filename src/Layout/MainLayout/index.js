@@ -8,6 +8,7 @@ const MainLayout = ({ children }) => {
     <div id={classes.wrapper}>
       <Header />
         <main id={classes.main}>{children}</main>
+        
     </div>
   );
 };
