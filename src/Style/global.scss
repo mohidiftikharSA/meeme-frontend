@@ -47,6 +47,11 @@ section {
   overflow: hidden;
   position: relative;
   min-height: 100vh;
+  &.purchaseBg{
+    background: url('../Images/coinBg.png');
+    height: 800px;
+    background-size: contain;
+  }
 }
 
 .banner{

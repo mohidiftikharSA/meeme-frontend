@@ -17,6 +17,7 @@ import ProfilePage from "Pages/Profile";
 import CustomizeProfile from "Pages/CustomizeProfile";
 import BuyCoin from "Pages/BuyCoin";
 import OtherProfile from "Pages/OtherProfile";
+import PurchasePage from "Pages/Purchase";
 
 
 
@@ -100,6 +101,11 @@ const routes = [
         path: "/BuyCoin",
         layout: MainLayout,
         component: BuyCoin,
+    },
+    {
+        path: "/Purchase",
+        layout: MainLayout,
+        component: PurchasePage,
     },
 
     { path: "*", component: NotFound, layout: MainLayout },

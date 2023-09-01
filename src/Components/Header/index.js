@@ -19,7 +19,7 @@ const Header = () => {
             <Search text={"Search"} />
             <Navigation header/>
             <ButtonGroup className="align-items-center">
-              <Link to={""} className={`btn ${classes.iconBtn}`}>
+              <Link to={"/Purchase"} className={`btn ${classes.iconBtn}`}>
                 <span className={classes.icon}>
                 <i className="fas fa-plus"></i>
                 </span>
