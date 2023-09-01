@@ -22,7 +22,7 @@
   }
 }
 .authHolder {
-  padding: 75px 0;
+  padding: 50px 0;
 }
 .loginLinks {
   text-align: center;
@@ -73,8 +73,9 @@
     position: absolute;
     content: "";
     background-image: url("../../Images/coin.png");
-    right: -100px;
-    bottom: -100px;
+    background-position: left center;
+    right: -35px;
+    bottom: -80px;
     width: 100px;
     height: 100px;
     background-size: 80px;
@@ -85,6 +86,7 @@
     position: absolute;
     content: "";
     background-image: url("../../Images/coin.png");
+    background-position: center;
     left: -100px;
     top: -100px;
     width: 100px;
