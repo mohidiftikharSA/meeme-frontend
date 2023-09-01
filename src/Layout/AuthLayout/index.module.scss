@@ -1,20 +1,19 @@
 #wrapper {
   position: relative;
-  overflow: hidden;
   width: 100%;
   background-image: url(../../Images/login-bg.png);
   background-position: left center;
   background-repeat: no-repeat;
   background-size: contain;
   height: 100vh;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   min-height: 100vh;
-  
 }
 .loginFrom {
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: calc(100vh - 25px);
 }
