@@ -1,5 +1,8 @@
 @import "../../Style/base";
 .box {
+  &.cardBox{
+    background-color: #292929;
+  }
   .header {
     display: flex;
     align-items: center;

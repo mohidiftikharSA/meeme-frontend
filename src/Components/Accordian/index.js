@@ -121,7 +121,9 @@ const AccordianData = ({ following = "" }) => {
             <Accordion.Header onClick={() => toggleActive(2)}>
               Buy Coins
             </Accordion.Header>
+            <Accordion.Body className="p-2 pt-1 pb-3">
             <BuyCoin />
+            </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="2">
             <Accordion.Header onClick={() => toggleActive(3)}>
