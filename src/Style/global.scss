@@ -204,11 +204,26 @@ section {
   }
 }
 
+.modal-backdrop{
+  opacity: 1 !important;
+  background: rgba(0, 0, 0, 0.60);
+}
 .modal {
 
   &.uploadModal {
     .modal-body {
       background-color: transparent;
+    }
+  }
+  &.transparentModa{
+    .modal-content{
+      background-color: transparent;
+      border: none;
+    }
+    .modal-body {
+      background-color: transparent;
+      padding: 32px 0;
+     
     }
   }
 
@@ -576,13 +591,16 @@ section {
   }
 }
 
-select {
+.form-select {
   background: none;
   border-radius: 20px;
   border: 1px solid #454545;
   color: #fff;
   padding: 15px;
-
+  background-image: url("../Images/arrowDown.png");
+  background-size: 14px;
+  background-repeat: no-repeat;
+  background-position: 97% center;
   &:focus {
     box-shadow: none;
     border: 1px solid #454545;

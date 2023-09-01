@@ -6,11 +6,10 @@ const ProfilePost = ({data}) => {
     <div className={classes.postHolder}>
       <div className={classes.header}>
         <h4>45 Posts</h4>
-        <Form.Select style={{width:"200px"}}>
-          <option>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+        <Form.Select style={{width:"120px"}}>
+          <option value="1">April</option>
+          <option value="2">May</option>
+          <option value="3">June</option>
         </Form.Select>
       </div>
    <div className={classes.box}>

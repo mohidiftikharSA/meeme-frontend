@@ -12,7 +12,7 @@ const Navigation = ({ header, footer }) => {
         <Nav.Link href="/home"><i className="fas fa-home"></i> Home</Nav.Link>
         <Nav.Link href="/explore"> <i className="fas fa-globe-europe"></i>Explore</Nav.Link>
         <Nav.Link href="/tornament"><i className="fas fa-trophy"></i>Tournament</Nav.Link>
-        <Nav.Link href="/store"><i className="fas fa-shopping-cart"></i> Store</Nav.Link>
+        <Nav.Link href="/BuyCoin"><i className="fas fa-shopping-cart"></i> Store</Nav.Link>
       </Nav>
     </Navbar.Collapse> 
     </>

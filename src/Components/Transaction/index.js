@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Transaction = ({ data, noCard }) => {
   return (
-    <Card className={`${noCard ? classes.card : "profileCard"}`}>
+    <Card className={`${noCard ? classes.cardBox : "profileCard"}`}>
       {noCard ? (
         <>
           <div className={classes.headingBox}>
