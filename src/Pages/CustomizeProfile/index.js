@@ -11,7 +11,6 @@ const CustomizeProfile = () => {
    <div className={'sectionHolder'} style={{maxWidth:"650px"}}>
     <Heading title={"Customize Profile"}/>
    <TabDetails customizeProfile /> 
- 
     </div>   
     </Container>
    </section>

@@ -20,19 +20,19 @@ const FooterNav = () => {
     <>
       <Navbar expand="lg" className="navBar aside bg-body-tertiary px-3">
         <Nav className="nav-ps">
-          <Nav.Link href="#" onClick={() => setAboutUsModalShow(true)}>
+          <Nav.Link  onClick={() => setAboutUsModalShow(true)}>
             About Us
           </Nav.Link>
-          <Nav.Link href="#" onClick={() => clickHandler('terms')}>
+          <Nav.Link onClick={() => clickHandler('terms')}>
             Terms of Services
           </Nav.Link>
-          <Nav.Link href="#" onClick={() => clickHandler('policy')}>
+          <Nav.Link onClick={() => clickHandler('policy')}>
             Privacy Policy
           </Nav.Link>
-          <Nav.Link href="#" onClick={() => clickHandler('faq')}>
+          <Nav.Link onClick={() => clickHandler('faq')}>
             FAQ
           </Nav.Link>
-          <Nav.Link href="#">Tutorial</Nav.Link>
+          <Nav.Link >Tutorial</Nav.Link>
         </Nav>
       </Navbar>
 

@@ -1,16 +1,21 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
 import emailcheck from '../../Images/emailcheck.svg'
+import { useNavigate } from 'react-router-dom';
 
 const ResetEmailModal = (props) => {
+    const navigate = useNavigate();
+  const nextPage = () => {
+    navigate(`/restsetPassword`);
+  };
     return (
         <Modal className='alignRight'
             {...props}
-            size="s,"
+            size="sm"
             aria-labelledby="contained-modal-title-vcenter"
-            centered
+           
         >
-            <Modal.Header closeButton>
+            <Modal.Header closeButton onClick={nextPage}>
                 <Modal.Title id="contained-modal-title-vcenter">
                 </Modal.Title>
             </Modal.Header>

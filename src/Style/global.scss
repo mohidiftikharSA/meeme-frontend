@@ -8,7 +8,7 @@
 @import url("https://fonts.cdnfonts.com/css/product-sans");
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Roboto:ital,wght@1,300;1,400;1,500;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap');
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -56,6 +56,9 @@ section {
   width: 100%;
   background-size: cover;
   padding: 50px 0;
+  &.otherBanner{
+    background-image: url(../Images/otherBanner.png);
+  }
 }
 #aisde {
   min-height: 100vh;
@@ -213,11 +216,13 @@ section {
   .modal-content {
     background: #3c3a40;
     border-radius: 30px;
-    padding: 10px;
+    padding:  20px;
   }
 
   .modal-header {
     border: none;
+    padding-top: 0;
+    padding-bottom: 10px;
 
     .modal-title {
       display: flex;
@@ -281,6 +286,7 @@ section {
       font-style: normal;
       font-weight: 400;
       line-height: 20px;
+      margin: 0;
     }
 
     .aboutLogo {
@@ -558,4 +564,25 @@ section {
     margin-bottom: 20px;
     
   }
+}
+
+select {
+  background: none;
+  border-radius: 20px;
+  border: 1px solid #454545;
+  color: #fff;
+  padding: 15px;
+  &:focus {
+      box-shadow: none;
+      border: 1px solid #454545;
+    }
+}
+
+.postionBottom{
+  position: absolute;
+  bottom: 0;
+  width: 300px;
+  left: 50%;
+  margin: 10px;
+  transform: translateX(-50%);
 }

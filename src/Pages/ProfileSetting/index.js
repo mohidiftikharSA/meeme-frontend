@@ -38,9 +38,15 @@ const ProfileSetting = () => {
   const [deleteAccountModalShow, setDeleteAccountShow] = useState(false);
 
   const handleTabClick = () => {
-    console.log(tabClicked);
     setTabClicked(true);
   };
+
+  const deleteClick = () =>{
+    setDeleteAccountShow(true)
+   
+  }
+
+
 
   return (
     <>
@@ -157,13 +163,12 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="Delete" onClick={handleTabClick}>
+                      <Nav.Link eventKey="Delete" onClick={deleteClick}>
                         <span>
                           <img src={del} alt="del-icon" />
                         </span>
                         <div
                           className="profileDetails"
-                          onClick={() => setDeleteAccountShow(true)}
                         >
                           <h6 className="mb-1">Delete Account</h6>
                         </div>

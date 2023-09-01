@@ -1,0 +1,102 @@
+.sender{
+    margin-bottom: 35px;
+    &.recive{
+        .textBox{
+            color: #fff;
+           p{
+            font-family: Gilroy;
+            font-size: 12px;
+           }
+           .profileImg{
+            img{
+                border-radius: 0;
+                border: none;
+                width: 42px;
+                height: 42px;
+
+            }
+           }
+        }
+    }
+    .textBox{
+        display: flex;
+        align-items: flex-start;
+        color: #FFE73C;
+        .profileImg{
+            margin-right: 10px;
+            img{
+                width: 50px;
+                height: 50px;
+                border: 2px solid #fff;
+                border-radius: 50%;
+            }
+        }
+
+        h5{
+            font-size: 16px;
+        }
+    }
+    .status{
+        color: #FEBB59;
+    }
+    
+}
+.msg{
+    font-family: 'Glass Antiqua', cursive;
+    color: #fff;
+}
+
+.attachment{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    img{
+        width: 120px;
+        margin-right: 10px;
+    }
+}
+.sendBox{
+    display: flex;
+    align-items: center;
+    span{
+        cursor: pointer;
+    }
+
+    .attachBtn{
+        margin-right: 8px;
+        svg{
+            color: #b5b3b8;
+            font-size: 22px;
+            &:hover{
+                color: #FEBB59;
+            }
+        }
+    }
+    .sendBox{
+        margin-right: 8px;
+        position: relative;
+        span{
+            position: absolute;
+            right: 8px;
+            top: 4px;
+            font-size: 20px;
+            &:hover{
+                color: #FEBB59;
+            }
+        }
+        input{
+            background: #201E23;
+            border: none;
+            color: #fff;
+            min-width: 320px;
+        }
+    }
+    .sendBtn{
+        font-size: 22px;
+        color: #ffc32c;
+        &:hover{
+            color: #b5b3b8;
+        }
+
+    }
+}

@@ -3,10 +3,10 @@ import EarnBadge from "Components/EarnBadge";
 import TabDetails from "Components/Tabs";
 import React from "react";
 
-const ProfilePage = () => {
+const OtherProfile = () => {
   return (
     <>
-      <Banner />
+      <Banner other />
       <div className="sectionHolder py-5">
       <EarnBadge />
       <TabDetails profile/>
@@ -15,4 +15,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default OtherProfile;
