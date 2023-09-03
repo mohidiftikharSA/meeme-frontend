@@ -14,7 +14,7 @@ const Header = () => {
     <header className={classes.header}>
       <Container fluid>
         <div className="d-flex align-items-center justify-content-between">
-          <Logo />
+          <Logo link={'/home'} />
           <div className={classes.rightSide}>
             <Search text={"Search"} />
             <Navigation header/>

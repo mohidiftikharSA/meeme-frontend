@@ -1,6 +1,6 @@
 import AccordianData from "Components/Accordian";
 import Navigation from "Components/Nav";
-import React from "react";
+import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import Profile from "../../Images/Profile.png"
 import setting from "../../Images/setting.png"
@@ -9,7 +9,9 @@ import Notification from "../../Images/Notification.png"
 import support from "../../Images/support.png"
 import Faq from "../../Images/Faq.png"
 import Logout from "../../Images/Logout.png"
+import ProfileSetting from "Pages/ProfileSetting";
 export const Aside = () => {
+
   return (
     <>
       <aside className="px-4" id={"aisde"}>
@@ -25,15 +27,16 @@ export const Aside = () => {
 
                 <Dropdown.Menu>
                   <Dropdown.Item href="/profile-setting"><span><img src={Profile} alt="Profile"/></span>Account Details</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2"><span><img src={Wallet} alt="Wallet"/></span>Billing Details</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3"><span><img src={Notification} alt="Notification"/></span>Notifications</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3"><span><img src={support} alt="support"/></span>Support</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3"><span><img src={Faq} alt="Faq"/></span>FAQ</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3"><span><img src={Logout} alt="Logout"/></span>Log Out</Dropdown.Item>
+                  <Dropdown.Item href="/profile-setting"><span><img src={Wallet} alt="Wallet"/></span>Billing Details</Dropdown.Item>
+                  <Dropdown.Item href="/profile-setting"><span><img src={Notification} alt="Notification"/></span>Notifications</Dropdown.Item>
+                  <Dropdown.Item href="/profile-setting"><span><img src={support} alt="support"/></span>Support</Dropdown.Item>
+                  <Dropdown.Item href="/profile-setting"><span><img src={Faq} alt="Faq"/></span>FAQ</Dropdown.Item>
+                  <Dropdown.Item href="/profile-setting"><span><img src={Logout} alt="Logout"/></span>Log Out</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
         </div>
       </aside>
+    
     </>
   );
 };

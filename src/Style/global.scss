@@ -89,6 +89,7 @@ section {
     color: #9b9b9b;
     display: flex;
     align-items: center;
+    font-size: 12px;
 
     i {
       margin-right: 10px;
@@ -213,7 +214,7 @@ section {
 
 .modal-backdrop{
   opacity: 1 !important;
-  background: rgba(0, 0, 0, 0.60);
+  background: rgba(0, 0, 0, 0.90);
 }
 .modal {
 
@@ -646,4 +647,8 @@ section {
   background: rgba(255, 255, 255, 0.32);
   border-radius: 15px;
 
+}
+
+.modal-md{
+  max-width: 650px;
 }

@@ -22,6 +22,7 @@ import Support from "Components/Support";
 import { Wizard } from "react-use-wizard";
 import SupportChat from "Components/SupportChat";
 import SupportDetail from "Components/SupportDetail";
+import TutorialModals from "Components/Tutorial";
 const transactionData = [
   {
     coins: "50,000",
@@ -36,6 +37,7 @@ const transactionData = [
 const ProfileSetting = () => {
   const [tabClicked, setTabClicked] = useState(false);
   const [deleteAccountModalShow, setDeleteAccountShow] = useState(false);
+  const [show, setShow] = useState(false);
 
   const handleTabClick = () => {
     setTabClicked(true);
@@ -43,6 +45,10 @@ const ProfileSetting = () => {
 
   const deleteClick = () =>{
     setDeleteAccountShow(true)
+   
+  }
+  const tutorialClick = () =>{
+    setShow(true)
    
   }
 
@@ -153,7 +159,7 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="tutorial" onClick={handleTabClick}>
+                      <Nav.Link eventKey="tutorial" onClick={tutorialClick}>
                         <span>
                           <img src={msg} alt="msg-icon" />
                         </span>
@@ -214,6 +220,8 @@ const ProfileSetting = () => {
         show={deleteAccountModalShow}
         onHide={() => setDeleteAccountShow(false)}
       />
+      <TutorialModals show={show}
+        onHide={() => setShow(false)}/>
     </>
   );
 };

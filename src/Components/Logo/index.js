@@ -7,7 +7,7 @@ const Logo = (props) => {
     return(
         <>
             <div className={props.login? `${classes.logo} ${classes.login}` : `${classes.logo} ${props.start? `${classes.logoStart}` : ""}` }>
-                <Link to={"/home"}>
+                <Link to={props.link}>
                     <img src={logo} alt={"Memee"} />
                 </Link>
             </div>

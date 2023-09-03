@@ -143,6 +143,7 @@
       font-family: "Gilroy-Bold", sans-serif !important;
       position: relative;
       &:hover{
+        background-color:#F6B202 !important;
         svg{
           display: block;
         }
@@ -173,7 +174,7 @@
   }
 
     &:hover {
-      background-color:#F6B202 !important;
+      background: linear-gradient(220deg, #ffe299 0%, #f6b202 100%);
       color: #000 !important;
       transition: all linear 0.3s;
     }

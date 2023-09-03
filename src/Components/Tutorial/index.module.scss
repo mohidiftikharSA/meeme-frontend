@@ -1,0 +1,28 @@
+.ruleList {
+  font-weight: 600;
+  li {
+    border-radius: 8px;
+    background: #4d4554;
+    padding: 50px;
+    padding-left: 50px !important;
+    .box{
+      padding: 35px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 0;
+      justify-content: space-between;
+      [class*='imgBox']{
+        width: 450px;
+        margin: auto;
+      }
+    }
+    &:after{
+      margin: 50px 20px;
+    }
+    &::before{
+      margin: 50px 20px;
+    }
+  }
+  
+}

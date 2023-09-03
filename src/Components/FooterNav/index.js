@@ -1,38 +1,35 @@
 import AboutusModal from "Components/AboutusModal";
 import FooterTabs from "Components/FooterTabs";
+import TutorialModals from "Components/Tutorial";
 import React, { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
-
-
 
 const FooterNav = () => {
   const [aboutUsModalShow, setAboutUsModalShow] = useState(false);
   const [show, setshow] = useState(false);
+  const [tutorial, setTutorial] = useState(false);
   const [tabTitles, settabTitle] = useState(false);
 
-  const clickHandler = (type)=>{
+  const clickHandler = (type) => {
     setshow(true);
-    settabTitle(type)
-  }
-
+    settabTitle(type);
+  };
 
   return (
     <>
       <Navbar expand="lg" className="navBar aside bg-body-tertiary px-3">
         <Nav className="nav-ps">
-          <Nav.Link  onClick={() => setAboutUsModalShow(true)}>
+          <Nav.Link onClick={() => setAboutUsModalShow(true)}>
             About Us
           </Nav.Link>
-          <Nav.Link onClick={() => clickHandler('terms')}>
+          <Nav.Link onClick={() => clickHandler("terms")}>
             Terms of Services
           </Nav.Link>
-          <Nav.Link onClick={() => clickHandler('policy')}>
+          <Nav.Link onClick={() => clickHandler("policy")}>
             Privacy Policy
           </Nav.Link>
-          <Nav.Link onClick={() => clickHandler('faq')}>
-            FAQ
-          </Nav.Link>
-          <Nav.Link >Tutorial</Nav.Link>
+          <Nav.Link onClick={() => clickHandler("faq")}>FAQ</Nav.Link>
+          <Nav.Link onClick={() => setTutorial(true)}>Tutorial</Nav.Link>
         </Nav>
       </Navbar>
 
@@ -46,7 +43,10 @@ const FooterNav = () => {
         tabTitles={tabTitles}
         onHide={() => setshow(false)}
       />
-      
+      <TutorialModals
+        show={tutorial}
+        onHide={() => setTutorial(false)}
+      />
     </>
   );
 };

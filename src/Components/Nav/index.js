@@ -18,7 +18,7 @@ const Navigation = ({ header, footer }) => {
     </>
     :
     <Nav className="me-auto flex-column w-100">
-    <Nav.Link href="/home" className="mb-3">
+    <Nav.Link href="/home" className="mb-3 active">
       <i className="fas fa-home"></i> Home
     </Nav.Link>
     <Nav.Link href="/tornament" className="btn btn-primary btn-bg trophy mb-3">
