@@ -48,7 +48,8 @@ section {
   overflow: hidden;
   position: relative;
   min-height: 100vh;
-  &.purchaseBg{
+
+  &.purchaseBg {
     background: url('../Images/coinBg.png');
     height: 100vh;
     background-size: contain;
@@ -212,10 +213,11 @@ section {
   }
 }
 
-.modal-backdrop{
+.modal-backdrop {
   opacity: 1 !important;
   background: rgba(0, 0, 0, 0.90);
 }
+
 .modal {
 
   &.uploadModal {
@@ -223,15 +225,17 @@ section {
       background-color: transparent;
     }
   }
-  &.transparentModa{
-    .modal-content{
+
+  &.transparentModa {
+    .modal-content {
       background-color: transparent;
       border: none;
     }
+
     .modal-body {
       background-color: transparent;
       padding: 32px 0;
-     
+
     }
   }
 
@@ -276,6 +280,7 @@ section {
     font-weight: 400;
     line-height: 32px;
     padding-left: 20px;
+    text-align: center;
   }
 
   .modal-body {
@@ -417,9 +422,44 @@ section {
 
     img {
       margin-right: 15px;
+      width: 35px;
     }
   }
 }
+
+.orginizeBadges {
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .modal-content {
+    border-radius: 30px;
+    background: #201E23;
+    padding: 20px 20px 10px 20px;
+    margin: 0 auto;
+    max-width: 350px;
+  }
+
+  .organize {
+    border-radius: none;
+    background: none;
+    padding: 0;
+    margin: 5px;
+    text-align: left;
+    font-size: 11px;
+    img {
+      margin-right: 15px;
+    }
+  }
+}
+
 
 .card {
   position: relative;
@@ -609,6 +649,7 @@ section {
   background-size: 14px;
   background-repeat: no-repeat;
   background-position: 97% center;
+
   &:focus {
     box-shadow: none;
     border: 1px solid #454545;
@@ -623,6 +664,7 @@ section {
   margin: 10px;
   transform: translateX(-50%);
 }
+
 ::-webkit-scrollbar-track {
   background: #3D3745;
 }
@@ -630,8 +672,9 @@ section {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #fff;
-  
+
 }
+
 ::-webkit-scrollbar {
   width: 5px;
 }

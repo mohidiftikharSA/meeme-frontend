@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./index.module.scss";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import EarnCoinsModal from "Components/EarnCoinsModal";
 
 const historyData = [
   {
@@ -26,11 +27,13 @@ const historyData = [
   },
 ];
 const History = () => {
+  const [modalShow, setModalShow] = useState(false);
   const navigate = useNavigate();
     const nextPage = () => {
       navigate(`/judge`);
     };
   return (
+    <>
     <div className="my-4">
       <h5>History</h5>
       <ul className={classes.list}>
@@ -38,7 +41,6 @@ const History = () => {
         <li>No. of Memes</li>
         <li>Status</li>
       </ul>
-
       <ul className={` ${classes.list} ${classes.historyList}`}>
         {historyData.map((item, ind) => {
           return (
@@ -58,7 +60,12 @@ const History = () => {
           );
         })}
       </ul>
+      <Button className='reset-btn w-100' onClick={() => setModalShow(true)}>Earn Coins</Button>
     </div>
+    <EarnCoinsModal
+        show={modalShow}
+        onHide={() => setModalShow(false)} />
+        </>
   );
 };
 

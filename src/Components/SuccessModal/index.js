@@ -1,6 +1,6 @@
 import React from 'react'
 import {Modal } from 'react-bootstrap'
-import check from "../../Images/check.png"
+import check from "../../Images/yes.png"
 const SuccessModal = (props) => {
     return (
             <Modal className='successModal'
