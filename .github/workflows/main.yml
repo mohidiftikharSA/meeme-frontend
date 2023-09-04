@@ -20,6 +20,9 @@ jobs:
     # - name: copy Env
     #  run: cp /.env /actions-runner/_work/meeme-frontend/meeme-frontend
 
+    - name: install yarn
+      run: yarn install
+      
     - name: build
       run: yarn build
          
