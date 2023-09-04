@@ -12,16 +12,16 @@ const Heading = ({ title, judge }) => {
 
   return (
     <>
-      <div className={`${classes.heading} ${judge && `${classes.heading} d-flex align-items-center justify-content-between`} `} onClick={backPage}>
+      <div className={`${classes.heading} ${judge && `${classes.heading} d-flex align-items-center justify-content-between`} `} onClick={''}>
         <h5><IoIosArrowBack />{title}</h5>
         {
           judge &&
           <div className={classes.memeNo}><span className='text-light' onClick={() => setModalShow(true)}>40</span>/100</div>
         }
       </div>
-      {/* <CongratsModal
+      <CongratsModal
         show={modalShow}
-        onHide={() => setModalShow(false)} /> */}
+        onHide={() => setModalShow(false)} />
     </>
   )
 }
