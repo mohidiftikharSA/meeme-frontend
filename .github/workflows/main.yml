@@ -1,0 +1,33 @@
+name: meeme-frontend CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+       
+    # - name: copy Env
+    #  run: cp /.env /actions-runner/_work/meeme-frontend/meeme-frontend
+
+    - name: install yarn
+      run: npm install
+      
+    - name: build
+      run: npm run build
+      env:
+        CI: false
+         
+    - name: copy htaccess
+      run: cp /.htaccess /var/www/actions-runner/_work/meeme-frontend/meeme-frontend
+      
