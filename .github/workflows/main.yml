@@ -25,6 +25,8 @@ jobs:
       
     - name: build
       run: npm run build
+      env:
+        CI: false
          
     - name: copy htaccess
       run: cp /.htaccess /actions-runner/_work/meeme-frontend/meeme-frontend
