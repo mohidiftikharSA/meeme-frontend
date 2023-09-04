@@ -20,10 +20,10 @@ jobs:
     # - name: copy Env
     #  run: cp /.env /actions-runner/_work/meeme-frontend/meeme-frontend
 
-    - name: install yarn
+    - name: install node Modules 
       run: npm install
       
-    - name: build
+    - name: Creating Build using npm manager
       run: npm run build
       env:
         CI: false
