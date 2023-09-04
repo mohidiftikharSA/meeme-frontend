@@ -28,8 +28,8 @@ jobs:
         export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
        
     - name: copy Env
-      run: cp /.env /actions-runner/_work/react/react
+      run: cp /.env /actions-runner/_work/meeme-frontend/meeme-frontend
          
     - name: copy htaccess
-      run: cp /.htaccess /actions-runner/_work/react/react
+      run: cp /.htaccess /actions-runner/_work/meeme-frontend/meeme-frontend
       
