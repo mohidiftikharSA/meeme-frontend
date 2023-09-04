@@ -2,12 +2,23 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import icon from "../../Images/coin.png";
 import classes from "./index.module.scss";
-import SuccessPurchae from "Components/SuccessPurchase";
-const PurchaceModal = (props) => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => {
-    setShow(!show);
+import SuccessPurchase from "Components/SuccessPurchase";
+
+const PurchaseModal = (props) => {
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
   };
+
+  const handleBuyClick = () => {
+    // Perform the purchase logic here
+    // Once the purchase is successful, show the success modal
+    setShowSuccessModal(true);
+    // Close the purchase modal
+    props.onHide();
+  };
+
   return (
     <>
       <Modal
@@ -27,18 +38,17 @@ const PurchaceModal = (props) => {
             are you sure you want to buy 10,000 coins for $10?
           </p>
           <div className={classes.btnBox}>
-            <Button
-              onClick={handleClose}
-            >
-              Buy
-            </Button>
+            <Button onClick={handleBuyClick}>Buy</Button>
             <Button onClick={props.onHide}>Deny</Button>
           </div>
         </Modal.Body>
       </Modal>
-      <SuccessPurchae show={show} onHide={() => setShow(false)} />
+      <SuccessPurchase
+        show={showSuccessModal}
+        onHide={handleCloseSuccessModal}
+      />
     </>
   );
 };
 
-export default PurchaceModal;
+export default PurchaseModal;

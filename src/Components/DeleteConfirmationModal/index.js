@@ -3,6 +3,13 @@ import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 const DeleteConfirmationModal = (props) => {
     const [successModalShow, setSuccessModalShow] = useState(false);
+    const handleBuyClick = () => {
+        // Perform the purchase logic here
+        // Once the purchase is successful, show the success modal
+        setSuccessModalShow(true);
+        // Close the purchase modal
+        props.onHide();
+      };
     return (
         <>
             <Modal className='delAccountModal'
@@ -20,7 +27,7 @@ const DeleteConfirmationModal = (props) => {
                 <Modal.Body className='delAccounts' >
                     <p className='py-2'>Please enter the word “DELETE” before we delete your account.</p>
                     <input placeholder="Delete" type="text" class="form-control mb-4"></input>
-                    <Button className='del-btn w-100 mb-2'onClick={() => setSuccessModalShow(true)}>Delete</Button><br />
+                    <Button className='del-btn w-100 mb-2'onClick={handleBuyClick}>Delete</Button><br />
                     <Button onClick={props.onHide} className='del-button'>Cancel</Button>
                 </Modal.Body>
                 </Modal>

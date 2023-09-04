@@ -3,26 +3,28 @@ import classes from "./index.module.scss";
 import { Card, Col, Row } from "react-bootstrap";
 import coin from "../../Images/coin.png";
 import { Link } from "react-router-dom";
-import PurchaceModal from "Components/PurchaseModal";
+import PurchaseModal from "Components/PurchaseModal";
+
 const CoinCard = ({ data }) => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => {
-    setShow(!show);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+
+  const handleClosePurchaseModal = () => {
+    setShowPurchaseModal(false);
   };
+
   return (
     <>
       <Row className="mb-4">
         {data.map((item, ind) => {
           return (
-            <Col md={3}>
+            <Col md={3} key={ind}>
               <Card className={classes.cardHolder}>
                 <div className={"imgBox "}>
                   <img src={coin} alt="img" />
                 </div>
                 <h5>{item.coin}</h5>
                 <Link
-                  onClick={handleClose}
-                  
+                  onClick={() => setShowPurchaseModal(true)}
                   className={"btn iconBtncust w-100"}
                   style={{ maxWidth: "100%" }}
                 >
@@ -33,7 +35,10 @@ const CoinCard = ({ data }) => {
           );
         })}
       </Row>
-      <PurchaceModal show={show} onHide={() => setShow(false)} />
+      <PurchaseModal
+        show={showPurchaseModal}
+        onHide={handleClosePurchaseModal}
+      />
     </>
   );
 };

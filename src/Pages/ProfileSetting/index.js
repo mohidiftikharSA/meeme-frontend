@@ -49,8 +49,10 @@ const ProfileSetting = () => {
   }
   const tutorialClick = () =>{
     setShow(true)
-   
   }
+  const handleDeleteModal = () => {
+    setDeleteAccountShow(false);
+  };
 
 
 
@@ -218,7 +220,7 @@ const ProfileSetting = () => {
       </section>
       <DeleteAccountModal
         show={deleteAccountModalShow}
-        onHide={() => setDeleteAccountShow(false)}
+        onHide={handleDeleteModal}
       />
       <TutorialModals show={show}
         onHide={() => setShow(false)}/>

@@ -19,9 +19,9 @@ const Heading = ({ title, judge }) => {
           <div className={classes.memeNo}><span className='text-light' onClick={() => setModalShow(true)}>40</span>/100</div>
         }
       </div>
-      <CongratsModal
+      {/* <CongratsModal
         show={modalShow}
-        onHide={() => setModalShow(false)} />
+        onHide={() => setModalShow(false)} /> */}
     </>
   )
 }
