@@ -27,7 +27,7 @@ const Signup = () => {
                 <Button onClick={homePage} className="authButton w-100">Sign in</Button>
             </Form>
             <div className={classes.loginLinks}>
-        <p className={ classes.dark}>Aready in memee?<Link className={ classes.light} to="/login">Login</Link></p>
+        <p className={ classes.dark}>Aready in memee?<Link className={ classes.light} to="/login">Sign in</Link></p>
         </div>
             </div>
           
