@@ -25,7 +25,7 @@ const Login = () => {
           </Button>
           <Button variant="outline-light">
             <FcGoogle />
-            Continue with google
+            Continue with Google
           </Button>
           <Button variant="outline-light">
             <BsFacebook style={{ color: "#5090ff" }} />
@@ -44,8 +44,8 @@ const Login = () => {
             </Link>
           </p>
           <p className="mb-5">
-            By continuing you agree Memee’s
-            <span> Terms of Services & Privacy Policy.</span>
+            By continuing you agree Memee’s 
+            <span>Terms of Services & Privacy Policy.</span>
           </p>
         </div>
       </section>

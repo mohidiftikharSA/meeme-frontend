@@ -9,7 +9,7 @@ const Restsetpassword = () => {
     const [smShow, setSmShow] = useState(false);
     return (
         <>
-        <Logo login start/>
+        <Logo start/>
             <div className={classes.loginFrom} style={{minWidth:'350px'}}>
             <AuthHeader title={'Reset Password'} description={'Enter your new password below'}/>
                 <Form className="formHolder">

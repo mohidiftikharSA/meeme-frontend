@@ -379,6 +379,10 @@ section {
     padding: 15px;
     overflow-x: hidden;
   }
+  .title{
+    text-align: left;
+    padding-left: 20px;
+  }
 }
 
 .imgBox {
@@ -401,6 +405,9 @@ section {
     right: 0;
     max-width: 294px;
     margin: 50px;
+    img{
+      width: 110px;
+    }
   }
 }
 
@@ -414,6 +421,10 @@ section {
     border: 1px solid #fff;
     max-width: 294px;
     margin: 0 auto;
+    padding: 0;
+  }
+  p{
+    margin: 0;
   }
 }
 
@@ -591,7 +602,7 @@ section {
 }
 
 .faqTitle {
-  font-size: 18px;
+  font-size: 16px;
   color: #fff;
   font-family: $Poppins;
   font-weight: 700;
@@ -601,7 +612,7 @@ section {
   font-size: 14px !important;
   color: #fff;
   font-family: $Poppins;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .ruleList {
