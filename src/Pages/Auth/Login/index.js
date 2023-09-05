@@ -16,7 +16,7 @@ const Login = () => {
 
   return (
     <>
-      <section className={`${classes.section} ${classes.dotBg}`} >
+      <section className={`${classes.section} ${classes.dotBg} ${classes.reponsive_sec}`} >
         <Logo login />
         <div className={classes.authHolder}>
           <Button variant="outline-light" onClick={nextPage}>
