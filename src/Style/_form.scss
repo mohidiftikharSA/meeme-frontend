@@ -1,3 +1,4 @@
+@import "./include-media";
 .formHolder {
   max-width: 380px;
   .form-control {
@@ -5,14 +6,17 @@
     border-radius: 30px;
     margin: 15px 0;
     padding: 12px 22px;
-    font-family: Gilroy;
+    font-family: 'Gilroy';
     font-weight: 500;
     color: #6d6771;
+    @include media("<xs-phone") {
+      padding: 9px 18px;
+    }
     &::placeholder {
       color: #6d6771;
       font-size: 12px;
       font-weight: 600;
-    }
+    } 
   }
 }
 .login-form {

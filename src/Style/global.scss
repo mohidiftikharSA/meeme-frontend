@@ -124,6 +124,7 @@ section {
 
     .accordion-item {
       background-color: #1c1c1c;
+
       .accordion-header {
         .accordion-button {
           border-radius: 14px 14px 0 0;
@@ -201,10 +202,21 @@ section {
   box-shadow: none;
   margin: 0 8px;
 
+  @include media("<xs-phone") {
+    width: 30px;
+    height: 50px;
+    line-height: 51px;
+    margin: 0 8px;
+  }
+
   &.cTCtsH {
     display: flex;
     position: relative;
     justify-content: flex-start !important;
+
+    @include media("<xs-phone") {
+      width: 0 !important;
+    }
   }
 
   &:focus-visible {
@@ -247,6 +259,10 @@ section {
     background: #3c3a40;
     border-radius: 30px;
     padding: 20px;
+
+    @include media("<xs-phone") {
+      padding: 16px 8px;
+    }
   }
 
   .modal-header {
@@ -288,6 +304,10 @@ section {
     padding: 32px;
     margin: 20px 5px;
     text-align: center;
+
+    @include media("<xs-phone") {
+      padding: 15px;
+    }
 
     &.checkEmail {
       background: #201e23;
@@ -334,8 +354,13 @@ section {
     text-align: left;
     padding: 15px;
     overflow-x: hidden;
+
+    @include media("<xs-phone") {
+      padding: 15px;
+    }
   }
-  .title{
+
+  .title {
     text-align: left;
     padding-left: 20px;
   }
@@ -361,7 +386,13 @@ section {
     right: 0;
     max-width: 294px;
     margin: 50px;
-    img{
+
+    @include media("<xs-phone") {
+      max-width: 248px;
+      margin: 71px 36px;
+    }
+
+    img {
       width: 110px;
     }
   }
@@ -379,7 +410,8 @@ section {
     margin: 0 auto;
     padding: 0;
   }
-  p{
+
+  p {
     margin: 0;
   }
 }
@@ -464,6 +496,7 @@ section {
     margin: 5px;
     text-align: left;
     font-size: 11px;
+
     img {
       margin-right: 15px;
     }
@@ -702,6 +735,6 @@ section {
 
 }
 
-.modal-md{
+.modal-md {
   max-width: 650px;
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io';
 import classes from "./index.module.scss"
 import { useNavigate } from 'react-router-dom';
-import CongratsModal from 'Components/CongratsModal';
+// import CongratsModal from 'Components/CongratsModal';
 const Heading = ({ title, judge }) => {
   const [modalShow, setModalShow] = useState(false);
   const navigate = useNavigate();

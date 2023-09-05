@@ -43,7 +43,7 @@ const Login = () => {
               Sign up
             </Link>
           </p>
-          <p className="mb-5">
+          <p className="mb-md-5 mb-0">
             By continuing you agree Memee’s 
             <span>Terms of Services & Privacy Policy.</span>
           </p>

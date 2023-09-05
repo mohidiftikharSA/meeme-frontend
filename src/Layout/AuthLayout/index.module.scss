@@ -1,3 +1,4 @@
+@import "../../Style/base";
 #wrapper {
   position: relative;
   width: 100%;
@@ -9,6 +10,9 @@
   overflow-y: auto;
   overflow-x: hidden;
   min-height: 100vh;
+  @include media("<tablet"){
+    background-image: none;
+  }
 }
 .loginFrom {
   display: flex;
@@ -16,6 +20,10 @@
   justify-content: center;
   flex-direction: column;
   min-height: 100vh;
-  padding:50px 0;
+  padding:40px 0;
   overflow: hidden;
+  @include media("<tablet"){
+    padding: 20px 10px 5px 10px;
+  }
+  
 }
