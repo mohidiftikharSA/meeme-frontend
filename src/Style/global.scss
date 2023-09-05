@@ -201,26 +201,27 @@ section {
   line-height: 73px;
   box-shadow: none;
   margin: 0 8px;
+  
 
   @include media("<xs-phone") {
     width: 30px;
     height: 50px;
     line-height: 51px;
-    margin: 0 8px;
-  }
-
-  &.cTCtsH {
-    display: flex;
-    position: relative;
-    justify-content: flex-start !important;
-
-    @include media("<xs-phone") {
-      width: 0 !important;
-    }
+    margin: 0 6px;
+    padding: 0 9px;
   }
 
   &:focus-visible {
     outline: none !important;
+  }
+}
+.cTCtsH{
+  display: flex;
+  position: relative;
+  justify-content: flex-start !important;
+
+  @include media("<xs-phone") {
+    width: 0 !important;
   }
 }
 
