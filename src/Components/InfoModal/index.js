@@ -6,14 +6,14 @@ import { LiaTimesSolid } from 'react-icons/lia';
 
 const InfoModal = (props) => {
   return (
-    <Modal className={classes.infoModal}
+    <Modal className={'infoModal'}
             {...props}
             size="sm"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
             <Modal.Header className='justify-content-end'>
-                <span className={classes.closeBtn} onClick={props.onHide}><LiaTimesSolid/></span>
+                <span className={'closeBtn'} onClick={props.onHide}><LiaTimesSolid/></span>
             </Modal.Header>
             <Modal.Body className='m-0'>
                 <h6>Rules & Regulations</h6>

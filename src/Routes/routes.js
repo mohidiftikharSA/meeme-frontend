@@ -18,6 +18,7 @@ import CustomizeProfile from "Pages/CustomizeProfile";
 import BuyCoin from "Pages/BuyCoin";
 import OtherProfile from "Pages/OtherProfile";
 import PurchasePage from "Pages/Purchase";
+import BadgeList from "Components/BadgeList";
 
 
 
@@ -29,7 +30,7 @@ const routes = [
     },
     {
         path: "/login",
-        layout: AuthLayout,
+        layout: AuthLayout ,
         component: LoginFrom,
     },
     {
@@ -106,6 +107,11 @@ const routes = [
         path: "/Purchase",
         layout: MainLayout,
         component: PurchasePage,
+    },
+    {
+        path: "/BadgeList",
+        layout: MainLayout,
+        component: BadgeList,
     },
 
     { path: "*", component: NotFound, layout: MainLayout },

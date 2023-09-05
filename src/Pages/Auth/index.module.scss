@@ -22,6 +22,12 @@
       z-index: -1;
     }
   }
+  &.reponsive_sec{
+    margin-bottom: 70px;
+    @include media('<xs-phone'){
+      margin-bottom: 250px;
+    }
+  }
 }
 
 .authHolder {
