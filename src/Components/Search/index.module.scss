@@ -6,7 +6,13 @@
       background: #2D2933;
     }
   }
-
+&.badgeList{
+  margin-bottom: 32px;
+  input{
+    border-radius: 8px;
+    background: #3d3b40; 
+  }
+}
   &.fullWidth {
     margin-bottom: 35px;
 
@@ -34,7 +40,7 @@
     background: rgba(255, 255, 255, 0.13);
     border: 8px;
     border-radius: 8px !important;
-    padding: 10px 35px;
+    padding: 10px 40px;
 
     &:placeholder {
       color: rgba(255, 255, 255, 0.2);

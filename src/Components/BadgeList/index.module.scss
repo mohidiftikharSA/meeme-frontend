@@ -1,0 +1,26 @@
+.card{
+    border-radius: 8px !important;
+    background: #3d3b40 !important;
+    .iconBox{
+        background-color: #fff;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        line-height: 60px;
+        text-align: center;
+        margin: auto;
+        margin-bottom: 10px;
+        img{
+            width: 100%;
+            height: auto;
+            padding: 8px;
+        }
+    }
+
+    .dropdown{
+        text-align: end;
+        button{
+            color: #9FA09C;
+        }
+    }
+}

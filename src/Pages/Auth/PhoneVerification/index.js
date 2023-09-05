@@ -10,7 +10,7 @@ import ReactInputVerificationCode from 'react-input-verification-code';
 const PhoneVerification = () => {
     return (
         <>
-        <Logo login start/>
+        <Logo start/>
             <div className={classes.loginFrom}>
             <AuthHeader title={'Verify your phone'} description={'Verification code sent to your phone'} phone={'+1 234 567 8901'} margin/>
             <div className="my-3 phonverify">

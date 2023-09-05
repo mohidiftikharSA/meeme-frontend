@@ -7,8 +7,8 @@
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
 @import url("https://fonts.cdnfonts.com/css/product-sans");
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Roboto:ital,wght@1,300;1,400;1,500;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Roboto:ital,wght@1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap");
 
 body {
   margin: 0;
@@ -50,7 +50,7 @@ section {
   min-height: 100vh;
 
   &.purchaseBg {
-    background: url('../Images/coinBg.png');
+    background: url("../Images/coinBg.png");
     height: 100vh;
     background-size: contain;
     background-repeat: no-repeat;
@@ -214,10 +214,55 @@ section {
 
 .modal-backdrop {
   opacity: 1 !important;
-  background: rgba(0, 0, 0, 0.90);
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .modal {
+
+  &.infoModal {
+    .modal-content {
+      border-radius: 38px;
+      border: 2px solid #dcdcdc;
+      background: #1c1c1c !important;
+      padding: 0;
+    }
+
+    .modal-header {
+      padding: 0;
+      height: 0;
+      .closeBtn{
+        top: 12px;
+        right: -5px;
+      }
+    }
+
+    .modal-body {
+      background-color: transparent !important;
+      &.congrats{
+      background-image: url(../Images/congrats.png);
+      background-size: 420px;
+      background-position: center -90px;
+      background-repeat: no-repeat;
+      }
+    }
+    .modal-dialog {
+      max-width: 350px;
+    }
+    .closeBtn {
+      background-color: #d10a0b;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      color: #fff;
+      text-align: center;
+      line-height: 30px;
+      position: relative;
+      top: -25px;
+      right: -25px;
+      cursor: pointer;
+      z-index: 9999;
+    }
+  }
 
   &.uploadModal {
     .modal-body {
@@ -234,7 +279,6 @@ section {
     .modal-body {
       background-color: transparent;
       padding: 32px 0;
-
     }
   }
 
@@ -405,7 +449,7 @@ section {
   background-color: #07010c;
 
   .modal-content {
-    background: #F55;
+    background: #f55;
     border-radius: 12px;
     padding: 10px;
     margin: 0 auto;
@@ -440,7 +484,7 @@ section {
 
   .modal-content {
     border-radius: 30px;
-    background: #201E23;
+    background: #201e23;
     padding: 20px 20px 10px 20px;
     margin: 0 auto;
     max-width: 350px;
@@ -458,7 +502,6 @@ section {
     }
   }
 }
-
 
 .card {
   position: relative;
@@ -550,7 +593,7 @@ section {
 .faqTitle {
   font-size: 18px;
   color: #fff;
-  font-family: $Poppins ;
+  font-family: $Poppins;
   font-weight: 700;
 }
 
@@ -583,11 +626,13 @@ section {
       content: counter(section) ".";
       left: 0;
       top: 0;
-      background: linear-gradient(180deg,
-          #ffe486 0%,
-          #ffcc4e 51.56%,
-          #ffd02b 100%,
-          #d2a61b 100%);
+      background: linear-gradient(
+        180deg,
+        #ffe486 0%,
+        #ffcc4e 51.56%,
+        #ffd02b 100%,
+        #d2a61b 100%
+      );
       width: 20px;
       height: 20px;
       border-radius: 50%;
@@ -625,7 +670,7 @@ section {
 }
 
 .tab-card-box {
-  background: #201E23;
+  background: #201e23;
   border-radius: 18px;
   padding: 20px 15px;
   text-align: center;
@@ -634,7 +679,6 @@ section {
     color: #828184;
     font-size: 16px;
     margin-bottom: 20px;
-
   }
 }
 
@@ -665,13 +709,12 @@ section {
 }
 
 ::-webkit-scrollbar-track {
-  background: #3D3745;
+  background: #3d3745;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #fff;
-
 }
 
 ::-webkit-scrollbar {
@@ -681,16 +724,15 @@ section {
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 15px;
-  background: #3D3745;
+  background: #3d3745;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.32);
   border-radius: 15px;
-
 }
 
-.modal-md{
+.modal-md {
   max-width: 650px;
 }
