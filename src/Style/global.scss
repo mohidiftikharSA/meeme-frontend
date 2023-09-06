@@ -80,6 +80,7 @@ section {
 .navBar {
   margin: 0 20px;
 
+
   &.aside {
     flex-direction: column;
     align-items: flex-start;
@@ -91,6 +92,10 @@ section {
     display: flex;
     align-items: center;
     font-size: 12px;
+    img{
+      width: 16px;
+    margin-right: 10px;
+    }
 
     i {
       margin-right: 10px;
@@ -222,6 +227,11 @@ section {
 
   @include media("<xs-phone") {
     width: 0 !important;
+  }
+}
+.gVxunN{
+  @include media("<xs-phone") {
+    font-size: 1rem;
   }
 }
 
@@ -603,7 +613,7 @@ section {
         display: flex;
         align-items: flex-start;
         padding: 20px;
-        max-height: 80px;
+        max-height: 84px;
 
         &.active {
           background: rgba(32, 30, 35, 0.4);
@@ -613,6 +623,7 @@ section {
         .profileDetails {
           color: #9a9a9a;
           font-size: 12px;
+          padding-top: 9px;
 
           p {
             margin: 0;
@@ -732,11 +743,12 @@ section {
   border-radius: 20px;
   border: 1px solid #454545;
   color: #fff;
-  padding: 15px;
+  padding: 10px 13px;
   background-image: url("../Images/arrowDown.png");
   background-size: 14px;
   background-repeat: no-repeat;
-  background-position: 97% center;
+  background-position: 88% center;
+  background-color: #201E23;
 
   &:focus {
     box-shadow: none;

@@ -11,6 +11,10 @@
   font-size: 14px;
   transition: all ease 0.6;
 
+  @include media('<xs-phone'){
+    line-height: 30px;
+  }
+
   .btnHolder {
     max-width: 430px;
     display: flex;
@@ -81,7 +85,7 @@
 
     &.store {
       &:after {
-        background-image: url("../Images/store.png");
+        background-image: url("../Images/judge.png");
       }
     }
 
@@ -94,7 +98,7 @@
 
     &.judge {
       &:after {
-        background-image: url("../Images/judge.png");
+        background-image: url("../Images/store.png");
       }
     }
   }

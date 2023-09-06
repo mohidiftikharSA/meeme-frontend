@@ -47,9 +47,6 @@
 
   .dark {
     color: #888;
-    //   @include media("<xs-phone"){
-    //     font-size: 11px;
-    // }
   }
 
   .light {
@@ -78,13 +75,28 @@
     }
   }
 }
+.loginLink {
+  .dark {
+    color: #888;
+  }
+
+  .light {
+    color: #ffcd2f;
+    text-decoration: none;
+    padding-left: 5px;
+
+    &:hover {
+      color: #ffcd2f;
+    }
+  }
+}
 
 .loginFrom {
   color: #fff;
   font-style: normal;
   position: relative;
   clear: both;
-  padding: 35px 0;
+  padding: 30px 0 5px 0;
   @include media("<xs-phone") {
     padding: 25px 0 5px 0;
   }
