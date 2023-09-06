@@ -3,15 +3,18 @@
   border-bottom: 0;
   font-family: $pt;
   font-weight: 600;
-  &.double{
+
+  &.double {
     background: #201e23;
     border-radius: 30px;
-    .nav-item{
+
+    .nav-item {
       flex: 0 0 50%;
-      button{
-       &:first-child{
-        border-radius: 30px;
-       }
+
+      button {
+        &:first-child {
+          border-radius: 30px;
+        }
       }
     }
   }
@@ -45,6 +48,12 @@
   &.modalTabs {
     background: transparent;
     justify-content: left !important;
+
+    &button {
+      @include media("<xs-phone") {
+        text-align: left;
+      }
+    }
 
     .nav-item {
       flex: 0 0 auto;
@@ -115,6 +124,9 @@
   margin: 10px;
   font-size: 12px;
   color: #9892A5;
+  @include media("<xs-phone") {
+    margin: 10px 0px;
+  }
 
   &.faq {
     color: #fff;

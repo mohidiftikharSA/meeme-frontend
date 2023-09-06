@@ -30,7 +30,7 @@ const routes = [
     },
     {
         path: "/login",
-        layout: AuthLayout,
+        layout: AuthLayout ,
         component: LoginFrom,
     },
     {

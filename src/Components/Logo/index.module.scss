@@ -1,3 +1,4 @@
+@import "../../Style/base";
 .logo{
   position: relative;
   width: 130px;
@@ -10,6 +11,9 @@
     margin: auto;
     float: unset;
     width: 180px;
+    @include media("<xs-phone") {
+      width: 140px !important;
+    }
   }
 
   a{

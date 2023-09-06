@@ -1,3 +1,4 @@
+@import "../../Style/base";
 .modalContant{
     max-height: 435px;
     overflow: scroll;
@@ -5,4 +6,7 @@
     text-align: justify;
     padding: 15px;
     overflow-x: hidden;
+    @include media("<xs-phone") {
+      padding: 10px 10px 10px 0;
+    }
   }

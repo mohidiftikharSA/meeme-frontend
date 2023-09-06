@@ -8,7 +8,7 @@ const Footer = () => {
   return (
 <footer className={classes.footer}>
 <Container>
-<div className="d-flex align-items-center ">
+<div className="d-flex align-items-md-center align-items-start flex-sm-row flex-column  ">
   <Logo />
   <div className={classes.rightSide}>
     <FooterNav/>
