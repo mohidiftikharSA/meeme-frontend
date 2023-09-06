@@ -18,6 +18,7 @@ flex-direction: column !important;
       align-items: center;
       [class*="navbar-nav"]{
         gap: 25px;
+        
 
         @include media("<xs-phone"){
           width: 100%;

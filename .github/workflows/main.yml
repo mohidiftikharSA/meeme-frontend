@@ -30,3 +30,4 @@ jobs:
          
     - name: copy htaccess
       run: cp /.htaccess /var/www/actions-runner/_work/meeme-frontend/meeme-frontend/build
+
