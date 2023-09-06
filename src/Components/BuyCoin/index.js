@@ -6,6 +6,7 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import shuffle from "../../Images/shuffle.png";
 import logo from "../../Images/logo.png";
+import CoinCard from "Components/CoinCard";
 
 const BuyCoin = ({ purchase }) => {
   const [sliderValue, setSliderValue] = useState(7412); // Initial value
@@ -48,17 +49,25 @@ const BuyCoin = ({ purchase }) => {
         </div>
 
         <div className="px-2">
-          {purchase ? (
-            ""
-          ) : (
-            <Slider
-              min={minValue}
-              max={maxValue}
-              value={sliderValue}
-              onChange={handleSliderChange}
-              className="mb-3"
-            />
-          )}
+          {purchase ?
+            <>
+
+            </> : (
+              <>
+                <Slider
+                  min={minValue}
+                  max={maxValue}
+                  value={sliderValue}
+                  onChange={handleSliderChange}
+                  className="mb-3"
+                />
+                <div className="d-flex align-items-center justify-content-between">
+                  <p><span style={{marginRight:'5px'}}><img width={"20"} src={coin} alt="coin" /></span>0</p>
+                  <p>14,00<span style={{marginLeft:'5px'}}><img width={"20"} src={coin} alt="coin" /></span></p>
+                </div>
+              </>
+
+            )}
           <div className={classes.inputBox}>
             {purchase ? (
               ""
