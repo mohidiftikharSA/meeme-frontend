@@ -1,5 +1,13 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
+import home from '../../Images/Home.png'
+import expore from '../../Images/expore.png'
+import trophy from '../../Images/trophies.png'
+import Buy from '../../Images/Buy.png'
+import judge from '../../Images/judges.png'
+import shop from '../../Images/shop.png'
+import trophies from '../../Images/trophy (1) 1.png'
+
 
 const Navigation = ({ header, footer }) => {
   return (
@@ -9,26 +17,26 @@ const Navigation = ({ header, footer }) => {
     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
-        <Nav.Link href="/home"><i className="fas fa-home"></i> Home</Nav.Link>
-        <Nav.Link href="/explore"> <i className="fas fa-globe-europe"></i>Explore</Nav.Link>
-        <Nav.Link href="/tornament"><i className="fas fa-trophy"></i>Tournament</Nav.Link>
-        <Nav.Link href="/BuyCoin"><i className="fas fa-shopping-cart"></i> Store</Nav.Link>
+        <Nav.Link href="/home"><img src={home} alt="icon"></img> Home</Nav.Link>
+        <Nav.Link href="/explore"> <img src={expore} alt="icon"></img>Explore</Nav.Link>
+        <Nav.Link href="/tornament"><img src={trophy} alt="icon"></img>Tournament</Nav.Link>
+        <Nav.Link href="/BuyCoin"><img src={Buy} alt="icon"></img>Store</Nav.Link>
       </Nav>
     </Navbar.Collapse> 
     </>
     :
     <Nav className="me-auto flex-column w-100">
     <Nav.Link href="/home" className="mb-3 active">
-      <i className="fas fa-home"></i> Home
+    <img src={home} alt="icon"></img> Home
     </Nav.Link>
     <Nav.Link href="/tornament" className="btn btn-primary btn-bg trophy mb-3">
-      <i className="fas fa-trophy"></i>Tournament
+    <img src={trophies} alt="icon"></img>Tournament
     </Nav.Link>
     <Nav.Link className="btn btn-primary btn-bg store mb-3">
-    <i className="far fa-gavel"></i>Judge
+    <img src={judge} alt="icon"></img>Judge
     </Nav.Link>
     <Nav.Link className="btn btn-primary btn-bg judge mb-3">
-      <i className="fas fa-trophy"></i>Store
+    <img src={shop} alt="icon"></img>Store
     </Nav.Link>
   </Nav>
 }
