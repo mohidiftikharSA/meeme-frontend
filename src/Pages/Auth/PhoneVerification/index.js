@@ -16,11 +16,13 @@ const PhoneVerification = () => {
             <div className="my-3 phonverify">
             <ReactInputVerificationCode length={6}/>
             </div>
-                <div className="formHolder">
-                    <p className={ classes.dark}>Didn’t receive code?<Link className={ classes.light} to="/">Resend OTP</Link></p>
-                    <Button className="authButton w-100 mt-4">Verify your phone</Button>
-                </div>
             </div>
+                <div className="formHolder">
+                    <div className={classes.loginLink}>
+                    <p className={ classes.dark}>Didn’t receive code?<Link className={ classes.light} to="/">Resend OTP</Link></p>
+                    <Button className="authButton w-100 mt-3 authe-btn">Verify your phone</Button>
+                    </div>
+                </div>
         </>
     );
 };

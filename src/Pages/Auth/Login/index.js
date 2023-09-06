@@ -16,7 +16,7 @@ const Login = () => {
 
   return (
     <>
-      <section className={`${classes.section} ${classes.dotBg}`} >
+      <section className={`${classes.section} ${classes.dotBg} ${classes.reponsive_sec}`} >
         <Logo login />
         <div className={classes.authHolder}>
           <Button variant="outline-light" onClick={nextPage}>
@@ -43,7 +43,7 @@ const Login = () => {
               Sign up
             </Link>
           </p>
-          <p className="mb-5">
+          <p className="mb-md-5 mb-0">
             By continuing you agree Memee’s 
             <span>Terms of Services & Privacy Policy.</span>
           </p>

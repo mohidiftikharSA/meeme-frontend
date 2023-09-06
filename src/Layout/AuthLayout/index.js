@@ -7,8 +7,8 @@ const AuthLayout = ({ children }) => {
     <div id={classes.wrapper}>
       <div className="container">
         <Row>
-          <Col sm={6}></Col>
-          <Col sm={6}>
+          <Col md={6}></Col>
+          <Col md={6}>
             <div className={classes.loginFrom}>
               <main id={classes.main}>{children}</main>
             </div>
