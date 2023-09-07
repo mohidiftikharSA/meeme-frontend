@@ -122,7 +122,7 @@ const AccordianData = ({ following = "" }) => {
               Buy Coins
             </Accordion.Header>
             <Accordion.Body className="p-2 pt-1 pb-3">
-            <BuyCoin />
+            <BuyCoin  />
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="2">
