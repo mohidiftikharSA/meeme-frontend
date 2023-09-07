@@ -1,46 +1,53 @@
 @import "../../Style/base";
-.footer{
+
+.footer {
   background: #232323;
   margin: 0;
   position: absolute;
-  // bottom: -100%;
-  bottom: -10% ;
+  bottom: -100%;
+  // bottom: -10% ;
   left: 0;
   width: 100%;
   padding: 10px 0;
   display: flex !important;
   flex-direction: column !important;
-  @include media('<xs-phone'){
+
+  @include media('<xs-phone') {
     bottom: -46% !important;
   }
-  @include media('<desktop'){
-    bottom: -22% ;
+
+  @include media('<desktop') {
+    bottom: -28% !important;
   }
-  @include media('<widescreen-large'){
-    bottom: -20% ;
-  }
+
+  // @include media('<widescreen-large'){
+  //   bottom: -20% ;
+  // }
 
   .rightSide {
     width: calc(100% - 130px);
-    @include media('<xs-phone'){
+
+    @include media('<xs-phone') {
       width: 100%;
     }
-    [class*="navBar"]{
+
+    [class*="navBar"] {
       align-items: center;
-      [class*="navbar-nav"]{
+
+      [class*="navbar-nav"] {
         gap: 25px;
 
-        @include media("<xs-phone"){
+        @include media("<xs-phone") {
           width: 100%;
           gap: 0;
-         }
-      
-        @include media("<xs-phone"){
+        }
+
+        @include media("<xs-phone") {
           gap: 0px;
           text-align: left !important;
-         }
+        }
       }
-      
+
     }
-}
+  }
 }

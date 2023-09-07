@@ -748,6 +748,9 @@ section {
 }
 
 .form-select {
+  &.form{
+    background-position: 88% center !important;
+  }
   background: none;
   border-radius: 20px;
   border: 1px solid #454545;
@@ -756,7 +759,7 @@ section {
   background-image: url("../Images/arrowDown.png");
   background-size: 14px;
   background-repeat: no-repeat;
-  background-position: 88% center;
+  background-position: 95% center;
   background-color: #201E23;
 
   &:focus {

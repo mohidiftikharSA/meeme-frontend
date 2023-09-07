@@ -122,8 +122,11 @@
     content: "";
     background-image: url("../../Images/coin.png");
     background-position: left center;
-    right: -35px;
-    bottom: -80px;
+    // right: -35px;
+    // bottom: -80px;
+    right: -121px;
+    bottom: -97px;
+
     width: 100px;
     height: 100px;
     background-size: 80px;
@@ -131,6 +134,22 @@
     z-index: -1;
     @include media("<xs-phone") {
       display: none;
+    }
+    @include media("<tablet") {
+      right: -112px;
+      bottom: -100px;
+    }
+    @include media("<tablet-x") {
+      right: -68px;
+      bottom: -113px;
+    }
+    @include media("<desktop") {
+      right: -77px;
+      bottom: -106px;
+    }
+    @include media("<widescreen") {
+      right: -75px;
+      bottom: -107px;
     }
   }
 
@@ -140,7 +159,7 @@
     background-image: url("../../Images/coin.png");
     background-position: center;
     left: -100px;
-    top: -100px;
+    top: -120px;
     width: 100px;
     height: 70px;
     background-repeat: no-repeat;

@@ -63,7 +63,7 @@ const BuyCoin = ({ purchase }) => {
                 />
                 <div className="d-flex align-items-center justify-content-between">
                   <p><span style={{marginRight:'5px'}}><img width={"20"} src={coin} alt="coin" /></span>0</p>
-                  <p>14,00<span style={{marginLeft:'5px'}}><img width={"20"} src={coin} alt="coin" /></span></p>
+                  <p>14,000<span style={{marginLeft:'5px'}}><img width={"20"} src={coin} alt="coin" /></span></p>
                 </div>
               </>
 

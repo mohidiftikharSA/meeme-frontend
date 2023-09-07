@@ -6,7 +6,7 @@ const ProfilePost = ({data}) => {
     <div className={classes.postHolder}>
       <div className={classes.header}>
         <h4>45 Posts</h4>
-        <Form.Select style={{width:"120px"}}>
+        <Form.Select  className="form" style={{width:"120px"}}>
           <option value="1">April</option>
           <option value="2">May</option>
           <option value="3">June</option>
