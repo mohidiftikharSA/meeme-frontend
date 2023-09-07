@@ -105,6 +105,15 @@ section {
     &.active,
     &:hover {
       color: #ffcd2f;
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+
+    }
+  }
+  .nav-links{
+    .nav-link{
+      &:hover{
+        filter: none;
+      }
     }
   }
 }
@@ -793,3 +802,5 @@ section {
 .modal-md {
   max-width: 650px;
 }
+
+

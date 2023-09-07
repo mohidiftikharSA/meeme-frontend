@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
-import home from '../../Images/Home.png'
+import home from '../../Images/Home (1).png'
 import expore from '../../Images/expore.png'
 import trophy from '../../Images/trophies.png'
 import Buy from '../../Images/Buy.png'
@@ -18,14 +18,14 @@ const Navigation = ({ header, footer }) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/home"><img src={home} alt="icon"></img> Home</Nav.Link>
-              <Nav.Link href="/explore"> <img src={expore} alt="icon"></img>Explore</Nav.Link>
+              <Nav.Link href="/explore"> <img className="nav-icon" src={expore} alt="icon"></img>Explore</Nav.Link>
               <Nav.Link href="/tornament"><img src={trophy} alt="icon"></img>Tournament</Nav.Link>
               <Nav.Link href="/BuyCoin"><img src={Buy} alt="icon"></img>Store</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </>
         :
-        <Nav className="me-auto flex-column w-100">
+        <Nav className="me-auto flex-column w-100 nav-links">
           <Nav.Link href="/home" className="mb-3 active">
             <img src={home} alt="icon"></img> Home
           </Nav.Link>
