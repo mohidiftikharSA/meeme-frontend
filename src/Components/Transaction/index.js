@@ -18,7 +18,7 @@ const Transaction = ({ data, noCard }) => {
       ) : (
         <Heading title={"Transaction History"} />
       )}
-      <ul className={classes.transaction}>
+      <ul className={`${classes.transaction} ${noCard && `${classes.minHeight}`}`}>
         {data.map((item, ind) => {
           return (
             <li>

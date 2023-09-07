@@ -10,18 +10,17 @@
   line-height: 20px;
   overflow-y: auto;
   max-height: 350px;
-&.modalList{
-  color: #fff;
-  &::-webkit-scrollbar-track {
-    background: #3D3745;
-  }
+  &.modalList {
+    color: #fff;
+    &::-webkit-scrollbar-track {
+      background: #3d3745;
+    }
 
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #fff;
-    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #fff;
+    }
   }
-}
   &::-webkit-scrollbar {
     width: 5px;
   }
@@ -29,14 +28,13 @@
   /* Track */
   &::-webkit-scrollbar-track {
     border-radius: 15px;
-    background: #3D3745;
+    background: #3d3745;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.32);
     border-radius: 15px;
-
   }
 
   li {
@@ -46,7 +44,7 @@
     margin-bottom: 15px;
     gap: 15px;
     cursor: pointer;
-    &:last-child{
+    &:last-child {
       margin: 0;
     }
 
@@ -54,13 +52,6 @@
       position: relative;
 
       .status {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        display: block;
-        background: #00CC52;
-        z-index: 9;
-
         position: absolute;
         bottom: 0;
         right: 0;

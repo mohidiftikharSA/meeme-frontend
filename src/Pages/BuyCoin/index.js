@@ -48,6 +48,7 @@ const BuyCoin = () => {
         <Transaction noCard data={transactionData} />
       </div>
     </section>
+
   );
 };
 
