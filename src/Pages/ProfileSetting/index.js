@@ -85,7 +85,7 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="wallet" onClick={handleTabClick}>
+                      <Nav.Link href="/Purchase">
                         <span>
                           <img src={bag} alt="bag-icon" />
                         </span>
