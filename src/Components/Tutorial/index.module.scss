@@ -1,28 +1,54 @@
 .ruleList {
-  font-weight: 600;
+  font-size: 11px;
   li {
     border-radius: 8px;
     background: #4d4554;
-    padding: 50px;
-    padding-left: 50px !important;
+    padding: 25px;
+    .title{
+      padding-left: 50px;
+    }
+
     .box{
-      padding: 35px;
+      padding: 20px 10px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding-bottom: 0;
+      gap: 18px;
       justify-content: space-between;
+      &.centerBox{
+        justify-content: center;
+        [class*='imgBox']{
+          width: 150px;
+          margin: unset;
+          padding: 0 !important;
+          img{
+            width: 150px;
+          }
+        }
+      }
+      .spaceImg{
+        padding: 0 60px;
+      }
       [class*='imgBox']{
-        width: 250px;
+        width: 100%;
         margin: auto;
+        img{
+          width: 100%;
+        }
       }
     }
     &:after{
-      margin: 50px 20px;
+      margin: 25px 38px;
     }
     &::before{
-      margin: 50px 20px;
+      margin: 25px 38px;
     }
   }
   
+}
+
+.heading{
+  font-size: 45px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: 1.4px;
 }

@@ -12,6 +12,7 @@ import img7 from "../../Images/tutotial7.png";
 import img8 from "../../Images/tutotial8.png";
 import img9 from "../../Images/tutotial9.png";
 import img10 from "../../Images/tutotial10.png";
+import img11 from "../../Images/tutotrial11.png"
 const TutorialModals = (props) => {
   return (
     <Modal
@@ -21,85 +22,89 @@ const TutorialModals = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Body>
-        <div className="mb-3">
+      <Modal.Body style={{fontFamily: 'Gotham Rounded'}}>
+        <div className="mb-4">
           <img width={"120px"} src={icon} alt="icon" />
         </div>
-        <h2 className=" fw-bold mb-4">Welcome to Memee</h2>
-        <h5 className="text-light mb-3">Tournament Rules</h5>
+        <h2 className={`text-start ${classes.heading}`}>Welcome to Memee</h2>
+        <h5 className="text-light mb-4">Tournament Rules</h5>
 
         <ul className={`ruleList ${classes.ruleList}`}>
           <li>
-            Memee will have a monthly Tournament that users can join.
+          <p className={classes.title}>Memee will have a monthly Tournament that users can join.</p>
             <div className={classes.box}>
-              <div className="imgBox">
+              <div className={`imgBox ${classes.spaceImg}`}>
                 <img src={img1} alt="" />
               </div>
             </div>
           </li>
           <li>
-            The Tournament starts every first day of the month and winners are
-            announced during the last day of each month.
+          <p className={classes.title}> The Tournament starts every first day of the month and winners are
+            announced during the last day of each month.</p>
             <div className={classes.box}>
               <div className="imgBox">
-                <img src={img2} alt="" />
+                <img src={img3} alt="" />
               </div>
               <div className="imgBox">
-                <img src={img3} alt="" />
+                <img src={img2} alt="" />
               </div>
             </div>
           </li>
           <li>
-            The Tournament starts every first day of the month and winners are
-            announced during the last day of each month.
+          <p className={classes.title}> End Users can join and post  memes in the tournament as many  as they want. </p>
             <div className={classes.box}>
-              <div className="imgBox">
+              <div className={`imgBox ${classes.spaceImg}`}>
                 <img src={img4} alt="" />
               </div>
             </div>
           </li>
           <li>
-            The Tournament starts every first day of the month and winners are
-            announced during the last day of each month.
+          <p className={classes.title}>  There are also other ways to accumulate coins. Judging is another way of acquiring coins from the app. End Users can  judge 100 memes daily and gain 50 coins on a daily basis.</p>
             <div className={classes.box}>
+            <div className="imgBox">
+                <img src={img11} alt="" />
+              </div>
               <div className="imgBox">
                 <img src={img5} alt="" />
               </div>
-              <div className="imgBox">
+            </div>
+          </li>
+          <li>
+          <p className={classes.title}> Coins can buy icons, themes, profile and background overlays. </p>
+            <div className={classes.box}>
+              <div className={`imgBox ${classes.spaceImg}`}>
                 <img src={img6} alt="" />
               </div>
             </div>
           </li>
           <li>
-            The Tournament starts every first day of the month and winners are
-            announced during the last day of each month.
-            <div className={classes.box}>
+          <p className={classes.title}>There are hundreds of combination that you can choose from to make a unique experience using the app.</p>
+            <div className={`${classes.box} ${classes.centerBox}`}>
               <div className="imgBox">
                 <img src={img7} alt="" />
+              </div>
+              <div className="imgBox">
+                <img src={img8} alt="" />
               </div>
             </div>
           </li>
           <li>
-            The Tournament starts every first day of the month and winners are
-            announced during the last day of each month.
-            <div className={classes.box}>
-              <div className="imgBox">
-                <img src={img8} alt="" />
-              </div>
-              <div className="imgBox">
+          <p className={classes.title}>The top 3 votes are the tournament winners and will be rewarded with Amazon gift cards. </p>
+            <div className={`${classes.box} ${classes.centerBox}`}>
+              <div className={`imgBox ${classes.spaceImg}`}>
                 <img src={img9} alt="" />
               </div>
             </div>
           </li>
           <li>
-            The Tournament starts every first day of the month and winners are
-            announced during the last day of each month.
-            <div className={classes.box}>
-              <div className="imgBox">
+          <p className={classes.title}>The top 3 votes are the tournament winners and will be rewarded with Amazon gift cards. </p>
+            <div className={`${classes.box} ${classes.centerBox}`}>
+              <div className={`imgBox ${classes.spaceImg}`}>
                 <img src={img10} alt="" />
               </div>
             </div>
           </li>
+
         </ul>
       </Modal.Body>
     </Modal>

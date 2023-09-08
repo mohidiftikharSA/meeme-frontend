@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom/dist";
 import { MdMail } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook, BsTwitter } from "react-icons/bs";
-import Footer from "Components/Footer";
 import AuthLayout from "Layout/AuthLayout";
 
 const Login = () => {

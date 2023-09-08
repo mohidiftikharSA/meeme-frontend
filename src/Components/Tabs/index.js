@@ -43,9 +43,6 @@ import img3 from "../../Images/rare3.png";
 import img4 from "../../Images/rare4.png";
 import img5 from "../../Images/rare5.png";
 import img6 from "../../Images/rare6.png";
-import img7 from "../../Images/rare7.png";
-import img8 from "../../Images/rare8.png";
-import img9 from "../../Images/rare9.png";
 import Theme1 from "../../Images/Theme1.png";
 import Theme2 from "../../Images/Theme2.png";
 import Theme3 from "../../Images/Theme3.png";
@@ -242,18 +239,7 @@ const data = [
     title: "Banana Theme",
     img: img6,
   },
-  {
-    title: "Mango Theme",
-    img: img7,
-  },
-  {
-    title: "Fire Theme",
-    img: img8,
-  },
-  {
-    title: "Water Theme",
-    img: img9,
-  },
+  
 ];
 
 const data2 = [

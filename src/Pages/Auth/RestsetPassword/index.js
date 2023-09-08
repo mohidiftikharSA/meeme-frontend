@@ -4,9 +4,14 @@ import classes from '../index.module.scss'
 import Logo from "Components/Logo";
 import AuthHeader from "Components/AuthHeader";
 import ResetPasswordModal from "Components/ResetPasswordModal";
+import { useNavigate } from "react-router-dom";
 
 const Restsetpassword = () => {
     const [smShow, setSmShow] = useState(false);
+    const navigate = useNavigate();
+    const nextPage = () => {
+      navigate(`/forgetPassword`);
+    };
     return (
         <>
         <Logo start/>
@@ -15,7 +20,7 @@ const Restsetpassword = () => {
                 <Form className="formHolder">
                     <Form.Control type="password" placeholder="New Password" />
                     <Form.Control type="password" placeholder="Re-type new password" />
-                    <p className={ classes.password}>Forgot password?</p>
+                    <p onClick={nextPage} className={ classes.password}>Forgot password?</p>
                     <Button className="btn-primary w-100 p-2 h-auto" href="#" onClick={() => setSmShow(true)}>Create New Password</Button>
                 </Form>
             </div>

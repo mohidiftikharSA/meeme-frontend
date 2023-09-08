@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Accordion, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import classes from "./index.module.scss";
 import coin from "../../Images/coin.png";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import shuffle from "../../Images/shuffle.png";
 import logo from "../../Images/logo.png";
-import CoinCard from "Components/CoinCard";
 
 const BuyCoin = ({ purchase }) => {
   const [sliderValue, setSliderValue] = useState(7412); // Initial value
