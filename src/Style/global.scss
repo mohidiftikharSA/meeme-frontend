@@ -80,7 +80,6 @@ section {
 .navBar {
   margin: 0 20px;
 
-
   &.aside {
     flex-direction: column;
     align-items: flex-start;
@@ -92,9 +91,9 @@ section {
     display: flex;
     align-items: center;
     font-size: 12px;
-    img{
+    img {
       width: 16px;
-    margin-right: 10px;
+      margin-right: 10px;
     }
 
     i {
@@ -105,13 +104,13 @@ section {
     &.active,
     &:hover {
       color: #ffcd2f;
-      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
-
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
+        saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
     }
   }
-  .nav-links{
-    .nav-link{
-      &:hover{
+  .nav-links {
+    .nav-link {
+      &:hover {
         filter: none;
       }
     }
@@ -215,7 +214,6 @@ section {
   line-height: 73px;
   box-shadow: none;
   margin: 0 8px;
-  
 
   @include media("<xs-phone") {
     width: 30px;
@@ -229,7 +227,7 @@ section {
     outline: none !important;
   }
 }
-.cTCtsH{
+.cTCtsH {
   display: flex;
   position: relative;
   justify-content: flex-start !important;
@@ -238,7 +236,7 @@ section {
     width: 0 !important;
   }
 }
-.gVxunN{
+.gVxunN {
   @include media("<xs-phone") {
     font-size: 1rem;
   }
@@ -250,7 +248,6 @@ section {
 }
 
 .modal {
-
   &.infoModal {
     .modal-content {
       border-radius: 38px;
@@ -262,7 +259,7 @@ section {
     .modal-header {
       padding: 0;
       height: 0;
-      .closeBtn{
+      .closeBtn {
         top: 12px;
         right: -5px;
       }
@@ -270,11 +267,11 @@ section {
 
     .modal-body {
       background-color: transparent !important;
-      &.congrats{
-      background-image: url(../Images/congrats.png);
-      background-size: 420px;
-      background-position: center -90px;
-      background-repeat: no-repeat;
+      &.congrats {
+        background-image: url(../Images/congrats.png);
+        background-size: 420px;
+        background-position: center -90px;
+        background-repeat: no-repeat;
       }
     }
     .modal-dialog {
@@ -748,6 +745,9 @@ section {
 }
 
 .form-select {
+  &.form{
+    background-position: 88% center !important;
+  }
   background: none;
   border-radius: 20px;
   border: 1px solid #454545;
@@ -756,7 +756,7 @@ section {
   background-image: url("../Images/arrowDown.png");
   background-size: 14px;
   background-repeat: no-repeat;
-  background-position: 88% center;
+  background-position: 95% center;
   background-color: #201E23;
 
   &:focus {
@@ -802,5 +802,110 @@ section {
 .modal-md {
   max-width: 650px;
 }
+.status {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+  background: #00cc52;
+  z-index: 9;
+}
 
+.chat {
+  color: #fff;
+  padding: 12px 15px;
+  .header {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    .cancel-icon {
+      float: right;
+      font-size: 18px;
+      svg{
+        margin-bottom: 8px;
+      }
+    }
+  }
+  .messages {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    overflow: auto;
+    .message {
+      margin-bottom: 10px;
+      &.sent {
+        text-align: end;
+        padding-right: 42px;
+        .messageBox {
+          background: linear-gradient(
+            180deg,
+            #ffe486 0%,
+            #ffcc4e 51.56%,
+            #ffd02b 100%,
+            #d2a61b 100%
+          );
+          color: #000;
+          border-radius: 20px 20px 0px 20px;
+          padding: 12px 15px;
+        }
+      }
 
+      .messageBox {
+        border-radius: 20px 20px 20px 0px;
+        background: #5e5863;
+        display: inline-block;
+        padding: 10px 15px;
+        min-width: 65px;
+        max-width: 80%;
+        .message-user {
+          font-size: 10px;
+        }
+        .message-text {
+          word-break: break-all;
+        }
+      }
+    }
+  }
+  .senderBox {
+    position: relative;
+    .userImg {
+      margin: 0px 0 0 10px;
+    }
+  }
+  .userImg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 35px;
+    margin: 10px 10px 0 0;
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+    }
+  }
+  .reciverBox{
+    position: relative;
+    .message{
+      padding-left: 42px;
+    }
+    .userImg{
+      left: 0;
+      right: unset;
+    }
+  }
+  .sendBox{
+    .form-control{
+      border-radius:12px ;
+      background-color: #646370;
+      color: #Fff;
+      border: none;
+      padding: 15px;
+      &::placeholder{
+        color: #838593;
+        font-size: 12px;
+      }
+    }
+  }
+}

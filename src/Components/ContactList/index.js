@@ -21,8 +21,8 @@ const ContactList = ({data,contact,link}) => {
                             <li onClick={page}>
                                 <div className={classes.profile}>
                                     <img src={item.img} alt='icon' />
-                                    {item.status && <span className={classes.status}></span>}
-                                </div>
+                                    {item.status && <span className={`status ${classes.status}`}></span>}
+                                </div> 
                                 <p className='mb-0'>{item.name}</p>
                             </li>
                         )

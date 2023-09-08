@@ -16,7 +16,7 @@ const InfoModal = (props) => {
                 <span className={'closeBtn'} onClick={props.onHide}><LiaTimesSolid/></span>
             </Modal.Header>
             <Modal.Body className='m-0'>
-                <h6>Rules & Regulations</h6>
+                <h6 className={classes.rule}>Rules & Regulations</h6>
                 <ul className={`ruleList mb-4`}>
                     <li>Meme user can post their memes and join the tournament.</li>
                     <li>To qualify for coin rewards, you need to judge 100 memes per day.</li>
