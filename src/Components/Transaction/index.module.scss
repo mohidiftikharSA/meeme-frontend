@@ -2,10 +2,8 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    padding-bottom: 261px;
-    &.minHeight{
-        min-height: auto;
-    }
+    min-height: 389px;
+    overflow: auto;
     li {
         display: flex;
         justify-content: space-between;
