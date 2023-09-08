@@ -1,8 +1,9 @@
 import React from "react";
 import classes from "./index.module.scss";
 import { Col, Row } from "react-bootstrap";
+import Footer from "Components/Footer";
 
-const AuthLayout = ({ children }) => {
+const AuthLayout = ({ children,showFooter }) => {
   return (
     <div id={classes.wrapper}>
       <div className="container">
@@ -15,6 +16,7 @@ const AuthLayout = ({ children }) => {
           </Col>
         </Row>
       </div>
+      {showFooter && <Footer />}
     </div>
   );
 };

@@ -25,7 +25,6 @@ import BadgeList from "Components/BadgeList";
 const routes = [
     {
         path: "/",
-        layout: AuthLayout,
         component: Login,
     },
     {

@@ -7,6 +7,7 @@ import { MdMail } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook, BsTwitter } from "react-icons/bs";
 import Footer from "Components/Footer";
+import AuthLayout from "Layout/AuthLayout";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,7 +17,8 @@ const Login = () => {
 
   return (
     <>
-      <section className={`${classes.section} ${classes.dotBg} ${classes.reponsive_sec}`} >
+    <AuthLayout showFooter={true}>
+    <section className={`${classes.section} ${classes.dotBg} ${classes.reponsive_sec}`} >
         <Logo login />
         <div className={classes.authHolder}>
           <Button variant="outline-light" onClick={nextPage}>
@@ -49,7 +51,8 @@ const Login = () => {
           </p>
         </div>
       </section>
-      <Footer />
+    </AuthLayout>
+     
     </>
   );
 };
