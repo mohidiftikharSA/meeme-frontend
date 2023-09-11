@@ -84,7 +84,7 @@ const contactData = [
 
 ]
 
-const AccordianData = ({ following = "" }) => {
+const AccordianData = ({ following = "" , responsive}) => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleActive = (index) => {
@@ -94,11 +94,11 @@ const AccordianData = ({ following = "" }) => {
   return (
     <>
      {following ? (
-        <Accordion className={`${activeIndex !== null ? "active following-active" : ""}`} style={{ height: '100%' }}>
-        <div className={`py-5 px-4 following`}>
+        <Accordion className={`${activeIndex !== null ? "active following-active" : ""} `} style={responsive ? {height:'unset'}:{ height: '100%' }}>
+        <div className={`py-xl-5 px-xl-4 p-0 following`}>
           <Accordion.Item eventKey="3" style={{background: '#201E23', textAlign:'center'}}>
             <Accordion.Header onClick={() => toggleActive(0)}>
-            <span style={{ marginRight: "60px",marginLeft: "20px", color: "#F6CC38",fontWeight:"700",fontSize:"14px"}}>All</span>Followings
+            <span className="all-text" >All</span>Followings
             </Accordion.Header>
            <AccordionBody>
            <ContactList contact data={contactData}  /> 
@@ -108,7 +108,7 @@ const AccordianData = ({ following = "" }) => {
           </Accordion>
       ) : (
     
-        <Accordion className={`${activeIndex !== null ? "active" : ""}`} style={{ height: '100%' }}>
+        <Accordion className={`${activeIndex !== null ? "active" : ""}`} style={responsive?{height:'unset'}:{ height: '100%' }}>
           <Accordion.Item eventKey="0">
             <Accordion.Header onClick={() => toggleActive(1)}>
               Trending Tags

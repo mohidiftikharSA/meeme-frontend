@@ -127,25 +127,15 @@
     background-size: 80px;
     background-repeat: no-repeat;
     z-index: -1;
-    @include media("<xs-phone") {
-      display: none;
-    }
-    @include media("<tablet") {
-      right: -112px;
-      bottom: -100px;
-    }
-    @include media("<tablet-x") {
-      right: -68px;
-      bottom: -113px;
-    }
-    @include media("<desktop") {
-      right: -77px;
-      bottom: -106px;
-    }
     @include media("<widescreen") {
-      right: -75px;
+      right: -30px;
       bottom: -107px;
     }
+    @include media("<phone"){
+      background-size: 65px;
+    }
+    
+  
   }
 
   &:after {
