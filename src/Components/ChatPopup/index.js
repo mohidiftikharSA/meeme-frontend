@@ -3,7 +3,8 @@ import { Dropdown, Form } from "react-bootstrap";
 import { LiaTimesSolid } from "react-icons/lia";
 import user1 from "../../Images/chatuser.png";
 import user2 from "../../Images/profile1.png";
-
+import { FiSmile } from 'react-icons/fi';
+import { CgAttachment } from 'react-icons/cg';
 const ChatPopup = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
@@ -89,7 +90,6 @@ const ChatPopup = () => {
                   </div>
                 ))}
               </div>
-              {/* Display the dummy message */}
             </div>
             <div className="sendBox">
               <Form.Control
@@ -99,6 +99,11 @@ const ChatPopup = () => {
                 onChange={handleInputChange}
                 onKeyPress={handleInputKeyPress}
               />
+              <div className={'iconBox'}>
+              <FiSmile/>
+              <CgAttachment/>
+              </div>
+
             </div>
           </div>
         </div>

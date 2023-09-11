@@ -1,10 +1,11 @@
+@import "../../Style/base";
 .ImgWrapper{
     .imgUploader{
         background-color: #201E23;
         border-radius: 12px;
         border: none;
         height: 180px;
-        width: 135px;
+        width: 100%;
         color: #fff;
         font-weight: 500;
         position: relative;
@@ -43,6 +44,9 @@
         position: relative;
         padding: 0 10px;
         cursor: pointer;
+        @include media("<xs-phone"){
+            padding: 0;
+        }
         .prilfe{
             z-index: 99999;
             img{

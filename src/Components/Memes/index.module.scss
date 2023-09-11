@@ -1,6 +1,13 @@
+@import "../../Style/base";
 .flexBox {
     column-count: 2;
     column-gap: 0;
+    @include media("<xs-phone"){
+      column-count: 1;
+      .imgBox{
+        display: block !important;
+      }
+    }
     &.exploreBox{
       column-count: 4;
       .imgBox{
@@ -16,6 +23,9 @@
     vertical-align: top;
     &:first-child{
         margin-top: 35px;
+        @include media("<xs-phone"){
+          margin-top: 0;
+        }
     }
     img {
       border-radius: 18px;

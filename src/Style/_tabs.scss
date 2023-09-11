@@ -3,7 +3,19 @@
   border-bottom: 0;
   font-family: $pt;
   font-weight: 600;
-
+  @include media("<xs-phone"){
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: flex-start;
+    padding-bottom: 5px;
+    &::-webkit-scrollbar {
+      height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+      width: 4px;               /* width of vertical scrollbar */
+    }
+    
+    
+  }
   &.double {
     background: #201e23;
     border-radius: 30px;
@@ -84,6 +96,9 @@
 
   .nav-item {
     flex: 0 0 33.33%;
+    @include media("<xs-phone"){
+      flex: 1 0 auto;
+    }
 
     &:first-child {
       .nav-link {

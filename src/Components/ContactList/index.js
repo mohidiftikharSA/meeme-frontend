@@ -1,5 +1,4 @@
 import React from 'react'
-import { Accordion } from 'react-bootstrap'
 import classes from "./index.module.scss"
 import Search from 'Components/Search'
 import { useNavigate } from 'react-router-dom'
