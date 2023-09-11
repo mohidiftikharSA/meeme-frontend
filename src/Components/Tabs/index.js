@@ -273,7 +273,7 @@ const TabDetails = ({
         <Tabs
           defaultActiveKey={first}
           id="uncontrolled-tab-example"
-          className="mb-5 px-4"
+          className="mb-lg-5 mb-3"
         >
           <Tab eventKey="following" title="Following">
             <FollowingContent />

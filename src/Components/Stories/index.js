@@ -54,12 +54,29 @@ const Stories = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    responsive: [
+      
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 580,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
   return (
     <>
       <div className={classes.ImgWrapper}>
         <Row>
-          <Col lg={3}>
+          <Col md={3} sm={4} xs={6}  className="pe-0">
             <button
               className={classes.imgUploader}
            
@@ -72,7 +89,7 @@ const Stories = () => {
               </div>
             </button>
           </Col>
-          <Col lg={9}>
+          <Col md={9} sm={8} xs={6}> 
             <Slider {...settings}>
               
               {/* {imageList.map((image, index) => (

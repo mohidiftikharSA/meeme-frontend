@@ -43,11 +43,62 @@ nav {
   font-family: $Poppins;
 }
 
+.nav-opener{
+  font-size: 38px;
+  margin: 12px 0;
+  display: none;
+  @include media("<tablet-x"){
+    display: block;
+  }
+
+}
+
+.aside-responsive{
+  border-right: 1px solid rgba(255, 255, 255, 0.31);
+  @include media("<tablet-x"){
+    border: none;
+    width: 80px;
+    position: absolute;
+    background-color: #0b0213;
+    z-index: 9999;
+    transition: all ease 0.3s;
+  }
+  &.active{
+    width: 320px;
+    background-color: #1c1c1c;
+    transition: all ease 0.3s;
+    height: 100%;
+  }
+  #aisde {
+    min-height: 100vh;
+    height: 100%;
+    @include media("<tablet-x"){
+      display: none;
+    }
+    &.active{
+      display: block;
+    }
+  }
+}
+
+.content-responsive{
+  @include media("<tablet-x"){
+    width: 100%;
+    transition: all ease 0.3s;
+    padding-top: 60px !important;
+  }
+}
 section {
   padding: 50px 75px;
   overflow: hidden;
   position: relative;
   min-height: 100vh;
+  @include media("<tablet-x"){
+    padding: 20px 50px;
+  }
+  @include media("<xs-phone"){
+    padding: 20px 10px;
+  }
 
   &.purchaseBg {
     background: url("../Images/coinBg.png");
@@ -71,11 +122,7 @@ section {
   }
 }
 
-#aisde {
-  min-height: 100vh;
-  height: 100%;
-  border-right: 1px solid rgba(255, 255, 255, 0.31);
-}
+
 
 .navBar {
   margin: 0 20px;
@@ -124,6 +171,21 @@ section {
     min-height: 100vh;
     height: 100%;
     border-left: 1px solid rgba(255, 255, 255, 0.31);
+    @include media("<widescreen") {
+      min-height: auto;
+      height: auto;
+      border-left: unset;
+    }
+    .all-text {
+      margin-right: 60px;
+      margin-left: 20px;
+      color: #f6cc38;
+      font-weight: 700;
+      font-size: 14px;
+      @include media("<widescreen") {
+        margin:0 10px 0 0;
+      }
+    }
   }
 
   &.active {
@@ -741,7 +803,7 @@ section {
 }
 
 .form-select {
-  &.form{
+  &.form {
     background-position: 88% center !important;
   }
   background: none;
@@ -753,7 +815,7 @@ section {
   background-size: 14px;
   background-repeat: no-repeat;
   background-position: 95% center;
-  background-color: #201E23;
+  background-color: #201e23;
   font-size: 14px;
 
   &:focus {
@@ -811,6 +873,7 @@ section {
 .chat {
   color: #fff;
   padding: 12px 15px;
+  border-bottom: 1px solid #4d4d4dcc;
   .header {
     font-size: 14px;
     font-weight: 600;
@@ -818,7 +881,7 @@ section {
     .cancel-icon {
       float: right;
       font-size: 18px;
-      svg{
+      svg {
         margin-bottom: 8px;
       }
     }
@@ -882,24 +945,38 @@ section {
       border-radius: 50%;
     }
   }
-  .reciverBox{
+  .reciverBox {
     position: relative;
-    .message{
+    .message {
       padding-left: 42px;
     }
-    .userImg{
+    .userImg {
       left: 0;
       right: unset;
     }
   }
-  .sendBox{
-    .form-control{
-      border-radius:12px ;
+  .sendBox {
+    position: relative;
+    .iconBox {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      svg {
+        font-size: 22px;
+        color: #8f92a1;
+      }
+    }
+    .form-control {
+      border-radius: 12px;
       background-color: #646370;
-      color: #Fff;
+      color: #fff;
       border: none;
       padding: 15px;
-      &::placeholder{
+      &::placeholder {
         color: #838593;
         font-size: 12px;
       }
