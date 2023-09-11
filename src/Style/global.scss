@@ -116,6 +116,23 @@ section {
     }
   }
 }
+#profile-btn{
+  @include media("<tablet-x"){
+    display: none;
+   }
+}
+
+#basic-navbar-nav{
+  @include media("<tablet-x"){
+      position: fixed;
+      right: 0;
+      top:0;
+      bottom: 0;
+      width: 250px;   
+      z-index: 99999;
+      background-color: #201e23;
+  }
+   }
 
 .accordion {
   font-family: $pt;
