@@ -420,7 +420,7 @@ section {
   .modal-body {
     background: #2c2930;
     border-radius: 30px;
-    padding: 32px;
+    padding: 20px 30px;
     margin: 20px 5px;
     text-align: center;
 
@@ -455,12 +455,13 @@ section {
       font-size: 12px;
       font-style: normal;
       font-weight: 400;
-      line-height: 20px;
+      line-height: 18pxpx;
       margin: 0;
     }
 
     .aboutLogo {
       display: flex;
+      justify-content: center;
     }
   }
 }
