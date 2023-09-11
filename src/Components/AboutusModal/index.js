@@ -17,7 +17,7 @@ const AboutusModal = (props) => {
             </Modal.Header>
             <h4 className='title'>About Us</h4>
             <Modal.Body className='subTitle'>
-            <div className='aboutLogo py-3'><Logo login start/></div>
+            <div className='aboutLogo py-3'><Logo/></div>
                 <p>
                 MeMee is set to amalgamate the ultimate social media platform with the best content online. Users can socialize by posting memes, and short funny clips which the population of MeMee judges and rates in routine MeMee tournaments. </p>
                 <p>What sets MeMee apart from other social media is that everyone gets to earn rewards for the memes they post. These rewards are given out in the form of coveted MeMee coins. These coins can be redeemed in exchange for items at the MeMee store. Users who act as judges make these coins as much as they rate memes. </p>
