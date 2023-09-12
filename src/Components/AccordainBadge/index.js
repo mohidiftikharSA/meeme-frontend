@@ -13,7 +13,7 @@ const AccordianBadge = ({data,expolore}) => {
 
   return (
   
-      <div className={`d-flex align-items-center gap-2 flex-nowrap ${classes.badgeBox}`}>
+      <div className={`d-flex align-items-center gap-2 flex-lg-wrap flex-nowrap ${classes.badgeBox}`}>
         {data.map((item, index) => (
           <h5 key={index}>
             <Badge

@@ -60,7 +60,7 @@ nav {
     width: 80px;
     position: absolute;
     background-color: #0b0213;
-    z-index: 9999;
+    z-index: 99999;
     transition: all ease 0.3s;
   }
   &.active{
@@ -75,6 +75,13 @@ nav {
     @include media("<tablet-x"){
       display: none;
     }
+    .asideHolder{
+      height: 100%;
+      @include media("<tablet-x"){
+        height: auto;
+      }
+    }
+    
     &.active{
       display: block;
     }
@@ -878,6 +885,9 @@ section {
   color: #fff;
   padding: 12px 15px;
   border-bottom: 1px solid #4d4d4dcc;
+  @include media("<phone"){
+   border: none;
+   }
   .header {
     font-size: 14px;
     font-weight: 600;
@@ -893,8 +903,9 @@ section {
   .messages {
     display: flex;
     flex-direction: column;
-    height: 300px;
+    height: 200px;
     overflow: auto;
+    line-height: 1.5;
     .message {
       margin-bottom: 10px;
       &.sent {

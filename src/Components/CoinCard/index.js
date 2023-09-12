@@ -17,7 +17,7 @@ const CoinCard = ({ data }) => {
       <Row className="mb-4">
         {data.map((item, ind) => {
           return (
-            <Col md={3} key={ind}>
+            <Col md={3} sm={4} xs={6} key={ind} className="mb-3">
               <Card className={classes.cardHolder}>
                 <div className={"imgBox "}>
                   <img src={coin} alt="img" />
