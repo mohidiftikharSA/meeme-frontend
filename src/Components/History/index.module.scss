@@ -1,3 +1,4 @@
+@import "../../Style/base";
 .list {
   border-radius: 30.5px;
   background: linear-gradient(180deg, #ffdf8d 0%, #f4b30e 100%);
@@ -6,13 +7,16 @@
   color: #000;
   margin: 20px 0;
   padding: 0;
-  list-style: 0;
+  list-style: none;
   font-family: "PT Sans", sans-serif;
   font-weight: 600;
   li {
     display: inline-block;
     width: 33.33%;
     padding: 14px;
+    @media screen and (max-width: 380px) {
+      width: auto;
+    }
     &:nth-child(2) {
       border: 1px solid #292929;
       border-bottom: 0;
@@ -24,7 +28,7 @@
     box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.2);
     background: transparent;
     color: #fff;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-style: italic;
     font-size: 16px;
     li {
@@ -38,7 +42,7 @@
       margin-bottom: 15px;
       border-radius: 30px;
       cursor: pointer;
-      &:last-child{
+      &:last-child {
         margin: 0;
       }
       > div {
@@ -49,14 +53,14 @@
         padding-left: 0;
         span {
           background: linear-gradient(180deg, #b461f4 0%, #671ba3 100%);
-          
+
           border-radius: 30px;
           width: 85px;
           display: block;
           padding: 14px;
         }
       }
-      .checkboxHolder{
+      .checkboxHolder {
         text-align: right;
       }
     }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Badge } from "react-bootstrap";
-
-
+import classes from "./index.module.scss"
 
 const AccordianBadge = ({data,expolore}) => {
   const [activeStates, setActiveStates] = useState(Array(data.length).fill(false));
@@ -14,7 +13,7 @@ const AccordianBadge = ({data,expolore}) => {
 
   return (
   
-      <div className="d-flex align-items-center gap-2 flex-wrap">
+      <div className={`d-flex align-items-center gap-2 flex-nowrap ${classes.badgeBox}`}>
         {data.map((item, index) => (
           <h5 key={index}>
             <Badge

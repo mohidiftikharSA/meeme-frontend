@@ -9,7 +9,7 @@ const ThemeRare = ({ data2, card }) => {
     <Row>
       {data2.map((item, ind) => {
         return (
-          <Col md={4} key={ind} className={classes.col} >
+          <Col md={4} sm={6} key={ind} className={classes.col} >
             <div className={`${classes.themeHolder}  ${card&& `tab-card-box`}`}>
               {card ? <h6>{item.title}</h6> : ""}
               <div className={"imgBox mb-3"}>

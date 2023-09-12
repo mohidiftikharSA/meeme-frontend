@@ -1,7 +1,16 @@
+@import "../../Style/base";
 .themeHolder{
     font-size: 10px;
 }
 .col{
     margin-bottom: 100px;
     padding-right: 0;
+    @include media("<tablet"){
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    @include media("<phone"){
+        max-width: 250px !important;
+        max-width: 250px !important;
+    }
 }

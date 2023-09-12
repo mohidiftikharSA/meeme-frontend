@@ -1,0 +1,7 @@
+@import "../../Style/base";
+.imgBox{
+    @include media("<tablet"){
+        width: 200px !important;
+        margin: auto;
+    }
+}

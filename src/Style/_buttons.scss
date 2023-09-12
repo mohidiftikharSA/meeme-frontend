@@ -14,6 +14,9 @@
   @include media('<xs-phone'){
     line-height: 30px;
   }
+  @include media("<phone"){
+    font-size: 12px !important;
+  }
 
   .btnHolder {
     max-width: 430px;

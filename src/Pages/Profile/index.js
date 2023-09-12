@@ -7,10 +7,12 @@ const ProfilePage = () => {
   return (
     <>
       <Banner />
-      <div className="sectionHolder py-5">
+     <section>
+     <div className="sectionHolder py-md-5 py-3">
       <EarnBadge />
       <TabDetails profile/>
       </div>
+     </section>
     </>
   );
 };
