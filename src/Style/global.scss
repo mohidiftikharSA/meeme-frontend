@@ -144,12 +144,20 @@ section {
         right: 0;
         transition: all ease 0.3s;
       }
+      .navbar-nav{
+        margin-top: 120px;
+      }
       .nav-link{
-        padding: 30px 0 5px 25px;
+        padding: 20px 10px;
+        border-bottom: 1px solid #868686;
+        width: 200px;
+        margin-left: 21px;
       }
 
       .custom-icon2{
         font-size: 25px;
+        position: absolute;
+    right: 10px;
       }
   }
   #profile-btn{
