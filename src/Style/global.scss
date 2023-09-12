@@ -132,7 +132,48 @@ section {
 
 
 .navBar {
+  
   margin: 0 20px;
+  .responsive-nav{
+    @include media("<tablet-x"){
+      position: fixed;
+      right: -280px;
+      top:0;
+      bottom: 0;
+      width: 250px;   
+      z-index: 99999;
+      height: 100%;
+      margin: 0;
+      background-color: #201e23;
+      align-items: flex-start;
+      transition: all ease 0.3s;
+      &.active{
+        right: 0;
+        transition: all ease 0.3s;
+      }
+      .nav-link{
+        padding: 30px 0 5px 25px;
+      }
+
+      .custom-icon2{
+        font-size: 25px;
+      }
+  }
+  #profile-btn{
+    display: none;
+    @include media("<tablet-x"){
+      display: block;
+      padding: 20px;
+    }
+}
+}
+.custom-icon1{
+  font-size: 20px;
+    display: none;
+    @include media("<tablet-x"){
+      display: block;
+    }  
+}
 
   &.aside {
     flex-direction: column;
@@ -170,6 +211,13 @@ section {
     }
   }
 }
+#profile-btn{
+  @include media("<tablet-x"){
+    display: none;
+   }
+}
+
+
 
 .accordion {
   font-family: $pt;

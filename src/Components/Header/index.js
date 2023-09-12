@@ -18,7 +18,7 @@ const Header = () => {
           <div className={classes.rightSide}>
             <Search text={"Search"} />
             <Navigation header/>
-            <ButtonGroup className="align-items-center">
+            <ButtonGroup className="align-items-center" id="profile-btn">
               <Link to={"/Purchase"} className={`btn ${classes.iconBtn}`}>
                 <span className={classes.icon}>
                 <i className="fas fa-plus"></i>
