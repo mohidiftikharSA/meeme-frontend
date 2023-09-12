@@ -126,6 +126,28 @@ section {
 
 .navBar {
   margin: 0 20px;
+  .responsive-nav{
+    @include media("<tablet-x"){
+      position: fixed;
+      right: -280px;
+      top:0;
+      bottom: 0;
+      width: 250px;   
+      z-index: 99999;
+      height: 100%;
+      margin: 0;
+      background-color: #201e23;
+      align-items: flex-start;
+      transition: all ease 0.3s;
+      &.active{
+        right: 0;
+        transition: all ease 0.3s;
+      }
+      .nav-link{
+        padding: 20px 0 5px 15px;
+      }
+  }
+}
 
   &.aside {
     flex-direction: column;
@@ -169,21 +191,7 @@ section {
    }
 }
 
-#basic-navbar-nav{
-  @include media("<tablet-x"){
-      position: fixed;
-      right: 0;
-      top:0;
-      bottom: 0;
-      width: 250px;   
-      z-index: 99999;
-      background-color: #201e23;
-      .nav-link{
-        padding: 20px 0 5px 15px;
-      }
-  }
 
-   }
 
 .accordion {
   font-family: $pt;

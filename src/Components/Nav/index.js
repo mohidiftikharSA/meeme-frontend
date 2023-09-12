@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import home from "../../Images/Home (1).png";
 import expore from "../../Images/expore.png";
@@ -9,6 +9,11 @@ import shop from "../../Images/shop.png";
 import trophies from "../../Images/trophy (1) 1.png";
 
 const Navigation = ({ header, footer }) => {
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleActive = () => {
+    setIsActive(!isActive);
+  };
   return (
     <Navbar
       expand="lg"
@@ -20,9 +25,12 @@ const Navigation = ({ header, footer }) => {
     >
       {header ? (
         <>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+          {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
+          <button onClick={toggleActive} className={`${isActive ? "d-none" : "d-block"}`}>Button</button>
+          <Navbar className={`responsive-nav ${isActive ? "active" : ""}`}>
+          <button onClick={toggleActive} className={`${isActive ? "d-block" : "d-none"}`}>Button 2</button>
+
+            <Nav className="me-auto flex-lg-row flex-column">
               <Nav.Link href="/home">
                 <img src={home} alt="icon"></img> Home
               </Nav.Link>
@@ -37,7 +45,7 @@ const Navigation = ({ header, footer }) => {
                 <img src={Buy} alt="icon"></img>Store
               </Nav.Link>
             </Nav>
-          </Navbar.Collapse>
+          </Navbar>
         </>
       ) : (
         <Nav className="me-auto flex-column w-100 nav-links">
