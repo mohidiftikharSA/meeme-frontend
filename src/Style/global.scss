@@ -178,7 +178,11 @@ section {
       width: 250px;   
       z-index: 99999;
       background-color: #201e23;
+      .nav-link{
+        padding: 20px 0 5px 15px;
+      }
   }
+
    }
 
 .accordion {
