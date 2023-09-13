@@ -15,7 +15,7 @@ const Banner = ({other}) => {
   };
   return (
     <>
-    <div className={`banner pb-4 ${other&& `banner pb-4 otherBanner`  }`}>
+    <div className={`banner pb-4 px-2 ${other&& `banner pb-4 otherBanner` }`}>
       <div className="sectionHolder" style={{ maxWidth: "350px" }}>
         <div className={classes.profileDetail}>
           <div className={classes.profileDetails}>

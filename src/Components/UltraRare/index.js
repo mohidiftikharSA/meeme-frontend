@@ -8,7 +8,7 @@ const UltraRare = ({ data ,noCoin }) => {
     <Row>
       {data.map((item, ind) => {
         return (
-          <Col md={4} key={ind} className={classes.col}>
+          <Col md={4} sm={6}  key={ind} className={classes.col}>
             <Card>
               <div className={classes.themeHolder}>
                 <p className="mb-0">{item.title}</p>

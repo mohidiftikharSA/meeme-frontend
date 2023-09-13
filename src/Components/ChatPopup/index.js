@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown, Form } from "react-bootstrap";
 import { LiaTimesSolid } from "react-icons/lia";
 import user1 from "../../Images/chatuser.png";
 import user2 from "../../Images/profile1.png";
 import { FiSmile } from 'react-icons/fi';
 import { CgAttachment } from 'react-icons/cg';
+import { BsFillChatDotsFill } from 'react-icons/bs';
+
+
 const ChatPopup = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
   const [currentUser, setCurrentUser] = useState("User1"); // Change user names as needed
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to manage dropdown visibility
+  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 992);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsWideScreen(window.innerWidth >= 640);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // Dummy message from other user
   const dummyMessage = [
@@ -38,18 +55,21 @@ const ChatPopup = () => {
     }
   };
 
-  return (
-    <Dropdown className="chatDropDown">
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        <span className="status d-inline-block me-2"></span> Chat (4 Active)
-      </Dropdown.Toggle>
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
-      <Dropdown.Menu>
+  return (
+    <Dropdown className={`chatDropDown ${isDropdownOpen ? 'show' : ''}`} show={isDropdownOpen} onToggle={toggleDropdown}>
+       <Dropdown.Toggle variant="success" id="dropdown-basic">
+         {isWideScreen ?<><span className="status d-inline-block me-2"></span> Chat (4 Active)</> : <BsFillChatDotsFill size={'18px'}/>}
+      </Dropdown.Toggle>
+      <Dropdown.Menu onClick={(e) => e.stopPropagation()}>
         <div className="chat">
           <div className="chat-window">
             <div className="header">
               <span className="status d-inline-block mx-2"></span>Randy Mark
-              <span className="cancel-icon">
+              <span className="cancel-icon" onClick={toggleDropdown} style={{cursor:"pointer"}}>
                 <LiaTimesSolid />
               </span>
             </div>
@@ -60,14 +80,12 @@ const ChatPopup = () => {
                 </div>
                 {dummyMessage.map((item, ind) => {
                   return (
-                    <>
-                      <div className="message received">
-                        <div className="messageBox">
-                          <div className="message-user">{item.user}</div>
-                          <div className="message-text">{item.text}</div>
-                        </div>
+                    <div key={ind} className="message received">
+                      <div className="messageBox">
+                        <div className="message-user">{item.user}</div>
+                        <div className="message-text">{item.text}</div>
                       </div>
-                    </>
+                    </div>
                   );
                 })}
               </div>
@@ -100,10 +118,9 @@ const ChatPopup = () => {
                 onKeyPress={handleInputKeyPress}
               />
               <div className={'iconBox'}>
-              <FiSmile/>
-              <CgAttachment/>
+                <FiSmile/>
+                <CgAttachment/>
               </div>
-
             </div>
           </div>
         </div>

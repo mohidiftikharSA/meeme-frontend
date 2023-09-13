@@ -1,2 +1,10 @@
-
-
+@import "../../Style/base";
+.col{
+    margin-bottom: 20px;
+    [class*="imgBox"]{
+        @include media("<tablet"){
+            width: 200px;
+            margin: auto;
+        }
+    }
+}

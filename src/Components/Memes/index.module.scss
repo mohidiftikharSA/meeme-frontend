@@ -10,6 +10,15 @@
     }
     &.exploreBox{
       column-count: 4;
+      @include media("<tablet-x"){
+        column-count: 3;
+      }
+      @include media("<phone"){
+        column-count: 2;
+      }
+      @include media("<xs-phone"){
+        column-count: 1;
+      }
       .imgBox{
         &:first-child{
           margin: 0;

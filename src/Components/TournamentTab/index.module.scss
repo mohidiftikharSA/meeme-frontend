@@ -1,3 +1,4 @@
+@import "../../Style/base";
 
 .icon {
   width: 35px;
@@ -17,18 +18,29 @@
   }
 }
 
+.imgBox{
+ img{
+  border-radius: 35px;
+ }
+}
 .scoreBoard{
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #fff;
   position: absolute;
-  bottom: 30px;
+  bottom: 20px;
   left: 50%;
   width: 60%;
   color: #fff;
   transform: translateX(-50%);
   padding: 8px 0;
+  @include media("<xs-phone"){
+    width: 75%;
+    font-size: 10px;
+    bottom: 5px;
+    padding: 5px 0;
+  }
   span{
     position: relative;
     border-right: 1px solid #fff;
@@ -40,4 +52,11 @@
 
   }
 
+}
+
+.btn{
+  width: 50%;
+  @include media("<xs-phone"){
+    width: 100%;
+  }
 }

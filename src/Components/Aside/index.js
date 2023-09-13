@@ -21,11 +21,11 @@ export const Aside = ({isActive, toggleActive}) => {
         className={`px-4 nav-opener ${isActive ? "active" : ""}`}
         onClick={toggleActive}
       >
-        <BiMenuAltLeft className={`${isActive? 'd-none' : "d-block"}`} />
-        <RxCross1 className={`${isActive? 'd-block' : "d-none"}`} />
+        <BiMenuAltLeft size={'32px'} className={`${isActive? 'd-none' : "d-block"}`} />
+        <RxCross1 size={'24px'} className={`${isActive? 'd-block' : "d-none"}`} />
       </span>
       <aside className={`px-4 ${isActive ? "active" : ""}`} id={"aisde"}>
-        <div className="d-flex flex-column justify-content-between h-lg-100 h-auto pb-5">
+        <div className="asideHolder d-flex flex-column justify-content-between pb-5">
           <div className="w-100">
             <Navigation />
             <AccordianData responsive />

@@ -60,7 +60,7 @@ nav {
     width: 80px;
     position: absolute;
     background-color: #0b0213;
-    z-index: 9999;
+    z-index: 99999;
     transition: all ease 0.3s;
   }
   &.active{
@@ -75,6 +75,13 @@ nav {
     @include media("<tablet-x"){
       display: none;
     }
+    .asideHolder{
+      height: 100%;
+      @include media("<tablet-x"){
+        height: auto;
+      }
+    }
+    
     &.active{
       display: block;
     }
@@ -125,7 +132,56 @@ section {
 
 
 .navBar {
+  
   margin: 0 20px;
+  .responsive-nav{
+    @include media("<tablet-x"){
+      position: fixed;
+      right: -280px;
+      top:0;
+      bottom: 0;
+      width: 250px;   
+      z-index: 999999;
+      height: 100%;
+      margin: 0;
+      background-color: #201e23;
+      align-items: flex-start;
+      transition: all ease 0.3s;
+      &.active{
+        right: 0;
+        transition: all ease 0.3s;
+      }
+      .navbar-nav{
+        margin-top: 120px;
+      }
+      .nav-link{
+        padding: 20px 10px;
+        border-bottom: 1px solid #868686;
+        width: 200px;
+        margin-left: 21px;
+      }
+
+      .custom-icon2{
+        font-size: 25px;
+        position: absolute;
+    right: 10px;
+      }
+  }
+  #profile-btn{
+    display: none;
+    @include media("<tablet-x"){
+      display: block;
+      padding: 20px;
+    }
+}
+}
+.custom-icon1{
+  font-size: 20px;
+    display: none;
+    @include media("<tablet-x"){
+      display: block;
+    }  
+}
 
   &.aside {
     flex-direction: column;
@@ -163,6 +219,13 @@ section {
     }
   }
 }
+#profile-btn{
+  @include media("<tablet-x"){
+    display: none;
+   }
+}
+
+
 
 .accordion {
   font-family: $pt;
@@ -260,6 +323,9 @@ section {
     background-color: transparent !important;
     border: 1px solid #676767;
     margin-bottom: 35px;
+    @include media("<tablet"){
+      margin: 0;
+    }
   }
 
   &.active {
@@ -271,17 +337,22 @@ section {
 .phonverify .gVxunN {
   border-radius: 100px;
   border: 1px solid #dec761;
+  // width: 45px;
+  // height: 70px;
+  // line-height: 73px;
   width: 45px;
-  height: 70px;
-  line-height: 73px;
+  height: 59px;
+  line-height: 59px;
   box-shadow: none;
   margin: 0 8px;
 
   @include media("<xs-phone") {
-    width: 30px;
+    width: 38px;
     height: 50px;
     line-height: 50px;
     margin: 0 5px;
+    font-size: 20px;
+    font-weight: 600;
   }
 
   &:focus-visible {
@@ -295,6 +366,8 @@ section {
   width: unset !important;
 }
 .gVxunN {
+font-size: 20px;
+font-weight: 600;
   @include media("<tablet") {
     font-size: 1rem;
   }
@@ -875,6 +948,9 @@ section {
   color: #fff;
   padding: 12px 15px;
   border-bottom: 1px solid #4d4d4dcc;
+  @include media("<phone"){
+   border: none;
+   }
   .header {
     font-size: 14px;
     font-weight: 600;
@@ -890,8 +966,9 @@ section {
   .messages {
     display: flex;
     flex-direction: column;
-    height: 300px;
+    height: 200px;
     overflow: auto;
+    line-height: 1.5;
     .message {
       margin-bottom: 10px;
       &.sent {

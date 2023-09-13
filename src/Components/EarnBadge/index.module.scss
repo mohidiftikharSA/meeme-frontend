@@ -1,3 +1,4 @@
+@import "../../Style/base";
 .badgeHolder{
     background: #292929;
     border-radius: 40px;
@@ -11,6 +12,9 @@
         color: #fff;
         .btn{
             cursor: pointer;
+            padding: 0;
+            line-height: unset;
+            height: unset;
             &:hover{
                 color: #F9C02F;
             }
@@ -21,17 +25,17 @@
         padding: 0;
         list-style: none;
         font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        text-align: center;
         li{
             .iconBox{
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 background-color: #fff;
                 width: 60px;
                 height: 60px;
                 border-radius: 50%;
-                line-height: 60px;
-                text-align: center;
+                margin: auto;
                 margin-bottom: 10px;
                 img{
                     width: 100%;
