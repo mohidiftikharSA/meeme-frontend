@@ -23,6 +23,8 @@ import { Wizard } from "react-use-wizard";
 import SupportChat from "Components/SupportChat";
 import SupportDetail from "Components/SupportDetail";
 import TutorialModals from "Components/Tutorial";
+import { BiMenuAltLeft } from "react-icons/bi";
+import { RxCross1 } from "react-icons/rx";
 const transactionData = [
   {
     coins: "50,000",
@@ -43,18 +45,20 @@ const ProfileSetting = () => {
     setTabClicked(true);
   };
 
-  const deleteClick = () =>{
-    setDeleteAccountShow(true)
-   
-  }
-  const tutorialClick = () =>{
-    setShow(true)
-  }
+  const deleteClick = () => {
+    setDeleteAccountShow(true);
+  };
+  const tutorialClick = () => {
+    setShow(true);
+  };
   const handleDeleteModal = () => {
     setDeleteAccountShow(false);
   };
+  const [isActive, setIsActive] = useState(false);
 
-
+  const toggleActive = () => {
+    setIsActive(!isActive);
+  };
 
   return (
     <>
@@ -69,9 +73,27 @@ const ProfileSetting = () => {
             }
           >
             <Heading title="Setting" />
-            <Tab.Container id="verticalNav">
+            <Tab.Container id="verticalNav" defaultActiveKey={'account'}>
               <Row>
-                <Col sm={tabClicked ? 6 : 12}>
+                <Col
+                  lg={tabClicked ? 6 : 12}
+                  className={` aside-responsive profile-setting ${
+                    isActive ? "active" : ""
+                  }`}
+                >
+                  <span
+              className={`nav-opener ${isActive ? "active" : ""}`}
+              onClick={toggleActive}
+            >
+              <BiMenuAltLeft
+                size={"32px"}
+                className={`${isActive ? "d-none" : "d-block"}`}
+              />
+              <RxCross1
+                size={"24px"}
+                className={`${isActive ? "d-block" : "d-none"}`}
+              />
+            </span>
                   <Nav variant="pills" className="flex-column">
                     <Nav.Item>
                       <Nav.Link eventKey="account" onClick={handleTabClick}>
@@ -175,16 +197,19 @@ const ProfileSetting = () => {
                         <span>
                           <img src={del} alt="del-icon" />
                         </span>
-                        <div
-                          className="profileDetails"
-                        >
+                        <div className="profileDetails">
                           <h6 className="mb-1">Delete Account</h6>
                         </div>
                       </Nav.Link>
                     </Nav.Item>
                   </Nav>
                 </Col>
-                <Col sm={tabClicked ? 6 : 12}>
+                <Col
+                  lg={tabClicked ? 6 : 12}
+                  className={`p-lg-0 content-responsive profile-setting ${
+                    isActive ? "active" : ""
+                  }`}
+                >
                   <Tab.Content>
                     <Tab.Pane eventKey="account">
                       <EditProfile />
@@ -222,8 +247,7 @@ const ProfileSetting = () => {
         show={deleteAccountModalShow}
         onHide={handleDeleteModal}
       />
-      <TutorialModals show={show}
-        onHide={() => setShow(false)}/>
+      <TutorialModals show={show} onHide={() => setShow(false)} />
     </>
   );
 };

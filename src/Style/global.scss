@@ -43,19 +43,34 @@ nav {
   font-family: $Poppins;
 }
 
-.nav-opener{
+.nav-opener {
   font-size: 38px;
   margin: 12px 0;
   display: none;
-  @include media("<tablet-x"){
+  @include media("<tablet-x") {
     display: block;
   }
-
 }
 
-.aside-responsive{
+.aside-responsive {
   border-right: 1px solid rgba(255, 255, 255, 0.31);
-  @include media("<tablet-x"){
+  &.profile-setting {
+    border: none !important;
+    @include media("<tablet-x") {
+      border-radius: 12px;
+      border: none;
+      &.active {
+        height: 100vh;
+        overflow: auto;
+        left: 0;
+        top: 0;
+        .nav-item {
+          display: block !important;
+        }
+      }
+    }
+  }
+  @include media("<tablet-x") {
     border: none;
     width: 80px;
     position: absolute;
@@ -63,7 +78,7 @@ nav {
     z-index: 99999;
     transition: all ease 0.3s;
   }
-  &.active{
+  &.active {
     width: 320px;
     background-color: #1c1c1c;
     transition: all ease 0.3s;
@@ -72,24 +87,24 @@ nav {
   #aisde {
     min-height: 100vh;
     height: 100%;
-    @include media("<tablet-x"){
+    @include media("<tablet-x") {
       display: none;
     }
-    .asideHolder{
+    .asideHolder {
       height: 100%;
-      @include media("<tablet-x"){
+      @include media("<tablet-x") {
         height: auto;
       }
     }
-    
-    &.active{
+
+    &.active {
       display: block;
     }
   }
 }
 
-.content-responsive{
-  @include media("<tablet-x"){
+.content-responsive {
+  @include media("<tablet-x") {
     width: 100%;
     transition: all ease 0.3s;
     padding-top: 60px !important;
@@ -100,10 +115,10 @@ section {
   overflow: hidden;
   position: relative;
   min-height: 100vh;
-  @include media("<tablet-x"){
+  @include media("<tablet-x") {
     padding: 20px 50px;
   }
-  @include media("<xs-phone"){
+  @include media("<xs-phone") {
     padding: 20px 10px;
   }
 
@@ -129,59 +144,56 @@ section {
   }
 }
 
-
-
 .navBar {
-  
-  margin: 0 20px;
-  .responsive-nav{
-    @include media("<tablet-x"){
+  margin: 0 0 0 20px;
+  .responsive-nav {
+    @include media("<tablet-x") {
       position: fixed;
       right: -280px;
-      top:0;
+      top: 0;
       bottom: 0;
-      width: 250px;   
+      width: 250px;
       z-index: 999999;
       height: 100%;
       margin: 0;
       background-color: #201e23;
       align-items: flex-start;
       transition: all ease 0.3s;
-      &.active{
+      &.active {
         right: 0;
         transition: all ease 0.3s;
       }
-      .navbar-nav{
+      .navbar-nav {
         margin-top: 120px;
       }
-      .nav-link{
+      .nav-link {
         padding: 20px 10px;
         border-bottom: 1px solid #868686;
         width: 200px;
         margin-left: 21px;
       }
 
-      .custom-icon2{
+      .custom-icon2 {
         font-size: 25px;
         position: absolute;
-    right: 10px;
+        right: 10px;
       }
-  }
-  #profile-btn{
-    display: none;
-    @include media("<tablet-x"){
-      display: block;
-      padding: 20px;
     }
-}
-}
-.custom-icon1{
-  font-size: 20px;
+    #profile-btn {
+      display: none;
+      @include media("<tablet-x") {
+        display: block;
+        padding: 20px;
+      }
+    }
+  }
+  .custom-icon1 {
+    font-size: 20px;
     display: none;
-    @include media("<tablet-x"){
+    @include media("<tablet-x") {
       display: block;
-    }  
-}
+    }
+  }
 
   &.aside {
     flex-direction: column;
@@ -219,13 +231,11 @@ section {
     }
   }
 }
-#profile-btn{
-  @include media("<tablet-x"){
+#profile-btn {
+  @include media("<tablet-x") {
     display: none;
-   }
+  }
 }
-
-
 
 .accordion {
   font-family: $pt;
@@ -246,7 +256,7 @@ section {
       font-weight: 700;
       font-size: 14px;
       @include media("<widescreen") {
-        margin:0 10px 0 0;
+        margin: 0 10px 0 0;
       }
     }
   }
@@ -323,7 +333,7 @@ section {
     background-color: transparent !important;
     border: 1px solid #676767;
     margin-bottom: 35px;
-    @include media("<tablet"){
+    @include media("<tablet") {
       margin: 0;
     }
   }
@@ -366,8 +376,8 @@ section {
   width: unset !important;
 }
 .gVxunN {
-font-size: 20px;
-font-weight: 600;
+  font-size: 20px;
+  font-weight: 600;
   @include media("<tablet") {
     font-size: 1rem;
   }
@@ -736,6 +746,9 @@ font-weight: 600;
   .nav {
     .nav-item {
       position: relative;
+      @include media("<tablet-x") {
+        display: none;
+      }
 
       &:after {
         position: absolute;
@@ -905,6 +918,9 @@ font-weight: 600;
   left: 50%;
   margin: 10px;
   transform: translateX(-50%);
+  @include media("<tablet-x"){
+    width: unset;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -948,9 +964,9 @@ font-weight: 600;
   color: #fff;
   padding: 12px 15px;
   border-bottom: 1px solid #4d4d4dcc;
-  @include media("<phone"){
-   border: none;
-   }
+  @include media("<phone") {
+    border: none;
+  }
   .header {
     font-size: 14px;
     font-weight: 600;
