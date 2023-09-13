@@ -9,7 +9,7 @@
     align-items: center;
     @include media("<tablet-x"){
       justify-content: space-between;
-      display: flex;
+      display: flex !important;
       margin: 10px 35px 10px 21px;
       width: 80%;
     }
@@ -49,7 +49,7 @@
         @include media("<tablet-x"){
           position: absolute;
           top: -395px;
-          left: 61px;
+          left: 66px;
           width: 65%;
                 }
     }

@@ -327,17 +327,22 @@ section {
 .phonverify .gVxunN {
   border-radius: 100px;
   border: 1px solid #dec761;
+  // width: 45px;
+  // height: 70px;
+  // line-height: 73px;
   width: 45px;
-  height: 70px;
-  line-height: 73px;
+  height: 59px;
+  line-height: 59px;
   box-shadow: none;
   margin: 0 8px;
 
   @include media("<xs-phone") {
-    width: 30px;
+    width: 38px;
     height: 50px;
     line-height: 50px;
     margin: 0 5px;
+    font-size: 20px;
+    font-weight: 600;
   }
 
   &:focus-visible {
@@ -351,6 +356,8 @@ section {
   width: unset !important;
 }
 .gVxunN {
+font-size: 20px;
+font-weight: 600;
   @include media("<tablet") {
     font-size: 1rem;
   }
