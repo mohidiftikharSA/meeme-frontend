@@ -37,7 +37,7 @@ const Navigation = ({ header, footer }) => {
           <Navbar className={`responsive-nav ${isActive ? "active" : ""}`}>
           <span onClick={toggleActive} className={`${isActive ? "d-block" : "d-none"}`}><IoClose className="custom-icon2" /></span>
 
-            <Nav className="me-auto flex-lg-row flex-column">
+            <Nav className="me-auto flex-lg-row flex-column ">
               <Nav.Link href="/home">
                 <img src={home} alt="icon"></img> Home
               </Nav.Link>

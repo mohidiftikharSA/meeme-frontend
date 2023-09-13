@@ -18,7 +18,7 @@ const PhoneVerification = () => {
             </div>
             <div className="formHolder">
                     <div className={classes.loginLink}>
-                    <p className={ classes.dark}>Didn’t receive code?<Link className={ classes.light} to="/">Resend OTP</Link></p>
+                    <p className={ classes.dark}>Didn’t receive code?<Link className={ classes.light} to="/"><span className={classes.underline}>Resend OTP</span></Link></p>
                     <Button className="authButton w-100 mt-3 authe-btn">Verify your phone</Button>
                     </div>
                 </div>
