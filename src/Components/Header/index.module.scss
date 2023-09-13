@@ -10,9 +10,7 @@
     @include media("<widescreen"){
       margin-left: 150px;
     }
-    @include media("<desktop"){
-      margin-left: 105px;
-    }
+    
     @include media("<xs-phone"){
       margin-left: 25px;
       width: 100%;
