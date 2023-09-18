@@ -1,59 +1,113 @@
-import Logo from "Components/Logo";
-import React from "react";
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import classes from "../index.module.scss";
-import { Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom/dist";
-import { MdMail } from "react-icons/md";
-import { FcGoogle } from "react-icons/fc";
-import { BsFacebook, BsTwitter } from "react-icons/bs";
-import AuthLayout from "Layout/AuthLayout";
+import Logo from "Components/Logo";
+import AuthHeader from "Components/AuthHeader";
+import { useNavigate } from "react-router";
+import AuthAPIs from "APIs/auth";
+import { Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { authSucess } from "Redux/reducers/authSlice";
+import { toast } from "react-toastify";
+import * as Yup from "yup"; // Import yup
 
-const Login = () => {
+const LoginFrom = () => {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const nextPage = () => {
-    navigate(`/login`);
+    navigate(`/forgetPassword`);
+  };
+
+  const homePage = () => {
+    navigate(`/home`);
+  };
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email address") // Specify the error message for invalid email
+      .required("Email is required"), // Specify the error message for empty email
+      password: Yup.string()
+      .min(6, 'Password must be at least 6 characters long') // Added password length validation
+      .required('Password is required'),
+  });
+
+  const loginRes = async (data) => {
+    try {
+      const res = await AuthAPIs.login(data.email, data.password);
+      console.log("login", res.data.token);
+      if (res) {
+        dispatch(
+          authSucess({
+            user: res.data?.user,
+            accessToken: res.data.token,
+          })
+        );
+        toast.success("Login Successfully", {
+          position: "top-right",
+          autoClose: 2000,
+        });
+      }
+    } catch (error) {
+      console.error("Error while logging in:", error);
+    }
   };
 
   return (
     <>
-    <AuthLayout showFooter={true} login>
-    <section className={`${classes.section} ${classes.dotBg} ${classes.reponsive_sec}`} >
-        <Logo login />
-        <div className={classes.authHolder}>
-          <Button variant="outline-light" onClick={nextPage}>
-            <MdMail />
-            Continue with Email
-          </Button>
-          <Button variant="outline-light">
-            <FcGoogle />
-            Continue with Google
-          </Button>
-          <Button variant="outline-light">
-            <BsFacebook style={{ color: "#5090ff" }} />
-            Continue with Facebook
-          </Button>
-          <Button className="mb-0" variant="outline-light">
-            <BsTwitter />
-            Continue with Twitter
-          </Button>
-        </div>
-        <div className={classes.loginLinks}>
-          <p className={classes.dark}>
-            New to memee?
-            <Link className={classes.light} to="/signUp">
-              Sign up
-            </Link>
-          </p>
-          <p className="mb-md-5 mb-0">
-            By continuing you agree Memee’s 
-            <span>Terms of Services & Privacy Policy.</span>
-          </p>
-        </div>
-      </section>
-    </AuthLayout>
-     
+      <Logo start />
+      <div className={classes.loginFrom}>
+        <AuthHeader
+          title={"Sign in to your Account"}
+          description={"Enter your detail below"}
+        />
+        <Formik
+          onSubmit={(value) => {
+            loginRes(value);
+          }}
+          initialValues={{
+            email: "",
+            password: "",
+          }}
+          validationSchema={validationSchema}
+        >
+          {({ handleSubmit, handleChange, values, errors }) => (
+            <Form className="formHolder" noValidate onSubmit={handleSubmit}>
+              <Form.Control
+                onChange={handleChange}
+                type={"email"}
+                name={"email"}
+                placeholder="Email"
+                value={values.email}
+                required
+                isInvalid={!!errors.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback>
+              <Form.Control
+                onChange={handleChange}
+                type="password"
+                placeholder="Password"
+                value={values.password}
+                name={"password"}
+                required
+                isInvalid={!!errors.password}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
+              <p className={classes.password} onClick={nextPage}>
+                Forgot password?
+              </p>
+              <Button type="submit" className="w-100 p-2 authButton">
+                Sign in
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </>
   );
 };
 
-export default Login;
+export default LoginFrom;

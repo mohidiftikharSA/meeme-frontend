@@ -2,8 +2,7 @@ import LandingPage from "Pages/LandingPage";
 import NotFound from "Pages/NotFound/loadable";
 import MainLayout from "Layout/MainLayout";
 import AuthLayout from "Layout/AuthLayout";
-import Login from "Pages/Auth/Login";
-import LoginFrom from "Pages/Auth/LoginForm";
+import LoginFrom from "Pages/Auth/Login";
 import Signup from "Pages/Auth/Signup";
 import Restsetpassword from "Pages/Auth/RestsetPassword";
 import EmailVerification from "Pages/Auth/EmailVerification";
@@ -20,13 +19,14 @@ import OtherProfile from "Pages/OtherProfile";
 import PurchasePage from "Pages/Purchase";
 import BadgeList from "Components/BadgeList";
 import { Counter } from "Pages/Counter";
+import Home from "Pages/Auth/Home";
 
 
 
 const routes = [
     {
         path: "/",
-        component: Login,
+        component: Home,
     },
     {
         path: "/login",
