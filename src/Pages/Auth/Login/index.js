@@ -16,7 +16,7 @@ const Login = () => {
 
   return (
     <>
-    <AuthLayout showFooter={true}>
+    <AuthLayout showFooter={true} login>
     <section className={`${classes.section} ${classes.dotBg} ${classes.reponsive_sec}`} >
         <Logo login />
         <div className={classes.authHolder}>
