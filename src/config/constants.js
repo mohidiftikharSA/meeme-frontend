@@ -3,5 +3,6 @@ export const API_URL = "https://v2.meeme.appscorridor.com/api/v1";
 
 
 export const ENDPOINT = {
-    login: `${API_URL}/auth/login`
+    login: `${API_URL}/auth/login`,
+    signUp: `${API_URL}/users`,
 };

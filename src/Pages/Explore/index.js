@@ -1,7 +1,7 @@
-import AccordianBadge from 'Components/AccordainBadge'
-import MemesDetails from 'Components/Memes';
-import Search from 'Components/Search'
-import React from 'react'
+import AccordianBadge from "Components/AccordainBadge";
+import MemesDetails from "Components/Memes";
+import Search from "Components/Search";
+import React from "react";
 import userProfile1 from "../../Images/user1.png";
 import meme1 from "../../Images/meme1.png";
 import userProfile2 from "../../Images/user2.png";
@@ -14,8 +14,7 @@ import meme5 from "../../Images/meme5.png";
 import meme6 from "../../Images/meme6.png";
 import meme7 from "../../Images/meme7.png";
 import meme8 from "../../Images/meme8.png";
-
-
+import { Container } from "react-bootstrap";
 
 const newMemesData = [
   {
@@ -60,26 +59,28 @@ const newMemesData = [
   },
 ];
 const data = [
-    {
-      title: "Funny",
-    },
-    {
-      title: "CanadaPolitics",
-    },
-    {
-      title: "TrumpSeason",
-    },
-  ];
+  {
+    title: "Funny",
+  },
+  {
+    title: "CanadaPolitics",
+  },
+  {
+    title: "TrumpSeason",
+  },
+];
 const Explore = () => {
   return (
     <>
-    <section>
-    <Search expolore text={"Search hashtags, usernames"}/>
-    <AccordianBadge data={data} expolore/>
-    <MemesDetails newMemesData={newMemesData} expolore/>
-    </section>
+      <section>
+        <Container fluid>
+          <Search expolore text={"Search hashtags, usernames"} />
+          <AccordianBadge data={data} expolore />
+          <MemesDetails newMemesData={newMemesData} expolore />
+        </Container>
+      </section>
     </>
-  )
-}
+  );
+};
 
-export default Explore
+export default Explore;

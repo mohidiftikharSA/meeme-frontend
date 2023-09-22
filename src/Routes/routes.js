@@ -18,7 +18,6 @@ import BuyCoin from "Pages/BuyCoin";
 import OtherProfile from "Pages/OtherProfile";
 import PurchasePage from "Pages/Purchase";
 import BadgeList from "Components/BadgeList";
-import { Counter } from "Pages/Counter";
 import Home from "Pages/Auth/Home";
 
 
@@ -113,11 +112,7 @@ const routes = [
         layout: MainLayout,
         component: BadgeList,
     },
-    {
-        path: "/counter",
-        layout: MainLayout,
-        component: Counter,
-    },
+   
 
     { path: "*", component: NotFound, layout: MainLayout },
 ];

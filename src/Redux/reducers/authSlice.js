@@ -9,9 +9,9 @@ export const auth = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    authSucess: (state, { playload: { accessToken } }) => {
+    authSucess: (state, { playload: { accessToken,user } }) => {
       state.accessToken = accessToken;
-      // state.user = user;
+      state.user = user;
     },
   },
 });

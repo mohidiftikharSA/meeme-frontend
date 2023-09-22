@@ -2,8 +2,6 @@ import React from "react";
 import classes from "./index.module.scss";
 import { Col, Row } from "react-bootstrap";
 import Footer from "Components/Footer";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import the CSS for styling
 
 
 const AuthLayout = ({ children,showFooter,login }) => {
@@ -20,7 +18,7 @@ const AuthLayout = ({ children,showFooter,login }) => {
         </Row>
       </div>
       {showFooter && <Footer />}
-      <ToastContainer position="top-right" autoClose={2000} />
+      
     </div>
   );
 };

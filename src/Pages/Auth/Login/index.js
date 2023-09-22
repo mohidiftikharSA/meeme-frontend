@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Form } from "react-bootstrap";
 import classes from "../index.module.scss";
 import Logo from "Components/Logo";
@@ -13,28 +13,22 @@ import * as Yup from "yup"; // Import yup
 
 const LoginFrom = () => {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
   const nextPage = () => {
     navigate(`/forgetPassword`);
   };
 
-  const homePage = () => {
-    navigate(`/home`);
-  };
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("Invalid email address") // Specify the error message for invalid email
       .required("Email is required"), // Specify the error message for empty email
-      password: Yup.string()
-      .min(6, 'Password must be at least 6 characters long') // Added password length validation
-      .required('Password is required'),
+    password: Yup.string()
+      .required("Password is required"),
   });
 
   const loginRes = async (data) => {
     try {
       const res = await AuthAPIs.login(data.email, data.password);
-      console.log("login", res.data.token);
       if (res) {
         dispatch(
           authSucess({
@@ -42,12 +36,15 @@ const LoginFrom = () => {
             accessToken: res.data.token,
           })
         );
+        navigate(`/home`);
         toast.success("Login Successfully", {
           position: "top-right",
           autoClose: 2000,
         });
+        localStorage.setItem("accessToken", res.data.token);
       }
-    } catch (error) {
+    } 
+    catch (error) {
       console.error("Error while logging in:", error);
     }
   };
