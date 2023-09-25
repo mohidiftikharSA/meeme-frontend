@@ -354,10 +354,9 @@ section {
   height: 59px;
   line-height: 59px;
   box-shadow: none;
-  margin: 0 8px;
 
   @include media("<xs-phone") {
-    margin: 0 5px;
+    
     font-size: 20px;
     font-weight: 600;
   }
@@ -367,7 +366,6 @@ section {
   }
 }
 .ReactInputVerificationCode__container {
-  justify-content: flex-start !important;
   width: unset !important;
 }
 .ReactInputVerificationCode__item {

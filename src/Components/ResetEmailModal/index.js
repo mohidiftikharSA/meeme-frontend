@@ -1,7 +1,6 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
 import emailcheck from '../../Images/emailcheck.svg'
-import { useNavigate } from 'react-router-dom';
 
 const ResetEmailModal = (props) => {
     return (

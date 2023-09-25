@@ -6,7 +6,6 @@ import AuthHeader from "Components/AuthHeader";
 import { Formik } from "formik";
 import * as Yup from "yup"; // Import yup
 import AuthAPIs from "APIs/auth";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import ResetEmailModal from "Components/ResetEmailModal";
 
@@ -26,7 +25,7 @@ const EmailVerification = () => {
       await AuthAPIs.forgetPassword(data.email);
       setSuccess(true);
       setSmShow(true);
-  
+
       // Delay navigation for a few seconds (e.g., 2 seconds)
       setTimeout(() => {
         setSmShow(false); // Hide the modal
@@ -47,37 +46,37 @@ const EmailVerification = () => {
             "Select your email ID associated with your account, and we’ll send a verification code to reset your password"
           }
         />
-      </div>
-      <div className="formHolder">
-        <Formik
-          onSubmit={(value) => {
-            sendResetPasswordLink(value);
-          }}
-          initialValues={{
-            email: "",
-          }}
-          validationSchema={validationSchema}
-        >
-          {({ handleSubmit, handleChange, values, errors }) => (
-            <Form noValidate onSubmit={handleSubmit}>
-              <Form.Control
-                type="email"
-                placeholder="Email"
-                onChange={handleChange}
-                name={"email"}
-                value={values.email}
-                required
-                isInvalid={!!errors.email}
-              />
-              <Form.Control.Feedback type="invalid" className="mb-3">
-                {errors.email}
-              </Form.Control.Feedback>
-              <Button type="submit" className="authButton w-100">
-                Get Verification Code
-              </Button>
-            </Form>
-          )}
-        </Formik>
+        <div className="formHolder">
+          <Formik
+            onSubmit={(value) => {
+              sendResetPasswordLink(value);
+            }}
+            initialValues={{
+              email: "",
+            }}
+            validationSchema={validationSchema}
+          >
+            {({ handleSubmit, handleChange, values, errors }) => (
+              <Form noValidate onSubmit={handleSubmit}>
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  name={"email"}
+                  value={values.email}
+                  required
+                  isInvalid={!!errors.email}
+                />
+                <Form.Control.Feedback type="invalid" className="mb-3">
+                  {errors.email}
+                </Form.Control.Feedback>
+                <Button type="submit" className="authButton w-100">
+                  Get Verification Code
+                </Button>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
       <ResetEmailModal show={smShow} onHide={() => setSmShow(false)} />
     </>

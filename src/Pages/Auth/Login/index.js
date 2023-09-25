@@ -21,9 +21,8 @@ const LoginFrom = () => {
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("Invalid email address") // Specify the error message for invalid email
-      .required("Email is required"), // Specify the error message for empty email
-    password: Yup.string()
-      .required("Password is required"),
+      .required("Email is required"), // Specify the error message for an empty email
+    password: Yup.string().required("Password is required"), // Specify the error message for an empty password
   });
 
   const loginRes = async (data) => {
@@ -43,8 +42,7 @@ const LoginFrom = () => {
         });
         localStorage.setItem("accessToken", res.data.token);
       }
-    } 
-    catch (error) {
+    } catch (error) {
       console.error("Error while logging in:", error);
     }
   };
@@ -55,11 +53,11 @@ const LoginFrom = () => {
       <div className={classes.loginFrom}>
         <AuthHeader
           title={"Sign in to your Account"}
-          description={"Enter your detail below"}
+          description={"Enter your details below"}
         />
         <Formik
-          onSubmit={(value) => {
-            loginRes(value);
+          onSubmit={(values) => {
+            loginRes(values);
           }}
           initialValues={{
             email: "",
