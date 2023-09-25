@@ -14,6 +14,10 @@ const Forgetpassword = () => {
     const nextPage = () => {
       navigate(`/PhoneVerification`);
     };
+    const emailVarification = () => {
+      navigate(`/emailVerification`);
+      setSmShow(true)
+    };
 
     const [smShow, setSmShow] = useState(false);
     return (
@@ -27,7 +31,7 @@ const Forgetpassword = () => {
                     }
                 />
                 <div className="formHolder">
-                    <Button className="btn-primary icon-btn w-100 p-2 h-auto mt-4" href="#" onClick={() => setSmShow(true)}>
+                    <Button className="btn-primary icon-btn w-100 p-2 h-auto mt-4" href="#" onClick={emailVarification}>
                     <BsCheckLg/> Email Verification
                     </Button>
                     <Button className="btn-primary icon-btn  w-100 p-2 h-auto mt-4" onClick={nextPage}>

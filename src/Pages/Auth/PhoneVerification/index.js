@@ -14,7 +14,7 @@ const PhoneVerification = () => {
             <div className={classes.loginFrom}>
             <AuthHeader title={'Verify your phone'} description={'Verification code sent to your phone'} phone={'+1 234 567 8901'} margin/>
             <div className="my-3 phonverify">
-            <ReactInputVerificationCode length={6}/>
+            <ReactInputVerificationCode length={4}/>
             </div>
             <div className="formHolder">
                     <div className={classes.loginLink}>
