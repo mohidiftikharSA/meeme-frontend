@@ -5,15 +5,37 @@ import Logo from "Components/Logo";
 import AuthHeader from "Components/AuthHeader";
 import { Formik } from "formik";
 import * as Yup from "yup"; // Import yup
+import AuthAPIs from "APIs/auth";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import ResetEmailModal from "Components/ResetEmailModal";
 
 const EmailVerification = () => {
-    const [success, setSuccess] = useState(false);
+  const [smShow, setSmShow] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
-    const validationSchema = Yup.object().shape({
-        email: Yup.string()
-          .email("Invalid email address")
-          .required("Email is required"),
-      });
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+  });
+
+  const sendResetPasswordLink = async (data) => {
+    try {
+      await AuthAPIs.forgetPassword(data.email);
+      setSuccess(true);
+      setSmShow(true);
+  
+      // Delay navigation for a few seconds (e.g., 2 seconds)
+      setTimeout(() => {
+        setSmShow(false); // Hide the modal
+        navigate(`/otpVerification?email=${data.email}`);
+      }, 2000); // 2000 milliseconds (2 seconds)
+    } catch (error) {
+      console.error("Error sending reset password link:", error);
+    }
+  };
 
   return (
     <>
@@ -29,15 +51,12 @@ const EmailVerification = () => {
       <div className="formHolder">
         <Formik
           onSubmit={(value) => {
-            //   Signup(value);
+            sendResetPasswordLink(value);
           }}
           initialValues={{
-            name: "",
             email: "",
-            phone: "",
-            password: "",
           }}
-          // validationSchema={validationSchema}
+          validationSchema={validationSchema}
         >
           {({ handleSubmit, handleChange, values, errors }) => (
             <Form noValidate onSubmit={handleSubmit}>
@@ -50,13 +69,17 @@ const EmailVerification = () => {
                 required
                 isInvalid={!!errors.email}
               />
+              <Form.Control.Feedback type="invalid" className="mb-3">
+                {errors.email}
+              </Form.Control.Feedback>
               <Button type="submit" className="authButton w-100">
-                Get New Password
+                Get Verification Code
               </Button>
             </Form>
           )}
         </Formik>
       </div>
+      <ResetEmailModal show={smShow} onHide={() => setSmShow(false)} />
     </>
   );
 };

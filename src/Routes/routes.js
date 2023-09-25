@@ -6,7 +6,6 @@ import LoginFrom from "Pages/Auth/Login";
 import Signup from "Pages/Auth/Signup";
 import Restsetpassword from "Pages/Auth/RestsetPassword";
 import EmailVerification from "Pages/Auth/EmailVerification";
-import PhoneVerification from "Pages/Auth/PhoneVerification";
 import Forgetpassword from "Pages/Auth/ForgetPassword";
 import Explore from "Pages/Explore";
 import Tournament from "Pages/Tournament";
@@ -19,6 +18,7 @@ import OtherProfile from "Pages/OtherProfile";
 import PurchasePage from "Pages/Purchase";
 import BadgeList from "Components/BadgeList";
 import Home from "Pages/Auth/Home";
+import OtpVerfication from "Pages/Auth/OtpVerification";
 
 
 
@@ -58,9 +58,9 @@ const routes = [
         component: EmailVerification,
     },
     {
-        path: "/PhoneVerification",
+        path: "/otpVerification",
         layout: AuthLayout,
-        component: PhoneVerification,
+        component: OtpVerfication,
     },
     {
         path: "/explore",

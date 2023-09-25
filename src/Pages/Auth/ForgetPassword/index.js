@@ -1,25 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 import classes from "../index.module.scss";
 import Logo from "Components/Logo";
 import AuthHeader from "Components/AuthHeader";
-import ResetEmailModal from "Components/ResetEmailModal";
 import { BsCheckLg } from 'react-icons/bs';
 import { useNavigate } from "react-router";
 
 
 const Forgetpassword = () => {
-    
     const navigate = useNavigate();
     const nextPage = () => {
       navigate(`/PhoneVerification`);
     };
     const emailVarification = () => {
+        
       navigate(`/emailVerification`);
-      setSmShow(true)
     };
 
-    const [smShow, setSmShow] = useState(false);
     return (
         <>
             <Logo start />
@@ -39,10 +36,7 @@ const Forgetpassword = () => {
                     </Button>
                 </div>
             </div>
-            <ResetEmailModal
-                show={smShow}
-                onHide={() => setSmShow(false)}
-            />
+            
         </>
     );
 };

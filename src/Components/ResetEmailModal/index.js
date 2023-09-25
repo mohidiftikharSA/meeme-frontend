@@ -4,10 +4,6 @@ import emailcheck from '../../Images/emailcheck.svg'
 import { useNavigate } from 'react-router-dom';
 
 const ResetEmailModal = (props) => {
-    const navigate = useNavigate();
-  const nextPage = () => {
-    navigate(`/restsetPassword`);
-  };
     return (
         <Modal className='alignRight'
             {...props}
@@ -15,7 +11,7 @@ const ResetEmailModal = (props) => {
             aria-labelledby="contained-modal-title-vcenter"
            
         >
-            <Modal.Header closeButton onClick={nextPage}>
+            <Modal.Header closeButton >
                 <Modal.Title id="contained-modal-title-vcenter">
                 </Modal.Title>
             </Modal.Header>

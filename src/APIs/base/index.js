@@ -130,6 +130,7 @@ const patchMethod = async (endpoint, authentication = true, data = null, multipa
 }
 
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getMethod,
     postMethod,

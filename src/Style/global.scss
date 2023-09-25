@@ -344,7 +344,7 @@ section {
   }
 }
 
-.phonverify .gVxunN {
+.phonverify .ReactInputVerificationCode__item {
   border-radius: 100px;
   border: 1px solid #dec761;
   // width: 45px;
@@ -357,9 +357,6 @@ section {
   margin: 0 8px;
 
   @include media("<xs-phone") {
-    width: 38px;
-    height: 50px;
-    line-height: 50px;
     margin: 0 5px;
     font-size: 20px;
     font-weight: 600;
@@ -370,12 +367,10 @@ section {
   }
 }
 .ReactInputVerificationCode__container {
-  display: flex;
-  position: relative;
   justify-content: flex-start !important;
   width: unset !important;
 }
-.gVxunN {
+.ReactInputVerificationCode__item {
   font-size: 20px;
   font-weight: 600;
   @include media("<tablet") {
@@ -387,9 +382,6 @@ section {
   opacity: 1 !important;
   background: rgba(0, 0, 0, 0.9);
 }
-
-
-
 
 .modal {
   &.infoModal {
@@ -506,7 +498,7 @@ section {
   .modal-body {
     background: #2c2930;
     border-radius: 30px;
-    padding: 15px 30px;
+    padding: 20px 30px;
     margin: 20px 5px;
     text-align: center;
 
@@ -541,7 +533,7 @@ section {
       font-size: 12px;
       font-style: normal;
       font-weight: 400;
-      line-height: 18px;
+      line-height: 18pxpx;
       margin: 0;
     }
 
