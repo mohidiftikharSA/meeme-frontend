@@ -1,6 +1,6 @@
 import axios from "axios";
-// import { logout } from "redux/reducers/auth";
 import { toast } from "react-toastify";
+// import { logout } from "Redux/reducers/authSlice";
 import store from "Redux/store";
 
 const clearLocalStorage = () => {
@@ -10,7 +10,7 @@ const clearLocalStorage = () => {
 }
 
 const performLogout = () => {
-    // store.dispatch(logout())
+    // store.dispatch(logoutt())
     clearLocalStorage()
 }
 
@@ -43,7 +43,8 @@ const getMethod = async (endpoint, authentication = true, data) => {
 
         params = {
             headers: {
-                "Authorization": `Bearer ${JSON.parse(bearer_token)}`
+                "Authorization": `Bearer ${bearer_token}`,
+                "Accept": "application/json"
             }
         }
     }
@@ -55,9 +56,11 @@ const getMethod = async (endpoint, authentication = true, data) => {
             return res
         })
         .catch((error) => {
+            console.log(endpoint, params);
             consoleErrorPerformRedirection(error)
         })
 }
+
 
 // Post Method
 const postMethod = async (endpoint, authentication = true, data = null, multipart = false) => {

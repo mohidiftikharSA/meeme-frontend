@@ -17,7 +17,7 @@ const ChatPopup = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsWideScreen(window.innerWidth >= 640);
+      setIsWideScreen(window.innerWidth >= 768);
     };
 
     window.addEventListener("resize", handleResize);

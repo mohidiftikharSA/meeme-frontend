@@ -65,7 +65,7 @@ const AccordianPrize = () => {
             {
                 data.map((item,ind)=>{
                     return(
-                        <li>
+                        <li key={ind}> 
                             <span>{item.no}</span>
                             <img src={item.icon} alt='icon'/>
                             <p>{item.title}</p>

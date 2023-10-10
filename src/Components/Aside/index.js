@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
@@ -12,8 +12,25 @@ import Notification from "../../Images/Notification.png";
 import support from "../../Images/support.png";
 import Faq from "../../Images/Faq.png";
 import Logout from "../../Images/Logout.png";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "Redux/reducers/authSlice";
+import { useNavigate } from "react-router-dom"; // Import useHistory
+
 
 export const Aside = ({isActive, toggleActive}) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+
+  const logoutUser = () => {
+    dispatch(logout());
+
+    localStorage.removeItem("accessToken");
+    navigate('/login')
+  };
+
+
+
  
   return (
     <>
@@ -78,7 +95,7 @@ export const Aside = ({isActive, toggleActive}) => {
                 </span>
                 FAQ
               </Dropdown.Item>
-              <Dropdown.Item href="/profile-setting">
+              <Dropdown.Item onClick={logoutUser}>
                 <span>
                   <img src={Logout} alt="Logout" />
                 </span>

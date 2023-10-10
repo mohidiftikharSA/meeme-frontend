@@ -1,6 +1,6 @@
 import FollowingContent from "Components/FollowingContent";
 import MemesDetails from "Components/Memes";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import userProfile1 from "../../Images/user1.png";
 import meme1 from "../../Images/meme1.png";
@@ -20,9 +20,9 @@ import img15 from "../../Images/bg3.png";
 import img16 from "../../Images/Profile01.png";
 import img17 from "../../Images/Profile2.png";
 import img18 from "../../Images/Profile3.png";
-import img19 from "../../Images/purplecolor.png"
-import img20 from "../../Images/pinkColor.png"
-import img21 from "../../Images/orangeColor.png"
+import img19 from "../../Images/purplecolor.png";
+import img20 from "../../Images/pinkColor.png";
+import img21 from "../../Images/orangeColor.png";
 import TournamentTabs from "Components/TournamentTab";
 import Store from "Components/Store";
 import classes from "./index.module.scss";
@@ -48,6 +48,7 @@ import Theme2 from "../../Images/Theme2.png";
 import Theme3 from "../../Images/Theme3.png";
 import UltraRare from "Components/UltraRare";
 import ThemeRare from "Components/ThemeRare";
+import postAPIs from "APIs/dashboard/home";
 
 const newMemesData = [
   {
@@ -152,51 +153,51 @@ const backgroundOverlayData = [
   {
     img: img13,
     coin: "100",
-    title:"Pink Sky"
+    title: "Pink Sky",
   },
   {
     img: img14,
     coin: "100",
-    title:"Galaxy"
+    title: "Galaxy",
   },
   {
     img: img15,
     coin: "100",
-    title:"Cloudy Sky"
+    title: "Cloudy Sky",
   },
 ];
 const ProfileOverlayData = [
   {
     img: img16,
     coin: "100",
-    title:"Purple"
+    title: "Purple",
   },
   {
     img: img17,
     coin: "100",
-    title:"Pink"
+    title: "Pink",
   },
   {
     img: img18,
     coin: "100",
-    title:"Orange",
+    title: "Orange",
   },
 ];
 const ProfileOverlayDataProfile = [
   {
     img: img19,
     coin: "100",
-    title:"Purple"
+    title: "Purple",
   },
   {
     img: img20,
     coin: "100",
-    title:"Pink"
+    title: "Pink",
   },
   {
     img: img21,
     coin: "100",
-    title:"Orange",
+    title: "Orange",
   },
 ];
 const post = [
@@ -239,7 +240,6 @@ const data = [
     title: "Banana Theme",
     img: img6,
   },
-  
 ];
 
 const data2 = [
@@ -267,6 +267,40 @@ const TabDetails = ({
   profile,
   customizeProfile,
 }) => {
+  const [recentPosts, setRecentPosts] = useState([]);
+  const [trendingPosts, setTrendingPosts] = useState([]);
+  const getRecentPost = async () => {
+    try {
+      const res = await postAPIs.getRecentPosts();
+      if (res.status === 200) {
+        // Assuming a 200 status code means success
+        setRecentPosts(res.data.recent_posts); // Assuming the data is in a property called 'data'
+      } else {
+        console.error("Error: Unexpected status code", res.status);
+      }
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+    }
+  };
+  const getTrendingPost = async () => {
+    try {
+      const res = await postAPIs.getTrendingPosts();
+      if (res.status === 200) {
+        // Assuming a 200 status code means success
+        setTrendingPosts(res.data.trending_posts); // Assuming the data is in a property called 'data'
+      } else {
+        console.error("Error: Unexpected status code", res.status);
+      }
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getRecentPost();
+    getTrendingPost();
+  }, []);
+  console.log("fahad", trendingPosts);
   return (
     <>
       {main && (
@@ -279,10 +313,10 @@ const TabDetails = ({
             <FollowingContent />
           </Tab>
           <Tab eventKey="memes" title="New Memes">
-            <MemesDetails newMemesData={newMemesData} />
+            <MemesDetails newMemesData={recentPosts} />
           </Tab>
           <Tab eventKey="trending" title="Trending">
-            <MemesDetails newMemesData={newMemesData2} />
+            <MemesDetails newMemesData={trendingPosts} />
           </Tab>
         </Tabs>
       )}

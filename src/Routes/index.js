@@ -1,15 +1,41 @@
 import React from "react";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ElementControl from "Components/ElementControl";
 import routes from "./routes";
+import { useSelector } from "react-redux";
 
 const ClientRoutes = () => {
+    const { accessToken } = useSelector((state) => state.auth);
+    const getElementControl = (path, authenticated, component, layout) => {
+        if (!authenticated) {
+          if (accessToken) {
+            if (path === '/login' ||
+              path === '/forgetpassword' ||
+              path === '/forgetPassword' ||
+              path === '/restsetPassword' ||
+              path === '/signup' ||
+              path === '/emailVerification' ||
+              path === '/emailVerification'
+            ) {
+              return <Navigate to="/home" />
+            }
+          }
+          return <ElementControl Component={component} Layout={layout} />;
+        }
+        if (authenticated) {
+          if (accessToken) {
+            return <ElementControl Component={component} Layout={layout} />;
+          } else {
+            return <Navigate to="/login" />;
+          }
+        }
+      };
     return (
         <BrowserRouter>
             <Routes>
                 {routes.map((route, index) => {
-                    const { path, subRoutes, component, layout } = route;
+                    const { path, subRoutes, component, layout, authenticated} = route;
                     if (subRoutes && subRoutes.length > 0) {
                         return (
                             <Route key={`route_${index}`}>
@@ -19,7 +45,7 @@ const ClientRoutes = () => {
                                             key={`subroute_${subIndex}`}
                                             exact
                                             path={`${route.path}${subRoute.path}`}
-                                            element={<ElementControl Component={subRoute.component} Layout={layout} />}
+                                            element={getElementControl(path, authenticated, subRoute.component, layout)}
                                         />
                                     );
                                 })}
@@ -31,7 +57,7 @@ const ClientRoutes = () => {
                             key={`route_${index}`}
                             exact
                             path={path}
-                            element={<ElementControl Component={component} Layout={layout} />}
+                            element={getElementControl(path, authenticated, component, layout)}
                         />
                     );
                 })}

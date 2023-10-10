@@ -17,7 +17,7 @@ const ContactList = ({data,contact,link}) => {
                 {
                     data.map((item, ind) => {
                         return (
-                            <li onClick={page}>
+                            <li onClick={page} key={ind}>
                                 <div className={classes.profile}>
                                     <img src={item.img} alt='icon' />
                                     {item.status && <span className={`status ${classes.status}`}></span>}

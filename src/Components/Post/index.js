@@ -9,7 +9,7 @@ const Posts = ({ postData }) => {
     <>
       {postData.map((item, ind) => {
         return (
-          <div className={classes.postWrapper}>
+          <div key={ind} className={classes.postWrapper}>
             <div className={classes.postHeader}>
               <div className={classes.profile}>
                 <div className={classes.imgBox}>

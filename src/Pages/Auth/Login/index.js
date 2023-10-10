@@ -7,9 +7,9 @@ import { useNavigate } from "react-router";
 import AuthAPIs from "APIs/auth";
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { authSucess } from "Redux/reducers/authSlice";
 import { toast } from "react-toastify";
 import * as Yup from "yup"; // Import yup
+import { authSuccess } from "Redux/reducers/authSlice";
 
 const LoginFrom = () => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const LoginFrom = () => {
       const res = await AuthAPIs.login(data.email, data.password);
       if (res) {
         dispatch(
-          authSucess({
+          authSuccess({
             user: res.data?.user,
             accessToken: res.data.token,
           })
@@ -45,6 +45,7 @@ const LoginFrom = () => {
     } catch (error) {
       console.error("Error while logging in:", error);
     }
+    
   };
 
   return (

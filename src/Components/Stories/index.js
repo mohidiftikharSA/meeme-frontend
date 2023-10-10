@@ -103,7 +103,7 @@ const Stories = () => {
               ))} */}
               {otherUserStories.map((item, index) => {
                 return (
-                  <div className={classes.ImgBox}  onClick={() => openModalWithStory(index)}>
+                  <div key={index} className={classes.ImgBox}  onClick={() => openModalWithStory(index)}>
                     <img src={item.meme} alt="img" />
                     <div className={classes.prilfe}>
                       <img src={item.userImg} alt="img" />
