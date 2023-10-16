@@ -8,5 +8,6 @@ export const ENDPOINT = {
     forgetPassword: `${API_URL}/users/forgot_password`,
     verificationOtp: `${API_URL}/users/verify_otp`,
     getRecentPosts: `${API_URL}/posts/recent_posts`,
-    getTrendingPost: `${API_URL}/posts/trending_posts`
+    getTrendingPost: `${API_URL}/posts/trending_posts`,
+    stories: `${API_URL}/stories`,
 };

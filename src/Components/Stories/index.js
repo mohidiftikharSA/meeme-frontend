@@ -55,7 +55,7 @@ const Stories = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
-      
+
       {
         breakpoint: 767,
         settings: {
@@ -79,7 +79,7 @@ const Stories = () => {
           <Col md={3} sm={4} xs={6}  className="pe-0">
             <button
               className={classes.imgUploader}
-           
+
               onClick={() => setModalShow(true)}
             >
               <span>Add story</span>
@@ -89,9 +89,9 @@ const Stories = () => {
               </div>
             </button>
           </Col>
-          <Col md={9} sm={8} xs={6}> 
+          <Col md={9} sm={8} xs={6}>
             <Slider {...settings}>
-              
+
               {/* {imageList.map((image, index) => (
                 <div key={index} className={classes.ImgBox}>
                   <img src={image.data_url} alt="" width="100" />

@@ -39,7 +39,7 @@ const getMethod = async (endpoint, authentication = true, data) => {
     let bearer_token;
     if (authentication) {
         const { auth } = store.getState();
-        bearer_token = auth.accessToken || localStorage.getItem('adminAccessToken');
+        bearer_token = auth.accessToken || localStorage.getItem('accessToken');
 
         params = {
             headers: {
@@ -70,7 +70,7 @@ const postMethod = async (endpoint, authentication = true, data = null, multipar
 
     if (authentication) {
         const { auth } = store.getState();
-        var bearer_token = auth.accessToken || localStorage.getItem('adminAccessToken');
+        var bearer_token = auth.accessToken || localStorage.getItem('accessToken');
         headers["Authorization"] = `Bearer ${JSON.parse(bearer_token)}`
     }
     if (multipart) {
@@ -91,7 +91,7 @@ const deleteMethod = async (endpoint, authentication = true, data = null) => {
     header = {};
     if (authentication) {
         const { auth } = store.getState();
-        var bearer_token = auth.accessToken || localStorage.getItem('adminAccessToken');
+        var bearer_token = auth.accessToken || localStorage.getItem('accessToken');
         var header = {
             headers: {
                 "Authorization": `Bearer ${JSON.parse(bearer_token)}`
@@ -116,7 +116,7 @@ const patchMethod = async (endpoint, authentication = true, data = null, multipa
 
     if (authentication) {
         const { auth } = store.getState();
-        var bearer_token = auth.accessToken || localStorage.getItem('adminAccessToken');
+        var bearer_token = auth.accessToken || localStorage.getItem('accessToken');
         headers["Authorization"] = `Bearer ${JSON.parse(bearer_token)}`
     }
     if (multipart) {
