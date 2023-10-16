@@ -1807,6 +1807,11 @@
   "resolved" "https://registry.npmjs.org/@react-dnd/shallowequal/-/shallowequal-4.0.2.tgz"
   "version" "4.0.2"
 
+"@react-oauth/google@^0.11.1":
+  "integrity" "sha512-tywZisXbsdaRBVbEu0VX6dRbOSL2I6DgY97woq5NMOOOz+xtDsm418vqq+Vx10KMtra3kdHMRMf0hXLWrk2RMg=="
+  "resolved" "https://registry.npmjs.org/@react-oauth/google/-/google-0.11.1.tgz"
+  "version" "0.11.1"
+
 "@redux-saga/core@^1.2.2":
   "integrity" "sha512-0qr5oleOAmI5WoZLRA6FEa30M4qKZcvx+ZQOQw+RqFeH8t20bvhE329XSPsNfTVP8C6qyDsXOSjuoV+g3+8zkg=="
   "resolved" "https://registry.npmjs.org/@redux-saga/core/-/core-1.2.2.tgz"
