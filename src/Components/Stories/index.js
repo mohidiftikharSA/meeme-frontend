@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 
 import classes from "./index.module.scss";
 import profile from "../../Images/youuser.png";
@@ -15,42 +15,29 @@ import UploadModal from "Components/UploadViewModal";
 
 
 const otherUserStories = [
-  {
-    userImg: user,
-    meme: meme9,
-    name: "Charlotte",
-  },
-  {
-    userImg: user2,
-    meme: meme2,
-    name: "Charlotte",
-  },
-  {
-    userImg: user3,
-    meme: meme3,
-    name: "Charlotte",
-  },
-  {
-    userImg: user,
-    meme: meme9,
-    name: "Charlotte",
-  },
+
 ];
 
-const Stories = () => {
+const Stories = (data) => {
+
   const [modalShow, setModalShow] = React.useState(false);
   const [selectedStoryIndex, setSelectedStoryIndex] = useState(null); // Track the selected index
+  const [storyData, setStoryData] = useState([]); // Track the selected index
 
   const openModalWithStory = (index) => {
     setSelectedStoryIndex(index);
     setModalShow(true);
-    console.log("fahad", selectedStoryIndex)
   };
-
+  useEffect(() => {
+    setStoryData(data.data)
+  }, [data]);
+  useEffect(() => {
+    console.log('storyData',storyData);
+  }, [storyData]);
   var settings = {
     dots: false,
     arrows: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -101,13 +88,13 @@ const Stories = () => {
                   </div>
                 </div>
               ))} */}
-              {otherUserStories.map((item, index) => {
+              {storyData && storyData.map((item, index) => {
                 return (
                   <div key={index} className={classes.ImgBox}  onClick={() => openModalWithStory(index)}>
-                    <img src={item.meme} alt="img" />
+                    <img src={item.story_image} alt="img" />
                     <div className={classes.prilfe}>
-                      <img src={item.userImg} alt="img" />
-                      <p>{item.name}</p>
+                      <img src={item.user_image} alt="img" />
+                      <p>{item.username}</p>
                     </div>
                   </div>
                 );
@@ -119,7 +106,7 @@ const Stories = () => {
       <UploadModal
         show={modalShow}
         onHide={() => setModalShow(false)}
-        selectedStory={otherUserStories[selectedStoryIndex]}
+        story={storyData[selectedStoryIndex]}
       />
     </>
   );
