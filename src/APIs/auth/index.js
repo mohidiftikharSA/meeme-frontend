@@ -6,28 +6,35 @@ const login = async (email, password) => {
     return await API.postMethod(ENDPOINT.login, false, {
         email,
         password,
-    })  
+    })
+}
+const socialLogin = async (provider, token,mobile_token='') => {
+    return await API.postMethod(ENDPOINT.socialLogin, false, {
+        provider,
+        token,
+        mobile_token
+    })
 }
 const signup = async (data) => {
-    return await API.postMethod(ENDPOINT.signUp, false,data)  
+    return await API.postMethod(ENDPOINT.signUp, false,data)
 }
 const forgetPassword = async (email) => {
     return await API.postMethod(ENDPOINT.forgetPassword, false, {
         email
-    })  
+    })
 }
 
 const verificationOtp = async (email,otp) => {
     return await API.postMethod(ENDPOINT.verificationOtp, false, {
         email,
         otp,
-    })  
+    })
 }
 const resetPassword = async (email,otp) => {
     return await API.postMethod(ENDPOINT.verificationOtp, false, {
         email,
         otp,
-    })  
+    })
 }
 
 
@@ -36,5 +43,6 @@ export default {
     login,
     signup,
     forgetPassword,
-    verificationOtp
+    verificationOtp,
+    socialLogin
 }
