@@ -3,6 +3,7 @@ import classes from "./index.module.scss";
 import { Col, Row } from "react-bootstrap";
 import Footer from "Components/Footer";
 
+
 const AuthLayout = ({ children,showFooter,login }) => {
   return (
     <div id={classes.wrapper}>
@@ -17,6 +18,7 @@ const AuthLayout = ({ children,showFooter,login }) => {
         </Row>
       </div>
       {showFooter && <Footer />}
+      
     </div>
   );
 };

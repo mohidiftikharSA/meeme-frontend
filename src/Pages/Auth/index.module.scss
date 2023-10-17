@@ -134,8 +134,6 @@
     @include media("<phone"){
       background-size: 65px;
     }
-    
-  
   }
 
   &:after {
@@ -183,7 +181,8 @@
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    text-align: right;
+    display: inline-block;
+    float: right;
     margin-bottom: 30px;
 
     cursor: pointer;

@@ -18,14 +18,13 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: $color-white-fade;
+  background: $color-black-fade;
   z-index: 9990;
 
   @media (prefers-reduced-motion: no-preference) {
     img {
       width: 60px;
       height: 60px;
-      border-radius: 100%;
       padding: 12.5px;
       animation: image-spin infinite 0.8s linear;
       @include apply-at-lg-size {

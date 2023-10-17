@@ -3,9 +3,8 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 @import url("https://fonts.googleapis.com/css2?family=Bitter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Questrial&display=swap");
-@import url("https://fonts.cdnfonts.com/css/gilroy-bold");
+@import url(https://db.onlinewebfonts.com/c/bf05270ea2c7289d011ddc5d9898635f?family=GlOrY+BoLd);
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
-@import url("https://fonts.cdnfonts.com/css/product-sans");
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Roboto:ital,wght@1,300;1,400;1,500;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap");
@@ -344,7 +343,7 @@ section {
   }
 }
 
-.phonverify .gVxunN {
+.phonverify .ReactInputVerificationCode__item {
   border-radius: 100px;
   border: 1px solid #dec761;
   // width: 45px;
@@ -354,13 +353,9 @@ section {
   height: 59px;
   line-height: 59px;
   box-shadow: none;
-  margin: 0 8px;
 
   @include media("<xs-phone") {
-    width: 38px;
-    height: 50px;
-    line-height: 50px;
-    margin: 0 5px;
+    
     font-size: 20px;
     font-weight: 600;
   }
@@ -369,13 +364,10 @@ section {
     outline: none !important;
   }
 }
-.cTCtsH {
-  display: flex;
-  position: relative;
-  justify-content: flex-start !important;
+.ReactInputVerificationCode__container {
   width: unset !important;
 }
-.gVxunN {
+.ReactInputVerificationCode__item {
   font-size: 20px;
   font-weight: 600;
   @include media("<tablet") {
@@ -971,7 +963,7 @@ section {
   color: #fff;
   padding: 12px 15px;
   border-bottom: 1px solid #4d4d4dcc;
-  @include media("<phone") {
+  @include media("<tablet") {
     border: none;
   }
   .header {

@@ -2,12 +2,10 @@ import LandingPage from "Pages/LandingPage";
 import NotFound from "Pages/NotFound/loadable";
 import MainLayout from "Layout/MainLayout";
 import AuthLayout from "Layout/AuthLayout";
-import Login from "Pages/Auth/Login";
-import LoginFrom from "Pages/Auth/LoginForm";
+import LoginFrom from "Pages/Auth/Login";
 import Signup from "Pages/Auth/Signup";
 import Restsetpassword from "Pages/Auth/RestsetPassword";
 import EmailVerification from "Pages/Auth/EmailVerification";
-import PhoneVerification from "Pages/Auth/PhoneVerification";
 import Forgetpassword from "Pages/Auth/ForgetPassword";
 import Explore from "Pages/Explore";
 import Tournament from "Pages/Tournament";
@@ -19,14 +17,15 @@ import BuyCoin from "Pages/BuyCoin";
 import OtherProfile from "Pages/OtherProfile";
 import PurchasePage from "Pages/Purchase";
 import BadgeList from "Components/BadgeList";
-import { Counter } from "Pages/Counter";
+import Home from "Pages/Auth/Home";
+import OtpVerfication from "Pages/Auth/OtpVerification";
 
 
 
 const routes = [
     {
         path: "/",
-        component: Login,
+        component: Home,
     },
     {
         path: "/login",
@@ -59,9 +58,9 @@ const routes = [
         component: EmailVerification,
     },
     {
-        path: "/PhoneVerification",
+        path: "/otpVerification",
         layout: AuthLayout,
-        component: PhoneVerification,
+        component: OtpVerfication,
     },
     {
         path: "/explore",
@@ -113,11 +112,7 @@ const routes = [
         layout: MainLayout,
         component: BadgeList,
     },
-    {
-        path: "/counter",
-        layout: MainLayout,
-        component: Counter,
-    },
+   
 
     { path: "*", component: NotFound, layout: MainLayout },
 ];
