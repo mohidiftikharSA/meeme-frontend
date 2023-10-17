@@ -48,6 +48,13 @@
     }
   }
   &.navDropdown {
+    position: fixed;
+    bottom: 30px;
+    @include media("<tablet-x"){
+      position: relative;
+      bottom: unset;
+    }
+
     .dropdown-toggle {
       background: none;
       font-size: 1rem;

@@ -355,7 +355,6 @@ section {
   box-shadow: none;
 
   @include media("<xs-phone") {
-    
     font-size: 20px;
     font-weight: 600;
   }
@@ -425,7 +424,7 @@ section {
       z-index: 9999;
     }
   }
-  &.comment-modal{
+  &.comment-modal {
     .modal-body {
       background-color: transparent;
       padding: 0;
@@ -917,7 +916,7 @@ section {
   left: 50%;
   margin: 10px;
   transform: translateX(-50%);
-  @include media("<tablet-x"){
+  @include media("<tablet-x") {
     width: unset;
   }
 }
@@ -1074,5 +1073,11 @@ section {
         font-size: 12px;
       }
     }
+  }
+}
+
+.stories-slider {
+  .slick-track {
+    margin: unset !important;
   }
 }
