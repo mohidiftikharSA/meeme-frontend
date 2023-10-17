@@ -66,8 +66,6 @@ const Stories = (data) => {
           <Col md={3} sm={4} xs={6}  className="pe-0">
             <button
               className={classes.imgUploader}
-
-              onClick={() => setModalShow(true)}
             >
               <span>Add story</span>
               <div className={classes.prilfe}>
@@ -77,7 +75,7 @@ const Stories = (data) => {
             </button>
           </Col>
           <Col md={9} sm={8} xs={6}>
-            <Slider {...settings}>
+            <Slider {...settings} className="stories-slider">
 
               {/* {imageList.map((image, index) => (
                 <div key={index} className={classes.ImgBox}>

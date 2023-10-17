@@ -11,21 +11,51 @@ import postAPIs from "APIs/dashboard/home";
 
 const postData = [
   {
+    id:"1",
     user: user,
     name: "Jullian Fortan",
     location: "Madrid, Spain",
     postTitle: "New Popular meme.",
     tags: "#memes #bestmeme #funnymemes #dankmemes",
     post: post1,
+    comments: [
+      {
+        username:'Jullian Fortan',
+        comment:'Hahah....You nailed it!',
+        userImg:user
+        
+      },
+      {
+        username:'Charlotte',
+        comment:'Awesome meme!, I like this one LOL.',
+        userImg:user2
+        
+      }
+    ]
   },
   {
+    id:"2",
     user: user2,
     name: "Tyler Mady",
     location: "Madrid, Spain",
     post: post2,
-  },
-];
-
+    comments: [
+      {
+        username:'Charlotte',
+        comment:'Awesome meme!, I like this one LOL.',
+        userImg:user2
+        
+      },
+      {
+        username:'Jullian Fortan',
+        comment:'Hahah....You nailed it!',
+        userImg:user
+      },
+      
+    ]
+    
+  }
+]
 
 const FollowingContent = () => {
 
