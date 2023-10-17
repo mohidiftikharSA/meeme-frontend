@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./index.module.scss";
 import { Dropdown } from "react-bootstrap";
 import like from "../../Images/like.svg";
 import message from "../../Images/message.svg";
 import send from "../../Images/sendBtn.svg";
-const Posts = ({ postData }) => {
+import ViewPost from "Components/ViewPost";
+
+const Posts = ({ postData,comment }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPostId, setSelectedPostId] = useState(null);
+  
+  const openModal = (postId) => {
+    setSelectedPostId(postId);
+    setIsModalOpen(true);
+    console.log(postId)
+  }
+
+  const closeModal = () => {
+    setSelectedPostId(null);
+    setIsModalOpen(false);
+  }
+
   return (
     <>
-      {postData.map((item, ind) => {
+      {
+      postData.map((item, ind) => {
         return (
-          <div className={classes.postWrapper}>
+          <div className={classes.postWrapper} key={ind}>
             <div className={classes.postHeader}>
               <div className={classes.profile}>
                 <div className={classes.imgBox}>
@@ -34,7 +51,6 @@ const Posts = ({ postData }) => {
               </Dropdown>
             </div>
             <div className={classes.PostDetails}>
-              {}
               {item.postTitle && <p>{item.postTitle}</p>}
               {item.tags && <p className={classes.tags}>{item.tags}</p>}
             </div>
@@ -47,10 +63,17 @@ const Posts = ({ postData }) => {
                 <img src={like} alt="img" />
                 <span> 12.3k</span>
               </li>
-              <li>
+              {
+                comment? <li>
                 <img src={message} alt="img" />
                 <span>323</span>
-              </li>
+              </li>:
+              <li onClick={() => openModal(item.id)}>
+              <img src={message} alt="img" />
+              <span>323</span>
+            </li>
+              }
+              
               <li>
                 <img src={send} alt="img" />
                 <span>323</span>
@@ -58,7 +81,11 @@ const Posts = ({ postData }) => {
             </ul>
           </div>
         );
-      })}
+      })
+      
+      }
+
+      <ViewPost onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData} />
     </>
   );
 };
