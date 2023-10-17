@@ -31,8 +31,13 @@
                         color: unset;
                     }
                 }
+                &:nth-child(2){
+                    &:hover{
+                        color: rgb(84, 179, 251);
+                    }
+                }
                 &:hover{
-                    color: #fff;
+                    color: #FFCD2F;
                 }
             
             }
