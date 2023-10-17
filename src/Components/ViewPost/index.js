@@ -28,10 +28,10 @@ const ViewPost = (props) => {
       <Modal.Header closeButton onClick={onHide}></Modal.Header>
       <Modal.Body>
         <Row className='text-start'>
-          <Col md={7}>
+          <Col lg={7}>
           <Posts postData={[selectedPost]} comment/>
           </Col>
-          <Col md={5} className='position-relative'>
+          <Col lg ={5} className='position-relative'>
             <Comments data={[selectedPost]}/>
           </Col>
         </Row>
