@@ -8,8 +8,14 @@ import { FcGoogle } from "react-icons/fc";
 import { BsFacebook, BsTwitter } from "react-icons/bs";
 import AuthLayout from "Layout/AuthLayout";
 import {GoogleLogin, GoogleOAuthProvider} from "@react-oauth/google";
+import {GOOGLE_CLIENT_ID} from "../../../config/constants";
+import AuthAPIs from "../../../APIs/auth";
+import {toast} from "react-toastify";
+import {authSuccess} from "../../../Redux/reducers/authSlice";
+import {useDispatch} from "react-redux";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const nextPage = () => {
     navigate(`/login`);
@@ -25,30 +31,47 @@ const Home = () => {
             <MdMail />
             Continue with Email
           </Button>
-          <GoogleOAuthProvider clientId="729657529114-nrdr4euidcs5cuu872mc7thjfaf3qe2u.apps.googleusercontent.com">
-            <GoogleLogin
-                onSuccess={credentialResponse => {
-                  console.log(credentialResponse);
-                }}
-                onError={() => {
-                  console.log('Login Failed');
-                }}
-            />;
-          </GoogleOAuthProvider>
+            <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+              <GoogleLogin
+                  onSuccess={async credentialResponse => {
+                    try {
+                      const res = await AuthAPIs.socialLogin('google', credentialResponse.credential);
+                      if (res) {
+                        dispatch(
+                            authSuccess({
+                              user: res.data?.user,
+                              accessToken: res.data.token,
+                            })
+                        );
+                        navigate(`/home`);
+                        toast.success("Login Successfully", {
+                          position: "top-right",
+                          autoClose: 2000,
+                        });
+                        localStorage.setItem("accessToken", res.data.token);
+                      }
+                    } catch (error) {
+                      console.error("Error while verify:", error);
+                    }
+                    console.log(credentialResponse);
+                  }}
+                  onError={() => {
+                    console.log('Login Failed');
+                  }}
+              />;
+            </GoogleOAuthProvider>
           <Button variant="outline-light">
             <FcGoogle />
-
-
             Continue with Google
           </Button>
-          <Button variant="outline-light">
-            <BsFacebook style={{ color: "#5090ff" }} />
-            Continue with Facebook
-          </Button>
-          <Button className="mb-0" variant="outline-light">
-            <BsTwitter />
-            Continue with Twitter
-          </Button>
+          {/*<Button variant="outline-light">*/}
+          {/*  <BsFacebook style={{ color: "#5090ff" }} />*/}
+          {/*  Continue with Facebook*/}
+          {/*</Button>*/}
+          {/*<Button className="mb-0" variant="outline-light">*/}
+          {/*  <BsTwitter />*/}
+          {/*  Continue with Twitter*/}
+          {/*</Button>*/}
         </div>
         <div className={classes.loginLinks}>
           <p className={classes.dark}>
