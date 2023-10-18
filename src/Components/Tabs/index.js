@@ -37,7 +37,6 @@ import profile2 from "../../Images/profilePost2.png";
 import profile3 from "../../Images/profilePost3.png";
 import profile4 from "../../Images/profilePost4.png";
 import avatar from "../../Images/avatar.jpg";
-
 import img1 from "../../Images/rare1.png";
 import img2 from "../../Images/rare2.png";
 import img3 from "../../Images/rare3.png";

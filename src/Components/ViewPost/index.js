@@ -10,6 +10,7 @@ const ViewPost = (props) => {
   // Find the selected post by postId
   const selectedPost = postData.find(post => post.post.id === selectedPostId);
 
+  console.log('selectedPost',selectedPost);
   const getComments = async (id) => {
     try {
       const res = await postAPIs.getCommentsByPost(id);

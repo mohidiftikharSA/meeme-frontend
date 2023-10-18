@@ -3,7 +3,7 @@ import classes from "./index.module.scss";
 import dummyUser from "../../Images/user-dummy.png";
 import ViewPost from "Components/ViewPost";
 
-const MemesDetails = ({ newMemesData, explore }) => {
+const MemesDetails = ({ newMemesData, explore,avatar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
 
@@ -34,7 +34,7 @@ const MemesDetails = ({ newMemesData, explore }) => {
           <div
             key={ind}
             className={classes.imgBox}
-            onClick={() => openModal(item.id)}
+            onClick={() => openModal(item.post.id)}
           >
             {isImage(item) ? (
               <img src={item.compress_image} alt="img" />
@@ -56,6 +56,7 @@ const MemesDetails = ({ newMemesData, explore }) => {
         show={isModalOpen}
         selectedPostId={selectedPostId}
         postData={newMemesData}
+        avatar={avatar}
       />
     </>
   );
