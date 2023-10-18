@@ -23,13 +23,13 @@ const postData = [
         username:'Jullian Fortan',
         comment:'Hahah....You nailed it!',
         userImg:user
-        
+
       },
       {
         username:'Charlotte',
         comment:'Awesome meme!, I like this one LOL.',
         userImg:user2
-        
+
       }
     ]
   },
@@ -44,22 +44,23 @@ const postData = [
         username:'Charlotte',
         comment:'Awesome meme!, I like this one LOL.',
         userImg:user2
-        
+
       },
       {
         username:'Jullian Fortan',
         comment:'Hahah....You nailed it!',
         userImg:user
       },
-      
+
     ]
-    
+
   }
 ]
 
-const FollowingContent = () => {
+const FollowingContent = (avatar) => {
 
   const [storyData, setStoryData] = useState([]);
+  const [followingData, setFollowingData] = useState([]);
   const [apiCallMade, setApiCallMade] = useState(false);
   const getStories = async () => {
     try {
@@ -79,14 +80,30 @@ const FollowingContent = () => {
     }
 
   };
+  const getFollowerPosts = async () => {
+    try {
+      const res = await postAPIs.getFollowingPosts();
+      if (res.status === 200) {
+        // Assuming a 200 status code means success
+        setFollowingData(res.data.following_posts);
+        // Assuming the data is in a property called 'data'
+      } else {
+        console.error("Error: Unexpected status code", res.status);
+      }
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+    }
+
+  };
   useEffect(() => {
       getStories()
+    getFollowerPosts()
   }, []);
   return (
     <>
-      <Stories data={storyData}/>
+      <Stories data={storyData} avatar={avatar}/>
       <UploadPost />
-      <Posts postData={postData} />
+      <Posts postData={followingData} avatar={avatar}/>
     </>
   );
 };

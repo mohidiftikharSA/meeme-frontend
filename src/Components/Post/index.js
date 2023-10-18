@@ -1,26 +1,30 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import classes from "./index.module.scss";
 import { Dropdown } from "react-bootstrap";
 import like from "../../Images/like.svg";
 import message from "../../Images/message.svg";
 import send from "../../Images/sendBtn.svg";
 import ViewPost from "Components/ViewPost";
+import {formatNumber} from "../../Helper/Converters";
 
-const Posts = ({ postData,comment }) => {
+const Posts = ({ postData,comment,avatar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
-  
+  const [followingData, setFollowingData] = useState(null);
+
   const openModal = (postId) => {
+    console.log('postId',postId)
     setSelectedPostId(postId);
     setIsModalOpen(true);
-    console.log(postId)
   }
 
   const closeModal = () => {
     setSelectedPostId(null);
     setIsModalOpen(false);
   }
-
+  useEffect(() => {
+    console.log('selectedPostId',selectedPostId)
+  }, [selectedPostId]);
   return (
     <>
       {
@@ -30,11 +34,11 @@ const Posts = ({ postData,comment }) => {
             <div className={classes.postHeader}>
               <div className={classes.profile}>
                 <div className={classes.imgBox}>
-                  <img src={item.user} alt="user" />
+                  <img src={item.user_image||avatar.avatar} alt="user" />
                 </div>
                 <div className={classes.userDetail}>
-                  <h6>{item.name}</h6>
-                  <p>{item.location}</p>
+                  <h6>{item.username}</h6>
+                  {/*<p>{item.location}</p>*/}
                 </div>
               </div>
 
@@ -51,41 +55,41 @@ const Posts = ({ postData,comment }) => {
               </Dropdown>
             </div>
             <div className={classes.PostDetails}>
-              {item.postTitle && <p>{item.postTitle}</p>}
-              {item.tags && <p className={classes.tags}>{item.tags}</p>}
+              {item.post.description && <p>{item.post.description}</p>}
+              {item.post.tag_list && <p className={classes.tags}>{item.post.tag_list}</p>}
             </div>
             <div className={classes.imgBox}>
-              <img src={item.post} alt="img" />
+              <img src={item.compress_image} alt="img" />
             </div>
 
             <ul className={classes.postFooter}>
               <li>
                 <img src={like} alt="img" />
-                <span> 12.3k</span>
+                <span> {formatNumber(item.post_likes)}</span>
               </li>
               {
                 comment? <li>
                 <img src={message} alt="img" />
-                <span>323</span>
+                <span>{formatNumber(item.post_comments_count)}</span>
               </li>:
-              <li onClick={() => openModal(item.id)}>
+              <li onClick={() => openModal(item.post.id)}>
               <img src={message} alt="img" />
-              <span>323</span>
+              <span>{formatNumber(item.post_comments_count)}</span>
             </li>
               }
-              
+
               <li>
                 <img src={send} alt="img" />
-                <span>323</span>
+                <span>{formatNumber(item.post.share_count)}</span>
               </li>
             </ul>
           </div>
         );
       })
-      
+
       }
 
-      <ViewPost onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData} />
+      <ViewPost onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData} avatar={avatar} />
     </>
   );
 };
