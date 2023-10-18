@@ -65,17 +65,18 @@ const getMethod = async (endpoint, authentication = true, data) => {
 // Post Method
 const postMethod = async (endpoint, authentication = true, data = null, multipart = false) => {
     let headers = {};
-    console.log("Data")
-    console.log(data);
 
+    console.log('data',data)
     if (authentication) {
         const { auth } = store.getState();
         var bearer_token = auth.accessToken || localStorage.getItem('accessToken');
-        headers["Authorization"] = `Bearer ${JSON.parse(bearer_token)}`
+        headers["Authorization"] = `Bearer ${bearer_token}`
+        headers["Accept"] = "application/json"
     }
     if (multipart) {
         headers['content-type'] = 'multipart/form-data'
     }
+    console.log([endpoint,data,headers])
     return await axios.post(endpoint, data, { headers })
         .then((res) => {
             console.log(res)

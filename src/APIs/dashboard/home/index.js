@@ -22,11 +22,16 @@ const getCommentsByPost = async (id) => {
     return await API.getMethod(url, true)
 }
 
+const PostComment = async (data) => {
+    return await API.postMethod(ENDPOINT.comments, true,data)
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getRecentPosts,
     getTrendingPosts,
     getStories,
     getFollowingPosts,
-    getCommentsByPost
+    getCommentsByPost,
+    PostComment
 }

@@ -25,7 +25,22 @@ const ViewPost = (props) => {
     }
 
   };
-console.log(selectedPost)
+  const postComment = async (description,post_id) => {
+    try {
+      const res = await postAPIs.PostComment({
+        description,
+        post_id
+      });
+      if (res.status === 200) {
+        getComments(post_id);
+      } else {
+        console.error("Error: Unexpected status code", res.status);
+      }
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+    }
+
+  };
   useEffect(() => {
     if (selectedPostId){
       getComments(selectedPostId);
@@ -48,7 +63,7 @@ console.log(selectedPost)
           <Posts postData={[selectedPost]} avatar={avatar} comment/>
           </Col>
           <Col md={5} className='position-relative'>
-            <Comments data={commentsData}/>
+            <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId}/>
           </Col>
         </Row>
       </Modal.Body>
