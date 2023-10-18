@@ -13,9 +13,20 @@ const getStories = async () => {
     return await API.getMethod(ENDPOINT.stories, true)
 }
 
+const getFollowingPosts = async () => {
+    return await API.getMethod(ENDPOINT.followingPosts, true)
+}
+
+const getCommentsByPost = async (id) => {
+    const url = ENDPOINT.comments+ '?post_id='+id;
+    return await API.getMethod(url, true)
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getRecentPosts,
     getTrendingPosts,
-    getStories
+    getStories,
+    getFollowingPosts,
+    getCommentsByPost
 }

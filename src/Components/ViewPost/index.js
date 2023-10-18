@@ -1,20 +1,36 @@
 import Comments from 'Components/Comments';
 import Posts from 'Components/Post';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Modal, Row, Col } from 'react-bootstrap';
+import postAPIs from "../../APIs/dashboard/home";
 
 const ViewPost = (props) => {
-  const { selectedPostId, onHide, show, postData } = props;
-
+  const { selectedPostId, onHide, show, postData, avatar } = props;
+  const [commentsData, setCommentsData] = useState([]);
   // Find the selected post by postId
-  const selectedPost = postData.find(post => post.id === selectedPostId);
+  const selectedPost = postData.find(post => post.post.id === selectedPostId);
 
-  if (!selectedPost) {
-    return null; // Return null if the post is not found
-  }
+  const getComments = async (id) => {
+    try {
+      const res = await postAPIs.getCommentsByPost(id);
+      if (res.status === 200) {
+        // Assuming a 200 status code means success
+        setCommentsData(res.data.comments);
+        // Assuming the data is in a property called 'data'
+      } else {
+        console.error("Error: Unexpected status code", res.status);
+      }
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+    }
 
-  console.log(selectedPost)
-
+  };
+console.log(selectedPost)
+  useEffect(() => {
+    if (selectedPostId){
+      getComments(selectedPostId);
+    }
+  }, [selectedPostId]);
   return (
     <Modal
       className={"comment-modal"}
@@ -29,10 +45,10 @@ const ViewPost = (props) => {
       <Modal.Body>
         <Row className='text-start'>
           <Col md={7}>
-          <Posts postData={[selectedPost]} comment/>
+          <Posts postData={[selectedPost]} avatar={avatar} comment/>
           </Col>
           <Col md={5} className='position-relative'>
-            <Comments data={[selectedPost]}/>
+            <Comments data={commentsData}/>
           </Col>
         </Row>
       </Modal.Body>

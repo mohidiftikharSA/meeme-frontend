@@ -36,6 +36,7 @@ import profile1 from "../../Images/profilePost.png";
 import profile2 from "../../Images/profilePost2.png";
 import profile3 from "../../Images/profilePost3.png";
 import profile4 from "../../Images/profilePost4.png";
+import avatar from "../../Images/avatar.jpg";
 
 import img1 from "../../Images/rare1.png";
 import img2 from "../../Images/rare2.png";
@@ -310,13 +311,13 @@ const TabDetails = ({
           className="mb-lg-5 mb-3"
         >
           <Tab eventKey="following" title="Following">
-            <FollowingContent />
+            <FollowingContent avatar={avatar} />
           </Tab>
           <Tab eventKey="memes" title="New Memes">
-            <MemesDetails newMemesData={recentPosts} />
+            <MemesDetails newMemesData={recentPosts} avatar={avatar}/>
           </Tab>
           <Tab eventKey="trending" title="Trending">
-            <MemesDetails newMemesData={trendingPosts} />
+            <MemesDetails newMemesData={trendingPosts} avatar={avatar}/>
           </Tab>
         </Tabs>
       )}

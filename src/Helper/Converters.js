@@ -12,3 +12,12 @@ export function DataURIToBlob(dataURI) {
 
   return new Blob([ia], { type: mimeString });
 }
+export function formatNumber(n) {
+  if (n >= 1000000) {
+    return (n / 1000000).toFixed(1) + "M";
+  } else if (n >= 1000) {
+    return (n / 1000).toFixed(1) + "k";
+  } else {
+    return n.toString();
+  }
+}
