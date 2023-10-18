@@ -11,7 +11,7 @@ const Comments = ({ data, avatar,postComment,postId }) => {
         setComment('');
     };
   return (
-    <div className="py-5 px-3">
+    <div className="py-lg-5 py-3 px-3">
       <Heading title={"Comments"} />
       <ul className={classes.commentList}>
         {data.reverse().map((items, ind) => {
@@ -22,7 +22,7 @@ const Comments = ({ data, avatar,postComment,postId }) => {
                   <img src={items.user_image||avatar.avatar} alt="img" />
                 </div>
                 <div className={classes.commentBox}>
-                  <h6>{items.user}</h6>
+                  <h6 className="mb-0">{items.user}</h6>
                   <p>{items.description}</p>
                 </div>
               </div>

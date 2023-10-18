@@ -1,5 +1,5 @@
 import Logo from "Components/Logo";
-import React from "react";
+import React, { useState } from "react";
 import classes from "../index.module.scss";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom/dist";
@@ -14,8 +14,10 @@ import {toast} from "react-toastify";
 import {authSuccess} from "../../../Redux/reducers/authSlice";
 import {useDispatch} from "react-redux";
 import GoogleAuth from "../../../Components/Auth/GoogleAuth";
+import FooterTabs from "Components/FooterTabs";
 
 const Home = () => {
+  const [show, setshow] = useState(false);
   const navigate = useNavigate();
   const nextPage = () => {
     navigate(`/login`);
@@ -52,12 +54,16 @@ const Home = () => {
           </p>
           <p className="mb-md-5 mb-0">
             By continuing you agree Memee’s
-            <span>Terms of Services & Privacy Policy.</span>
+            <span onClick={() => setshow(true)}  style={{cursor:"pointer"}}>Terms of Services & Privacy Policy.</span>
           </p>
         </div>
       </section>
     </AuthLayout>
-
+    <FooterTabs
+        show={show}
+        tabTitles={'terms'}
+        onHide={() => setshow(false)}
+      />
     </>
   );
 };

@@ -30,6 +30,7 @@
     display: inline-block;
     padding: 12px;
     vertical-align: top;
+    width: 100%;
     &:first-child{
         margin-top: 35px;
         @include media("<xs-phone"){

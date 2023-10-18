@@ -103,6 +103,10 @@ nav {
 }
 
 .content-responsive {
+ section{
+  max-width: 800px;
+  margin: auto;
+ }
   @include media("<tablet-x") {
     width: 100%;
     transition: all ease 0.3s;
@@ -1080,4 +1084,13 @@ section {
   .slick-track {
     margin: unset !important;
   }
+}
+
+.view-modal{
+  .memeImg{
+    img{
+      height: 300px;
+    }
+  }
+
 }

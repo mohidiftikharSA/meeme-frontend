@@ -17,6 +17,9 @@
       .imgBox {
         img {
           width: 48px;
+          height: 48px;
+          object-fit: cover;
+          object-position: top;
           border-radius: 50%;
           border: 2px solid #fff;
         }
@@ -51,11 +54,12 @@
     }
   }
   .imgBox {
-    margin-bottom: 20px;
+   
     img {
       display: block;
       height: auto;
       width: 100%;
+      border-radius: 18px;
     }
   }
   .postFooter {
@@ -68,6 +72,18 @@
       display: inline-block;
       margin-right: 15px;
       cursor: pointer;
+      &:first-child{
+        &:hover{
+          opacity: unset;
+        }
+      }
+      &.active{
+        color: #2492f8;
+        img{
+          filter: brightness(0) saturate(100%) invert(48%) sepia(89%) saturate(3099%) hue-rotate(191deg) brightness(102%) contrast(94%);
+          
+        }
+      }
       &:hover {
         opacity: 0.6;
       }

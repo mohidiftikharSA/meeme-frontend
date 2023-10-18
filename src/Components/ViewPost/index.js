@@ -60,10 +60,10 @@ const ViewPost = (props) => {
       <Modal.Header closeButton onClick={onHide}></Modal.Header>
       <Modal.Body>
         <Row className='text-start'>
-          <Col md={7}>
+          <Col lg={7} className='view-modal'>
           <Posts postData={[selectedPost]} avatar={avatar} comment/>
           </Col>
-          <Col md={5} className='position-relative'>
+          <Col lg={5} className='position-relative'>
             <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId}/>
           </Col>
         </Row>

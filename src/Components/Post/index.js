@@ -11,6 +11,7 @@ const Posts = ({ postData,comment,avatar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [followingData, setFollowingData] = useState(null);
+  const [isActive, setIsActive] = useState(false);
 
   const openModal = (postId) => {
     console.log('postId',postId)
@@ -25,7 +26,11 @@ const Posts = ({ postData,comment,avatar }) => {
   useEffect(() => {
     console.log('selectedPostId',selectedPostId)
   }, [selectedPostId]);
-  return (
+
+  const toggleActive = () => {
+    setIsActive(!isActive);
+  };
+  const liClass = isActive ? `${classes.active}` : '';  return (
     <>
       {
       postData.map((item, ind) => {
@@ -58,12 +63,12 @@ const Posts = ({ postData,comment,avatar }) => {
               {item.post.description && <p>{item.post.description}</p>}
               {item.post.tag_list && <p className={classes.tags}>{item.post.tag_list}</p>}
             </div>
-            <div className={classes.imgBox}>
+            <div className={`${classes.imgBox} memeImg mb-3`}>
               <img src={item.compress_image} alt="img" />
             </div>
 
             <ul className={classes.postFooter}>
-              <li>
+              <li  className={liClass} onClick={toggleActive} >
                 <img src={like} alt="img" />
                 <span> {formatNumber(item.post_likes)}</span>
               </li>
