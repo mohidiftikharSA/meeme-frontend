@@ -8,6 +8,7 @@ export const ENDPOINT = {
     signUp: `${API_URL}/users`,
     forgetPassword: `${API_URL}/users/forgot_password`,
     resetPassword: `${API_URL}/users/reset_user_password`,
+    authUser: `${API_URL}/users/open_current_user`,
     verificationOtp: `${API_URL}/users/verify_otp`,
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,

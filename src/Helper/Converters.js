@@ -21,3 +21,32 @@ export function formatNumber(n) {
     return n.toString();
   }
 }
+
+export function timeFormat(timestampStr) {
+  const timestamp = new Date(timestampStr);
+
+// Current time
+  const currentTime = new Date();
+
+// Calculate the time difference in milliseconds
+  const timeDifference = currentTime - timestamp;
+
+// Convert milliseconds to seconds
+  const secondsAgo = Math.floor(timeDifference / 1000);
+
+// Calculate minutes, hours, and days
+  const minutesAgo = Math.floor(secondsAgo / 60);
+  const hoursAgo = Math.floor(minutesAgo / 60);
+  const daysAgo = Math.floor(hoursAgo / 24);
+
+// Print the results
+  if (daysAgo > 0) {
+    return `${daysAgo} d`
+  } else if (hoursAgo > 0) {
+    return `${hoursAgo} h`
+  } else if (minutesAgo > 0) {
+    return `${minutesAgo} m`
+  } else {
+    return `${secondsAgo} s`
+  }
+}

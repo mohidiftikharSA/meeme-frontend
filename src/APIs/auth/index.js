@@ -37,6 +37,9 @@ const resetPassword = async (email,password, password_confirmation) => {
         password_confirmation,
     })
 }
+const authUser = async (email,password, password_confirmation) => {
+    return await API.postMethod(ENDPOINT.authUser, true)
+}
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -46,5 +49,6 @@ export default {
     forgetPassword,
     verificationOtp,
     socialLogin,
-    resetPassword
+    resetPassword,
+    authUser
 }

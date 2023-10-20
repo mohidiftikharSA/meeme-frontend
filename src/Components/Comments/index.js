@@ -3,8 +3,9 @@ import React, {useState} from "react";
 import classes from "./index.module.scss";
 import user2 from "../../Images/user10.png";
 import { Form } from "react-bootstrap";
+import {timeFormat} from "../../Helper/Converters";
 
-const Comments = ({ data, avatar,postComment,postId }) => {
+const Comments = ({ data, avatar,postComment,postId,user }) => {
     const [comment, setComment] = useState('');
     const handlePostComment = () => {
         postComment(comment, postId); // Call the postComment function here
@@ -27,7 +28,7 @@ const Comments = ({ data, avatar,postComment,postId }) => {
                 </div>
               </div>
               <div className={classes.bottomBox}>
-                <span>18m</span>
+                <span>{timeFormat(items.comment_time)}</span>
                 <span>Like</span>
                 <span>Reply</span>
               </div>
@@ -37,7 +38,7 @@ const Comments = ({ data, avatar,postComment,postId }) => {
       </ul>
       <div className={classes.postComment}>
         <div className={classes.userImg}>
-          <img src={user2} alt="img" />
+          <img src={avatar.avatar} alt="img" />
         </div>
         <Form>
           <div className="position-relative">

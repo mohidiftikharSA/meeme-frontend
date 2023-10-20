@@ -3,12 +3,14 @@ import Posts from 'Components/Post';
 import React, {useEffect, useState} from 'react';
 import { Modal, Row, Col } from 'react-bootstrap';
 import postAPIs from "../../APIs/dashboard/home";
+import { useDispatch, useSelector } from "react-redux";
 
 const ViewPost = (props) => {
   const { selectedPostId, onHide, show, postData, avatar } = props;
   const [commentsData, setCommentsData] = useState([]);
   // Find the selected post by postId
   const selectedPost = postData.find(post => post.post.id === selectedPostId);
+  const { user } = useSelector((state) => state.auth);
 
   console.log('selectedPost',selectedPost);
   const getComments = async (id) => {
@@ -64,7 +66,7 @@ const ViewPost = (props) => {
           <Posts postData={[selectedPost]} avatar={avatar} comment/>
           </Col>
           <Col lg={5} className='position-relative'>
-            <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId}/>
+            <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId} user={user}/>
           </Col>
         </Row>
       </Modal.Body>
