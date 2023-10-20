@@ -6,11 +6,12 @@ import message from "../../Images/message.svg";
 import send from "../../Images/sendBtn.svg";
 import ViewPost from "Components/ViewPost";
 import {formatNumber} from "../../Helper/Converters";
+import postAPIs from "../../APIs/dashboard/home";
 
 const Posts = ({ postData,comment,avatar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
-  const [followingData, setFollowingData] = useState(null);
+  const [followingData, setFollowingData] = useState([]);
   const [isActive, setIsActive] = useState(false);
 
   const openModal = (postId) => {
@@ -20,20 +21,52 @@ const Posts = ({ postData,comment,avatar }) => {
   }
 
   const closeModal = () => {
-    setSelectedPostId(null);
+    //setSelectedPostId(null);
     setIsModalOpen(false);
   }
   useEffect(() => {
     console.log('selectedPostId',selectedPostId)
-  }, [selectedPostId]);
+  }, [selectedPostId,followingData]);
+  useEffect(() => {
+    setFollowingData(postData);
+  }, [postData]);
+  // const toggleActive = () => {
+  //   setIsActive(!isActive);
+  // };
+  const likePost = async (post_id) => {
+    try {
+      const res = await postAPIs.likePost({post_id});
+      if (res.status === 200) {
+        console.log('data',res.data)
+        const updatedItems = postData.map(item => {
+          if (item.post.id === post_id) {
+            return { ...item, liked_by_current_user: res.data.type_data.is_liked, post_likes: res.data.likes_count};
+          }
+          return item
+        });
+        setFollowingData(updatedItems);
+      } else {
+        console.error("Error: Unexpected status code", res.status);
+      }
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+    }
 
-  const toggleActive = () => {
-    setIsActive(!isActive);
   };
-  const liClass = isActive ? `${classes.active}` : '';  return (
+  const toggleActive = (itemId) => {
+    const updatedItems = postData.map(item => {
+      if (item.post.id === itemId) {
+        return { ...item, liked_by_current_user: !item.liked_by_current_user };
+      }
+      return item;
+    });
+    console.log('updatedItems',updatedItems)
+    setFollowingData(updatedItems);
+  };
+    return (
     <>
       {
-      postData.map((item, ind) => {
+        followingData.map((item, ind) => {
         return (
           <div className={classes.postWrapper} key={ind}>
             <div className={classes.postHeader}>
@@ -68,7 +101,7 @@ const Posts = ({ postData,comment,avatar }) => {
             </div>
 
             <ul className={classes.postFooter}>
-              <li  className={liClass} onClick={toggleActive} >
+              <li key={item.post.id}  className={`item ${item.liked_by_current_user ? `${classes.active}` : ''}`}  onClick={() => likePost(item.post.id)} >
                 <img src={like} alt="img" />
                 <span> {formatNumber(item.post_likes)}</span>
               </li>

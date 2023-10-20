@@ -25,6 +25,9 @@ const getCommentsByPost = async (id) => {
 const PostComment = async (data) => {
     return await API.postMethod(ENDPOINT.comments, true,data)
 }
+const likePost = async (data) => {
+    return await API.postMethod(ENDPOINT.likePost, true,data)
+}
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -33,5 +36,6 @@ export default {
     getStories,
     getFollowingPosts,
     getCommentsByPost,
-    PostComment
+    PostComment,
+    likePost
 }

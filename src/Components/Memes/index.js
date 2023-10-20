@@ -14,7 +14,7 @@ const MemesDetails = ({ newMemesData, explore,avatar }) => {
   };
 
   const closeModal = () => {
-    setSelectedPostId(null);
+    //ssetSelectedPostId(null);
     setIsModalOpen(false);
   };
   // Function to determine if the item should be displayed as an image

@@ -14,4 +14,5 @@ export const ENDPOINT = {
     socialLogin: `${API_URL}/social/social_login`,
     followingPosts: `${API_URL}/posts/following_posts`,
     comments: `${API_URL}/comments`,
+    likePost: `${API_URL}/likes`,
 };
