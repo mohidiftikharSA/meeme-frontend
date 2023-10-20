@@ -24,7 +24,7 @@ const GoogleAuth = () => {
                     { headers: { Authorization: bearer } }
                 );
                 console.log(userInfo);
-                
+
                 // Assuming handleGoogleLoginSuccess handles the redirection
                 handleGoogleLoginSuccess(tokenResponse);
             } catch (error) {
@@ -41,7 +41,7 @@ const GoogleAuth = () => {
     const handleGoogleLoginSuccess = async (tokenResponse) => {
         console.log(tokenResponse);
         try {
-            const res = await AuthAPIs.socialLogin('google', tokenResponse.credential);
+            const res = await AuthAPIs.socialLogin('google', tokenResponse.access_token);
             if (res) {
                 dispatch(
                     authSuccess({
