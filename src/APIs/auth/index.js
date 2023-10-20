@@ -30,10 +30,11 @@ const verificationOtp = async (email,otp) => {
         otp,
     })
 }
-const resetPassword = async (email,otp) => {
-    return await API.postMethod(ENDPOINT.verificationOtp, false, {
+const resetPassword = async (email,password, password_confirmation) => {
+    return await API.postMethod(ENDPOINT.resetPassword, false, {
         email,
-        otp,
+        password,
+        password_confirmation,
     })
 }
 
@@ -44,5 +45,6 @@ export default {
     signup,
     forgetPassword,
     verificationOtp,
-    socialLogin
+    socialLogin,
+    resetPassword
 }

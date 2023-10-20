@@ -20,14 +20,14 @@ const OtpVerfication = () => {
     const email = searchParams.get("email");
     const phone = searchParams.get("phone");
     setEmail(email);
-    setPhone(phone); 
+    setPhone(phone);
   }, [location.search]);
 
   const otpRes = async (data) => {
     try {
       const res = await AuthAPIs.verificationOtp(email, otpValue);
       if (res) {
-        navigate(`/restsetPassword`);
+        navigate(`/restsetPassword?email=${email}`);
         toast.success("Verify Successfully", {
           position: "top-right",
           autoClose: 2000,
@@ -42,7 +42,7 @@ const OtpVerfication = () => {
     try {
         event.preventDefault();
       await AuthAPIs.forgetPassword(email);
-  
+
       toast.success(
         "Otp is sent to your email",
         {
@@ -94,7 +94,7 @@ const OtpVerfication = () => {
               className="authButton w-100 mt-3 authe-btn"
               onClick={otpRes}
             >
-              Verify your phone
+              Verify your email
             </Button>
           </div>
         </div>
