@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom/dist";
 import { MdMail } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
-import { BsFacebook, BsTwitter } from "react-icons/bs";
 import AuthLayout from "Layout/AuthLayout";
 import {GoogleLogin, GoogleOAuthProvider, useGoogleLogin} from "@react-oauth/google";
 import {GOOGLE_CLIENT_ID} from "../../../config/constants";
@@ -34,12 +33,9 @@ const Home = () => {
             Continue with Email
           </Button>
             <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-                <GoogleAuth></GoogleAuth>
+                <GoogleAuth className="google-custom-button"></GoogleAuth>
             </GoogleOAuthProvider>
-          {/*<Button variant="outline-light">*/}
-          {/*  <BsFacebook style={{ color: "#5090ff" }} />*/}
-          {/*  Continue with Facebook*/}
-          {/*</Button>*/}
+          
           {/*<Button className="mb-0" variant="outline-light">*/}
           {/*  <BsTwitter />*/}
           {/*  Continue with Twitter*/}
