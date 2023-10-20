@@ -37,10 +37,10 @@ const MemesDetails = ({ newMemesData, explore,avatar }) => {
             onClick={() => openModal(item.post.id)}
           >
             {isImage(item) ? (
-              <img src={item.compress_image} alt="img" />
+              <img src={item.post.compress_image} alt="img" />
             ) : (
               <video controls>
-                <source src={item.compress_image} type={item.post_type} />
+                <source src={item.post.compress_image} type={item.post_type} />
                 Your browser does not support the video tag.
               </video>
             )}
