@@ -12,7 +12,7 @@ const ViewPost = (props) => {
   const selectedPost = postData.find(post => post.post.id === selectedPostId);
   const { user } = useSelector((state) => state.auth);
 
-  console.log('selectedPost',selectedPost);
+  
   const getComments = async (id) => {
     try {
       const res = await postAPIs.getCommentsByPost(id);

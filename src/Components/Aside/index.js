@@ -22,11 +22,18 @@ export const Aside = ({isActive, toggleActive}) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
 
+
+
   const logoutUser = () => {
     dispatch(logout());
 
     localStorage.removeItem("accessToken");
     navigate('/login')
+  };
+
+  const handleDropdownItemClick = (text) => {
+    navigate(`/profile-setting?text=${text}`);
+    console.log("fahad");
   };
 
 
@@ -65,31 +72,31 @@ export const Aside = ({isActive, toggleActive}) => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="/profile-setting">
+              <Dropdown.Item  onClick={() => handleDropdownItemClick("account")}>
                 <span>
                   <img src={Profile} alt="Profile" />
                 </span>
                 Account Details
               </Dropdown.Item>
-              <Dropdown.Item href="/profile-setting">
+              <Dropdown.Item onClick={() => handleDropdownItemClick("billing")}>
                 <span>
                   <img src={Wallet} alt="Wallet" />
                 </span>
                 Billing Details
               </Dropdown.Item>
-              <Dropdown.Item href="/profile-setting">
+              <Dropdown.Item onClick={() => handleDropdownItemClick("notifications")}>
                 <span>
                   <img src={Notification} alt="Notification" />
                 </span>
                 Notifications
               </Dropdown.Item>
-              <Dropdown.Item href="/profile-setting">
+              <Dropdown.Item onClick={() => handleDropdownItemClick("support")}>
                 <span>
                   <img src={support} alt="support" />
                 </span>
                 Support
               </Dropdown.Item>
-              <Dropdown.Item href="/profile-setting">
+              <Dropdown.Item onClick={() => handleDropdownItemClick("faq")}>
                 <span>
                   <img src={Faq} alt="Faq" />
                 </span>

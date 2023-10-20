@@ -20,6 +20,7 @@
         column-count: 1;
       }
       .imgBox{
+        cursor: pointer;
         &:first-child{
           margin: 0;
         }
@@ -31,6 +32,7 @@
     padding: 12px;
     vertical-align: top;
     width: 100%;
+    cursor: pointer;
     &:first-child{
         margin-top: 35px;
         @include media("<xs-phone"){

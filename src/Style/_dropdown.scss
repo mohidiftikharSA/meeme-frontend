@@ -48,8 +48,9 @@
     }
   }
   &.navDropdown {
-    position: fixed;
-    bottom: 30px;
+    position: absolute;
+    top: 620px;
+    min-height: 100vh;
     @include media("<tablet-x"){
       position: relative;
       bottom: unset;

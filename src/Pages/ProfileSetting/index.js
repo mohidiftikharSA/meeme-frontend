@@ -25,6 +25,7 @@ import SupportDetail from "Components/SupportDetail";
 import TutorialModals from "Components/Tutorial";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
+import { useLocation } from "react-router-dom";
 const transactionData = [
   {
     coins: "50,000",
@@ -37,13 +38,14 @@ const transactionData = [
 ];
 
 const ProfileSetting = () => {
-  const [tabClicked, setTabClicked] = useState(false);
+ 
   const [deleteAccountModalShow, setDeleteAccountShow] = useState(false);
   const [show, setShow] = useState(false);
+  const location = useLocation();
 
-  const handleTabClick = () => {
-    setTabClicked(true);
-  };
+  const textParam = new URLSearchParams(location.search).get("text");
+
+  
 
   const deleteClick = () => {
     setDeleteAccountShow(true);
@@ -54,7 +56,7 @@ const ProfileSetting = () => {
   const handleDeleteModal = () => {
     setDeleteAccountShow(false);
   };
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(null);
 
   const toggleActive = () => {
     setIsActive(!isActive);
@@ -66,37 +68,32 @@ const ProfileSetting = () => {
         <Container>
           <div
             className="vertical-NavHolder"
-            style={
-              tabClicked
-                ? { maxWidth: "100%" }
-                : { maxWidth: "600px", margin: "auto" }
-            }
           >
             <Heading title="Setting" />
-            <Tab.Container id="verticalNav" defaultActiveKey={'account'}>
+            <Tab.Container id="verticalNav" defaultActiveKey={textParam}>
               <Row>
                 <Col
-                  lg={tabClicked ? 6 : 12}
+                  lg={6}
                   className={` aside-responsive profile-setting ${
                     isActive ? "active" : ""
                   }`}
                 >
                   <span
-              className={`nav-opener ${isActive ? "active" : ""}`}
-              onClick={toggleActive}
-            >
-              <BiMenuAltLeft
-                size={"32px"}
-                className={`${isActive ? "d-none" : "d-block"}`}
-              />
-              <RxCross1
-                size={"24px"}
-                className={`${isActive ? "d-block" : "d-none"}`}
-              />
-            </span>
+                    className={`nav-opener ${isActive ? "active" : ""}`}
+                    onClick={toggleActive}
+                  >
+                    <BiMenuAltLeft
+                      size={"32px"}
+                      className={`${isActive ? "d-none" : "d-block"}`}
+                    />
+                    <RxCross1
+                      size={"24px"}
+                      className={`${isActive ? "d-block" : "d-none"}`}
+                    />
+                  </span>
                   <Nav variant="pills" className="flex-column">
                     <Nav.Item>
-                      <Nav.Link eventKey="account" onClick={handleTabClick}>
+                      <Nav.Link eventKey="account" >
                         <span>
                           <img src={Profile} alt="Profile" />
                         </span>
@@ -117,7 +114,7 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="transaction" onClick={handleTabClick}>
+                      <Nav.Link eventKey="transaction" >
                         <span>
                           <img src={documents} alt="document-icon" />
                         </span>
@@ -128,7 +125,7 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="billing" onClick={handleTabClick}>
+                      <Nav.Link eventKey="billing" >
                         <span>
                           <img src={Wallet} alt="wallet-icon" />
                         </span>
@@ -141,7 +138,7 @@ const ProfileSetting = () => {
                     <Nav.Item>
                       <Nav.Link
                         eventKey="notifications"
-                        onClick={handleTabClick}
+                        
                       >
                         <span>
                           <img src={Notification} alt="notification-icon" />
@@ -153,7 +150,7 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="support" onClick={handleTabClick}>
+                      <Nav.Link eventKey="support" >
                         <span>
                           <img src={support} alt="support-icon" />
                         </span>
@@ -163,7 +160,7 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="faq" onClick={handleTabClick}>
+                      <Nav.Link eventKey="faq" >
                         <span>
                           <img src={Faq} alt="faq-icon" />
                         </span>
@@ -173,7 +170,7 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="rule" onClick={handleTabClick}>
+                      <Nav.Link eventKey="rule" >
                         <span>
                           <img src={file} alt="file-icon" />
                         </span>
@@ -205,7 +202,7 @@ const ProfileSetting = () => {
                   </Nav>
                 </Col>
                 <Col
-                  lg={tabClicked ? 6 : 12}
+                lg={6}
                   className={`p-lg-0 content-responsive profile-setting ${
                     isActive ? "active" : ""
                   }`}
