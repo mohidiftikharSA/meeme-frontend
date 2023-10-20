@@ -1,7 +1,7 @@
 import AccordianBadge from "Components/AccordainBadge";
 import MemesDetails from "Components/Memes";
 import Search from "Components/Search";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import userProfile1 from "../../Images/user1.png";
 import meme1 from "../../Images/meme1.png";
 import userProfile2 from "../../Images/user2.png";
@@ -15,6 +15,8 @@ import meme6 from "../../Images/meme6.png";
 import meme7 from "../../Images/meme7.png";
 import meme8 from "../../Images/meme8.png";
 import { Container } from "react-bootstrap";
+import postAPIs from "../../APIs/dashboard/home";
+import avatar from "../../Images/avatar.jpg";
 
 const newMemesData = [
   {
@@ -69,14 +71,33 @@ const data = [
     title: "TrumpSeason",
   },
 ];
+
+
 const Explore = () => {
+  const [recentPosts, setRecentPosts] = useState([]);
+  const getRecentPost = async () => {
+    try {
+      const res = await postAPIs.getRecentPosts();
+      if (res.status === 200) {
+        // Assuming a 200 status code means success
+        setRecentPosts(res.data.recent_posts); // Assuming the data is in a property called 'data'
+      } else {
+        console.error("Error: Unexpected status code", res.status);
+      }
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+    }
+  };
+  useEffect(() => {
+    getRecentPost();
+  }, []);
   return (
     <>
       <section>
         <Container fluid>
           <Search expolore text={"Search hashtags, usernames"} />
           <AccordianBadge data={data} expolore />
-          <MemesDetails newMemesData={newMemesData} expolore />
+          <MemesDetails newMemesData={recentPosts} avatar={avatar} expolore />
         </Container>
       </section>
     </>
