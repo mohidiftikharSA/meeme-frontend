@@ -23,10 +23,10 @@ const GoogleAuth = () => {
                     'https://www.googleapis.com/oauth2/v3/userinfo',
                     { headers: { Authorization: bearer } }
                 );
-                console.log(userInfo);
+                console.log('tokenResponse.access_token',tokenResponse.access_token);
 
                 // Assuming handleGoogleLoginSuccess handles the redirection
-                handleGoogleLoginSuccess(tokenResponse);
+                //handleGoogleLoginSuccess(tokenResponse);
             } catch (error) {
                 console.error("Error while fetching user info:", error);
             }

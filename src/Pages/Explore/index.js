@@ -17,6 +17,7 @@ import meme8 from "../../Images/meme8.png";
 import { Container } from "react-bootstrap";
 import postAPIs from "../../APIs/dashboard/home";
 import avatar from "../../Images/avatar.jpg";
+import Loader from "../../Components/Loader";
 
 const newMemesData = [
   {
@@ -75,12 +76,14 @@ const data = [
 
 const Explore = () => {
   const [recentPosts, setRecentPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const getRecentPost = async () => {
     try {
       const res = await postAPIs.getRecentPosts();
       if (res.status === 200) {
         // Assuming a 200 status code means success
         setRecentPosts(res.data.recent_posts); // Assuming the data is in a property called 'data'
+        setLoading(false)
       } else {
         console.error("Error: Unexpected status code", res.status);
       }
@@ -92,15 +95,20 @@ const Explore = () => {
     getRecentPost();
   }, []);
   return (
+      loading ? (
+          // Render this component when loading is true
+          <Loader isLoading={loading}/>
+      ) : (
     <>
       <section>
         <Container fluid>
           <Search expolore text={"Search hashtags, usernames"} />
           <AccordianBadge data={data} expolore />
-          <MemesDetails newMemesData={recentPosts} avatar={avatar} expolore />
+          <MemesDetails newMemesData={recentPosts} avatar={avatar} explore />
         </Container>
       </section>
     </>
+      )
   );
 };
 
