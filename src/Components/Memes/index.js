@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import classes from "./index.module.scss";
 import dummyUser from "../../Images/user-dummy.png";
 import ViewPost from "Components/ViewPost";
@@ -6,12 +6,20 @@ import ViewPost from "Components/ViewPost";
 const MemesDetails = ({ newMemesData, explore,avatar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
+  const [postData, setPostData] = useState([]);
 
   const openModal = (postId) => {
     setSelectedPostId(postId);
     setIsModalOpen(true);
     console.log(postId);
   };
+    useEffect(() => {
+        console.log('length',newMemesData.length)
+        setPostData(newMemesData)
+    }, [newMemesData]);
+    // useEffect(() => {
+    //     console.log(' postData length',postData.length)
+    // }, [postData]);
 
   const closeModal = () => {
     //ssetSelectedPostId(null);
@@ -30,17 +38,24 @@ const MemesDetails = ({ newMemesData, explore,avatar }) => {
           explore ? `${classes.exploreBox}` : ""
         }`}
       >
-        {newMemesData.map((item, ind) => (
+        {postData.map((item, ind) => (
           <div
-            key={ind}
+            key={item.post.id}
             className={classes.imgBox}
             onClick={() => openModal(item.post.id)}
           >
             {isImage(item) ? (
-              <img src={item.post.compress_image} alt="img" />
+                <img
+                    src={item.compress_image}
+                    alt="img"
+                    onError={(e) => {
+                        e.target.src = dummyUser; // Set a placeholder image on error
+                    }}
+                />
+
             ) : (
               <video controls>
-                <source src={item.post.compress_image} type={item.post_type} />
+                <source src={item.compress_image} type={item.post_type} />
                 Your browser does not support the video tag.
               </video>
             )}
@@ -55,7 +70,7 @@ const MemesDetails = ({ newMemesData, explore,avatar }) => {
         onHide={closeModal}
         show={isModalOpen}
         selectedPostId={selectedPostId}
-        postData={newMemesData}
+        postData={postData}
         avatar={avatar}
       />
     </>

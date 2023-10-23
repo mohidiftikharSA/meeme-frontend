@@ -97,7 +97,7 @@ const Posts = ({ postData,comment,avatar }) => {
               {item.post.tag_list && <p className={classes.tags}>{item.post.tag_list}</p>}
             </div>
             <div className={`${classes.imgBox} memeImg mb-3`}>
-              <img src={item.post.compress_image} alt="img" />
+              <img src={item.compress_image} alt="img" />
             </div>
 
             <ul className={classes.postFooter}>
