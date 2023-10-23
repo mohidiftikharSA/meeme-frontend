@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import classes from "./index.module.scss";
 import dummyUser from "../../Images/user-dummy.png";
+import defaultImage from "../../Images/default.png";
 import ViewPost from "Components/ViewPost";
 
 const MemesDetails = ({ newMemesData, explore,avatar }) => {
@@ -49,7 +50,7 @@ const MemesDetails = ({ newMemesData, explore,avatar }) => {
                     src={item.compress_image}
                     alt="img"
                     onError={(e) => {
-                        e.target.src = dummyUser; // Set a placeholder image on error
+                        e.target.src = defaultImage; // Set a placeholder image on error
                     }}
                 />
 
