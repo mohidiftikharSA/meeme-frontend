@@ -8,11 +8,10 @@ const login = async (email, password) => {
         password,
     })
 }
-const socialLogin = async (provider, token,mobile_token='') => {
+const socialLogin = async (provider, token) => {
     return await API.postMethod(ENDPOINT.socialLogin, false, {
         provider,
         token,
-        mobile_token
     })
 }
 const signup = async (data) => {

@@ -23,10 +23,10 @@ const GoogleAuth = () => {
                     'https://www.googleapis.com/oauth2/v3/userinfo',
                     { headers: { Authorization: bearer } }
                 );
-                console.log('tokenResponse.access_token',tokenResponse.access_token);
+                console.log('tokenResponse.access_token', tokenResponse.access_token);
 
                 // Assuming handleGoogleLoginSuccess handles the redirection
-                //handleGoogleLoginSuccess(tokenResponse);
+                handleGoogleLoginSuccess(tokenResponse.access_token);
             } catch (error) {
                 console.error("Error while fetching user info:", error);
             }
@@ -41,8 +41,9 @@ const GoogleAuth = () => {
     const handleGoogleLoginSuccess = async (tokenResponse) => {
         console.log(tokenResponse);
         try {
-            const res = await AuthAPIs.socialLogin('google', tokenResponse.access_token);
+            const res = await AuthAPIs.socialLogin('google_web', tokenResponse);
             if (res) {
+                console.log("Response of Social API = ", res.data);
                 dispatch(
                     authSuccess({
                         user: res.data?.user,
@@ -63,10 +64,10 @@ const GoogleAuth = () => {
 
     return (
         <div>
-             <Button className="mb-0" variant="outline-light" onClick={handleCustomGoogleLogin}>
+            <Button className="mb-0" variant="outline-light" onClick={handleCustomGoogleLogin}>
                 <FcGoogle />
                 Continue with Google
-             </Button>
+            </Button>
         </div>
     );
 };
