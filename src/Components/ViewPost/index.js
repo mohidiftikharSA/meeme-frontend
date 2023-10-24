@@ -5,6 +5,10 @@ import { Modal, Row, Col } from 'react-bootstrap';
 import postAPIs from "../../APIs/dashboard/home";
 import { useDispatch, useSelector } from "react-redux";
 
+// change code
+import user2 from "../../Images/avatar.jpg";
+
+
 const ViewPost = (props) => {
   const { selectedPostId, onHide, show, postData, avatar } = props;
   const [commentsData, setCommentsData] = useState([]);
@@ -63,7 +67,7 @@ const ViewPost = (props) => {
       <Modal.Body>
         <Row className='text-start'>
           <Col lg={7} className='view-modal'>
-          <Posts postData={[selectedPost]} avatar={avatar} comment/>
+          <Posts postData={[selectedPost]} avatar={user2} comment/>
           </Col>
           <Col lg={5} className='position-relative'>
             <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId} user={user}/>

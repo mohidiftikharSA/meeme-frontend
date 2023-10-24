@@ -55,8 +55,7 @@ export const Aside = ({isActive, toggleActive}) => {
             <div className="d-xl-none d-block">
               <AccordianData following responsive />
             </div>
-          </div>
-          <Dropdown className="navDropdown py-lg-0 py-5">
+            <Dropdown className="navDropdown py-lg-0 py-3">
             <Dropdown.Toggle
               variant="success"
               id="dropdown-basic"
@@ -109,6 +108,7 @@ export const Aside = ({isActive, toggleActive}) => {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
+          </div>
         </div>
       </aside>
     </>
