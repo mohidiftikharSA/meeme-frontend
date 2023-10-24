@@ -7978,7 +7978,7 @@ react-images-uploading@^3.1.7:
 
 react-input-verification-code@^1.0.2:
   version "1.0.2"
-  resolved "https://registry.npmjs.org/react-input-verification-code/-/react-input-verification-code-1.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/react-input-verification-code/-/react-input-verification-code-1.0.2.tgz#5d859fe5f0213e1878dc1580e2ca1997fa0a1f25"
   integrity sha512-mZsFFhlCkyu/0+OASkA+eAK/oSblBeYMHFiy3sRom1jklyH37dhmzklvuUfHbyepJW/DJ3WtT0w2x7pu16F+Bw==
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.3.2, react-is@^16.7.0:

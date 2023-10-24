@@ -33,7 +33,6 @@ export const Aside = ({isActive, toggleActive}) => {
 
   const handleDropdownItemClick = (text) => {
     navigate(`/profile-setting?text=${text}`);
-    console.log("fahad");
   };
 
 
