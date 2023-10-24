@@ -8,6 +8,9 @@ import ViewPost from "Components/ViewPost";
 import {formatNumber} from "../../Helper/Converters";
 import postAPIs from "../../APIs/dashboard/home";
 
+// import avatar from images
+import user2 from "../../Images/avatar.jpg";
+
 const Posts = ({ postData,comment,avatar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
@@ -72,7 +75,9 @@ const Posts = ({ postData,comment,avatar }) => {
             <div className={classes.postHeader}>
               <div className={classes.profile}>
                 <div className={classes.imgBox}>
-                  <img src={item.user_image||avatar.avatar} alt="user" />
+                  {/* update condition to profile post */}
+                  <img src={item.user_image||(avatar.avatar || user2)}
+                   alt="user" />
                 </div>
                 <div className={classes.userDetail}>
                   <h6>{item.username}</h6>
