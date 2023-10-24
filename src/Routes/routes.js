@@ -25,94 +25,112 @@ import OtpVerfication from "Pages/Auth/OtpVerification";
 const routes = [
     {
         path: "/",
+        authenticated: false,
         component: Home,
     },
     {
         path: "/login",
-        layout: AuthLayout ,
+        authenticated: false,
+        layout: AuthLayout,
         component: LoginFrom,
     },
     {
         path: "/home",
         layout: MainLayout,
+        authenticated: true,
         component: LandingPage,
     },
     {
         path: "/signup",
+        authenticated: false,
         layout: AuthLayout,
         component: Signup,
     },
     {
         path: "/restsetPassword",
+        authenticated: false,
         layout: AuthLayout,
         component: Restsetpassword,
     },
     {
         path: "/forgetPassword",
+        authenticated: false,
         layout: AuthLayout,
         component: Forgetpassword,
     },
     {
         path: "/emailVerification",
+        authenticated: false,
         layout: AuthLayout,
         component: EmailVerification,
     },
     {
         path: "/otpVerification",
+        authenticated: false,
         layout: AuthLayout,
         component: OtpVerfication,
     },
     {
         path: "/explore",
+        authenticated: false,
         layout: MainLayout,
         component: Explore,
     },
     {
         path: "/tornament",
+        authenticated: false,
         layout: MainLayout,
         component: Tournament,
     },
     {
         path: "/profile-setting",
+        authenticated: false,
         layout: MainLayout,
         component: ProfileSetting,
     },
     {
         path: "/judge",
+        authenticated: false,
         layout: MainLayout,
         component: JudgePage,
     },
     {
         path: "/profile",
+        authenticated: false,
         layout: MainLayout,
         component: ProfilePage,
     },
     {
         path: "/otherPrfolile",
+        authenticated: false,
         layout: MainLayout,
         component: OtherProfile,
     },
     {
         path: "/CustomizeProfile",
+        authenticated: false,
         layout: MainLayout,
         component: CustomizeProfile,
     },
     {
         path: "/BuyCoin",
+        authenticated: false,
         layout: MainLayout,
         component: BuyCoin,
     },
     {
         path: "/Purchase",
+        authenticated: false,
         layout: MainLayout,
         component: PurchasePage,
     },
     {
         path: "/BadgeList",
+        authenticated: false,
         layout: MainLayout,
         component: BadgeList,
     },
-   
+
 
     { path: "*", component: NotFound, layout: MainLayout },
 ];
