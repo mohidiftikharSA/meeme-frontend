@@ -11,7 +11,7 @@ import classes from "../index.module.scss";
 import Loader from "Components/Loader";
 
 const Signup = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false); // State to track form submission
+  const [isSubmitting, setIsSubmitting] = useState(false); // 
   const navigate = useNavigate();
 
   const Signup = async (data) => {
@@ -166,7 +166,7 @@ const Signup = () => {
                       touched.confirmPassword && !!errors.confirmPassword
                     }
                   />
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback type="invalid" className="mb-3">
                     {errors.confirmPassword}
                   </Form.Control.Feedback>
                 </Form.Group>

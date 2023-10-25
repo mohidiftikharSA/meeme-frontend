@@ -9,12 +9,16 @@ import { BsImage } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import { FaSmile } from "react-icons/fa";
 import { Form } from "react-bootstrap";
+import { useWizard } from "react-use-wizard";
 
 const SupportChat = () => {
+  const { previousStep } = useWizard();
   return (
     <>
       <div className={classes.ChatBoxHolder}>
+      <span style={{display:"inline-block", width:"105px"}} onClick={()=>(previousStep())}>
         <Heading title={"Support"} />
+        </span>
         <div className={classes.sender}>
           <div
             className={"d-flex align-items-start justify-content-between mb-3"}

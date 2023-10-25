@@ -8,7 +8,7 @@ import { AiFillCamera } from "react-icons/ai";
 const EditProfile = () => {
   return (
     <Card className="profileCard">
-      <Heading title={"Edit Profile"} />
+      <Heading title={"Edit Profile"}  linkPath={"home"}/>
       <div className={classes.Profile}>
         <div className={classes.profilDetails}>
           <div className={classes.Uploader}>
