@@ -9,7 +9,7 @@ import mail from "../../Images/Email.png"
 const NotificationCard = () => {
   return (
     <Card className="profileCard">
-      <Heading title={"Notifications"} />
+      <Heading title={"Notifications"} linkPath={"home"}/>
       <div className={classes.notificationHolder}>
         <ul>
           <li>

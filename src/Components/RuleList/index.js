@@ -5,7 +5,7 @@ import { Card } from 'react-bootstrap'
 const RuleList = () => {
   return (
     <Card className="profileCard">
-        <Heading title={"Rules & Regulations"} />
+        <Heading title={"Rules & Regulations"} linkPath={"home"} />
         <ul className={`ruleList mb-4`}>
     <li>Meme user can post their memes and join the tournament.</li>
     <li>To qualify for coin rewards, you need to judge 100 memes per day.</li>

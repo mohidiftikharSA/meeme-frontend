@@ -5,7 +5,7 @@ import classes from "./index.module.scss"
 const FAQ = () => {
   return (
     <Card className="profileCard">
-    <Heading title={"FAQ"} />
+    <Heading title={"FAQ"} linkPath={"home"} />
     <div className={classes.modalContant}>
               <h5 className="faqTitle">How can we help you</h5>
               <p className="faqSubTitle">How do I buy coins?</p>

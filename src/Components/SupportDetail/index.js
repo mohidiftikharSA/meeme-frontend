@@ -10,7 +10,9 @@ const SupportDetail = () => {
     return (
         <>
             <div className={classes.supportDropdown}>
-                <Heading title={'Support'} />
+               <span style={{display:"inline-block", width:"105px"}} onClick={()=>(previousStep())}>
+               <Heading title={'Support'}  />
+               </span>
                 <Form.Select aria-label="Select Subject">
                 <option>Select Subject</option>
                     <option value="1">Abuse</option>
