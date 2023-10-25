@@ -21,7 +21,7 @@ const JudgePage = () => {
     <section>
       <Container>
         <div className="sectionHolder">
-          <Heading title={"Judge"} judge />
+          <Heading title={"Judge"} judge linkPath={"tornament"} />
           {judgeData.map((item, ind) => {
             return (
               <div className={classes.postHolder}>

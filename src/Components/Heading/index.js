@@ -4,11 +4,14 @@ import classes from "./index.module.scss"
 import { useNavigate } from 'react-router-dom';
 import CongratsModal from 'Components/CongratsModal';
 import { Button } from 'react-bootstrap';
-const Heading = ({ title, judge,badge }) => {
+const Heading = ({ title, judge,badge,linkPath }) => {
   const [modalShow, setModalShow] = useState(false);
   const navigate = useNavigate();
   const backPage = () => {
-    navigate(`/home`);
+    if (linkPath) {
+      navigate(`/${linkPath}`);
+      console.log(linkPath);
+    }
   };
 
   const handleDeleteModal = () => {
@@ -16,7 +19,7 @@ const Heading = ({ title, judge,badge }) => {
   };
   return (
     <>
-      <div className={`${classes.heading} ${[badge,judge] && `${classes.heading} d-flex align-items-center justify-content-between`} `} onClick={''}>
+      <div className={`${classes.heading} ${[badge,judge] && `${classes.heading} d-flex align-items-center justify-content-between`} `} onClick={backPage}>
         <h5><IoIosArrowBack />{title}</h5>
         {
           judge &&

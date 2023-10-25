@@ -24,7 +24,7 @@ const Support = () => {
   return (
     <>
       <div className={classes.supportSection}>
-        <Heading title={"Support"} />
+        <Heading title={"Support"} linkPath={"home"} />
         <ul className={classes.support}>
           {supportData.map((item, ind) => {
             return (
