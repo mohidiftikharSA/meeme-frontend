@@ -234,9 +234,14 @@ section {
     }
   }
   .home-icon{
-    color: #ffcd2f;
-    filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
-      saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+    font-size: 14px;
+    img{
+      color: #ffcd2f;
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
+        saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+        width: 17px;
+    }
+   
   }
 }
 #profile-btn {

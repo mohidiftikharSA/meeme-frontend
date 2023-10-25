@@ -60,13 +60,14 @@ export const Aside = ({isActive, toggleActive}) => {
               variant="success"
               id="dropdown-basic"
               style={{
-                fontSize: "14px",
+                fontSize: "15px",
                 display: "flex",
                 alignItems: "center",
+                margin:"25px 0",
               }}
             >
               <img src={setting} style={{ marginRight: "8px" }} alt="Profile" />{" "}
-              Setting
+              Settings
             </Dropdown.Toggle>
 
             <Dropdown.Menu>

@@ -69,8 +69,8 @@ const Navigation = ({ header, footer }) => {
         </>
       ) : (
         <Nav className="me-auto flex-column w-100 nav-links">
-          <Nav.Link href="/home" className="mb-3 active">
-            <img className="home-icon" src={home} alt="icon"></img> Home
+          <Nav.Link href="/home" className="mb-3 active home-icon">
+            <img  src={home} alt="icon"></img> Home
           </Nav.Link>
           <Nav.Link
             href="/tornament"
