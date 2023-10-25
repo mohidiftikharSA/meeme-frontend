@@ -66,7 +66,7 @@ export const Aside = ({isActive, toggleActive}) => {
               }}
             >
               <img src={setting} style={{ marginRight: "8px" }} alt="Profile" />{" "}
-              Setting
+              Settings
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
