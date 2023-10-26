@@ -25,6 +25,7 @@ const Signup = () => {
       };
       const res = await AuthAPIs.signup(authData);
       if (res) {
+        setIsSubmitting(false);
         navigate(`/login`);
         toast.success("Signup successful", {
           position: "top-right",

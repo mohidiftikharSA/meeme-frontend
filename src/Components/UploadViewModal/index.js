@@ -4,7 +4,7 @@ import classes from "./index.module.scss";
 // import ReactImageUploading from "react-images-uploading";
 // import { height } from "@mui/system";
 const UploadModal = (props) => {
-  const { story } = props;
+  const { story, title } = props;
   // const [images, setImages] = React.useState([]);
   // const maxNumber = 1;
   // const onChange = (imageList, addUpdateIndex) => {
@@ -26,7 +26,7 @@ const UploadModal = (props) => {
             aria-hidden="true"
             onClick={props.onHide}
           ></i>
-          <h6>Post a content</h6>
+          {!title ? <h6>Post a content</h6> : <h6>{title}</h6>}
         </Modal.Title>
       </Modal.Header>
       {/* <Modal.Body className="p-0">
@@ -62,10 +62,10 @@ const UploadModal = (props) => {
       </Modal.Body> */}
 
       <Modal.Body className="p-0">
-         <div className={classes.preview}>
-      {story && (
-        <img src={story.story_image} alt="Selected Story" />
-        )}
+        <div className={classes.preview}>
+          {story && (
+            <img src={story.story_image} alt="Selected Story" />
+          )}
         </div>
 
       </Modal.Body>

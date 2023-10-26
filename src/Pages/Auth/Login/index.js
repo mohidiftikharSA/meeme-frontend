@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import classes from "../index.module.scss";
 import Logo from "Components/Logo";
@@ -12,6 +12,8 @@ import * as Yup from "yup"; // Import yup
 import { authSuccess } from "Redux/reducers/authSlice";
 
 const LoginFrom = () => {
+
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const nextPage = () => {
@@ -26,9 +28,11 @@ const LoginFrom = () => {
   });
 
   const loginRes = async (data) => {
+    setIsLoading(true);
     try {
       const res = await AuthAPIs.login(data.email, data.password);
       if (res) {
+        setIsLoading(false);
         dispatch(
           authSuccess({
             user: res.data?.user,
@@ -43,9 +47,10 @@ const LoginFrom = () => {
         localStorage.setItem("accessToken", res.data.token);
       }
     } catch (error) {
+      setIsLoading(false);
       console.error("Error while logging in:", error);
     }
-    
+
   };
 
   return (
@@ -95,9 +100,15 @@ const LoginFrom = () => {
               <p className={classes.password} onClick={nextPage}>
                 Forgot password?
               </p>
-              <Button type="submit" className="w-100 p-2 authButton">
-                Sign in
-              </Button>
+              {isLoading ?
+                <Button type="submit" className="w-100 p-2 authButton" disabled>
+                  Sign in
+                </Button>
+                :
+                <Button type="submit" className="w-100 p-2 authButton">
+                  Sign in
+                </Button>
+              }
             </Form>
           )}
         </Formik>

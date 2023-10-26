@@ -105,6 +105,7 @@ const Stories = (data) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
         story={storyData[selectedStoryIndex]}
+        title={"Story"}
       />
     </>
   );
