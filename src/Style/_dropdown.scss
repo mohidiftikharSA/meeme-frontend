@@ -4,13 +4,13 @@
     border-radius: 12px 12px 0 0;
     background: #393240;
     box-shadow: 0px -11px 30px 0px rgba(0, 0, 0, 0.06);
-    width: 22.6%;    
+    width: 22.6%;
     position: fixed;
     bottom: 0;
     right: 12px;
     padding: 0;
     z-index: 9999;
-    @include media("<tablet"){
+    @include media("<tablet") {
       width: 48px;
       height: 48px;
       line-height: 48px;
@@ -24,12 +24,12 @@
       padding: 16px 22px !important;
       width: 100%;
       text-align: start;
-      @include media("<tablet"){
-       padding: 0 !important;
-       text-align: center;
-       &:hover{
-        color: #fff;
-       }
+      @include media("<tablet") {
+        padding: 0 !important;
+        text-align: center;
+        &:hover {
+          color: #fff;
+        }
       }
     }
     .dropdown-menu {
@@ -38,13 +38,12 @@
       background: #393240;
       transform: unset !important;
       bottom: 38px !important;
-       border: none;
-       @include media("<tablet"){
+      border: none;
+      @include media("<tablet") {
         width: 250px;
         margin: 10px 0px;
         border-radius: 12px;
-
-       }
+      }
     }
   }
   &.navDropdown {
@@ -55,7 +54,7 @@
     //   position: relative;
     //   bottom: unset;
     // }
-
+    height: 99px;
     .dropdown-toggle {
       background: none;
       font-size: 1rem;
