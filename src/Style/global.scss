@@ -72,8 +72,7 @@ nav {
   @include media("<tablet-x") {
     border: none;
     width: 80px;
-    position: absolute;
-    background-color: #0b0213;
+    position: fixed;
     z-index: 99999;
     transition: all ease 0.3s;
   }
@@ -84,10 +83,16 @@ nav {
     height: 100%;
   }
   #aisde {
+    position: fixed;
+    top: 75px;
     min-height: 100vh;
     height: 100%;
+    width: 310px;
+    transition: all ease 0.3s;
+    overflow: auto;
     @include media("<tablet-x") {
       display: none;
+     
     }
     .asideHolder {
       height: 100%;
@@ -242,6 +247,27 @@ section {
         width: 17px;
     }
    
+  }
+}
+main{
+  margin-top: 80px;
+  @include media("<tablet-x"){
+    margin-top: 56px;
+  }
+}
+
+.main-page{
+  .page-sides{
+    width: 310px;
+  }
+  .center-side{
+    width: calc(100% - 620px);
+    @include media("<widescreen"){
+      width: calc(100% - 310px);
+    }
+    @include media("<tablet-x"){
+      width: 100%;
+    }
   }
 }
 #profile-btn {

@@ -13,18 +13,18 @@ const LandingPage = () => {
   };
   return (
     <>
-      <Row>
-        <Col xl={3} md={4} className={`pe-0 aside-responsive ${isActive ? "active" : ""}`}>
+      <Row className="main-page">
+        <Col xl={3} md={4} className={`pe-0 aside-responsive page-sides ${isActive ? "active" : ""}`}>
           <Aside isActive={isActive} toggleActive={toggleActive} />         
         </Col>
-        <Col xl={6} md={8} className={`p-lg-0 content-responsive ${isActive ? "active" : ""}`}>
+        <Col xl={6} md={8} className={`p-lg-0 content-responsive center-side ${isActive ? "active" : ""}`}>
           <section>
             <Container>
               <TabDetails first={"following"} main />
             </Container>
           </section>
         </Col>
-        <Col xl={3} className="d-xl-block d-none">
+        <Col xl={3} className="d-xl-block d-none page-sides">
           <AccordianData following />
         </Col>
       </Row>
