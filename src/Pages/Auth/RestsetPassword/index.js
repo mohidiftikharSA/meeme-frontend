@@ -76,7 +76,7 @@
 // export default Restsetpassword;
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import classes from '../index.module.scss';
+import classes from "../index.module.scss";
 import Logo from "Components/Logo";
 import AuthHeader from "Components/AuthHeader";
 import ResetPasswordModal from "Components/ResetPasswordModal";
@@ -87,86 +87,95 @@ import { Formik } from "formik"; // Import Formik
 import * as Yup from "yup"; // Import Yup
 
 const ResetPassword = () => {
-    const [smShow, setSmShow] = useState(false);
-    const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const location = useLocation();
+  const [smShow, setSmShow] = useState(false);
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const location = useLocation();
 
-    useEffect(() => {
-        const searchParams = new URLSearchParams(location.search);
-        const email = searchParams.get("email");
-        console.log('email', email)
-        setEmail(email);
-    }, [location.search]);
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const email = searchParams.get("email");
+    console.log("email", email);
+    setEmail(email);
+  }, [location.search]);
 
-    const validationSchema = Yup.object().shape({
-        password: Yup.string()
-            .required("Password is required"),
-        passwordConfirmation: Yup.string()
-            .oneOf([Yup.ref('password'), null], 'Passwords must match')
-            .required("Password confirmation is required")
-    });
+  const validationSchema = Yup.object().shape({
+    password: Yup.string().required("Password is required"),
+    passwordConfirmation: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Password confirmation is required"),
+  });
 
-    const resetPassword = async (values) => {
-        try {
-            const res = await AuthAPIs.resetPassword(email, values.password, values.passwordConfirmation);
-            if (res) {
-                navigate(`/login`);
-                setSmShow(false);
-                toast.success("Password Updated Successfully", {
-                    position: "top-right",
-                    autoClose: 2000,
-                });
-            }
-        } catch (error) {
-            console.error("Error while verify:", error);
-        }
-    };
+  const resetPassword = async (values) => {
+    try {
+      const res = await AuthAPIs.resetPassword(
+        email,
+        values.password,
+        values.passwordConfirmation
+      );
+      if (res) {
+        navigate(`/login`);
+        setSmShow(false);
+        toast.success("Password Updated Successfully", {
+          position: "top-right",
+          autoClose: 2000,
+        });
+      }
+    } catch (error) {
+      console.error("Error while verify:", error);
+    }
+  };
 
-    return (
-        <>
-            <Logo start />
-            <div className={classes.loginFrom} style={{ minWidth: '350px' }}>
-                <AuthHeader title={'Reset Password'} description={'Enter your new password below'} />
-                <Formik
-                    initialValues={{
-                        password: "",
-                        passwordConfirmation: ""
-                    }}
-                    validationSchema={validationSchema}
-                    onSubmit={(values) => resetPassword(values)}
-                >
-                    {({ handleSubmit, handleChange, values, errors }) => (
-                        <Form className="formHolder" noValidate onSubmit={handleSubmit}>
-                            <Form.Control
-                                type="password"
-                                placeholder="New Password"
-                                name="password"
-                                value={values.password}
-                                onChange={handleChange}
-                                isInvalid={!!errors.password}
-                            />
-                            <Form.Control
-                                type="password"
-                                placeholder="Re-type new password"
-                                name="passwordConfirmation"
-                                value={values.passwordConfirmation}
-                                onChange={handleChange}
-                                isInvalid={!!errors.passwordConfirmation}
-                            />
-                            <Button className="btn-primary w-100 p-2 h-auto" type="submit">
-                                Create New Password
-                            </Button>
-                        </Form>
-                    )}
-                </Formik>
-            </div>
-            <ResetPasswordModal
-                show={smShow}
-                onHide={() => setSmShow(false)}
-            />
-        </>
-    );
+  return (
+    <>
+      <Logo start />
+      <div className={classes.loginFrom} style={{ minWidth: "350px" }}>
+        <AuthHeader
+          title={"Reset Password"}
+          description={"Enter your new password below"}
+        />
+        <Formik
+          initialValues={{
+            password: "",
+            passwordConfirmation: "",
+          }}
+          validationSchema={validationSchema}
+          onSubmit={(values) => resetPassword(values)}
+        >
+          {({ handleSubmit, handleChange, values, errors }) => (
+            <Form className="formHolder" noValidate onSubmit={handleSubmit}>
+              <Form.Control
+                type="password"
+                placeholder="New Password"
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                isInvalid={!!errors.password}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
+              <Form.Control
+                type="password"
+                placeholder="Re-type new password"
+                name="passwordConfirmation"
+                value={values.passwordConfirmation}
+                onChange={handleChange}
+                isInvalid={!!errors.passwordConfirmation}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.passwordConfirmation}
+              </Form.Control.Feedback>
+              <Button className="btn-primary w-100 p-2 h-auto" type="submit">
+                Create New Password
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+      <ResetPasswordModal show={smShow} onHide={() => setSmShow(false)} />
+    </>
+  );
 };
 
 export default ResetPassword;
