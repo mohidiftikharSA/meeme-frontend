@@ -1,5 +1,5 @@
 import Logo from "Components/Logo";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ButtonGroup, Container } from "react-bootstrap";
 import classes from "./index.module.scss";
 import Search from "Components/Search";
@@ -9,9 +9,26 @@ import coin from "../../Images/coin.png";
 import profile from "../../Images/profile1.png"
 
 const Header = () => {
+  const [scrolling, setScrolling] = useState(false);
+  
+  
+  const handleScroll = () => {
+    if (window.scrollY > 80) {
+      setScrolling(true);
+    } else {
+      setScrolling(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      // Clean up the event listener when the component unmounts
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
  
   return (
-    <header className={classes.header}>
+    <header  className={`${scrolling ? `${classes.headerFixed} ${classes.header}` : classes.header}`}>
       <Container fluid>
         <div className="d-flex align-items-center justify-content-between">
           <Logo link={'/home'} />

@@ -72,8 +72,7 @@ nav {
   @include media("<tablet-x") {
     border: none;
     width: 80px;
-    position: absolute;
-    background-color: #0b0213;
+    position: fixed;
     z-index: 99999;
     transition: all ease 0.3s;
   }
@@ -84,10 +83,16 @@ nav {
     height: 100%;
   }
   #aisde {
+    position: fixed;
+    top: 57px;
     min-height: 100vh;
     height: 100%;
+    width: 295px;
+    transition: all ease 0.3s;
+    overflow: auto;
     @include media("<tablet-x") {
       display: none;
+     
     }
     .asideHolder {
       height: 100%;
@@ -209,23 +214,23 @@ section {
     display: flex;
     align-items: center;
     font-size: 12px;
+  
     img {
       width: 16px;
       margin-right: 10px;
     }
-
+  
     i {
       margin-right: 10px;
       font-size: 18px;
     }
-
-    &.active,
-    &:hover {
+  
+    &.active, &:hover {
       color: #ffcd2f;
-      filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
-        saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
     }
   }
+  
   .nav-links {
     .nav-link {
       &:hover {
@@ -234,9 +239,34 @@ section {
     }
   }
   .home-icon{
-    color: #ffcd2f;
-    filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
-      saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+    font-size: 14px;
+    img{
+      color: #ffcd2f;
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
+        saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+        width: 17px;
+    }
+  }
+}
+main{
+  margin-top: 80px;
+  @include media("<tablet-x"){
+    margin-top: 56px;
+  }
+}
+
+.main-page{
+  .page-sides{
+    width: 310px;
+  }
+  .center-side{
+    width: calc(100% - 620px);
+    @include media("<widescreen"){
+      width: calc(100% - 310px);
+    }
+    @include media("<tablet-x"){
+      width: 100%;
+    }
   }
 }
 #profile-btn {
@@ -247,24 +277,30 @@ section {
 
 .accordion {
   font-family: $pt;
-
   .following {
     min-height: 100vh;
     height: 100%;
+    position: fixed;
+    width: 290px;
+    top: 50px;
     border-left: 1px solid rgba(255, 255, 255, 0.31);
     @include media("<widescreen") {
       min-height: auto;
       height: auto;
       border-left: unset;
+      position: relative;
+      top: 0;
+      width: 258px;
     }
     .all-text {
-      margin-right: 60px;
+      margin-right: 43px;
       margin-left: 20px;
       color: #f6cc38;
       font-weight: 700;
       font-size: 14px;
       @include media("<widescreen") {
         margin: 0 10px 0 0;
+        padding-right: 46px;
       }
     }
   }

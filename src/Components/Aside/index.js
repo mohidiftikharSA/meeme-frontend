@@ -46,7 +46,7 @@ export const Aside = ({isActive, toggleActive}) => {
         <BiMenuAltLeft size={'32px'} className={`${isActive? 'd-none' : "d-block"}`} />
         <RxCross1 size={'24px'} className={`${isActive? 'd-block' : "d-none"}`} />
       </span>
-      <aside className={`px-4 ${isActive ? "active" : ""}`} id={"aisde"}>
+      <aside className={`px-3 aisde-box ${isActive ? "active" : ""}`} id={"aisde"}>
         <div className="asideHolder d-flex flex-column justify-content-between pb-5">
           <div className="w-100">
             <Navigation />
@@ -59,9 +59,10 @@ export const Aside = ({isActive, toggleActive}) => {
               variant="success"
               id="dropdown-basic"
               style={{
-                fontSize: "14px",
+                fontSize: "15px",
                 display: "flex",
                 alignItems: "center",
+                margin:"25px 0",
               }}
             >
               <img src={setting} style={{ marginRight: "8px" }} alt="Profile" />{" "}
