@@ -1,22 +1,53 @@
 import Heading from "Components/Heading";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import classes from "./index.module.scss";
 import profile from "../../Images/profile1.png";
 import { AiFillCamera } from "react-icons/ai";
 
 const EditProfile = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const fileInputRef = useRef(null);
+
+  const handleImageUpload = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        setSelectedImage(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <Card className="profileCard">
-      <Heading title={"Edit Profile"}  linkPath={"home"}/>
+      <Heading title={"Edit Profile"} />
       <div className={classes.Profile}>
         <div className={classes.profilDetails}>
-          <div className={classes.Uploader}>
-            <img src={profile} alt="img" />
-            <span className={classes.uploadBtn}>
-              <AiFillCamera />
-            </span>
-          </div>
+        <div className={classes.Uploader}>
+      <img
+        src={selectedImage || profile}
+        alt="img"
+        onClick={handleImageUpload}
+      />
+      <span className={classes.uploadBtn} onClick={handleImageUpload}>
+        <AiFillCamera />
+        <input
+          type="file"
+          accept="image/*"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          style={{ display: 'none' }}
+        />
+      </span>
+    </div>
           <div className={classes.textBox}>
             <h5 className="mb-0">Mr Astronut</h5>
             <p>iammemer@memee.com</p>
