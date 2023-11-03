@@ -59,7 +59,8 @@ const EarnBadge = () => {
 
         <ul className={classes.listBadge}>
           <Slider {...settings}>
-            <li>
+            <p>No Badges Available</p>
+            {/* <li>
               <div className={classes.iconBox}>
                 <img src={badge} alt="img"></img>
               </div>
@@ -94,7 +95,7 @@ const EarnBadge = () => {
                 <img src={badge6} alt="img"></img>
               </div>
               <p>Top shot</p>
-            </li>
+            </li> */}
           </Slider>
         </ul>
       </div>

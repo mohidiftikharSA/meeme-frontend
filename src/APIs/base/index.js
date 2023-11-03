@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 // import { logout } from "Redux/reducers/authSlice";
-import store from "Redux/store";
+import { store } from "Redux/store";
 
 const clearLocalStorage = () => {
     localStorage.removeItem('userId')
@@ -66,7 +66,7 @@ const getMethod = async (endpoint, authentication = true, data) => {
 const postMethod = async (endpoint, authentication = true, data = null, multipart = false) => {
     let headers = {};
 
-    console.log('data',data)
+    console.log('data', data)
     if (authentication) {
         const { auth } = store.getState();
         var bearer_token = auth.accessToken || localStorage.getItem('accessToken');
@@ -76,7 +76,7 @@ const postMethod = async (endpoint, authentication = true, data = null, multipar
     if (multipart) {
         headers['content-type'] = 'multipart/form-data'
     }
-    console.log([endpoint,data,headers])
+    console.log([endpoint, data, headers])
     return await axios.post(endpoint, data, { headers })
         .then((res) => {
             console.log(res)

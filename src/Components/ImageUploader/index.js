@@ -43,7 +43,6 @@ const ImageUploader = () => {
   const openModalWithStory = (index) => {
     setSelectedStoryIndex(index);
     setModalShow(true);
-    console.log("fahad", selectedStoryIndex)
   };
 
   var settings = {

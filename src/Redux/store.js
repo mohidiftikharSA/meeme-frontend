@@ -1,15 +1,23 @@
-// store.js
+import createSagaMiddleware from '@redux-saga/core'
+import { configureStore } from '@reduxjs/toolkit'
+import storage from 'redux-persist/lib/storage';
+import { persistReducer, persistStore } from 'redux-persist';
+import { rootReducer } from './reducers/rootReducer';
 
-import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./reducers/authSlice"; // Import your auth slice reducer
 
-const rootReducer = {
-  auth: authReducer, 
-};
+const saga = createSagaMiddleware();
+const persistConfig = {
+    key: 'root',
+    storage,
+    blacklist: ['common'],
+}
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+export const store = configureStore({
+    reducer: persistedReducer,
+    saga,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false
+    }),
+})
 
-const store = configureStore({
-  reducer: rootReducer,
-  // Other store configuration options go here
-});
-
-export default store;
+export const persistor = persistStore(store);

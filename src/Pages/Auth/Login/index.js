@@ -33,18 +33,19 @@ const LoginFrom = () => {
       const res = await AuthAPIs.login(data.email, data.password);
       if (res) {
         setIsLoading(false);
+        localStorage.setItem("accessToken", res.data.token);
         dispatch(
           authSuccess({
             user: res.data?.user,
             accessToken: res.data.token,
           })
         );
+    
         navigate(`/home`);
         toast.success("Login Successfully", {
           position: "top-right",
           autoClose: 2000,
         });
-        localStorage.setItem("accessToken", res.data.token);
       }
     } catch (error) {
       setIsLoading(false);

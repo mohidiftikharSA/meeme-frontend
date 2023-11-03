@@ -5,11 +5,13 @@ export const GOOGLE_CLIENT_ID = "233269390911-a70r33iv5l4jqjl1ccbar8f5k2q0pniq.a
 
 export const ENDPOINT = {
     login: `${API_URL}/auth/login`,
-    signUp: `${API_URL}/users`,
-    forgetPassword: `${API_URL}/users/forgot_password`,
-    resetPassword: `${API_URL}/users/reset_user_password`,
-    authUser: `${API_URL}/users/open_current_user`,
-    verificationOtp: `${API_URL}/users/verify_otp`,
+    users:{
+        signUp: `${API_URL}/users`,
+        forgetPassword: `${API_URL}/users/forgot_password`,
+        resetPassword: `${API_URL}/users/reset_user_password`,
+        currentUserProfile: `${API_URL}/users/open_current_user`,
+        verificationOtp: `${API_URL}/users/verify_otp`,
+    },
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,
     stories: `${API_URL}/stories`,
@@ -17,4 +19,5 @@ export const ENDPOINT = {
     followingPosts: `${API_URL}/posts/following_posts`,
     comments: `${API_URL}/comments`,
     likePost: `${API_URL}/likes`,
+
 };

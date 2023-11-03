@@ -15,29 +15,29 @@ const socialLogin = async (provider, token) => {
     })
 }
 const signup = async (data) => {
-    return await API.postMethod(ENDPOINT.signUp, false,data)
+    return await API.postMethod(ENDPOINT.users.signUp, false,data)
 }
 const forgetPassword = async (email) => {
-    return await API.postMethod(ENDPOINT.forgetPassword, false, {
+    return await API.postMethod(ENDPOINT.users.forgetPassword, false, {
         email
     })
 }
 
 const verificationOtp = async (email,otp) => {
-    return await API.postMethod(ENDPOINT.verificationOtp, false, {
+    return await API.postMethod(ENDPOINT.users.verificationOtp, false, {
         email,
         otp,
     })
 }
 const resetPassword = async (email,password, password_confirmation) => {
-    return await API.postMethod(ENDPOINT.resetPassword, false, {
+    return await API.postMethod(ENDPOINT.users.resetPassword, false, {
         email,
         password,
         password_confirmation,
     })
 }
-const authUser = async (email,password, password_confirmation) => {
-    return await API.postMethod(ENDPOINT.authUser, true)
+const getCurrentUserProfile = async () => {
+    return await API.getMethod(ENDPOINT.users.currentUserProfile,true)
 }
 
 
@@ -49,5 +49,5 @@ export default {
     verificationOtp,
     socialLogin,
     resetPassword,
-    authUser
+    getCurrentUserProfile
 }

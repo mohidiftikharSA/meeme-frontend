@@ -266,6 +266,8 @@ const TabDetails = ({
   storeitems,
   profile,
   customizeProfile,
+  profilePosts
+
 }) => {
   const [recentPosts, setRecentPosts] = useState([]);
   const [trendingPosts, setTrendingPosts] = useState([]);
@@ -300,7 +302,6 @@ const TabDetails = ({
     getRecentPost();
     getTrendingPost();
   }, []);
-  console.log("fahad", trendingPosts);
   return (
     <>
       {main && (
@@ -564,10 +565,10 @@ const TabDetails = ({
       {profile && (
         <Tabs defaultActiveKey={"post"} className="mb-5 double">
           <Tab eventKey="post" title="Post">
-            <ProfilePost data={post} />
+            <ProfilePost data={profilePosts} />
           </Tab>
           <Tab eventKey="tournament" title="Tournament Entry">
-            <ProfilePost data={post} />
+            <ProfilePost data={[]} />
           </Tab>
         </Tabs>
       )}

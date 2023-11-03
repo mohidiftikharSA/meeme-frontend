@@ -1,26 +1,31 @@
 import React, { useState } from "react";
 import classes from "./index.module.scss";
-import profile from "../../Images/following2.png";
+import userimg from "../../Images/avatar.jpg";
 import { Button } from "react-bootstrap";
 import setting from "../../Images/SettingIcon.png";
 import edit from "../../Images/editUser.png";
 import { useNavigate } from "react-router-dom";
 import FollowModal from "Components/FollowModal";
-const Banner = ({other}) => {
+
+
+const Banner = ({other , profile}) => {
   const [show, setShow] = useState(false);
   const [follwers, setfollowrshow] = useState(false);
   const navigate = useNavigate();
+
   const nextPage = () => {
     navigate(`/CustomizeProfile`);
   };
+
+
   return (
     <>
     <div className={`banner pb-4 px-2 ${other&& `banner pb-4 otherBanner` }`}>
       <div className="sectionHolder" style={{ maxWidth: "350px" }}>
         <div className={classes.profileDetail}>
           <div className={classes.profileDetails}>
-            <img src={profile} alt="" />
-            <h4>Mr Astronut</h4>
+            <img src={profile?.user_image || userimg} alt="" />
+            <h4 >{profile?.user?.username}</h4>
           </div>
          {
           other && 
@@ -32,23 +37,22 @@ const Banner = ({other}) => {
           <ul className={classes.userInfoBox}>
             <li>
               <h5 >
-                37 <span>Posts</span>
+                {profile?.all_post_count} <span>Posts</span>
               </h5>
             </li>
             <li>
               <h5 onClick={() => {setfollowrshow(true)}}>
-                283k <span>Followers</span>
+                {profile?.followers} <span>Followers</span>
               </h5>
             </li>
             <li>
               <h5 onClick={() => {setShow(true)}}>
-                488 <span>Followings</span>
+                {profile?.following} <span>Followings</span>
               </h5>
             </li>
           </ul>
           <h6 className="mb-4 text-center">
-            “Like to travel and shoot cinematic videos and love to catpure
-            nature”
+            {profile?.user?.bio}
           </h6>
           <div className={classes.btnGroup}>
             <Button onClick={nextPage}>

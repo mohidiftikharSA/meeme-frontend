@@ -84,7 +84,7 @@ const routes = [
     },
     {
         path: "/profile-setting",
-        authenticated: false,
+        authenticated: true,
         layout: MainLayout,
         component: ProfileSetting,
     },
@@ -96,7 +96,7 @@ const routes = [
     },
     {
         path: "/profile",
-        authenticated: false,
+        authenticated: true,
         layout: MainLayout,
         component: ProfilePage,
     },

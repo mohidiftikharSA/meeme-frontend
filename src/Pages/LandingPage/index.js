@@ -2,11 +2,47 @@ import AccordianData from "Components/Accordian";
 import { Aside } from "Components/Aside";
 import ChatPopup from "Components/ChatPopup";
 import TabDetails from "Components/Tabs";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import AuthAPIs from "APIs/auth";
+import { useDispatch } from "react-redux";
+import { setAuthProfile } from "../../Redux/reducers/authSlice";
+
 
 const LandingPage = () => {
+
   const [isActive, setIsActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
+    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
+    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
+    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
+    getUserProfile();
+    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
+    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
+    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
+  },[])
+
+
+  const getUserProfile = async ()=>{
+    setIsLoading(true);
+    const userDetails = await AuthAPIs.getCurrentUserProfile();
+    if(userDetails){
+      setIsLoading(false);
+      console.log("All user Details on Profile Page  =", userDetails.data.profile);
+      // setProfile(userDetails.data.profile)
+      dispatch(
+        setAuthProfile({
+          profile : userDetails.data.profile
+        })
+      )
+      
+    }
+  }
+
 
   const toggleActive = () => {
     setIsActive(!isActive);

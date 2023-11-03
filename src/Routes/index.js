@@ -7,9 +7,9 @@ import { useSelector } from "react-redux";
 
 const ClientRoutes = () => {
   var { accessToken } = useSelector((state) => state.auth);
-  if (!accessToken) {
-    accessToken = localStorage.getItem("accessToken")
-  }
+  // if (!accessToken) {
+  //   accessToken = localStorage.getItem("accessToken")
+  // }
   console.log("Access Token of Routes  =", accessToken);
 
   const getElementControl = (path, authenticated, component, layout) => {
