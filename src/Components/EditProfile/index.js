@@ -1,5 +1,5 @@
 import Heading from "Components/Heading";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import classes from "./index.module.scss";
 import avatar from "../../Images/avatar.jpg";
@@ -8,23 +8,61 @@ import { useSelector } from "react-redux";
 
 
 const EditProfile = () => {
-
+  const [selectedImage, setSelectedImage] = useState(null);
+  const fileInputRef = useRef(null);
   const { profile } = useSelector((state) => state.auth);
 
+
+  const handleImageUpload = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        setSelectedImage(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
   const showUser = () => {
-    console.log("Users In Setting ==", profile);
+    console.log("Profile == ", profile);
   }
 
   return (
     <Card className="profileCard">
-      <Heading title={"Edit Profile"} linkPath={"home"} />
+      <Heading title={"Edit Profile"} />
       <div className={classes.Profile}>
         <div className={classes.profilDetails}>
           <div className={classes.Uploader}>
-            <img src={profile?.user_image || avatar} alt="img" />
-            {/* <span className={classes.uploadBtn}>
+            {!selectedImage && !profile?.user_image ?
+              <img
+                src={avatar}
+                alt={"img"}
+                onClick={handleImageUpload}
+              /> :
+              <img
+                src={selectedImage ? selectedImage : profile?.user_image}
+                alt={"img"}
+                onClick={handleImageUpload}
+              />
+            }
+
+            <span className={classes.uploadBtn} onClick={handleImageUpload}>
               <AiFillCamera />
-            </span> */}
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                style={{ display: 'none' }}
+              />
+            </span>
           </div>
           <div className={classes.textBox}>
             <h5 className="mb-0" onClick={showUser}>{profile?.user?.username || "name"}</h5>
