@@ -96,7 +96,7 @@ const SupportDetail = () => {
           style={{ display: 'none' }}
           id="imageInput"
         />
-        <label htmlFor="imageInput" className={classes.imageLabel}>
+        <label htmlFor="imageInput" className={classes.imageLabel} style={{ cursor: 'pointer' }}>
           <img src={pic} alt='icon' />
         </label>
         <p className={classes.text}>Attach images or proof</p>
