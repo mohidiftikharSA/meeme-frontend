@@ -56,6 +56,15 @@ const SupportDetail = () => {
         <p className={classes.text}>Attach images or proof</p>
         {selectedFileName && <p>{selectedFileName}</p>}
       </div>
+      <div className={'postionBottom'}>
+            <button
+              type="button"
+              class="w-100 p-2 mt-4 authButton btn btn-primary"
+              onClick={() => nextStep()}
+            >
+              Send New Ticket
+            </button>
+          </div>
     </>
   );
 }
