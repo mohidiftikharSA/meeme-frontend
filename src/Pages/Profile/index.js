@@ -30,7 +30,6 @@ const ProfilePage = () => {
     <>  {
       isLoading ? <Loader isLoading={isLoading} /> :
         <>
-        <div>Ssssss</div>
           <Banner profile={profile} />
           <section>
             <div className="sectionHolder py-md-5 py-3">

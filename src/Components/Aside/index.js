@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom"; // Import useHistory
 export const Aside = ({isActive, toggleActive}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
+  const { profile } = useSelector((state) => state.auth);
 
 
 

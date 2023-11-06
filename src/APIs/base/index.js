@@ -133,11 +133,36 @@ const patchMethod = async (endpoint, authentication = true, data = null, multipa
         })
 }
 
+//Patch Method
+const putMethod = async (endpoint, authentication = true, data = null, multipart = false) => {
+    let headers = {};
+    console.log("Data")
+    console.log(data);
+
+    if (authentication) {
+        const { auth } = store.getState();
+        var bearer_token = auth.accessToken || localStorage.getItem('accessToken');
+        headers["Authorization"] = `Bearer ${bearer_token}`
+    }
+    if (multipart) {
+        headers['content-type'] = 'multipart/form-data'
+    }
+    return await axios.put(endpoint, data, { headers })
+        .then((res) => {
+            console.log(res)
+            return res
+        })
+        .catch((error) => {
+            consoleErrorPerformRedirection(error)
+        })
+}
+
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getMethod,
     postMethod,
     deleteMethod,
-    patchMethod
+    patchMethod,
+    putMethod
 };

@@ -6,11 +6,14 @@ import Search from "Components/Search";
 import Navigation from "Components/Nav";
 import { Link } from "react-router-dom";
 import coin from "../../Images/coin.png";
-import profile from "../../Images/profile1.png"
+import avatar from "../../Images/avatar.jpg"
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
-  
+  const { profile } = useSelector((state) => state.auth);
+
   
   const handleScroll = () => {
     if (window.scrollY > 80) {
@@ -22,7 +25,6 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
-      // Clean up the event listener when the component unmounts
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -45,7 +47,7 @@ const Header = () => {
               </Link>
 
               <Link to={"/profile"} className={`btn ${classes.profileBtn}`}>
-                <img src={profile} alt="icon" />
+                <img src={profile?.user_image ||avatar} alt="icon" />
               </Link>
             </ButtonGroup>
           </div>

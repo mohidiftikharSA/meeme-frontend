@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { Link, useLocation } from 'react-router-dom';
 import coin from "../../Images/coin.png";
-import profile from "../../Images/profile1.png";
+import avatar from "../../Images/Buy.png";
 import home from "../../Images/Home (1).png";
 import explore from "../../Images/expore.png";
 import trophy from "../../Images/trophies.png";
@@ -74,11 +74,11 @@ function Navigation({ header, footer }) {
                   <span className={classes.icon}>
                     <i className="fas fa-plus"></i>
                   </span>
-                  <span className={classes.text}>7412</span>
+                  <span className={classes.text}>75678412</span>
                   <img src={coin} alt="icon" />
                 </Link>
                 <Link to={"/profile"} className={`btn ${classes.profileBtn}`}>
-                  <img src={profile} alt="icon" />
+                  <img src={avatar} alt="icon" />
                 </Link>
               </ButtonGroup>
             </Nav>

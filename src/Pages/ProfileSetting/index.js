@@ -26,6 +26,9 @@ import TutorialModals from "Components/Tutorial";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+
 const transactionData = [
   {
     coins: "50,000",
@@ -45,7 +48,8 @@ const ProfileSetting = () => {
 
   const textParam = new URLSearchParams(location.search).get("text");
 
-  
+  const { profile } = useSelector((state) => state.auth);
+
 
   const deleteClick = () => {
     setDeleteAccountShow(true);
@@ -99,7 +103,7 @@ const ProfileSetting = () => {
                         </span>
                         <div className="profileDetails">
                           <h6 className="mb-1">Account Details</h6>
-                          <p>John Smith</p>
+                          <p>{profile?.user?.username}</p>
                         </div>
                       </Nav.Link>
                     </Nav.Item>

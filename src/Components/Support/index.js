@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Heading from "Components/Heading";
 import icon from "../../Images/memee.png";
 import classes from "./index.module.scss";
 import { useWizard } from "react-use-wizard";
+import MessageAPIs from '../../APIs/messages';
+import Loader from "Components/Loader";
 
 const supportData = [
   {
@@ -20,13 +22,44 @@ const supportData = [
 ];
 const Support = () => {
   const { previousStep, nextStep } = useWizard();
+  const [isLoading, setIsLoading] = useState(false);
+  const [allChatsData , setAllChatsData ] = useState([]);
+
+  useEffect(() => {
+    getAllChats();
+  }, [])
+
+  const getAllChats = async () => {
+    setIsLoading(true);
+    const allChats = await MessageAPIs.getAllSupport();
+    if (allChats) {
+      setIsLoading(false);
+      console.log("Chats hase come - , ", allChats.data.messages);
+      const arr = [...allChats.data.messages];
+      const customeArr = [];
+
+      arr.forEach(element => {
+        console.log("Elements - ", element);
+        const data = {
+          title: element?.subject,
+          text: element?.body,
+          date: "April 25, 2022 | 9:00am",
+          order: element?.status,
+        }
+        customeArr.push(data);
+      });
+      setAllChatsData(customeArr);
+
+    }
+  }
 
   return (
     <>
+      <Loader isLoading={isLoading} />
       <div className={classes.supportSection}>
         <Heading title={"Support"} linkPath={"home"} />
         <ul className={classes.support}>
-          {supportData.map((item, ind) => {
+          {allChatsData.map((item, ind) => {
             return (
               <li>
                 <div className={classes.head}>

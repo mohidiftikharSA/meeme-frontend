@@ -16,14 +16,7 @@ const LandingPage = () => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
-    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
-    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
-    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
     getUserProfile();
-    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
-    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
-    console.log("@@@@@@@@ -Landing Page ------@@@@@@@@@");
   },[])
 
 
@@ -33,7 +26,6 @@ const LandingPage = () => {
     if(userDetails){
       setIsLoading(false);
       console.log("All user Details on Profile Page  =", userDetails.data.profile);
-      // setProfile(userDetails.data.profile)
       dispatch(
         setAuthProfile({
           profile : userDetails.data.profile
