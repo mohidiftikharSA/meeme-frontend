@@ -34,7 +34,7 @@ const consoleErrorPerformRedirection = (error) => {
 }
 
 //Get Method
-const getMethod = async (endpoint, authentication = true, data) => {
+const getMethod = async (endpoint, authentication = true, showError = true, data) => {
     let params = {};
     let bearer_token;
     if (authentication) {
@@ -57,13 +57,17 @@ const getMethod = async (endpoint, authentication = true, data) => {
         })
         .catch((error) => {
             console.log(endpoint, params);
-            consoleErrorPerformRedirection(error)
+            if (showError) {
+                consoleErrorPerformRedirection(error)
+            } else {
+                return
+            }
         })
 }
 
 
 // Post Method
-const postMethod = async (endpoint, authentication = true, data = null, multipart = false) => {
+const postMethod = async (endpoint, authentication = true, data = null, multipart = false, showError = true) => {
     let headers = {};
 
     console.log('data', data)
@@ -83,7 +87,11 @@ const postMethod = async (endpoint, authentication = true, data = null, multipar
             return res
         })
         .catch((error) => {
-            consoleErrorPerformRedirection(error)
+            if (showError) {
+                consoleErrorPerformRedirection(error)
+            } else {
+                return;
+            }
         })
 }
 

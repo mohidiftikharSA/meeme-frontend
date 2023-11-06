@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 import classes from "./index.module.scss";
-import profile from "../../Images/youuser.png";
+import avatar from "../../Images/youuser.png";
 import user from "../../Images/user5.png";
 import meme9 from "../../Images/meme9.png";
 import user2 from "../../Images/user6.png";
@@ -9,6 +9,8 @@ import meme2 from "../../Images/sotries1.png";
 import user3 from "../../Images/user7.png";
 import meme3 from "../../Images/stories2.png";
 import Slider from "react-slick";
+import { useSelector } from "react-redux";
+
 
 import { Col, Row } from "react-bootstrap";
 import UploadModal from "Components/UploadViewModal";
@@ -21,8 +23,10 @@ const otherUserStories = [
 const Stories = (data) => {
 
   const [modalShow, setModalShow] = React.useState(false);
-  const [selectedStoryIndex, setSelectedStoryIndex] = useState(null); // Track the selected index
-  const [storyData, setStoryData] = useState([]); // Track the selected index
+  const [selectedStoryIndex, setSelectedStoryIndex] = useState(null); 
+  const [storyData, setStoryData] = useState([]);
+  const { profile } = useSelector((state) => state.auth);
+
 
   const openModalWithStory = (index) => {
     setSelectedStoryIndex(index);
@@ -69,7 +73,7 @@ const Stories = (data) => {
             >
               <span>Add story</span>
               <div className={classes.prilfe}>
-                <img src={profile} alt="img" />
+                <img src={profile?.user_image || avatar} alt="img" />
                 <p>You</p>
               </div>
             </button>

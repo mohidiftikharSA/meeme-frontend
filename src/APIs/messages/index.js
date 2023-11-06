@@ -2,11 +2,11 @@ import API from 'APIs/base'
 import { ENDPOINT } from 'config/constants'
 
 const getAllSupport = async()=>{
-    return await API.getMethod(ENDPOINT.messages.allSupportChats,true);
+    return await API.getMethod(ENDPOINT.messages.allSupportChats,true, false);
 }
 
 const createTicket = async(data)=>{
-    return await API.postMethod(ENDPOINT.messages.createTicket,true, data, true);
+    return await API.postMethod(ENDPOINT.messages.createTicket,true, data, true, false);
 }
 
 
