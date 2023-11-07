@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import classes from "./index.module.scss";
 import userimg from "../../Images/avatar.jpg";
 import { Button } from "react-bootstrap";
@@ -14,7 +14,9 @@ const Banner = ({ other, profile }) => {
   const [show, setShow] = useState(false);
   const [follwers, setfollowrshow] = useState(false);
   const navigate = useNavigate();
-  const [isFollowing, setIsFollowing] = useState(false)
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [followingList , setFollowingList ] = useState([]);
+  const [followersList , setFollowersList ] = useState([]);
 
   const nextPage = () => {
     navigate(`/CustomizeProfile`);
@@ -26,7 +28,23 @@ const Banner = ({ other, profile }) => {
       setIsFollowing(true);
     }
 
+    getFollowersAndFollowings();
+
   }, [profile])
+
+  const getFollowersAndFollowings = useCallback( async()=>{
+    const followings = await FollowerAPIs.followingList();
+    if(followings){
+      setFollowingList(followings?.data?.followings);
+    }
+
+    const followers = await FollowerAPIs.followersList();
+    if(followers){
+      setFollowersList(followers?.data?.followers)
+    }
+
+  },[profile])
+
 
 
   const followOrUnfollow = async (action) => {
@@ -103,8 +121,8 @@ const Banner = ({ other, profile }) => {
         </div>
 
       </div>
-      <FollowModal following show={show} onHide={() => setShow(false)} />
-      <FollowModal followers show={follwers} onHide={() => setfollowrshow(false)} />
+      <FollowModal following show={show} followingList={followingList} onHide={() => setShow(false)} />
+      <FollowModal followers show={follwers} followersList={followersList} onHide={() => setfollowrshow(false)} />
     </>
   );
 };
