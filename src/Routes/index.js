@@ -10,7 +10,6 @@ const ClientRoutes = () => {
   // if (!accessToken) {
   //   accessToken = localStorage.getItem("accessToken")
   // }
-  console.log("Access Token of Routes  =", accessToken);
 
   const getElementControl = (path, authenticated, component, layout) => {
     if (!authenticated) {

@@ -101,7 +101,7 @@ const routes = [
         component: ProfilePage,
     },
     {
-        path: "/otherProfile",
+        path: "/otherProfile/:id",
         authenticated: false,
         layout: MainLayout,
         component: OtherProfile,
