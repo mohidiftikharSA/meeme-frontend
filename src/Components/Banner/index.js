@@ -116,7 +116,7 @@ const Banner = ({ other, profile }) => {
               <Button onClick={nextPage}>
                 <img src={edit} alt="img" />
               </Button>
-              <Button>
+              <Button onClick={()=>{navigate('/profile-setting?text=account')}}>
                 <img src={setting} alt="img" />
               </Button>
             </div>
