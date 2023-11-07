@@ -12,11 +12,11 @@
     padding: 8px 0;
     width: calc(100% - 130px);
     margin-left: 350px;
-    @include media("<widescreen"){
+    @include media("<widescreen") {
       margin-left: 150px;
     }
-    
-    @include media("<xs-phone"){
+
+    @include media("<xs-phone") {
       margin-left: 25px;
       width: 100%;
     }
@@ -30,9 +30,9 @@
     position: relative;
     display: flex;
     align-items: center;
-    &:hover{
-        color: #fff;
-        opacity: 0.9;
+    &:hover {
+      color: #fff;
+      opacity: 0.9;
     }
     .icon {
       background-color: #fff;
@@ -43,9 +43,8 @@
       line-height: 25px;
       font-size: 12px;
     }
-    span{
-        margin-right: 5px;
-        
+    span {
+      margin-right: 5px;
     }
 
     img {
@@ -53,16 +52,15 @@
     }
   }
 
-  .profileBtn{
+  .profileBtn {
     height: auto;
     width: 100px;
-    img{
-        border: 3px solid #fff;
- width: 45px;
- height: 45px;
-        display: block;
-        border-radius: 50%;
+    img {
+      border: 3px solid #fff;
+      width: 45px;
+      height: 45px;
+      display: block;
+      border-radius: 50%;
     }
   }
-  
 }
