@@ -9,7 +9,7 @@ import avatar from '../../Images/avatar.jpg'
 const ContactList = ({ data, contact, link, follower, following }) => {
     const navigate = useNavigate();
     const page = (id) => {
-        navigate(`/otherPrfolile/${id }`);
+        navigate(`/otherProfile/${id}`);
     };
 
     return (
@@ -19,7 +19,7 @@ const ContactList = ({ data, contact, link, follower, following }) => {
                     data.map((item, ind) => {
                         console.log("Data Mar of LOst  = ", item);
                         return (
-                            <li onClick={page} key={ind}>
+                            <li onClick={() => { page(item?.following_user_detail?.id || item?.follower_user_detail?.id) }} key={ind}>
                                 <div className={classes.profile}>
                                     {following ? <img src={item?.following_user_detail?.profile_image || avatar} alt='icon' />
                                         :

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import FollowModal from "Components/FollowModal";
 import FollowerAPIs from '../../APIs/followers';
 import { toast } from "react-toastify";
+import Loader from "Components/Loader";
 
 
 const Banner = ({ other, profile }) => {
@@ -15,8 +16,9 @@ const Banner = ({ other, profile }) => {
   const [follwers, setfollowrshow] = useState(false);
   const navigate = useNavigate();
   const [isFollowing, setIsFollowing] = useState(false);
-  const [followingList , setFollowingList ] = useState([]);
-  const [followersList , setFollowersList ] = useState([]);
+  const [followingList, setFollowingList] = useState([]);
+  const [followersList, setFollowersList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const nextPage = () => {
     navigate(`/CustomizeProfile`);
@@ -32,23 +34,23 @@ const Banner = ({ other, profile }) => {
 
   }, [profile])
 
-  const getFollowersAndFollowings = useCallback( async()=>{
+  const getFollowersAndFollowings = useCallback(async () => {
     const followings = await FollowerAPIs.followingList();
-    if(followings){
+    if (followings) {
       setFollowingList(followings?.data?.followings);
     }
 
     const followers = await FollowerAPIs.followersList();
-    if(followers){
+    if (followers) {
       setFollowersList(followers?.data?.followers)
     }
 
-  },[profile])
+  }, [profile])
 
 
 
   const followOrUnfollow = async (action) => {
-    console.log("Follow Profile = ", profile);
+    setIsLoading(true);
     if (action === 'follow') {
       const follow = await FollowerAPIs.sendFollowRequest({ follower_user_id: profile?.user?.id });
       if (follow) {
@@ -70,11 +72,12 @@ const Banner = ({ other, profile }) => {
         });
       }
     }
-
+    setIsLoading(false);
   }
 
   return (
     <>
+      <Loader isLoading={isLoading} />
       <div className={`banner pb-4 px-2 ${other && `banner pb-4 otherBanner`}`}>
         <div className="sectionHolder" style={{ maxWidth: "350px" }}>
           <div className={classes.profileDetail}>
@@ -96,12 +99,12 @@ const Banner = ({ other, profile }) => {
                 </h5>
               </li>
               <li>
-                <h5 onClick={() => { setfollowrshow(true) }}>
+                <h5 onClick={() => { setfollowrshow(true && !other) }}>
                   {profile?.followers} <span>Followers</span>
                 </h5>
               </li>
               <li>
-                <h5 onClick={() => { setShow(true) }}>
+                <h5 onClick={() => { setShow(true && !other) }}>
                   {profile?.following} <span>Followings</span>
                 </h5>
               </li>
