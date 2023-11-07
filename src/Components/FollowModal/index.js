@@ -46,7 +46,7 @@ const FollowModal = ({followingList , followersList ,...props}) => {
       className={classes.modal}
       {...props}
       size="sm"
-      aria-labelledby="contained-modal-title-vcenter"
+      aria-labelledby="contained-modal-title-vcenter "onClick={props.onHide}
       centered
     >
      {
