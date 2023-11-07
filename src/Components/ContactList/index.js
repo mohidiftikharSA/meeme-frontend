@@ -2,37 +2,45 @@ import React from 'react'
 import classes from "./index.module.scss"
 import Search from 'Components/Search'
 import { useNavigate } from 'react-router-dom'
+import avatar from '../../Images/avatar.jpg'
 
 
 
-const ContactList = ({data,contact,link}) => {
+const ContactList = ({ data, contact, link, follower, following }) => {
     const navigate = useNavigate();
-    const page = () => {
-      navigate(`/otherPrfolile`);
+    const page = (id) => {
+        navigate(`/otherPrfolile/${id }`);
     };
 
     return (
-          <>
-            <ul className={`${contact?`mb-4 ${classes.prizeList}` : `${classes.prizeList} ${classes.modalList}` }`}>
+        <>
+            <ul className={`${contact ? `mb-4 ${classes.prizeList}` : `${classes.prizeList} ${classes.modalList}`}`}>
                 {
                     data.map((item, ind) => {
+                        console.log("Data Mar of LOst  = ", item);
                         return (
                             <li onClick={page} key={ind}>
                                 <div className={classes.profile}>
-                                    <img src={item.img} alt='icon' />
-                                    {item.status && <span className={`status ${classes.status}`}></span>}
-                                </div> 
-                                <p className='mb-0'>{item.name}</p>
+                                    {following ? <img src={item?.following_user_detail?.profile_image || avatar} alt='icon' />
+                                        :
+                                        <img src={item?.follower_user_detail?.profile_image || avatar} alt='icon' />
+                                    }
+                                    {item.status === true && <span className={`status ${classes.status}`}></span>}
+                                </div>
+                                {following ? <p className='mb-0'>{item?.following_user_detail?.username}</p>
+                                    :
+                                    <p className='mb-0'>{item?.follower_user_detail?.username}</p>
+                                }
                             </li>
                         )
                     })
                 }
             </ul>
             {
-                contact?<Search text={"Search"} contactList />:""
+                contact ? <Search text={"Search"} contactList /> : ""
             }
-          </>
-        
+        </>
+
     )
 }
 
