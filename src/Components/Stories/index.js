@@ -35,9 +35,9 @@ const Stories = (data) => {
   useEffect(() => {
     setStoryData(data.data)
   }, [data]);
-  useEffect(() => {
-    console.log('storyData',storyData);
-  }, [storyData]);
+  // useEffect(() => {
+
+  // }, [storyData]);
   var settings = {
     dots: false,
     arrows: false,

@@ -42,7 +42,6 @@ const Posts = ({ postData, comment, avatar }) => {
     try {
       const res = await postAPIs.likePost({ post_id });
       if (res.status === 200) {
-        console.log('data', res.data)
         const updatedItems = postData.map(item => {
           if (item.post.id === post_id) {
             return { ...item, liked_by_current_user: res.data.type_data.is_liked, post_likes: res.data.likes_count };
@@ -71,7 +70,7 @@ const Posts = ({ postData, comment, avatar }) => {
 
   const redirectToOtherProfile = (data) => {
     console.log("On CLick Data = ", data);
-    // navigate("/otherProfile")
+    navigate(`/otherProfile/${data?.post?.user_id}`)
   }
 
   return (

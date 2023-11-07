@@ -45,6 +45,10 @@ const updateUser = async (data) => {
 
 }
 
+const otherUserProfile = async(id)=>{
+    return await API.getMethod(`${ENDPOINT.users.otherUserProfile}?id=${id}`,true);
+}
+
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -55,5 +59,6 @@ export default {
     socialLogin,
     resetPassword,
     getCurrentUserProfile,
-    updateUser
+    updateUser,
+    otherUserProfile
 }
