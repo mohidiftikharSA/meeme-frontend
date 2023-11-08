@@ -20,7 +20,7 @@ const AccordianBadge = ({data,expolore}) => {
               bg="secondary"
               className={`${activeStates[index] ? "active p-3" : "p-3"} ${expolore? `explore-badge` : ""}`}
               onClick={() => toggleClass(index)}>
-              {item}
+              {item || item.title}
             </Badge>
           </h5>
         ))}

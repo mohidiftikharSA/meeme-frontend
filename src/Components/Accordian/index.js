@@ -8,21 +8,21 @@ import AccordionBody from "react-bootstrap/esm/AccordionBody";
 import user from "../../Images/user44.png"
 
 const data = [
-  {
-    title: "Funny",
-  },
-  {
-    title: "CanadaPolitics",
-  },
-  {
-    title: "TrumpSeason",
-  },
-  {
-    title: "XaviarQuotes",
-  },
-  {
-    title: "SmilyCats",
-  },
+  
+     "Funny",
+  
+  
+     "CanadaPolitics",
+  
+  
+     "TrumpSeason",
+  
+  
+     "XaviarQuotes",
+  
+  
+     "SmilyCats",
+  
 ];
 
 const contactData = [

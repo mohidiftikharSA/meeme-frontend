@@ -17,7 +17,6 @@ const ContactList = ({ data, contact, link, follower, following }) => {
             <ul className={`${contact ? `mb-4 ${classes.prizeList}` : `${classes.prizeList} ${classes.modalList}`}`}>
                 {
                     data.map((item, ind) => {
-                        console.log("Data Mar of LOst  = ", item);
                         return (
                             <li onClick={() => { page(item?.following_user_detail?.id || item?.follower_user_detail?.id) }} key={ind}>
                                 <div className={classes.profile}>
