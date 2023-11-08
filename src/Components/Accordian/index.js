@@ -8,19 +8,10 @@ import AccordionBody from "react-bootstrap/esm/AccordionBody";
 import user from "../../Images/user44.png"
 
 const data = [
-  
      "Funny",
-  
-  
      "CanadaPolitics",
-  
-  
      "TrumpSeason",
-  
-  
      "XaviarQuotes",
-  
-  
      "SmilyCats",
   
 ];
@@ -101,7 +92,7 @@ const AccordianData = ({ following = "" , responsive}) => {
             <span className="all-text" >All</span>Followings
             </Accordion.Header>
            <AccordionBody>
-           <ContactList contact data={contactData}  /> 
+           <ContactList contact following data={contactData}  /> 
            </AccordionBody>
           </Accordion.Item>
         </div>

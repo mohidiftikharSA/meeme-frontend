@@ -109,7 +109,14 @@ const Posts = ({ postData, comment, avatar }) => {
                 {item.post.tag_list && <p className={classes.tags}>{item.post.tag_list}</p>}
               </div>
               <div className={`${classes.imgBox} memeImg mb-3`}>
-                <img src={item.compress_image} alt="img" />
+                {item.post_type === "image/jpeg" ? (
+                  <img src={item.compress_image} alt="img" />
+                ) : (
+                  <video width="100%" height="auto" controls>
+                    <source src={item.post_image} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                )}
               </div>
 
               <ul className={classes.postFooter}>

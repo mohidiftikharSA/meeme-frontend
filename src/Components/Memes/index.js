@@ -18,17 +18,14 @@ const MemesDetails = ({ newMemesData, explore,avatar }) => {
         console.log('length',newMemesData.length)
         setPostData(newMemesData)
     }, [newMemesData]);
-    // useEffect(() => {
-    //     console.log(' postData length',postData.length)
-    // }, [postData]);
+
 
   const closeModal = () => {
-    //ssetSelectedPostId(null);
     setIsModalOpen(false);
   };
-  // Function to determine if the item should be displayed as an image
+
+
   function isImage(item) {
-    // Check if the 'post_type' field is defined and indicates that the item is an image
     return item.post_type && item.post_type.startsWith("image/");
   }
 
@@ -50,7 +47,7 @@ const MemesDetails = ({ newMemesData, explore,avatar }) => {
                     src={item.compress_image}
                     alt="img"
                     onError={(e) => {
-                        e.target.src = defaultImage; // Set a placeholder image on error
+                        e.target.src = defaultImage;
                     }}
                 />
 
