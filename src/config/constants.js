@@ -27,6 +27,10 @@ export const ENDPOINT = {
         followers : `${API_URL}/followers?page=1&key=followers`
     },
 
+    post: {
+        getTags : `${API_URL}/posts/tags`
+    },
+    
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,
     stories: `${API_URL}/stories`,

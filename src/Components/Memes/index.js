@@ -62,7 +62,7 @@ const MemesDetails = ({ newMemesData, explore,avatar }) => {
             )}
             <div className={classes.profileDetail}>
               <img src={item.user_image || dummyUser} alt="icon" />
-              <span>{item.username}</span>x
+              <span>{item.username}</span>
             </div>
           </div>
         ))}
