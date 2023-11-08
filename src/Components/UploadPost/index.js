@@ -14,7 +14,7 @@ const UploadPost = () => {
         <Form.Group className={classes.formGroup}>
             <Form.Control placeholder='Post something'/>
            <div className='dflex align-items-center'>
-           <img src={profile?.user_image || user} alt='img'/>
+           <img className={classes.profile} src={profile?.user_image || user} alt='img'/>
            <img src={attachment} alt='img' className={classes.attachmentes}/>
            </div>
 
