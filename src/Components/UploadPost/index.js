@@ -13,8 +13,8 @@ const UploadPost = () => {
     <div className={classes.postWrapper}>
         <Form.Group className={classes.formGroup}>
             <Form.Control placeholder='Post something'/>
-           <div className='dflex align-items-center'>
-           <img src={profile?.user_image || user} alt='img'/>
+           <div className='d-flex align-items-center'>
+           <img src={profile?.user_image || user} alt='img' style={{objectFit:"cover"}}/>
            <img src={attachment} alt='img' className={classes.attachmentes}/>
            </div>
 

@@ -1,91 +1,111 @@
-.commentList{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-height: 325px;
-    overflow: auto;
-    margin-bottom: 18px;
-    li{
-        margin-bottom: 8px;
-        .flexBox{
-            display: flex;
-        align-items: flex-start;
-        line-break: anywhere;
-        }
-        
-        .commentBox{
-            border-radius: 15px;
-            background: #201E23;
-            padding: 14px;
-            font-size: 12px;
-            margin-bottom: 5px;
-            p{
-                margin: 0;
+.commentList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 325px;
+  overflow: auto;
+  margin-bottom: 18px;
+  li {
+    margin-bottom: 8px;
+    .flexBox {
+      display: flex;
+      align-items: flex-start;
+      line-break: anywhere;
+      &.replay {
+        padding: 0 50px;
+       margin-top: 10px;
+        .userImg{
+            margin-right: 5px;
+            img{
+                width: 30px;
+                height: 30px;
             }
         }
-        .bottomBox{
-            padding-left: 50px;
-            font-size: 13px;
-            span{
-                margin: 0 10px;
-                cursor: pointer;
-                &:first-child{
-                    cursor: unset;
-                    &:hover{
-                        color: unset;
-                    }
-                }
-                &:nth-child(2){
-                    &:hover{
-                        color: rgb(84, 179, 251);
-                    }
-                }
-                &:hover{
-                    color: #FFCD2F;
-                }
-            
-            }
-        }
+      }
     }
+
+    .commentBox {
+      border-radius: 15px;
+      background: #201e23;
+      padding: 14px;
+      font-size: 12px;
+      margin-bottom: 5px;
+      &.replayBox {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 8px 14px;
+        h6 {
+          margin-right: 10px;
+        }
+      }
+      p {
+        margin: 0;
+      }
+    }
+    .bottomBox {
+      padding-left: 50px;
+      font-size: 13px;
+      span {
+        margin: 0 10px;
+        cursor: pointer;
+        &:first-child {
+          cursor: unset;
+          &:hover {
+            color: unset;
+          }
+        }
+        &:nth-child(2) {
+          &:hover {
+            color: rgb(84, 179, 251);
+          }
+        }
+        &:hover {
+          color: #ffcd2f;
+        }
+      }
+    }
+  }
 }
 
-.postComment{
-    display: flex;
-    form{
-        flex: 1 1 auto;
-        input{
-            border-radius: 70px;
-            background: #2D2933;
-            border: none;
-            padding: 10px 60px 10px 10px;
-            width: 100%;
-            color: #fff;
-            &:focus, &:focus-visible{
-                background-color: #201E23;
-                outline: none;
-                color: #fff;
-            }
-        }
+.postComment {
+  display: flex;
+  form {
+    flex: 1 1 auto;
+    input {
+      border-radius: 70px;
+      background: #2d2933;
+      border: none;
+      padding: 10px 60px 10px 10px;
+      width: 100%;
+      color: #fff;
+      &:focus,
+      &:focus-visible {
+        background-color: #201e23;
+        outline: none;
+        color: #fff;
+      }
     }
-   
-    button{
-        position: absolute;
-        top: 50%;
-        right: 12px;
-        background: transparent;
-       color: #FFCD2F;
-        border: none;
-        transform: translateY(-50%);
-    }
+  }
+
+  button {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    background: transparent;
+    color: #ffcd2f;
+    border: none;
+    transform: translateY(-50%);
+  }
 }
-.userImg{
-    margin-right: 12px;
-    img{
-        display: block;
-        width: 38px;
-        height: 38px;
-        object-fit: contain;
-        border-radius: 50%;
-        border: 2px solid #fff;
-    }
+.userImg {
+  margin-right: 12px;
+  img {
+    display: block;
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
 }

@@ -58,7 +58,7 @@ const ViewPost = (props) => {
       className={"comment-modal"}
       show={show}
       onHide={onHide}
-      size="lg"
+      size="xl"
       aria-labelledby="contained-modal-title-vcenter"
       centered
       backdrop
