@@ -102,6 +102,7 @@ function Navigation({ header, footer }) {
             <img src={shop} alt="icon" />
             Store
           </Nav.Link>
+          
         </Nav>
       )}
     </Navbar>
