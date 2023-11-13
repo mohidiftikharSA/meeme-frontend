@@ -3,7 +3,7 @@ import classes from "./index.module.scss";
 import { Dropdown } from "react-bootstrap";
 import like from "../../Images/like.svg";
 import message from "../../Images/message.svg";
-import send from "../../Images/sendBtn.svg";
+import send from "../../Images/sendbtn.png";
 import ViewPost from "Components/ViewPost";
 import { formatNumber } from "../../Helper/Converters";
 import postAPIs from "../../APIs/dashboard/home";

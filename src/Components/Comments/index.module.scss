@@ -98,14 +98,27 @@
     transform: translateY(-50%);
   }
 }
-.userImg {
-  margin-right: 12px;
-  img {
-    display: block;
-    width: 38px;
-    height: 38px;
-    object-fit: contain;
-    border-radius: 50%;
-    border: 2px solid #fff;
-  }
+
+.userImg{
+    margin-right: 12px;
+    img{
+        display: block;
+        width: 38px;
+        height: 38px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #fff;
+    }
 }
+
+.replyBox{
+    display: flex;
+    justify-content: end;
+    margin: 10px;
+    .commentBox{
+        width: 145px;
+        padding: 18px !important;
+    }
+}
+
+

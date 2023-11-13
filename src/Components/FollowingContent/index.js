@@ -16,7 +16,7 @@ const postData = [
     name: "Jullian Fortan",
     location: "Madrid, Spain",
     postTitle: "New Popular meme.",
-    tags: "#memes #bestmeme #funnymemes #dankmemes",
+    tags: "#memes #bestmeme #funnymemes #dankmemes" ,
     post: post1,
     comments: [
       {
@@ -33,6 +33,7 @@ const postData = [
       }
     ]
   },
+  
   {
     id:"2",
     user: user2,
@@ -54,7 +55,7 @@ const postData = [
 
     ]
 
-  }
+  },
 ]
 
 const FollowingContent = (avatar) => {

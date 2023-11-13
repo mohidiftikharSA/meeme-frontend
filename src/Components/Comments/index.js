@@ -76,23 +76,6 @@ const Comments = ({ data, avatar, postComment, postId, user , setChildCommentCre
                   <span>Like</span>
                   <span onClick={() => { toggleReplayHolderVisibility(item?.id) }}>Reply</span>
                 </div>
-
-                {/* Child Comments 
-              {item?.child_comment?.map((child)=>{
-
-              })} */}
-                {/* <div className={`${classes.flexBox} ${classes.replay}`}>
-                  <div className={classes.userImg}>
-                    <img
-                      src={userimg || avatar.avatar || user2}
-                      alt="Profile"
-                    />
-                  </div>
-                  <div className={`${classes.commentBox} ${classes.replayBox}`}>
-                    <h6 className="mb-0">Julia</h6>
-                    <p>Hahaha.... You nailed it!</p>
-                  </div>
-                </div> */}
                 <div
                   className={classes.viewmore}
                   onClick={toggleReplayVisibility}
@@ -179,3 +162,12 @@ const Comments = ({ data, avatar, postComment, postId, user , setChildCommentCre
 };
 
 export default Comments;
+
+
+
+
+
+
+
+
+
