@@ -11,6 +11,7 @@ import postAPIs from "../../APIs/dashboard/home";
 // import avatar from images
 import user2 from "../../Images/avatar.jpg";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Posts = ({ postData, comment, avatar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,6 +58,28 @@ const Posts = ({ postData, comment, avatar }) => {
     }
 
   };
+
+  const copyToClipboard = (linkToCopy) => {
+
+    navigator.clipboard.writeText(linkToCopy)
+      .then(() => {
+        console.log('Link copied to clipboard:', linkToCopy);
+        toast.success('Link Copied Successfully', {
+          position: "top-right",
+          autoClose: 2000,
+        });
+
+      })
+      .catch(err => {
+        console.error('Unable to copy link to clipboard', err);
+        toast.error('Failed Link Copy', {
+          position: "top-right",
+          autoClose: 2000,
+        });
+      });
+  }
+
+
   const toggleActive = (itemId) => {
     const updatedItems = postData.map(item => {
       if (item.post.id === itemId) {
@@ -72,6 +95,29 @@ const Posts = ({ postData, comment, avatar }) => {
     console.log("On CLick Data = ", data);
     navigate(`/otherProfile/${data?.post?.user_id}`)
   }
+
+  const downloadMedia = (mediaUrl, id) => {
+    console.log("media url === ", mediaUrl);
+
+    fetch(mediaUrl, {
+      method: "GET",
+      headers: {}
+    })
+      .then(response => {
+        response.arrayBuffer().then(function (buffer) {
+          const url = window.URL.createObjectURL(new Blob([buffer]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", `image${id}.png`);
+          document.body.appendChild(link);
+          link.click();
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
 
   return (
     <>
@@ -100,7 +146,7 @@ const Posts = ({ postData, comment, avatar }) => {
                   <Dropdown.Menu>
                     <Dropdown.Item href="#/action-1"><i className="far fa-flag"></i> Flag Post</Dropdown.Item>
                     <Dropdown.Item href="#/action-2"><i className="fas fa-exclamation"></i>Report</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3"><i className="fas fa-download"></i>Download</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3" onClick={() => { downloadMedia(item.compress_image, item?.id) }}><i className="fas fa-download"></i>Download</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
@@ -136,8 +182,8 @@ const Posts = ({ postData, comment, avatar }) => {
                 }
 
                 <li>
-                  <img src={send} alt="img" />
-                  <span>{formatNumber(item.post.share_count)}</span>
+                  <img onClick={() => { copyToClipboard(item.compress_image) }} src={send} alt="img" />
+                  {/* <span>{formatNumber(item.post.share_count)}</span> */}
                 </li>
               </ul>
             </div>
