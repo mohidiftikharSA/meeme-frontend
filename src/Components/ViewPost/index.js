@@ -3,7 +3,7 @@ import Posts from 'Components/Post';
 import React, {useEffect, useState} from 'react';
 import { Modal, Row, Col } from 'react-bootstrap';
 import postAPIs from "../../APIs/dashboard/home";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // change code
 import user2 from "../../Images/avatar.jpg";
@@ -12,6 +12,7 @@ import user2 from "../../Images/avatar.jpg";
 const ViewPost = (props) => {
   const { selectedPostId, onHide, show, postData, avatar } = props;
   const [commentsData, setCommentsData] = useState([]);
+  const [childCommentCreated , setChildCommentCreated ] = useState();
   // Find the selected post by postId
   const selectedPost = postData.find(post => post.post.id === selectedPostId);
   const { user } = useSelector((state) => state.auth);
@@ -52,7 +53,7 @@ const ViewPost = (props) => {
     if (selectedPostId){
       getComments(selectedPostId);
     }
-  }, [selectedPostId]);
+  }, [selectedPostId, childCommentCreated]);
   return (
     <Modal
       className={"comment-modal"}
@@ -70,7 +71,7 @@ const ViewPost = (props) => {
           <Posts postData={[selectedPost]} avatar={user2} comment/>
           </Col>
           <Col lg={5} className='position-relative'>
-            <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId} user={user}/>
+            <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId} user={user} setChildCommentCreated={setChildCommentCreated}/>
           </Col>
         </Row>
       </Modal.Body>

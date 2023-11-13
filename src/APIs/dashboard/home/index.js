@@ -18,18 +18,23 @@ const getFollowingPosts = async () => {
 }
 
 const getCommentsByPost = async (id) => {
-    const url = ENDPOINT.comments+ '?post_id='+id;
+    const url = ENDPOINT.comments + '?post_id=' + id;
     return await API.getMethod(url, true)
 }
 
 const PostComment = async (data) => {
-    return await API.postMethod(ENDPOINT.comments, true,data)
-}
-const likePost = async (data) => {
-    return await API.postMethod(ENDPOINT.likePost, true,data)
+    return await API.postMethod(ENDPOINT.comments, true, data)
 }
 
-const getTags = async()=>{
+const createChildComment = async (data) => {
+    return await API.postMethod(ENDPOINT.comment.create_child_comment, true, data, true);
+}
+
+const likePost = async (data) => {
+    return await API.postMethod(ENDPOINT.likePost, true, data)
+}
+
+const getTags = async () => {
     return await API.getMethod(ENDPOINT.post.getTags, true);
 }
 
@@ -42,5 +47,6 @@ export default {
     getCommentsByPost,
     PostComment,
     likePost,
-    getTags
+    getTags,
+    createChildComment
 }

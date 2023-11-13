@@ -31,12 +31,15 @@ export const ENDPOINT = {
         getTags : `${API_URL}/posts/tags`
     },
     
+    comment : {
+        create_child_comment : `${API_URL}/comments/create_child_comment`
+    },
+    comments: `${API_URL}/comments`,
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,
     stories: `${API_URL}/stories`,
     socialLogin: `${API_URL}/social/social_login`,
     followingPosts: `${API_URL}/posts/following_posts`,
-    comments: `${API_URL}/comments`,
     likePost: `${API_URL}/likes`,
 
 };
