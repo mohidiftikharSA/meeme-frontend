@@ -99,23 +99,12 @@ const Posts = ({ postData, comment, avatar }) => {
   const downloadMedia = (mediaUrl, id) => {
     console.log("media url === ", mediaUrl);
 
-    fetch(mediaUrl, {
-      method: "GET",
-      headers: {}
-    })
-      .then(response => {
-        response.arrayBuffer().then(function (buffer) {
-          const url = window.URL.createObjectURL(new Blob([buffer]));
-          const link = document.createElement("a");
-          link.href = url;
-          link.setAttribute("download", `image${id}.png`);
-          document.body.appendChild(link);
-          link.click();
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    const link = document.createElement('a');
+    link.href = mediaUrl;
+    link.download = 'image.jpg'; // You can set the desired filename here
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
 

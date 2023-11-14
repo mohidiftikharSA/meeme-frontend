@@ -41,10 +41,10 @@ function formatDate(inputDate) {
 }
 
 
-const Support = () => {
-  const { previousStep, nextStep } = useWizard();
+const Support = ({ supportTicket }) => {
+  const { goToStep, nextStep } = useWizard();
   const [isLoading, setIsLoading] = useState(false);
-  const [allChatsData , setAllChatsData ] = useState([]);
+  const [allChatsData, setAllChatsData] = useState([]);
 
   useEffect(() => {
     getAllChats();
@@ -61,10 +61,12 @@ const Support = () => {
       arr.forEach(element => {
         const data = {
           title: element?.subject,
-          text: `${element?.body?.slice(0,100)}...`,
+          text: `${element?.body?.slice(0, 100)}...`,
           date: formatDate(element?.created_at),
           order: element?.status,
-          image: element?.message_images[0]?.message_image
+          image: element?.message_images[0]?.message_image,
+          message_ticket : element?.message_ticket,
+          conversation_id: element?.conversation_id
         }
         customeArr.push(data);
       });
@@ -74,15 +76,20 @@ const Support = () => {
     setIsLoading(false);
   }
 
+  const openTicketChat = (item)=>{
+    supportTicket(item);
+    goToStep(2);
+  }
+
   return (
     <>
       <Loader isLoading={isLoading} />
       <div className={classes.supportSection}>
         <Heading title={"Support"} linkPath={"home"} />
         <ul className={classes.support}>
-          { allChatsData[0] ? allChatsData.map((item, ind) => {
+          {allChatsData[0] ? allChatsData.map((item, ind) => {
             return (
-              <li>
+              <li key={ind} onClick={()=>{openTicketChat(item)}}>
                 <div className={classes.head}>
                   <img src={item?.image || icon} alt="coin"></img>
                   <div className={classes.box}>
@@ -94,7 +101,7 @@ const Support = () => {
                 <span>{item.order}</span>
               </li>
             );
-          }): <p>No Support Tickets Available</p>}
+          }) : <p>No Support Tickets Available</p>}
           <div className="text-center">
             <button
               type="button"

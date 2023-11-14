@@ -44,6 +44,7 @@ const ProfileSetting = () => {
  
   const [deleteAccountModalShow, setDeleteAccountShow] = useState(false);
   const [show, setShow] = useState(false);
+  const [selectedSupportTicket , setSelectedSupportTicket] = useState();
   const location = useLocation();
 
   const textParam = new URLSearchParams(location.search).get("text");
@@ -232,9 +233,9 @@ const ProfileSetting = () => {
                     </Tab.Pane>
                     <Tab.Pane eventKey="support">
                       <Wizard>
-                        <Support />
+                        <Support supportTicket={setSelectedSupportTicket} />
                         <SupportDetail />
-                        <SupportChat />
+                        <SupportChat selectedSupportTicket={selectedSupportTicket} />
                       </Wizard>
                     </Tab.Pane>
                   </Tab.Content>

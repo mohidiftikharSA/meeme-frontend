@@ -17,7 +17,9 @@ export const ENDPOINT = {
 
     messages: {
         allSupportChats: `${API_URL}/messages/all_support_chats`,
-        createTicket: `${API_URL}/messages/support_ticket`
+        createTicket: `${API_URL}/messages/support_ticket`,
+        getTicketMessages: `${API_URL}/messages/individual_admin_messages`,
+        replySupportChat : `${API_URL}/messages/support_chat`
     },
 
     followers: {
@@ -34,6 +36,7 @@ export const ENDPOINT = {
     comment : {
         create_child_comment : `${API_URL}/comments/create_child_comment`
     },
+    
     comments: `${API_URL}/comments`,
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,

@@ -2,7 +2,7 @@ import AccordianBadge from "Components/AccordainBadge";
 import AccordianPrize from "Components/AccordainPrize";
 import BuyCoin from "Components/BuyCoin";
 import ContactList from "Components/ContactList";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Accordion } from "react-bootstrap";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
 import user from "../../Images/user44.png"
@@ -81,6 +81,10 @@ const AccordianData = ({ following = "" , responsive}) => {
   const toggleActive = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
+
+  useEffect(()=>{
+    console.log("Following from Landing Page ");
+  },[])
 
   return (
     <>

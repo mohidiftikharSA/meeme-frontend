@@ -14,7 +14,8 @@ const ClientRoutes = () => {
   const getElementControl = (path, authenticated, component, layout) => {
     if (!authenticated) {
       if (accessToken) {
-        if (path === '/login' ||
+        if (path === '/' ||
+          path === '/login' ||
           path === '/forgetpassword' ||
           path === '/forgetPassword' ||
           path === '/restsetPassword' ||
