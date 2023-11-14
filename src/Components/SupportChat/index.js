@@ -42,9 +42,9 @@ const SupportChat = ({ selectedSupportTicket }) => {
   };
 
   const sendReply = async () => {
-    console.log("Reply = ", reply);
-    console.log("conversation_id = ", selectedSupportTicket?.conversation_id);
     if (reply && selectedSupportTicket) {
+      setIsLoading(true);
+      setIsLoading(true);
       const data = new FormData();
       data.append('conversation_id', selectedSupportTicket?.conversation_id);
       data.append('admin_user_id', 1);
@@ -60,6 +60,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
         console.log("Reply sent successfully = ", send.data);
       }
     }
+    setIsLoading(false);
   }
 
   function formatDate(inputDate) {
