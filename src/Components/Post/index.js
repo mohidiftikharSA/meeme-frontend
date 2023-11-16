@@ -17,7 +17,6 @@ const Posts = ({ postData, comment, avatar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [followingData, setFollowingData] = useState([]);
-  const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
 
   const openModal = (postId) => {
@@ -27,18 +26,18 @@ const Posts = ({ postData, comment, avatar }) => {
   }
 
   const closeModal = () => {
-    //setSelectedPostId(null);
     setIsModalOpen(false);
   }
+
   useEffect(() => {
     console.log('selectedPostId', selectedPostId)
   }, [selectedPostId, followingData]);
+
+
   useEffect(() => {
     setFollowingData(postData);
   }, [postData]);
-  // const toggleActive = () => {
-  //   setIsActive(!isActive);
-  // };
+
   const likePost = async (post_id) => {
     try {
       const res = await postAPIs.likePost({ post_id });

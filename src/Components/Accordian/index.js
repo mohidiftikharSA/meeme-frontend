@@ -2,10 +2,11 @@ import AccordianBadge from "Components/AccordainBadge";
 import AccordianPrize from "Components/AccordainPrize";
 import BuyCoin from "Components/BuyCoin";
 import ContactList from "Components/ContactList";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Accordion } from "react-bootstrap";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
-import user from "../../Images/user44.png"
+import user from "../../Images/user44.png";
+import FollowerAPIs from '../../APIs/followers';
 
 const data = [
      "Funny",
@@ -77,6 +78,8 @@ const contactData = [
 
 const AccordianData = ({ following = "" , responsive}) => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [followingList, setFollowingList] = useState([]);
+
 
   const toggleActive = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -84,7 +87,15 @@ const AccordianData = ({ following = "" , responsive}) => {
 
   useEffect(()=>{
     console.log("Following from Landing Page ");
+    getFollowersAndFollowings();
   },[])
+
+  const getFollowersAndFollowings = useCallback(async () => {
+    const followings = await FollowerAPIs.followingList();
+    if (followings) {
+      setFollowingList(followings?.data?.followings);
+    }
+  }, []);
 
   return (
     <>
@@ -96,7 +107,7 @@ const AccordianData = ({ following = "" , responsive}) => {
             <span className="all-text" >All</span>Followings
             </Accordion.Header>
            <AccordionBody>
-           <ContactList contact following data={contactData}  /> 
+           <ContactList link following data={followingList}  /> 
            </AccordionBody>
           </Accordion.Item>
         </div>

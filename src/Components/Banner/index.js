@@ -16,7 +16,7 @@ const Banner = ({ other, profile }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [followingList, setFollowingList] = useState([]);
   const [followersList, setFollowersList] = useState([]);
-  const [showChat, setShowChat] = useState(false); // New state for showing/hiding ChatPopup
+  const [showChat, setShowChat] = useState(false);
   const navigate = useNavigate();
 
   const nextPage = () => {

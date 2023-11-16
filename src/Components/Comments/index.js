@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import DashboardAPIs from '../../APIs/dashboard/home';
 
 
-const Comments = ({ data, avatar, postComment, postId, user , setChildCommentCreated}) => {
+const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCreated }) => {
   const [replayVisible, setReplayVisible] = useState(false);
   const [comment, setComment] = useState("");
   const [childComment, setChildComment] = useState('');
@@ -35,19 +35,18 @@ const Comments = ({ data, avatar, postComment, postId, user , setChildCommentCre
 
   const submitChildComment = async (commentId) => {
     console.log("Comment id = ", commentId);
-    console.log("Post id = ", postId);
-    console.log("Reply Comment = ", childComment);
     const data = new FormData();
-    data.append('post_id',postId );
+    data.append('post_id', postId);
     data.append('comment_id', commentId);
     data.append('description', childComment);
     const child = await DashboardAPIs.createChildComment(data);
-    if(child){
+    if (child) {
       setChildCommentCreated(child);
       setChildComment('');
-      console.log("Child Comment Successfull = ", child);
     }
   }
+
+  
 
   return (
     <div className="py-lg-5 py-3 px-3">
