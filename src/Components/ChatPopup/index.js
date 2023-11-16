@@ -7,12 +7,11 @@ import { FiSmile } from 'react-icons/fi';
 import { CgAttachment } from 'react-icons/cg';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 
-
-const ChatPopup = () => {
+const ChatPopup = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
-  const [currentUser, setCurrentUser] = useState("User1"); // Change user names as needed
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to manage dropdown visibility
+  const [currentUser, setCurrentUser] = useState("User1");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 992);
 
   useEffect(() => {
@@ -27,7 +26,6 @@ const ChatPopup = () => {
     };
   }, []);
 
-  // Dummy message from other user
   const dummyMessage = [
     { text: "Hi Astro", user: "Randy" },
     { text: "Can you send me a meme" },
@@ -60,70 +58,72 @@ const ChatPopup = () => {
   };
 
   return (
-    <Dropdown className={`chatDropDown ${isDropdownOpen ? 'show' : ''}`} show={isDropdownOpen} onToggle={toggleDropdown}>
-       <Dropdown.Toggle variant="success" id="dropdown-basic">
-         {isWideScreen ?<><span className="status d-inline-block me-2"></span> Chat (4 Active)</> : <BsFillChatDotsFill size={'18px'}/>}
+    <Dropdown className={`chatDropDown ${isOpen ? 'show' : ''}`} show={isOpen} onToggle={onClose}>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        {isWideScreen ? <><span className="status d-inline-block me-2"></span> Chat (4 Active)</> : <BsFillChatDotsFill size={'18px'} />}
       </Dropdown.Toggle>
       <Dropdown.Menu onClick={(e) => e.stopPropagation()}>
-        <div className="chat">
-          <div className="chat-window">
-            <div className="header">
-              <span className="status d-inline-block mx-2"></span>Randy Mark
-              <span className="cancel-icon" onClick={toggleDropdown} style={{cursor:"pointer"}}>
-                <LiaTimesSolid />
-              </span>
-            </div>
-            <div className="messages">
-              <div className="reciverBox">
-                <div className="userImg">
-                  <img src={user1} alt="img" />
+        {isOpen && (
+          <div className="chat">
+            <div className="chat-window">
+              <div className="header">
+                <span className="status d-inline-block mx-2"></span>Randy Mark
+                <span className="cancel-icon" onClick={onClose} style={{ cursor: "pointer" }}>
+                  <LiaTimesSolid />
+                </span>
+              </div>
+              <div className="messages">
+                <div className="reciverBox">
+                  <div className="userImg">
+                    <img src={user1} alt="img" />
+                  </div>
+                  {dummyMessage.map((item, ind) => {
+                    return (
+                      <div key={ind} className="message received">
+                        <div className="messageBox">
+                          <div className="message-user">{item.user}</div>
+                          <div className="message-text">{item.text}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-                {dummyMessage.map((item, ind) => {
-                  return (
-                    <div key={ind} className="message received">
+                <div className="senderBox">
+                  {messages.map((message, index) => (
+                    <div
+                      key={index}
+                      className={`message ${
+                        message.user === currentUser ? "sent" : "received"
+                      }`}
+                    >
+                      <div className="userImg">
+                        {message.user === currentUser && (
+                          <img src={user2} alt="img" />
+                        )}
+                      </div>
                       <div className="messageBox">
-                        <div className="message-user">{item.user}</div>
-                        <div className="message-text">{item.text}</div>
+                        <div className="message-text ">{message.text}</div>
                       </div>
                     </div>
-                  );
-                })}
+                  ))}
+                </div>
               </div>
-              <div className="senderBox">
-                {messages.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`message ${
-                      message.user === currentUser ? "sent" : "received"
-                    }`}
-                  >
-                    <div className="userImg">
-                      {message.user === currentUser && (
-                        <img src={user2} alt="img" />
-                      )}
-                    </div>
-                    <div className="messageBox">
-                      <div className="message-text ">{message.text}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="sendBox">
-              <Form.Control
-                type="text"
-                placeholder="Write a comment…"
-                value={inputText}
-                onChange={handleInputChange}
-                onKeyPress={handleInputKeyPress}
-              />
-              <div className={'iconBox'}>
-                <FiSmile/>
-                <CgAttachment/>
+              <div className="sendBox">
+                <Form.Control
+                  type="text"
+                  placeholder="Write a comment…"
+                  value={inputText}
+                  onChange={handleInputChange}
+                  onKeyPress={handleInputKeyPress}
+                />
+                <div className={'iconBox'}>
+                  <FiSmile />
+                  <CgAttachment />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </Dropdown.Menu>
     </Dropdown>
   );

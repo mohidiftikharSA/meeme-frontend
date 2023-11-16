@@ -8,31 +8,27 @@ import { useNavigate } from "react-router-dom";
 import FollowModal from "Components/FollowModal";
 import FollowerAPIs from '../../APIs/followers';
 import { toast } from "react-toastify";
-import Loader from "Components/Loader";
-
+import ChatPopup from "Components/ChatPopup";
 
 const Banner = ({ other, profile }) => {
   const [show, setShow] = useState(false);
   const [follwers, setfollowrshow] = useState(false);
-  const navigate = useNavigate();
   const [isFollowing, setIsFollowing] = useState(false);
   const [followingList, setFollowingList] = useState([]);
   const [followersList, setFollowersList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [showChat, setShowChat] = useState(false); // New state for showing/hiding ChatPopup
+  const navigate = useNavigate();
 
   const nextPage = () => {
     navigate(`/CustomizeProfile`);
   };
 
   useEffect(() => {
-
     if (profile?.follower_added) {
       setIsFollowing(true);
     }
-
     getFollowersAndFollowings();
-
-  }, [profile])
+  }, [profile]);
 
   const getFollowersAndFollowings = useCallback(async () => {
     const followings = await FollowerAPIs.followingList();
@@ -42,42 +38,45 @@ const Banner = ({ other, profile }) => {
 
     const followers = await FollowerAPIs.followersList();
     if (followers) {
-      setFollowersList(followers?.data?.followers)
+      setFollowersList(followers?.data?.followers);
     }
-
-  }, [profile])
-
-
+  }, [profile]);
 
   const followOrUnfollow = async (action) => {
-    setIsLoading(true);
+    console.log("Follow Profile = ", profile);
     if (action === 'follow') {
       const follow = await FollowerAPIs.sendFollowRequest({ follower_user_id: profile?.user?.id });
       if (follow) {
         setIsFollowing(true);
-        console.log("Follow Successfull =", follow);
+        console.log("Follow Successfully =", follow);
         toast.success('Followed Successfully', {
           position: "top-right",
           autoClose: 2000,
         });
       }
     } else if (action === 'unfollow') {
-      const unfollow = await FollowerAPIs.unfollowUser({ follower_user_id: profile?.user?.id })
+      const unfollow = await FollowerAPIs.unfollowUser({ follower_user_id: profile?.user?.id });
       if (unfollow) {
         setIsFollowing(false);
-        console.log("unfollow Successfull =", unfollow);
+        console.log("Unfollow Successfully =", unfollow);
         toast.success('Unfollow Successfully', {
           position: "top-right",
           autoClose: 2000,
         });
       }
     }
-    setIsLoading(false);
-  }
+  };
+
+  const handleOpenChat = () => {
+    setShowChat(true);
+  };
+
+  const handleCloseChat = () => {
+    setShowChat(false);
+  };
 
   return (
     <>
-      <Loader isLoading={isLoading} />
       <div className={`banner pb-4 px-2 ${other && `banner pb-4 otherBanner`}`}>
         <div className="sectionHolder" style={{ maxWidth: "350px" }}>
           <div className={classes.profileDetail}>
@@ -85,13 +84,16 @@ const Banner = ({ other, profile }) => {
               <img src={profile?.user_image || userimg} alt="" />
               <h4 >{profile?.user?.username}</h4>
             </div>
-            {
-              other &&
+            {other && (
               <div className={classes.btnBox}>
-                {isFollowing ? <Button onClick={() => { followOrUnfollow('unfollow') }} >UnFollow</Button> : <Button onClick={() => { followOrUnfollow('follow') }} >Follow</Button>}
-                <Button>Message</Button>
+                {isFollowing ? (
+                  <Button onClick={() => followOrUnfollow('unfollow')}>UnFollow</Button>
+                ) : (
+                  <Button onClick={() => followOrUnfollow('follow')}>Follow</Button>
+                )}
+                <Button onClick={handleOpenChat}>Message</Button>
               </div>
-            }
+            )}
             <ul className={classes.userInfoBox}>
               <li>
                 <h5 >
@@ -99,12 +101,12 @@ const Banner = ({ other, profile }) => {
                 </h5>
               </li>
               <li>
-                <h5 onClick={() => { setfollowrshow(true && !other) }}>
+                <h5 onClick={() => { setfollowrshow(true) }}>
                   {profile?.followers} <span>Followers</span>
                 </h5>
               </li>
               <li>
-                <h5 onClick={() => { setShow(true && !other) }}>
+                <h5 onClick={() => { setShow(true) }}>
                   {profile?.following} <span>Followings</span>
                 </h5>
               </li>
@@ -116,16 +118,16 @@ const Banner = ({ other, profile }) => {
               <Button onClick={nextPage}>
                 <img src={edit} alt="img" />
               </Button>
-              <Button onClick={()=>{navigate('/profile-setting?text=account')}}>
+              <Button>
                 <img src={setting} alt="img" />
               </Button>
             </div>
           </div>
         </div>
-
       </div>
       <FollowModal following show={show} followingList={followingList} onHide={() => setShow(false)} />
       <FollowModal followers show={follwers} followersList={followersList} onHide={() => setfollowrshow(false)} />
+      {showChat && <ChatPopup isOpen={showChat} onClose={handleCloseChat} />}
     </>
   );
 };
