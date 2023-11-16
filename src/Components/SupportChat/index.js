@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import classes from "./index.module.scss";
 import Heading from "Components/Heading";
 import user from "../../Images/profile1.png";
@@ -78,10 +78,19 @@ const SupportChat = ({ selectedSupportTicket }) => {
     return formattedDate;
   }
 
-  const fileInputHandler = async (e) => {
-    console.log("File selected  - ", e.target.files[0]);
+  const fileInputRef = useRef(null);
+
+  const fileInputHandler = (e) => {
+    console.log("File selected - ", e.target.files[0]);
     setFile(e.target.files[0]);
-  }
+  };
+
+  const triggerFileInput = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  
 
   return (
     <>
@@ -157,8 +166,15 @@ const SupportChat = ({ selectedSupportTicket }) => {
       <div className={`postionBottom ${classes.sendBox}`}>
         <span className={classes.attachBtn}>
           <input type="file" onChange={fileInputHandler} />
-
-          <BsImage />
+          <span className={classes.attachBtn} onClick={triggerFileInput}>
+        <input
+          type="file"
+          onChange={fileInputHandler}
+          ref={fileInputRef}
+          style={{ display: "none" }}
+        />
+        <BsImage />
+      </span> 
         </span>
         <div className={classes.sendBox}>
           <Form.Control placeholder="Aa" value={reply} onChange={(e) => { setReply(e.target.value) }} />

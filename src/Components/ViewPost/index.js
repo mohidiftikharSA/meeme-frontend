@@ -13,8 +13,12 @@ const ViewPost = (props) => {
   const { selectedPostId, onHide, show, postData, avatar } = props;
   const [commentsData, setCommentsData] = useState([]);
   const [childCommentCreated , setChildCommentCreated ] = useState();
+  useEffect(()=>{
+    console.log("Data from profile page ===",postData)
+  },[])
   // Find the selected post by postId
-  const selectedPost = postData.find(post => post.post.id === selectedPostId);
+  // const selectedPost = postData.find(post => post.post.id === selectedPostId);
+  const selectedPost = 12
   const { user } = useSelector((state) => state.auth);
 
   
