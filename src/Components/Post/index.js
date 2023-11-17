@@ -29,10 +29,6 @@ const Posts = ({ postData, comment, avatar }) => {
     setIsModalOpen(false);
   }
 
-  useEffect(() => {
-    console.log('selectedPostId', selectedPostId)
-  }, [selectedPostId, followingData]);
-
 
   useEffect(() => {
     setFollowingData(postData);
@@ -143,7 +139,7 @@ const Posts = ({ postData, comment, avatar }) => {
                 {item.post.tag_list && <p className={classes.tags}>{item.post.tag_list}</p>}
               </div>
               <div className={`${classes.imgBox} memeImg mb-3`} onClick={() => openModal(item.post.id)}>
-                {item.post_type === "image/jpeg" ? (
+                {item.post_type === "image/jpeg" || item.post_type === "image/png" ? (
                   <img src={item.compress_image} alt="img" />
                 ) : (
                   <video width="100%" height="auto" controls>

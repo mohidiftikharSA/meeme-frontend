@@ -45,7 +45,7 @@ console.log("data", data)
           </Form.Select>
         </div>
         <div className={classes.box}>
-          {data?.map((item, ind) => (
+          {data?.slice()?.reverse()?.map((item, ind) => (
             <div className={classes.imgBox} onClick={() => openModal(item?.post_id, item)}>
               <img src={item?.post_image} alt="" />
             </div>

@@ -86,7 +86,6 @@ const AccordianData = ({ following = "" , responsive}) => {
   };
 
   useEffect(()=>{
-    console.log("Following from Landing Page ");
     getFollowersAndFollowings();
   },[])
 

@@ -13,9 +13,7 @@ const ViewPost = (props) => {
   const { selectedPostId, onHide, show, postData, avatar, profile } = props;
   const [commentsData, setCommentsData] = useState([]);
   const [childCommentCreated, setChildCommentCreated] = useState();
-  useEffect(() => {
-    console.log("Data from profile page ===", postData)
-  }, [])
+  
   // Find the selected post by postId
   var selectedPost = null;
   if (!profile) {
