@@ -1005,8 +1005,14 @@ main{
 
 .chat {
   color: #fff;
-  padding: 12px 15px;
   border-bottom: 1px solid #4d4d4dcc;
+  position: fixed;
+  right: 275px;
+  bottom: 0;
+  z-index: 9999;
+  padding: 0;
+  border-radius: 12px 12px  0 0;
+  background: #393240;
   @include media("<tablet") {
     border: none;
   }
@@ -1014,6 +1020,9 @@ main{
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 12px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.11);
+    border-radius: 12px 12px  0 0;
     .cancel-icon {
       float: right;
       font-size: 18px;
@@ -1025,9 +1034,10 @@ main{
   .messages {
     display: flex;
     flex-direction: column;
-    height: 200px;
+    height: 250px;
     overflow: auto;
     line-height: 1.5;
+    padding: 0 10px;
     .message {
       margin-bottom: 10px;
       &.sent {
@@ -1082,7 +1092,7 @@ main{
       border-radius: 50%;
     }
   }
-  .reciverBox {
+  .receiverBox {
     position: relative;
     .message {
       padding-left: 42px;
@@ -1108,7 +1118,7 @@ main{
       }
     }
     .form-control {
-      border-radius: 12px;
+      border-radius: 12px 12px 0 0;
       background-color: #646370;
       color: #fff;
       border: none;

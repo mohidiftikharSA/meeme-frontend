@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import logo from "Images/scondaryLogo.png";
 import { TailSpin } from "react-loader-spinner";
 
 import classes from "./style.module.scss";
