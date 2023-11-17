@@ -19,7 +19,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [reply, setReply] = useState();
   const [file, setFile] = useState();
-  const [sent , setSent] = useState();
+  const [sent, setSent] = useState();
 
   useEffect(() => {
     getTicketMessages();
@@ -90,7 +90,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
       fileInputRef.current.click();
     }
   };
-  
+
 
   return (
     <>
@@ -164,17 +164,17 @@ const SupportChat = ({ selectedSupportTicket }) => {
       </div>
 
       <div className={`postionBottom ${classes.sendBox}`}>
+        <span>{file ? file?.name : ''}</span>
         <span className={classes.attachBtn}>
-          <input type="file" onChange={fileInputHandler} />
           <span className={classes.attachBtn} onClick={triggerFileInput}>
-        <input
-          type="file"
-          onChange={fileInputHandler}
-          ref={fileInputRef}
-          style={{ display: "none" }}
-        />
-        <BsImage />
-      </span> 
+            <input
+              type="file"
+              onChange={fileInputHandler}
+              ref={fileInputRef}
+              style={{ display: "none" }}
+            />
+            <BsImage />
+          </span>
         </span>
         <div className={classes.sendBox}>
           <Form.Control placeholder="Aa" value={reply} onChange={(e) => { setReply(e.target.value) }} />
