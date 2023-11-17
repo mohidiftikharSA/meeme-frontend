@@ -1,5 +1,5 @@
 import Heading from "Components/Heading";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { timeFormat } from "../../Helper/Converters";
 import userimg from "../../Images/user1.png";
@@ -15,7 +15,13 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
   const [childComment, setChildComment] = useState('');
   const [replyCommentId, setReplyCommentId] = useState();
   const { profile } = useSelector((state) => state.auth);
+  const [allCommentsArr, setAllCommentsArr] = useState([]);
 
+  useEffect(() => {
+    if (data) {
+      setAllCommentsArr(data);
+    }
+  }, [data])
 
   const handlePostComment = () => {
     if (comment) {
@@ -34,7 +40,6 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
   };
 
   const submitChildComment = async (commentId) => {
-    console.log("Comment id = ", commentId);
     const data = new FormData();
     data.append('post_id', postId);
     data.append('comment_id', commentId);
@@ -46,13 +51,27 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
     }
   }
 
-  
+  const likeAndUnlikeComment = async (commentId, action) => {
+    const res = await DashboardAPIs.likePost({ type: "comment", comment_id: commentId });
+    if (res) {
+      // console.log("Like and Dislike response  = ", res.data);
+      const selectedComment = allCommentsArr?.findIndex(post => post?.id === commentId);
+      allCommentsArr[selectedComment].user_comment_like_status = !allCommentsArr[selectedComment].user_comment_like_status
+      if(action === 'like'){
+        allCommentsArr[selectedComment].comment_like_count = (allCommentsArr[selectedComment].comment_like_count + 1)
+      }else if(action === 'unlike'){
+        allCommentsArr[selectedComment].comment_like_count = (allCommentsArr[selectedComment].comment_like_count - 1)
+      }
+      setAllCommentsArr([...allCommentsArr]);
+     
+    }
+  }
 
   return (
     <div className="py-lg-5 py-3 px-3">
       <Heading title={"Comments"} />
       <ul className={classes.commentList}>
-        {data
+        {allCommentsArr
           .slice()
           .reverse()
           .map((item, index) => {
@@ -72,7 +91,8 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                 </div>
                 <div className={classes.bottomBox}>
                   <span>{timeFormat(item.comment_time)}</span>
-                  <span>Like</span>
+                  {item?.user_comment_like_status ? <span onClick={() => { likeAndUnlikeComment(item?.id,'unlike') }} >unlike</span> : <span onClick={() => { likeAndUnlikeComment(item?.id,'like') }}>Like</span>}
+                  <span>{item?.comment_like_count}</span>
                   <span onClick={() => { toggleReplayHolderVisibility(item?.id) }}>Reply</span>
                 </div>
                 <div
