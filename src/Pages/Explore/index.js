@@ -134,7 +134,7 @@ const Explore = () => {
         <section>
           <Container fluid>
             <Search expolore text={"Search hashtags, usernames"} onSearchChange={onSearchChange} />
-            <AccordianBadge data={tags} expolore />
+            <AccordianBadge data={tags} expolore selectedTagsString={onSearchChange} />
             <MemesDetails newMemesData={filteredPosts} avatar={avatar} explore />
           </Container>
         </section>
