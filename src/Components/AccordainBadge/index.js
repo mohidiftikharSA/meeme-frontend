@@ -23,14 +23,9 @@ const AccordianBadge = ({ data, expolore , selectedTagsString}) => {
     }
   };
 
-  const showSelectedTags = async ()=>{
-    console.log("Selected tags  == ", selectedTags);
-  }
-
   return (
 
     <div className={`d-flex align-items-center gap-2 flex-lg-wrap flex-nowrap ${classes.badgeBox} ${expolore && classes.explosreBox}`}>
-      <h1 onClick={showSelectedTags} >Haseeb</h1>
       {data.map((item, index) => (
         <h5 key={index}>
           <Badge
