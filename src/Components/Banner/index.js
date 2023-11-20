@@ -48,7 +48,7 @@ const Banner = ({ other, profile }) => {
       const follow = await FollowerAPIs.sendFollowRequest({ follower_user_id: profile?.user?.id });
       if (follow) {
         setIsFollowing(true);
-        console.log("Follow Successfully =", follow);
+        console.log("Followed Successfully =", follow);
         toast.success('Followed Successfully', {
           position: "top-right",
           autoClose: 2000,
@@ -82,7 +82,7 @@ const Banner = ({ other, profile }) => {
           <div className={classes.profileDetail}>
             <div className={classes.profileDetails}>
               <img src={profile?.user_image || userimg} alt="" />
-              <h4 >{profile?.user?.username}</h4>
+              <h4>{profile?.user?.username}</h4>
             </div>
             {other && (
               <div className={classes.btnBox}>
@@ -96,7 +96,7 @@ const Banner = ({ other, profile }) => {
             )}
             <ul className={classes.userInfoBox}>
               <li>
-                <h5 >
+                <h5>
                   {profile?.all_post_count} <span>Posts</span>
                 </h5>
               </li>
@@ -127,7 +127,7 @@ const Banner = ({ other, profile }) => {
       </div>
       <FollowModal following show={show} followingList={followingList} onHide={() => setShow(false)} />
       <FollowModal followers show={follwers} followersList={followersList} onHide={() => setfollowrshow(false)} />
-      {showChat && <ChatPopup isOpen={showChat} onClose={handleCloseChat} />}
+      <ChatPopup isOpen={showChat} onClose={handleCloseChat} />
     </>
   );
 };
