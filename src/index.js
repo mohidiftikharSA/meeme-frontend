@@ -6,6 +6,11 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "../src/Redux/store";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import actionCable from 'actioncable'
+
+
+const CableApp = {}
+CableApp.cable = actionCable.createConsumer('ws://staging.memee.app/cable')
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

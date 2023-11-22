@@ -8,7 +8,7 @@ import shuffle from "../../Images/shuffle.png";
 import logo from "../../Images/logo.png";
 
 const BuyCoin = ({ purchase }) => {
-  const [sliderValue, setSliderValue] = useState(7412); // Initial value
+  const [sliderValue, setSliderValue] = useState(0); // Initial value
   const minValue = 1;
   const maxValue = 14000;
 

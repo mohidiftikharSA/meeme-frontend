@@ -85,7 +85,6 @@ const FollowingContent = (avatar) => {
     try {
       const res = await postAPIs.getFollowingPosts();
       if (res.status === 200) {
-        console.log("Following Posts  = ", res.data.following_posts);
         // Assuming a 200 status code means success
         setFollowingData(res.data.following_posts);
         // Assuming the data is in a property called 'data'

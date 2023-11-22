@@ -103,7 +103,7 @@ const AccordianData = ({ following = "" , responsive}) => {
         <div className={`py-xl-5 px-xl-4 p-0 following`}>
           <Accordion.Item eventKey="3" style={{background: '#201E23', textAlign:'center'}}>
             <Accordion.Header onClick={() => toggleActive(0)}>
-            <span className="all-text" >All</span>Followings
+            <span className="all-text" >Followings</span>
             </Accordion.Header>
            <AccordionBody>
            <ContactList link following data={followingList}  /> 

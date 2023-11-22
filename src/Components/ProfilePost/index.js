@@ -52,7 +52,7 @@ console.log("data", data)
           ))}
         </div>
       </div>
-      <ViewPost profile onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData} avatar={avatar}  />
+      {/* <ViewPost profile onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData} avatar={avatar}  /> */}
     </>
   );
 };

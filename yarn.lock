@@ -7,6 +7,13 @@
   resolved "https://registry.npmjs.org/@adobe/css-tools/-/css-tools-4.0.2.tgz"
   integrity sha512-Fx6tYjk2wKUgLi8uMANZr8GNZx05u44ArIJldn9VxLvolzlJVgHbTUCbwhMd6bcYky178+WUSxPHO3DAtGLWpw==
 
+"@aersoftware/react-use-action-cable@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@aersoftware/react-use-action-cable/-/react-use-action-cable-1.0.4.tgz"
+  integrity sha512-8SLATfwTtHJreMrEb7EmNr5mQAlx/2UW2+pOOfCBbH2mES0TNoHahO7zKdxx5UZYGoZREjdBtjII4/5rw8w9IQ==
+  dependencies:
+    "@rails/actioncable" "^7.0.0"
+
 "@ampproject/remapping@^2.2.0":
   version "2.2.0"
   resolved "https://registry.npmjs.org/@ampproject/remapping/-/remapping-2.2.0.tgz"
@@ -1767,6 +1774,11 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
 
+"@rails/actioncable@^7.0.0":
+  version "7.1.2"
+  resolved "https://registry.npmjs.org/@rails/actioncable/-/actioncable-7.1.2.tgz"
+  integrity sha512-KGziTZfbmGm8/fHOpj515xupbYU+49hsp4etfdpoDJ/CEY2bRZR0cyFcJkpK6n0t/sxOHNWY6bo9vSgXZvT7Mg==
+
 "@react-aria/ssr@^3.4.1":
   version "3.4.1"
   resolved "https://registry.npmjs.org/@react-aria/ssr/-/ssr-3.4.1.tgz"
@@ -2743,6 +2755,11 @@ acorn@^7.1.1:
   version "7.4.1"
   resolved "https://registry.npmjs.org/acorn/-/acorn-7.4.1.tgz"
   integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
+
+actioncable@^5.2.8-1:
+  version "5.2.8-1"
+  resolved "https://registry.npmjs.org/actioncable/-/actioncable-5.2.8-1.tgz"
+  integrity sha512-p/a9jeFs3KB3SWZ9w/T5HLyztooYSufOG++Uhau9YzprdBNyjFfsqrtN1roVVEzNDBGZJVr/2SSWwofvavPL1w==
 
 address@^1.0.1, address@^1.1.2:
   version "1.2.2"
@@ -8299,7 +8316,7 @@ react-use-wizard@^2.2.3:
   resolved "https://registry.npmjs.org/react-use-wizard/-/react-use-wizard-2.2.3.tgz"
   integrity sha512-Oh3EfpmWwF7vW1YZ2EgSLoU9VKJ13+TyLNmT56rBhLoXr3FXZoDEmtyxZ46GVkcicl/8qiHX0C42M6n2oKDkEQ==
 
-react@*, "react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^17.0.0 || ^18.0.0", react@^18.0.0, react@^18.2.0, "react@>= 16", "react@>= 16.14", "react@>= 16.8.0", react@>=0.14.0, react@>=15.0.0, react@>=16, react@>=16.0.0, react@>=16.14.0, react@>=16.6.0, react@>=16.8, react@>=16.8.0, react@>=16.9.0:
+react@*, "react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", "react@^17 || ^18", "react@^17.0.0 || ^18.0.0", react@^18.0.0, react@^18.2.0, "react@>= 16", "react@>= 16.14", "react@>= 16.8.0", react@>=0.14.0, react@>=15.0.0, react@>=16, react@>=16.0.0, react@>=16.14.0, react@>=16.6.0, react@>=16.8, react@>=16.8.0, react@>=16.9.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==

@@ -42,7 +42,7 @@ const Header = () => {
                 <span className={classes.icon}>
                 <i className="fas fa-plus"></i>
                 </span>
-                <span className={classes.text}>7412</span>
+                <span className={classes.text}>0</span>
                 <img src={coin} alt="icon" />
               </Link>
 

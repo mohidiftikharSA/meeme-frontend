@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aersoftware/react-use-action-cable": "^1.0.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
@@ -12,6 +13,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "actioncable": "^5.2.8-1",
     "bootstrap": "^5.2.3",
     "classnames": "^2.3.2",
     "formik": "^2.4.5",

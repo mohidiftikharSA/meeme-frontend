@@ -19,7 +19,9 @@ export const ENDPOINT = {
         allSupportChats: `${API_URL}/messages/all_support_chats`,
         createTicket: `${API_URL}/messages/support_ticket`,
         getTicketMessages: `${API_URL}/messages/individual_admin_messages`,
-        replySupportChat : `${API_URL}/messages/support_chat`
+        replySupportChat : `${API_URL}/messages/support_chat`,
+        getInboxList : `${API_URL}/messages`,
+        getChatMessages : `${API_URL}/messages/individual_messages?receiver_id=`
     },
 
     followers: {

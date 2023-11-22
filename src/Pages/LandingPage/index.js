@@ -25,7 +25,6 @@ const LandingPage = () => {
     const userDetails = await AuthAPIs.getCurrentUserProfile();
     if(userDetails){
       setIsLoading(false);
-      console.log("All user Details on Profile Page  =", userDetails.data.profile);
       dispatch(
         setAuthProfile({
           profile : userDetails.data.profile

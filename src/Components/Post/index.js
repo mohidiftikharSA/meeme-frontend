@@ -7,6 +7,7 @@ import send from "../../Images/sendbtn.png";
 import ViewPost from "Components/ViewPost";
 import { formatNumber } from "../../Helper/Converters";
 import postAPIs from "../../APIs/dashboard/home";
+import { timeAgo } from "../../Helper/Converters";
 
 // import avatar from images
 import user2 from "../../Images/avatar.jpg";
@@ -102,32 +103,7 @@ const Posts = ({ postData, comment, avatar }) => {
     document.body.removeChild(link);
   };
 
-  function timeAgo(timestamp) {
-    const currentDate = new Date();
-    const postDate = new Date(timestamp);
-    const timeDifference = currentDate - postDate;
   
-    const seconds = Math.floor(timeDifference / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
-    const months = Math.floor(days / 30);
-    const years = Math.floor(months / 12);
-  
-    if (years > 0) {
-      return years === 1 ? 'a year ago' : `${years} years ago`;
-    } else if (months > 0) {
-      return months === 1 ? 'a month ago' : `${months} months ago`;
-    } else if (days > 0) {
-      return days === 1 ? 'a day ago' : `${days} days ago`;
-    } else if (hours > 0) {
-      return hours === 1 ? 'an hour ago' : `${hours} hours ago`;
-    } else if (minutes > 0) {
-      return minutes === 1 ? 'a minute ago' : `${minutes} minutes ago`;
-    } else {
-      return 'just now';
-    }
-  }
 
 
   return (
