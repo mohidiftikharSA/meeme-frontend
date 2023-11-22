@@ -211,6 +211,18 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
     }
   };
 
+
+  function countOnlineUsers() {
+    const trueCount = inboxList.reduce((count, item) => {
+      if (item.receiver_active_status === true) {
+        return count + 1;
+      }
+      return count;
+    }, 0);
+
+    return trueCount;
+  }
+
   return (
     <>
       <Dropdown
@@ -225,7 +237,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
         >
           {isWideScreen ? (
             <>
-              <span className="status d-inline-block me-2"></span> Chat (4 Active)
+              <span className="status d-inline-block me-2"></span> Chat ({countOnlineUsers()} Active)
             </>
           ) : (
             <BsFillChatDotsFill size={"18px"} />
