@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Dropdown, Form } from "react-bootstrap";
 import { LiaTimesSolid } from "react-icons/lia";
+import { IoIosSend } from "react-icons/io";
+
 import user1 from "../../Images/chatuser.png";
 import user2 from "../../Images/profile1.png";
 import avatar from '../../Images/avatar.jpg'
@@ -29,6 +31,8 @@ const ChatPopup = ({ isOpen, onClose }) => {
   const [selectedChat, setSelectedChat] = useState();
   const [msgsList, setMsgsList] = useState();
   const { user, profile, accessToken } = useSelector((state) => state.auth);
+  const [imgForAPI, setImgForAPI] = useState(null);
+  const fileInputRef = useRef(null);
 
   const { actionCable } = useActionCable(`wss://v2.meeme.appscorridor.com/cable?token=${accessToken}`);
   const { subscribe, unsubscribe, send } = useChannel(actionCable)
@@ -220,6 +224,7 @@ const ChatPopup = ({ isOpen, onClose }) => {
   /**
    * Chat Socket Implementation.
    */
+  
 
   useEffect(() => {
     if (selectedChat) {
@@ -250,7 +255,16 @@ const ChatPopup = ({ isOpen, onClose }) => {
     }
   }, [selectedChat]);
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImgForAPI(e.target.files[0])
+    }
+  };
 
+  const handleImageUpload = () => {
+    fileInputRef.current.click();
+  };
 
   return (
     <>
@@ -296,7 +310,7 @@ const ChatPopup = ({ isOpen, onClose }) => {
 
                           </div>
 
-                          <p>{item?.body}</p>
+                          <p className="text-truncate" style={{maxWidth:"120px"}}>{item?.body}</p>
                           <span className="d-block text-end" style={{ fontSize: "8px" }}>{timeAgo(item?.created_at)}</span>
                         </div>
                       </div>
@@ -386,11 +400,21 @@ const ChatPopup = ({ isOpen, onClose }) => {
                 value={inputText}
                 onChange={handleInputChange}
               />
-              <button onClick={sendMessage}>Send</button>
               <div className={"iconBox"}>
                 <FiSmile />
+                <span className={classes.uploadBtn} onClick={handleImageUpload}>
                 <CgAttachment />
-                <input type="file" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  style={{ display: 'none' }}
+                />
+              </span>
+                
+                <IoIosSend color="#ffcd2f" onClick={sendMessage}/>
+                
               </div>
             </div>
           </div>
