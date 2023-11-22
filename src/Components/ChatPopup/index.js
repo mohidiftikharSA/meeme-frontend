@@ -21,7 +21,7 @@ import { useActionCable, useChannel } from '@aersoftware/react-use-action-cable'
 
 
 
-const ChatPopup = ({ isOpen, onClose }) => {
+const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -29,18 +29,42 @@ const ChatPopup = ({ isOpen, onClose }) => {
   const [isChatVisible, setIsChatVisible] = useState(false);
   const [inboxList, setInboxList] = useState([]);
   const [selectedChat, setSelectedChat] = useState();
-  const [msgsList, setMsgsList] = useState();
-  const { user, profile, accessToken } = useSelector((state) => state.auth);
+  const [msgsList, setMsgsList] = useState([]);
+  const { user, accessToken } = useSelector((state) => state.auth);
   const [imgForAPI, setImgForAPI] = useState(null);
   const fileInputRef = useRef(null);
+  const [msgSent, setMsgSent] = useState();
+
 
   const { actionCable } = useActionCable(`wss://v2.meeme.appscorridor.com/cable?token=${accessToken}`);
   const { subscribe, unsubscribe, send } = useChannel(actionCable)
 
 
   useEffect(() => {
-    setIsDropdownOpen(isOpen);
-  }, [isOpen]);
+    setIsChatVisible(isOpen);
+
+    /**
+     *   To Do
+     */
+
+    // const chat = inboxList.filter(item => item.sender_id === profile?.user?.id || item.receiver_id === profile?.user?.id);
+    // console.log("My chat filter  === ", chat);
+    // if (chat[0] && chat) {
+    //   setSelectedChat(chat);
+    // }
+
+
+    if (data && profile) {
+      const obj = {
+        sender_id: data?.user?.id,
+        conversation_id: null,
+        receiver_image: data?.user_image,
+        sender_name: data?.user?.username
+      }
+      setSelectedChat(obj);
+    }
+
+  }, [isOpen, profile, data]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,16 +76,18 @@ const ChatPopup = ({ isOpen, onClose }) => {
     };
   }, []);
 
-
   useEffect(() => {
     getInboxList();
   }, [])
+
+  useEffect(() => {
+    getInboxList();
+  }, [msgSent])
 
 
   useEffect(() => {
 
     if (selectedChat) {
-      console.log("Selected Chat === ", selectedChat);
       if (user.id === selectedChat.sender_id) {
         getChatMessages(selectedChat.receiver_id)
       } else {
@@ -72,56 +98,57 @@ const ChatPopup = ({ isOpen, onClose }) => {
   }, [selectedChat]);
 
   const getChatMessages = async (receiverId) => {
-    const msgs = await MessagesAPIs.getChatMessages(receiverId);
-    if (msgs) {
-      setMsgsList(msgs.data.messages.reverse());
+    if (receiverId) {
+      const msgs = await MessagesAPIs.getChatMessages(receiverId);
+      if (msgs) {
+        setMsgsList(msgs.data.messages.reverse());
+      }
     }
   }
 
   const getInboxList = async () => {
     const res = await MessagesAPIs.getInboxList();
     if (res) {
-      console.log("Success of Inbox List =", res.data.messages);
       setInboxList(res.data.messages);
     }
 
   }
-
-  const dummyMessage = [
-    { text: "Hi Astro", user: "Randy" },
-    { text: "Can you send me a meme" },
-  ];
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
 
   const sendMessage = async () => {
+    if (!selectedChat.conversation_id) {
+      var res = await MessagesAPIs.createConversation({ receiver_id: selectedChat?.sender_id })
+      if (res) {
+        const resObj = { ...selectedChat };
+        resObj['conversation_id'] = res.data?.conversation?.id
+        console.log("New Response obj of Conversation == ", resObj);
+        setSelectedChat(resObj);
+      }
+    }
     if (inputText.trim() === "") return;
-    console.log("Input Text === ", inputText);
     const data = new FormData();
-    data.append('conversation_id', selectedChat.conversation_id);
+    data.append('conversation_id', selectedChat.conversation_id || res.data?.conversation?.id);
     data.append('receiver_id', selectedChat.sender_id === user.id ? selectedChat.receiver_id : selectedChat.sender_id);
     data.append('body', inputText);
+    if (imgForAPI) {
+      data.append("message_images[]", imgForAPI);
+    }
     const sendMsg = await MessagesAPIs.sendMessage(data);
     if (sendMsg) {
-      console.log("Message sent Successfully === ");
+      setMsgSent(sendMsg.data);
     }
     const newMessage = {
       text: inputText,
       user: user,
     };
-
+    setImgForAPI(null);
     setInputText("");
   };
 
-  const handleInputKeyPress = (e) => {
-    e.preventDefualt();
-    console.log("Send Message Enter ===");
-    if (e.key === "Enter") {
-      sendMessage();
-    }
-  };
+
   const handleLiClick = (chat) => {
     setIsChatVisible(true);
     setSelectedChat(chat);
@@ -134,97 +161,9 @@ const ChatPopup = ({ isOpen, onClose }) => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const inboxData = [
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: true,
-    },
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: false,
-    },
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: true,
-    },
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: true,
-    },
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: false,
-    },
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: false,
-    },
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: false,
-    },
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: false,
-    },
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: false,
-    },
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: false,
-    },
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: false,
-    },
-    {
-      userImg: user1,
-      name: "Fahad",
-      message: "Hello How Are you...",
-      time: "a day ago",
-      status: false,
-    },
-  ];
-
   /**
    * Chat Socket Implementation.
    */
-  
 
   useEffect(() => {
     if (selectedChat) {
@@ -239,8 +178,6 @@ const ChatPopup = ({ isOpen, onClose }) => {
             console.log("Msgs List === ", msgsList);
             setMsgsList((prevState) => ([...prevState, msg.body]));
 
-            // setMsgsList([...msgsList, msg?.body])
-            // handleMessageObj(msg);
           }, connected: () => {
             console.log('Socket Connected Successfully');
           },
@@ -264,6 +201,14 @@ const ChatPopup = ({ isOpen, onClose }) => {
 
   const handleImageUpload = () => {
     fileInputRef.current.click();
+  };
+
+  const handleFileInput = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      console.log("Selected File ==", file);
+      setImgForAPI(e.target.files[0])
+    }
   };
 
   return (
@@ -296,7 +241,7 @@ const ChatPopup = ({ isOpen, onClose }) => {
                     <li key={ind} onClick={() => { handleLiClick(item) }}>
                       <div className={classes.messageBox}>
                         <div className={classes.imgBox}>
-                          {item?.receiver_image || item?.sender_image ? <img src={item?.sender_id === user.id ? item?.receiver_image : item?.sender_image} alt="img" /> :
+                          {item?.receiver_image || item?.sender_image ? <img src={(item?.sender_id === user.id ? item?.receiver_image : item?.sender_image) || avatar} alt={"img 11"} /> :
                             <img src={avatar} alt="img" />
                           }
                           {item?.sender_id === user.id ? item?.receiver_active_status : item?.sender_active_status && (
@@ -310,7 +255,7 @@ const ChatPopup = ({ isOpen, onClose }) => {
 
                           </div>
 
-                          <p className="text-truncate" style={{maxWidth:"120px"}}>{item?.body}</p>
+                          <p className="text-truncate" style={{ maxWidth: "120px" }}>{item?.body}</p>
                           <span className="d-block text-end" style={{ fontSize: "8px" }}>{timeAgo(item?.created_at)}</span>
                         </div>
                       </div>
@@ -326,7 +271,9 @@ const ChatPopup = ({ isOpen, onClose }) => {
         <div className="chat">
           <div className="chat-window">
             <div className="header">
-              <span className="status d-inline-block mx-2"></span>{selectedChat?.sender_id === user.id ? selectedChat?.receiver_name : selectedChat?.sender_name}
+              {selectedChat?.receiver_active_status && <span className="status d-inline-block mx-2"></span>}
+
+              {selectedChat?.sender_id === user.id ? selectedChat?.receiver_name : selectedChat?.sender_name}
               <span
                 className="cancel-icon"
                 onClick={chatToggle}
@@ -353,7 +300,7 @@ const ChatPopup = ({ isOpen, onClose }) => {
                                 return (
                                   <>
                                     <div className="message-user">
-                                      <img src={img?.message_image} />
+                                      <img src={img || img?.message_image} />
                                     </div>
                                   </>
                                 )
@@ -379,7 +326,11 @@ const ChatPopup = ({ isOpen, onClose }) => {
                                 return (
                                   <>
                                     <div className="message-user">
-                                      <img src={img?.message_image} />
+                                      {typeof (img) === 'string' ?
+                                        <img src={img} />
+                                        :
+                                        <img src={img?.message_image} />
+                                      }
                                     </div>
                                   </>
                                 )
@@ -402,19 +353,19 @@ const ChatPopup = ({ isOpen, onClose }) => {
               />
               <div className={"iconBox"}>
                 <FiSmile />
-                <span className={classes.uploadBtn} onClick={handleImageUpload}>
-                <CgAttachment />
-                <input
-                  type="file"
-                  accept="image/*"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  style={{ display: 'none' }}
-                />
-              </span>
-                
-                <IoIosSend color="#ffcd2f" onClick={sendMessage}/>
-                
+                <span className={classes.uploadBtn} onChange={handleFileInput} onClick={handleImageUpload}>
+                  <CgAttachment />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                    style={{ display: 'none' }}
+                  />
+                </span>
+
+                <IoIosSend color="#ffcd2f" onClick={sendMessage} />
+
               </div>
             </div>
           </div>

@@ -22,11 +22,15 @@ const getInboxList = async () => {
 }
 
 const getChatMessages = async (id) => {
-    return await API.getMethod(`${ENDPOINT.messages.getChatMessages}${id}`, true);
+    return await API.getMethod(`${ENDPOINT.messages.getChatMessages}${id}`, true, false);
 }
 
 const sendMessage = async (data) => {
     return API.postMethod(ENDPOINT.messages.getInboxList, true, data)
+}
+
+const createConversation = async (data) => {
+    return API.postMethod(ENDPOINT.messages.createCoversation, true, data, true);
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -37,5 +41,6 @@ export default {
     replySupportChat,
     getInboxList,
     getChatMessages,
-    sendMessage
+    sendMessage,
+    createConversation
 }

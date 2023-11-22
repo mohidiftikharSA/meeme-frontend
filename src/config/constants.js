@@ -21,7 +21,8 @@ export const ENDPOINT = {
         getTicketMessages: `${API_URL}/messages/individual_admin_messages`,
         replySupportChat : `${API_URL}/messages/support_chat`,
         getInboxList : `${API_URL}/messages`,
-        getChatMessages : `${API_URL}/messages/individual_messages?receiver_id=`
+        getChatMessages : `${API_URL}/messages/individual_messages?receiver_id=`,
+        createCoversation : `${API_URL}/conversations`
     },
 
     followers: {

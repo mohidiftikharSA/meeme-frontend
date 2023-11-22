@@ -68,7 +68,8 @@ const Banner = ({ other, profile }) => {
   };
 
   const handleOpenChat = () => {
-    setShowChat(true);
+    console.log("Profile == ", profile);
+    setShowChat(!showChat);
   };
 
   const handleCloseChat = () => {
@@ -127,7 +128,10 @@ const Banner = ({ other, profile }) => {
       </div>
       <FollowModal following show={show} followingList={followingList} onHide={() => setShow(false)} />
       <FollowModal followers show={follwers} followersList={followersList} onHide={() => setfollowrshow(false)} />
-      <ChatPopup isOpen={showChat} onClose={handleCloseChat} />
+
+      {showChat &&
+        <ChatPopup profile data={profile} isOpen={showChat} onClose={handleCloseChat} />
+      }
     </>
   );
 };
