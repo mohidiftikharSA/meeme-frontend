@@ -246,7 +246,8 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
         <Dropdown.Menu onClick={(e) => e.stopPropagation()}>
           {isDropdownOpen && (
             <div className={classes.inbox}>
-              <Search text={"Search"} />
+              {/* <Search text={"Search"} /> */}
+              <p className="inboxText" >Inbox</p>
               <ul>
                 {inboxList.map((item, ind) => {
                   return (
