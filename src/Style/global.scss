@@ -522,8 +522,10 @@ main {
   }
 
   &.uploadModal {
+
     .modal-body {
-      background-color: transparent;
+      background-color: black;
+      border-radius: 10px;
     }
 
   }

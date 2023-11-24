@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import classes from "./index.module.scss";
 import avatar from "../../Images/youuser.png";
@@ -23,7 +23,7 @@ const otherUserStories = [
 const Stories = (data) => {
 
   const [modalShow, setModalShow] = React.useState(false);
-  const [selectedStoryIndex, setSelectedStoryIndex] = useState(null); 
+  const [selectedStoryIndex, setSelectedStoryIndex] = useState(null);
   const [storyData, setStoryData] = useState([]);
   const { profile } = useSelector((state) => state.auth);
 
@@ -67,7 +67,7 @@ const Stories = (data) => {
     <>
       <div className={classes.ImgWrapper}>
         <Row>
-          <Col md={3} sm={4} xs={6}  className="pe-0">
+          <Col md={3} sm={4} xs={6} className="pe-0">
             <button
               className={classes.imgUploader}
             >
@@ -92,11 +92,11 @@ const Stories = (data) => {
               ))} */}
               {storyData && storyData.map((item, index) => {
                 return (
-                  <div key={index} className={classes.ImgBox}  onClick={() => openModalWithStory(index)}>
+                  <div key={index} className={classes.ImgBox} onClick={() => openModalWithStory(index)}>
                     <img src={item.story_image} alt="img" />
                     <div className={classes.prilfe}>
-                      <img src={item.user_image} alt="img" />
-                      <p>{item.username}</p>
+                      <img src={item?.user_image} alt="img" />
+                      <p>{item?.username}</p>
                     </div>
                   </div>
                 );
