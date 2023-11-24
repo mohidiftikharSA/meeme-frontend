@@ -97,7 +97,7 @@ const TutorialModals = (props) => {
             </div>
           </li>
           <li>
-          <p className={classes.title}>The top 3 votes are the tournament winners and will be rewarded with Amazon gift cards. </p>
+          <p className={classes.title}>The 4th to 10th place in the tournament will receive coin rewards. </p>
             <div className={`${classes.box} ${classes.centerBox}`}>
               <div className={`imgBox ${classes.spaceImg}`}>
                 <img src={img10} alt="" />

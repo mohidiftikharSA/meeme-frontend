@@ -12,7 +12,7 @@ const UploadModal = (props) => {
   // };
 
   return (
-    <Modal
+    <Modal 
       {...props}
       size="sm"
       aria-labelledby="contained-modal-title-vcenter"

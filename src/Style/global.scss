@@ -481,6 +481,7 @@ main{
     .modal-body {
       background-color: transparent;
     }
+    
   }
 
   &.transparentModa {
@@ -1066,6 +1067,7 @@ main{
         padding: 10px 15px;
         min-width: 65px;
         max-width: 80%;
+        overflow-wrap: anywhere;
         .message-user {
           font-size: 10px;
           img{
@@ -1084,6 +1086,11 @@ main{
     position: relative;
     .userImg {
       margin: 0px 0 0 10px;
+      img {
+        width: 38px;
+        height: 38px;
+        object-fit: cover;
+      }
     }
   }
   .userImg {

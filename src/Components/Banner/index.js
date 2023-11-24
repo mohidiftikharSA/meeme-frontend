@@ -22,6 +22,9 @@ const Banner = ({ other, profile }) => {
   const nextPage = () => {
     navigate(`/CustomizeProfile`);
   };
+  const nextPages = () => {
+    navigate(`/profile-setting?text=account`);
+  };
 
   useEffect(() => {
     if (profile?.follower_added) {
@@ -119,7 +122,7 @@ const Banner = ({ other, profile }) => {
               <Button onClick={nextPage}>
                 <img src={edit} alt="img" />
               </Button>
-              <Button>
+              <Button onClick={nextPages}>
                 <img src={setting} alt="img" />
               </Button>
             </div>
