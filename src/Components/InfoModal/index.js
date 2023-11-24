@@ -25,7 +25,7 @@ const InfoModal = (props) => {
                     <li>Meme Users will have a chance to win Amazon Gift cards or coins when they are the successful winner of the tournament. First, second and third in votes will win Amazon Gift cards, while the 4th to 10th place will get Memee coins.</li>
                 </ul>
                 <div className='px-5'>
-        <Button className="w-100 p-2 authButton">Agree</Button>
+        <Button className="w-100 p-2 authButton" onClick={props.onHide}>Agree</Button>
         </div>
             </Modal.Body>
         </Modal>

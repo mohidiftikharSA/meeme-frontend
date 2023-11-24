@@ -90,15 +90,15 @@ function Navigation({ header, footer }) {
             <img src={home} alt="icon" />
             Home
           </Nav.Link>
-          <Nav.Link to="/tournament" className="btn btn-primary btn-bg trophy mb-3">
+          <Nav.Link as={Link} to="/tornament" className="btn btn-primary btn-bg trophy mb-3">
             <img src={trophies} alt="icon" />
             Tournament
           </Nav.Link>
-          <Nav.Link className="btn btn-primary btn-bg store mb-3">
+          <Nav.Link  as={Link} to="/tornament"className="btn btn-primary btn-bg store mb-3">
             <img src={judge} alt="icon" />
             Judge
           </Nav.Link>
-          <Nav.Link className="btn btn-primary btn-bg judge mb-3">
+          <Nav.Link as={Link} to="/BuyCoin" className="btn btn-primary btn-bg judge mb-3">
             <img src={shop} alt="icon" />
             Store
           </Nav.Link>

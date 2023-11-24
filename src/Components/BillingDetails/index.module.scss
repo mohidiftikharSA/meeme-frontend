@@ -9,5 +9,14 @@
             margin: 0;
             margin-left: 20px;
         }
+        .formControl{
+            background: transparent;
+            border: none;
+            padding-left: 15px;
+            color: #fff;
+            &:focus-visible{
+                outline: none;
+            }
+        }
     }
 }

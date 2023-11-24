@@ -13,17 +13,32 @@ const BilingDetails = () => {
         <h6>Card Number</h6>
         <div className={classes.box}>
             <img src={wallet} alt='img' width={25}/>
-            <p>1234 1234 1234 0123</p>
+            <input
+            placeholder="1234 1234 1234 0123"
+            name=""
+            type="number"
+            className={classes.formControl}
+          />
         </div>
         <h6>Expiry Date</h6>
         <div className={classes.box}>
             <img src={calender} alt='img' width={25}/>
-            <p>1234 1234 1234 0123</p>
+            <input
+            placeholder="1234 1234 1234 0123"
+            name=""
+            type="number"
+            className={classes.formControl}
+          />
         </div>
         <h6>CVV Code</h6>
         <div className={`${classes.box} mb-4`}>
             <img src={password} alt='img' width={25}/>
-            <p>1234 1234 1234 0123</p>
+            <input
+            placeholder="1234 1234 1234 0123"
+            name=""
+            type="number"
+            className={classes.formControl}
+          />
         </div>
 
         <Button type="submit" className="w-100 authButton" >Save</Button>
