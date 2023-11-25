@@ -64,12 +64,12 @@ const UploadModal = (props) => {
 
       <Modal.Body className="p-0">
         <div className={classes.prilfe}>
-          <img src={story.user_image||avatar} alt="img" />
-          <p>{story.username}</p>
+          <img src={story?.user_image||avatar} alt="img" />
+          <p>{story?.username}</p>
         </div>
         <div className={classes.preview}>
           {story && (
-            <img src={story.story_image} alt="Selected Story" />
+            <img src={story?.story_image} alt="Selected Story" />
           )}
         </div>
 
