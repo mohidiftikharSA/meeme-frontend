@@ -48,16 +48,13 @@ const EditProfile = () => {
     name: Yup.string()
       .required("Username is required.")
       .min(5, "Name must be at least five characters long"),
-    // .matches(
-    //   /^(?=.*[0-9])[a-zA-Z0-9]*$/,
-    //   "Name must be alphanumeric with at least one number"
-    // )
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
     phone: Yup.string()
       .required("Phone is required")
-      .min(10, "Phone must be at least ten characters long"),
+      .matches(/^[0-9]+$/, "Phone must contain only digits")
+      .min(8, "Phone must be at least eight characters long"),
     bio: Yup.string()
       .required("Bio is required")
       .min(10, "Bio must be at least ten characters long"),
@@ -176,6 +173,8 @@ const EditProfile = () => {
                       onChange={handleChange}
                       isValid={touched.email && !errors.email}
                       isInvalid={touched.email && !!errors.email}
+                      disabled
+
                     />
 
                   </Form.Group>
