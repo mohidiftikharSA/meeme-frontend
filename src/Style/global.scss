@@ -46,6 +46,7 @@ nav {
   font-size: 38px;
   margin: 12px 0;
   display: none;
+
   @include media("<tablet-x") {
     display: block;
   }
@@ -53,22 +54,27 @@ nav {
 
 .aside-responsive {
   border-right: 1px solid rgba(255, 255, 255, 0.31);
+
   &.profile-setting {
     border: none !important;
+
     @include media("<tablet-x") {
       border-radius: 12px;
       border: none;
+
       &.active {
         height: 100vh;
         overflow: auto;
         left: 0;
         top: 0;
+
         .nav-item {
           display: block !important;
         }
       }
     }
   }
+
   @include media("<tablet-x") {
     border: none;
     width: 80px;
@@ -76,12 +82,14 @@ nav {
     z-index: 99999;
     transition: all ease 0.3s;
   }
+
   &.active {
     width: 320px;
     background-color: #1c1c1c;
     transition: all ease 0.3s;
     height: 100%;
   }
+
   #aisde {
     position: fixed;
     top: 57px;
@@ -90,12 +98,15 @@ nav {
     width: 295px;
     transition: all ease 0.3s;
     overflow: auto;
+
     @include media("<tablet-x") {
       display: none;
-     
+
     }
+
     .asideHolder {
       height: 100%;
+
       @include media("<tablet-x") {
         height: auto;
       }
@@ -108,24 +119,28 @@ nav {
 }
 
 .content-responsive {
- section{
-  max-width: 800px;
-  margin: auto;
- }
+  section {
+    max-width: 800px;
+    margin: auto;
+  }
+
   @include media("<tablet-x") {
     width: 100%;
     transition: all ease 0.3s;
     padding-top: 60px !important;
   }
 }
+
 section {
   padding: 50px 75px;
   overflow: hidden;
   position: relative;
   min-height: 100vh;
+
   @include media("<tablet-x") {
     padding: 20px 50px;
   }
+
   @include media("<xs-phone") {
     padding: 20px 10px;
   }
@@ -154,6 +169,7 @@ section {
 
 .navBar {
   margin: 0 0 0 20px;
+
   .responsive-nav {
     @include media("<tablet-x") {
       position: fixed;
@@ -167,13 +183,16 @@ section {
       background-color: #201e23;
       align-items: flex-start;
       transition: all ease 0.3s;
+
       &.active {
         right: 0;
         transition: all ease 0.3s;
       }
+
       .navbar-nav {
         margin-top: 120px;
       }
+
       .nav-link {
         padding: 20px 10px;
         border-bottom: 1px solid #868686;
@@ -187,17 +206,21 @@ section {
         right: 10px;
       }
     }
+
     #profile-btn {
       display: none;
+
       @include media("<tablet-x") {
         display: block;
         padding: 20px;
       }
     }
   }
+
   .custom-icon1 {
     font-size: 20px;
     display: none;
+
     @include media("<tablet-x") {
       display: block;
     }
@@ -214,23 +237,24 @@ section {
     display: flex;
     align-items: center;
     font-size: 12px;
-  
+
     img {
       width: 16px;
       margin-right: 10px;
     }
-  
+
     i {
       margin-right: 10px;
       font-size: 18px;
     }
-  
-    &.active, &:hover {
+
+    &.active,
+    &:hover {
       color: #ffcd2f;
       filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
     }
   }
-  
+
   .nav-links {
     .nav-link {
       &:hover {
@@ -238,37 +262,44 @@ section {
       }
     }
   }
-  .home-icon{
+
+  .home-icon {
     font-size: 14px;
-    img{
+
+    img {
       color: #ffcd2f;
-      filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
-        saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
-        width: 17px;
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+      width: 17px;
     }
   }
 }
-main{
+
+main {
   margin-top: 80px;
-  @include media("<tablet-x"){
+
+  @include media("<tablet-x") {
     margin-top: 56px;
   }
 }
 
-.main-page{
-  .page-sides{
+.main-page {
+  .page-sides {
     width: 310px;
   }
-  .center-side{
+
+  .center-side {
     width: calc(100% - 620px);
-    @include media("<widescreen"){
+
+    @include media("<widescreen") {
       width: calc(100% - 310px);
     }
-    @include media("<tablet-x"){
+
+    @include media("<tablet-x") {
       width: 100%;
     }
   }
 }
+
 #profile-btn {
   @include media("<tablet-x") {
     display: none;
@@ -277,6 +308,7 @@ main{
 
 .accordion {
   font-family: $pt;
+
   .following {
     min-height: 100vh;
     height: 100%;
@@ -284,6 +316,7 @@ main{
     width: 290px;
     top: 50px;
     border-left: 1px solid rgba(255, 255, 255, 0.31);
+
     @include media("<widescreen") {
       min-height: auto;
       height: auto;
@@ -292,12 +325,14 @@ main{
       top: 0;
       width: 258px;
     }
+
     .all-text {
       margin-right: 43px;
       margin-left: 20px;
       color: #f6cc38;
       font-weight: 700;
       font-size: 14px;
+
       @include media("<widescreen") {
         margin: 0 10px 0 0;
         padding-right: 46px;
@@ -377,6 +412,7 @@ main{
     background-color: transparent !important;
     border: 1px solid #676767;
     margin-bottom: 35px;
+
     @include media("<tablet") {
       margin: 0;
     }
@@ -408,12 +444,15 @@ main{
     outline: none !important;
   }
 }
+
 .ReactInputVerificationCode__container {
   width: unset !important;
 }
+
 .ReactInputVerificationCode__item {
   font-size: 20px;
   font-weight: 600;
+
   @include media("<tablet") {
     font-size: 1rem;
   }
@@ -436,6 +475,7 @@ main{
     .modal-header {
       padding: 0;
       height: 0;
+
       .closeBtn {
         top: 12px;
         right: -5px;
@@ -444,6 +484,7 @@ main{
 
     .modal-body {
       background-color: transparent !important;
+
       &.congrats {
         background-image: url(../Images/congrats.png);
         background-size: 420px;
@@ -451,9 +492,11 @@ main{
         background-repeat: no-repeat;
       }
     }
+
     .modal-dialog {
       max-width: 350px;
     }
+
     .closeBtn {
       background-color: #d10a0b;
       width: 30px;
@@ -469,6 +512,7 @@ main{
       z-index: 9999;
     }
   }
+
   &.comment-modal {
     .modal-body {
       background-color: transparent;
@@ -483,7 +527,7 @@ main{
       background-color: black;
       border-radius: 10px;
     }
-    
+
   }
 
   &.transparentModa {
@@ -792,6 +836,7 @@ main{
   .nav {
     .nav-item {
       position: relative;
+
       @include media("<tablet-x") {
         display: none;
       }
@@ -879,13 +924,11 @@ main{
       content: counter(section) ".";
       left: 0;
       top: 0;
-      background: linear-gradient(
-        180deg,
-        #ffe486 0%,
-        #ffcc4e 51.56%,
-        #ffd02b 100%,
-        #d2a61b 100%
-      );
+      background: linear-gradient(180deg,
+          #ffe486 0%,
+          #ffcc4e 51.56%,
+          #ffd02b 100%,
+          #d2a61b 100%);
       width: 20px;
       height: 20px;
       border-radius: 50%;
@@ -939,6 +982,7 @@ main{
   &.form {
     background-position: 88% center !important;
   }
+
   background: none;
   border-radius: 20px;
   border: 1px solid #454545;
@@ -964,6 +1008,7 @@ main{
   left: 50%;
   margin: 10px;
   transform: translateX(-50%);
+
   @include media("<tablet-x") {
     width: unset;
   }
@@ -997,6 +1042,7 @@ main{
 .modal-md {
   max-width: 650px;
 }
+
 .status {
   width: 10px;
   height: 10px;
@@ -1014,26 +1060,31 @@ main{
   bottom: 0;
   z-index: 9999;
   padding: 0;
-  border-radius: 12px 12px  0 0;
+  border-radius: 12px 12px 0 0;
   background: #393240;
+
   @include media("<tablet") {
     border: none;
   }
+
   .header {
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 12px;
     padding: 10px;
     background: rgba(255, 255, 255, 0.11);
-    border-radius: 12px 12px  0 0;
+    border-radius: 12px 12px 0 0;
+
     .cancel-icon {
       float: right;
       font-size: 18px;
+
       svg {
         margin-bottom: 8px;
       }
     }
   }
+
   .messages {
     display: flex;
     flex-direction: column;
@@ -1042,19 +1093,20 @@ main{
     overflow: auto;
     line-height: 1.5;
     padding: 0 10px;
+
     .message {
       margin-bottom: 10px;
+
       &.sent {
         text-align: end;
         padding-right: 42px;
+
         .messageBox {
-          background: linear-gradient(
-            180deg,
-            #ffe486 0%,
-            #ffcc4e 51.56%,
-            #ffd02b 100%,
-            #d2a61b 100%
-          );
+          background: linear-gradient(180deg,
+              #ffe486 0%,
+              #ffcc4e 51.56%,
+              #ffd02b 100%,
+              #d2a61b 100%);
           color: #000;
           border-radius: 20px 20px 0px 20px;
           padding: 12px 15px;
@@ -1070,13 +1122,16 @@ main{
         min-width: 65px;
         max-width: 80%;
         overflow-wrap: anywhere;
+
         .message-user {
           font-size: 10px;
-          img{
+
+          img {
             width: 100px;
             margin-bottom: 10px;
           }
         }
+
         .message-text {
           word-break: break-all;
           font-size: 10px;
@@ -1085,10 +1140,13 @@ main{
       }
     }
   }
+
   .senderBox {
     position: relative;
+
     .userImg {
       margin: 0px 0 0 10px;
+
       img {
         width: 38px;
         height: 38px;
@@ -1096,12 +1154,14 @@ main{
       }
     }
   }
+
   .userImg {
     position: absolute;
     right: 0;
     top: 0;
     width: 35px;
     margin: 10px 10px 0 0;
+
     img {
       display: block;
       width: 100%;
@@ -1109,18 +1169,23 @@ main{
       border-radius: 50%;
     }
   }
+
   .receiverBox {
     position: relative;
+
     .message {
       padding-left: 42px;
     }
+
     .userImg {
       left: 0;
       right: unset;
     }
   }
+
   .sendBox {
     position: relative;
+
     .iconBox {
       position: absolute;
       right: 10px;
@@ -1129,21 +1194,25 @@ main{
       display: flex;
       align-items: center;
       gap: 10px;
+
       svg {
         font-size: 22px;
         color: #8f92a1;
-        &:hover{
+
+        &:hover {
           color: #ffcd2f;
           cursor: pointer;
         }
       }
     }
+
     .form-control {
       border-radius: 12px 12px 0 0;
       background-color: #646370;
       color: #fff;
       border: none;
       padding: 15px;
+
       &::placeholder {
         color: #838593;
         font-size: 12px
@@ -1158,15 +1227,21 @@ main{
   }
 }
 
-.view-modal{
-  .memeImg{
-    img{
+.view-modal {
+  .memeImg {
+    img {
       height: 500px;
       object-fit: contain;
     }
   }
 }
 
-.customeErrors{
+.customeErrors {
   color: red;
+}
+
+.inboxText {
+  color: white;
+  font-size: 17px;
+  text-align: center;
 }
