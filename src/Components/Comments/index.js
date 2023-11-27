@@ -16,6 +16,8 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
   const [replyCommentId, setReplyCommentId] = useState();
   const { profile } = useSelector((state) => state.auth);
   const [allCommentsArr, setAllCommentsArr] = useState([]);
+  const [isloading, setIsloading] = useState(false);
+
 
   useEffect(() => {
     if (data) {
@@ -23,6 +25,11 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
     }
   }, [data])
 
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); 
+    handlePostComment();
+  };
   const handlePostComment = () => {
     if (comment) {
       postComment(comment, postId);
@@ -39,13 +46,16 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
     setReplayVisible(!replayVisible);
   };
 
+
   const submitChildComment = async (commentId) => {
+    setIsloading(true);
     const data = new FormData();
     data.append('post_id', postId);
     data.append('comment_id', commentId);
     data.append('description', childComment);
     const child = await DashboardAPIs.createChildComment(data);
     if (child) {
+      setIsloading(false);
       setChildCommentCreated(child);
       setChildComment('');
     }
@@ -144,13 +154,12 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                             value={childComment}
                             onChange={(e) => setChildComment(e.target.value)}
                           />
-                          <button type="button" onClick={() => { submitChildComment(item?.id) }}>
+                          <button type="button" disabled={isloading} onClick={() => { submitChildComment(item?.id) }}>
                             Post
                           </button>
                         </div>
                       </Form>
                     </div>}
-
                   </>
                 )}
               </li>
@@ -162,7 +171,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
         <div className={classes.userImg}>
           <img src={profile?.user_image || user2} alt="Profile" />
         </div>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <div className="position-relative">
             <input
               type="text"
@@ -170,7 +179,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
-            <button type="button" onClick={handlePostComment}>
+            <button type="submit" onClick={handlePostComment}>
               Post
             </button>
           </div>
