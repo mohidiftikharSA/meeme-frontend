@@ -170,11 +170,11 @@ const TabDetails = ({
     };
 
     useEffect(() => {
-       /* const fetchData = async () => {
+        const fetchData = async () => {
             await getRecentPost();
             await getTrendingPost();
         };
-        fetchData();*/
+        fetchData();
     }, []);
 
     return (
@@ -186,13 +186,13 @@ const TabDetails = ({
                     className="mb-lg-5 mb-3"
                 >
                     <Tab eventKey="following" title="Following">
-                        <FollowingContent />
+                        <FollowingContent/>
                     </Tab>
                     <Tab eventKey="memes" title="New Memes">
-                        <MemesDetails newMemesData={recentPosts} />
+                        <MemesDetails newMemesData={recentPosts}/>
                     </Tab>
                     <Tab eventKey="trending" title="Trending">
-                        <MemesDetails newMemesData={trendingPosts} />
+                        <MemesDetails newMemesData={trendingPosts}/>
                     </Tab>
                 </Tabs>
             )}
