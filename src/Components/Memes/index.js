@@ -3,8 +3,8 @@ import classes from "./index.module.scss";
 import dummyUser from "../../Images/user-dummy.png";
 import defaultImage from "../../Images/default.png";
 import ViewPost from "Components/ViewPost";
-
-const MemesDetails = ({ newMemesData, explore,avatar }) => {
+import avatar from "../../Images/avatar.jpg";
+const MemesDetails = ({ newMemesData, explore }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [postData, setPostData] = useState([]);
