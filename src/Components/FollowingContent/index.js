@@ -2,7 +2,6 @@ import Posts from "Components/Post";
 import Stories from "Components/Stories";
 import UploadPost from "Components/UploadPost";
 import React, {useEffect, useState} from "react";
-import avatar from "../../Images/avatar.jpg";
 import postAPIs from "APIs/dashboard/home";
 import followingPostsData from '../Post/folllowingData.json'
 
@@ -51,23 +50,23 @@ const FollowingContent = () => {
     };
     useEffect(() => {
         console.log("First call on mount..");
-         const fetchData = async () => {
-             await getFollowerPosts()
-             await getStories()
-         }
-         fetchData();
+        const fetchData = async () => {
+            await getFollowerPosts()
+            await getStories()
+        }
+        fetchData();
         /** this for testing purposes**/
-       /* setIsLoading(true)
-        setTimeout(() => {
-            setFollowingData(followingPostsData)
-            setIsLoading(false)
-        }, 3000)*/
+        /* setIsLoading(true)
+         setTimeout(() => {
+             setFollowingData(followingPostsData)
+             setIsLoading(false)
+         }, 3000)*/
         return () => console.log("Cleanup..");
     }, []);
     return (<>
-        <Stories data={storyData} avatar={avatar}/>
+        <Stories data={storyData}/>
         <UploadPost/>
-        <Posts postData={followingData} isLoading={isLoading} avatar={avatar}/>
+        <Posts postData={followingData} isLoading={isLoading}/>
     </>);
 };
 
