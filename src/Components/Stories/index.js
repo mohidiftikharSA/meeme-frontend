@@ -2,12 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import classes from "./index.module.scss";
 import avatar from "../../Images/youuser.png";
-import user from "../../Images/user5.png";
-import meme9 from "../../Images/meme9.png";
-import user2 from "../../Images/user6.png";
-import meme2 from "../../Images/sotries1.png";
-import user3 from "../../Images/user7.png";
-import meme3 from "../../Images/stories2.png";
 import Slider from "react-slick";
 import { useSelector } from "react-redux";
 
