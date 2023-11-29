@@ -27,14 +27,14 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
     return (
         <>
             {
-                isLoading ? <MemeItemSkeleton/> :
+                isLoading ? <MemeItemSkeleton explore={explore}/> :
                     <div
                         className={`${classes.flexBox} ${
                             explore ? `${classes.exploreBox}` : ""
                         }`}
                     >
                         {postData.map((item, ind) => (
-                            <MemeItem key={item.post.id} item={item} openModal={openModal}/>
+                            <MemeItem key={item.post.id} item={item} openModal={openModal} explore/>
                         ))}
                     </div>
             }

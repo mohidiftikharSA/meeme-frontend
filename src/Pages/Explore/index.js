@@ -126,20 +126,15 @@ const Explore = () => {
     getRecentPostAndTags();
   }, []);
   return (
-    loading ? (
-      // Render this component when loading is true
-      <Loader isLoading={loading} />
-    ) : (
       <>
         <section>
           <Container fluid>
             <Search expolore text={"Search hashtags, usernames"} onSearchChange={onSearchChange} />
             <AccordianBadge data={tags} expolore selectedTagsString={onSearchChange} />
-            <MemesDetails newMemesData={filteredPosts} avatar={avatar} explore />
+            <MemesDetails isLoading={loading} newMemesData={filteredPosts} avatar={avatar} explore />
           </Container>
         </section>
       </>
-    )
   );
 };
 
