@@ -16,7 +16,7 @@ import NotificationCard from "Components/NotificationCard";
 import Transaction from "Components/Transaction";
 import FAQ from "Components/Faq";
 import RuleList from "Components/RuleList";
-import BilingDetails from "Components/BillingDetails";
+import BillingDetails from "Components/BillingDetails";
 import DeleteAccountModal from "Components/DeleteAccountModal";
 import Support from "Components/Support";
 import { Wizard } from "react-use-wizard";
@@ -229,7 +229,7 @@ const ProfileSetting = () => {
                       <RuleList />
                     </Tab.Pane>
                     <Tab.Pane eventKey="billing">
-                      <BilingDetails />
+                      <BillingDetails />
                     </Tab.Pane>
                     <Tab.Pane eventKey="support">
                       <Wizard>

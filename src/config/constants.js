@@ -39,7 +39,9 @@ export const ENDPOINT = {
     comment : {
         create_child_comment : `${API_URL}/comments/create_child_comment`
     },
-    
+    settings:{
+        create_user_billing_card: `${API_URL}/users/payments/add_a_card`
+    },
     comments: `${API_URL}/comments`,
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,
