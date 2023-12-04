@@ -4,6 +4,7 @@ import classes from "./index.module.scss";
 import avatar from "../../Images/youuser.png";
 import Slider from "react-slick";
 import {useSelector} from "react-redux";
+import user from "../../Images/avatar.jpg"
 
 import {Col, Row} from "react-bootstrap";
 import UploadModal from "Components/UploadViewModal";
@@ -51,7 +52,7 @@ const Stories = (data) => {
                         >
                             <span>Add story</span>
                             <div className={classes.prilfe}>
-                                <img src={profile?.user_image || avatar} alt="img"/>
+                            <img src={profile?.user_image || user} alt='img' style={{objectFit:"cover"}}/>
                                 <p>You</p>
                             </div>
                         </button>
@@ -73,7 +74,8 @@ const Stories = (data) => {
                                              onClick={() => openModalWithStory(index)}>
                                         <img src={item.story_image} alt="img"/>
                                         <div className={classes.prilfe}>
-                                            <img src={item?.user_image} alt="img"/>
+                                            {/* <img src={item?.user_image} alt="img"/> */}
+                                            <img src={item?.user_image || user} alt='img' style={{objectFit:"cover"}}/>
                                             <p>{item?.username}</p>
                                         </div>
                                     </div>);

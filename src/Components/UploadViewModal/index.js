@@ -2,6 +2,7 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import classes from "./index.module.scss";
 import avatar from "../../Images/youuser.png";
+import user from "../../Images/avatar.jpg"
 // import ReactImageUploading from "react-images-uploading";
 // import { height } from "@mui/system";
 const UploadModal = (props) => {
@@ -64,7 +65,8 @@ const UploadModal = (props) => {
 
       <Modal.Body className="p-0">
         <div className={classes.prilfe}>
-          <img src={story?.user_image||avatar} alt="img" />
+          {/* <img src={story?.user_image||avatar} alt="img" /> */}
+          <img src={story?.user_image || user} alt='img' style={{objectFit:"cover"}}/>
           <p>{story?.username}</p>
         </div>
         <div className={classes.preview}>
