@@ -1,5 +1,5 @@
 //export const API_URL = "http://127.0.0.1:8000/api";
-export const API_URL = "https://v2.meeme.appscorridor.com/api/v1";
+export const API_URL = "http://stg.memeeapi.appscorridor.com/api/v1";
 export const GOOGLE_CLIENT_ID = "233269390911-a70r33iv5l4jqjl1ccbar8f5k2q0pniq.apps.googleusercontent.com";
 
 
@@ -39,11 +39,14 @@ export const ENDPOINT = {
     comment : {
         create_child_comment : `${API_URL}/comments/create_child_comment`
     },
-    
+    settings:{
+        create_user_billing_card: `${API_URL}/users/payments/add_a_card`
+    },
     comments: `${API_URL}/comments`,
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,
     stories: `${API_URL}/stories`,
+    coinprices:`${API_URL}/coin_prices`,
     socialLogin: `${API_URL}/social/social_login`,
     followingPosts: `${API_URL}/posts/following_posts`,
     likePost: `${API_URL}/likes`,

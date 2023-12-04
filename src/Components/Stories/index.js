@@ -1,81 +1,65 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
 import classes from "./index.module.scss";
 import avatar from "../../Images/youuser.png";
 import Slider from "react-slick";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 
-
-import { Col, Row } from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import UploadModal from "Components/UploadViewModal";
 
 
-const otherUserStories = [
-
-];
+const otherUserStories = [];
 
 const Stories = (data) => {
 
-  const [modalShow, setModalShow] = React.useState(false);
-  const [selectedStoryIndex, setSelectedStoryIndex] = useState(null);
-  const [storyData, setStoryData] = useState([]);
-  const { profile } = useSelector((state) => state.auth);
+    const [modalShow, setModalShow] = React.useState(false);
+    const [selectedStoryIndex, setSelectedStoryIndex] = useState(null);
+    const [storyData, setStoryData] = useState([]);
+    const {profile} = useSelector((state) => state.auth);
 
 
-  const openModalWithStory = (index) => {
-    setSelectedStoryIndex(index);
-    setModalShow(true);
-  };
-  useEffect(() => {
-    setStoryData(data.data)
-  }, [data]);
-  // useEffect(() => {
+    const openModalWithStory = (index) => {
+        setSelectedStoryIndex(index);
+        setModalShow(true);
+    };
+    useEffect(() => {
+        setStoryData(data.data)
+    }, [data]);
+    // useEffect(() => {
 
-  // }, [storyData]);
-  var settings = {
-    dots: false,
-    arrows: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [
+    // }, [storyData]);
+    var settings = {
+        dots: false, arrows: false, infinite: false, speed: 500, slidesToShow: 3, slidesToScroll: 1, responsive: [
 
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 580,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
-  return (
-    <>
-      <div className={classes.ImgWrapper}>
-        <Row>
-          <Col md={3} sm={4} xs={6} className="pe-0">
-            <button
-              className={classes.imgUploader}
-            >
-              <span>Add story</span>
-              <div className={classes.prilfe}>
-                <img src={profile?.user_image || avatar} alt="img" />
-                <p>You</p>
-              </div>
-            </button>
-          </Col>
-          <Col md={9} sm={8} xs={6}>
-            <Slider {...settings} className="stories-slider">
+            {
+                breakpoint: 767, settings: {
+                    slidesToShow: 2, slidesToScroll: 1,
+                }
+            }, {
+                breakpoint: 580, settings: {
+                    slidesToShow: 1, slidesToScroll: 1
+                }
+            }]
+    };
+    return (<>
+            <div className={classes.ImgWrapper}>
+                <Row>
+                    <Col md={3} sm={4} xs={6} className="pe-0">
+                        <button
+                            className={classes.imgUploader}
+                        >
+                            <span>Add story</span>
+                            <div className={classes.prilfe}>
+                                <img src={profile?.user_image || avatar} alt="img"/>
+                                <p>You</p>
+                            </div>
+                        </button>
+                    </Col>
+                    <Col md={9} sm={8} xs={6}>
+                        <Slider {...settings} className="stories-slider">
 
-              {/* {imageList.map((image, index) => (
+                            {/* {imageList.map((image, index) => (
                 <div key={index} className={classes.ImgBox}>
                   <img src={image.data_url} alt="" width="100" />
                   <div className={classes.prilfe}>
@@ -84,29 +68,27 @@ const Stories = (data) => {
                   </div>
                 </div>
               ))} */}
-              {storyData && storyData.map((item, index) => {
-                return (
-                  <div key={index} className={classes.ImgBox} onClick={() => openModalWithStory(index)}>
-                    <img src={item.story_image} alt="img" />
-                    <div className={classes.prilfe}>
-                      <img src={item?.user_image} alt="img" />
-                      <p>{item?.username}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </Slider>
-          </Col>
-        </Row>
-      </div>
-      <UploadModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        story={storyData[selectedStoryIndex]}
-        title={"Story"}
-      />
-    </>
-  );
+                            {storyData && storyData.map((item, index) => {
+                                return (<div key={index} className={classes.ImgBox}
+                                             onClick={() => openModalWithStory(index)}>
+                                        <img src={item.story_image} alt="img"/>
+                                        <div className={classes.prilfe}>
+                                            <img src={item?.user_image} alt="img"/>
+                                            <p>{item?.username}</p>
+                                        </div>
+                                    </div>);
+                            })}
+                        </Slider>
+                    </Col>
+                </Row>
+            </div>
+            <UploadModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                story={storyData[selectedStoryIndex]}
+                title={"Story"}
+            />
+        </>);
 };
 
 export default Stories;

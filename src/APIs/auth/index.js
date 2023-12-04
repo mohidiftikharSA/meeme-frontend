@@ -48,6 +48,9 @@ const updateUser = async (data) => {
 const otherUserProfile = async(id)=>{
     return await API.getMethod(`${ENDPOINT.users.otherUserProfile}?id=${id}`,true);
 }
+const getcoinprices = async(id)=>{
+    return await API.getMethod(`${ENDPOINT.coinprices}`,true);
+}
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -60,5 +63,6 @@ export default {
     resetPassword,
     getCurrentUserProfile,
     updateUser,
-    otherUserProfile
+    otherUserProfile,
+    getcoinprices
 }

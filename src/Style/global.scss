@@ -1135,6 +1135,7 @@ main {
         .message-text {
           word-break: break-all;
           font-size: 10px;
+          text-align: left;
         }
       }
     }
@@ -1214,7 +1215,7 @@ main {
 
       &::placeholder {
         color: #838593;
-        font-size: 12px;
+        font-size: 12px
       }
     }
   }

@@ -124,7 +124,7 @@ const Posts = ({postData, comment, avatar, isLoading}) => {
                     <div className={classes.profile}>
                         <div className={classes.imgBox}>
                             {/* update condition to profile post */}
-                            <img src={item.user_image || (avatar.avatar || user2)}
+                            <img src={item.user_image || (avatar?.avatar || user2)}
                                  alt="user"/>
                         </div>
                         <div className={classes.userDetail}>
