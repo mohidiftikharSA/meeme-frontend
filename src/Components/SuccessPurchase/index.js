@@ -15,9 +15,9 @@ const SuccessPurchae = (props) => {
       <Modal.Body>
         <div className="mb-3">
         </div>
-        <h6>Successful</h6>
+        {/* <h6>SELECT YOUR CARD</h6> */}
         <p className="text-light">
-        You have purchased 10000 coins successfully.
+        No Card Available
         </p>
       </Modal.Body>
     </Modal>
