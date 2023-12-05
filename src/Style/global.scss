@@ -101,7 +101,6 @@ nav {
 
     @include media("<tablet-x") {
       display: none;
-
     }
 
     .asideHolder {
@@ -251,7 +250,8 @@ section {
     &.active,
     &:hover {
       color: #ffcd2f;
-      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
+        saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
     }
   }
 
@@ -268,7 +268,8 @@ section {
 
     img {
       color: #ffcd2f;
-      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
+        saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
       width: 17px;
     }
   }
@@ -522,12 +523,10 @@ main {
   }
 
   &.uploadModal {
-
     .modal-body {
       background-color: black;
       border-radius: 10px;
     }
-
   }
 
   &.transparentModa {
@@ -924,11 +923,13 @@ main {
       content: counter(section) ".";
       left: 0;
       top: 0;
-      background: linear-gradient(180deg,
-          #ffe486 0%,
-          #ffcc4e 51.56%,
-          #ffd02b 100%,
-          #d2a61b 100%);
+      background: linear-gradient(
+        180deg,
+        #ffe486 0%,
+        #ffcc4e 51.56%,
+        #ffd02b 100%,
+        #d2a61b 100%
+      );
       width: 20px;
       height: 20px;
       border-radius: 50%;
@@ -1102,11 +1103,13 @@ main {
         padding-right: 42px;
 
         .messageBox {
-          background: linear-gradient(180deg,
-              #ffe486 0%,
-              #ffcc4e 51.56%,
-              #ffd02b 100%,
-              #d2a61b 100%);
+          background: linear-gradient(
+            180deg,
+            #ffe486 0%,
+            #ffcc4e 51.56%,
+            #ffd02b 100%,
+            #d2a61b 100%
+          );
           color: #000;
           border-radius: 20px 20px 0px 20px;
           padding: 12px 15px;
@@ -1215,7 +1218,7 @@ main {
 
       &::placeholder {
         color: #838593;
-        font-size: 12px
+        font-size: 12px;
       }
     }
   }
@@ -1245,18 +1248,32 @@ main {
   font-size: 17px;
   text-align: center;
 }
-.invalid-feedback{
+.invalid-feedback {
   margin-bottom: 15px;
 }
-.extraText{
+.extraText {
   white-space: nowrap;
-    width: 80px;
-    overflow: hidden;
-    margin: 0 auto;
+  width: 80px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  margin: 0 auto;
 }
-.overflowText{
-  width: 100px;
-    overflow: hidden;
-    padding-top: 17px;
-    margin-right: 10px;
+.overflowText {
+  width: 90px;
+  text-overflow: ellipsis;
+  padding-top: 17px;
+  margin-right: 10px;
+  overflow: hidden;
+}
+
+.password{
+  position: relative;
+  span{
+    position: absolute;
+    top: 50%;
+    color: #CFCFCF;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 20px;
+  }
 }

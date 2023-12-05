@@ -9,6 +9,7 @@ import AuthAPIs from "APIs/auth";
 import Logo from "Components/Logo";
 import classes from "../index.module.scss";
 import Loader from "Components/Loader";
+import { FiEyeOff } from "react-icons/fi";
 
 const Signup = () => {
   const [isSubmitting, setIsSubmitting] = useState(false); // 
@@ -141,7 +142,7 @@ const Signup = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group controlId="password">
+                <Form.Group className="password" controlId="password" >
                   <Form.Control
                     type="password"
                     placeholder="Password"
@@ -151,13 +152,14 @@ const Signup = () => {
                     isValid={touched.password && !errors.password}
                     isInvalid={touched.password && !!errors.password}
                   />
+                  <span><FiEyeOff /></span>
                   <Form.Control.Feedback type="invalid">
                     {errors.password}
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group controlId="confirmPassword">
-                  <Form.Control
+                <Form.Group className="password" controlId="confirmPassword">
+                  <Form.Control 
                     type="password"
                     placeholder="Confirm Password"
                     name="confirmPassword"
@@ -168,6 +170,7 @@ const Signup = () => {
                       touched.confirmPassword && !!errors.confirmPassword
                     }
                   />
+                  <span><FiEyeOff /></span>
                   <Form.Control.Feedback type="invalid" className="mb-3">
                     {errors.confirmPassword}
                   </Form.Control.Feedback>
