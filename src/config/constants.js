@@ -1,5 +1,5 @@
 //export const API_URL = "http://127.0.0.1:8000/api";
-export const API_URL = "http://stg.memeeapi.appscorridor.com/api/v1";
+export const API_URL = `${process.env.REACT_APP_BASE_URL ?? 'https://v2.meeme.appscorridor.com'}/api/v1`//"https://v2.meeme.appscorridor.com/api/v1";
 export const GOOGLE_CLIENT_ID = "233269390911-a70r33iv5l4jqjl1ccbar8f5k2q0pniq.apps.googleusercontent.com";
 
 
@@ -19,27 +19,27 @@ export const ENDPOINT = {
         allSupportChats: `${API_URL}/messages/all_support_chats`,
         createTicket: `${API_URL}/messages/support_ticket`,
         getTicketMessages: `${API_URL}/messages/individual_admin_messages`,
-        replySupportChat : `${API_URL}/messages/support_chat`,
-        getInboxList : `${API_URL}/messages`,
-        getChatMessages : `${API_URL}/messages/individual_messages?receiver_id=`,
-        createCoversation : `${API_URL}/conversations`
+        replySupportChat: `${API_URL}/messages/support_chat`,
+        getInboxList: `${API_URL}/messages`,
+        getChatMessages: `${API_URL}/messages/individual_messages?receiver_id=`,
+        createCoversation: `${API_URL}/conversations`
     },
 
     followers: {
-        sendFollowRequest : `${API_URL}/followers/send_a_follow_request_to_user`,
-        unfollowUser : `${API_URL}/followers/un_follow_user`,
-        followings : `${API_URL}/followers?page=1&key=followings`,
-        followers : `${API_URL}/followers?page=1&key=followers`
+        sendFollowRequest: `${API_URL}/followers/send_a_follow_request_to_user`,
+        unfollowUser: `${API_URL}/followers/un_follow_user`,
+        followings: `${API_URL}/followers?page=1&key=followings`,
+        followers: `${API_URL}/followers?page=1&key=followers`
     },
 
     post: {
-        getTags : `${API_URL}/posts/tags`
+        getTags: `${API_URL}/posts/tags`
     },
-    
-    comment : {
-        create_child_comment : `${API_URL}/comments/create_child_comment`
+
+    comment: {
+        create_child_comment: `${API_URL}/comments/create_child_comment`
     },
-    settings:{
+    settings: {
         create_user_billing_card: `${API_URL}/users/payments/add_a_card`
     },
     comments: `${API_URL}/comments`,
