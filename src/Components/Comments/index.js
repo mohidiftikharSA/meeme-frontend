@@ -90,7 +90,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                 <div className={`${classes.flexBox}`}>
                   <div className={classes.userImg}>
                     <img
-                      src={item.user_image || avatar.avatar || user2}
+                      src={item.user_image || avatar?.avatar || user2}
                       alt="Profile"
                     />
                   </div>
@@ -123,7 +123,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                           <div className={`${classes.flexBox} ${classes.replay}`}>
                             <div className={classes.userImg}>
                               <img
-                                src={child?.user_image || userimg || avatar.avatar || user2}
+                                src={child?.user_image || userimg || avatar?.avatar || user2}
                                 alt="Profile"
                               />
                             </div>
@@ -154,7 +154,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                             value={childComment}
                             onChange={(e) => setChildComment(e.target.value)}
                           />
-                          <button type="button" disabled={isloading} onClick={() => { submitChildComment(item?.id) }}>
+                            <button type="button" disabled={isloading} onClick={() => { submitChildComment(item?.id) }}>
                             Post
                           </button>
                         </div>

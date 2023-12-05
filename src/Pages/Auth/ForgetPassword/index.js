@@ -31,6 +31,7 @@ const Forgetpassword = () => {
                     <Button className="btn-primary icon-btn w-100 p-2 h-auto mt-4" href="#" onClick={emailVarification}>
                     <BsCheckLg/> Email Verification
                     </Button>
+                    
                     {/*<Button className="btn-primary icon-btn  w-100 p-2 h-auto mt-4" onClick={nextPage}>*/}
                     {/*<BsCheckLg/>  Phone Verification*/}
                     {/*</Button>*/}

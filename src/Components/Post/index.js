@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import ViewPost from "Components/ViewPost";
 import postAPIs from "../../APIs/dashboard/home";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 import SkeletonPostsLoading from '../Loader/SkeletonPostsLoading'
 import PostItem from "./PostItem";
 import avatar from "../../Images/avatar.jpg";
 
-const Posts = ({ postData, comment, isLoading }) => {
+const Posts = ({postData, comment, isLoading}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [followingData, setFollowingData] = useState([]);
@@ -30,7 +30,7 @@ const Posts = ({ postData, comment, isLoading }) => {
 
     const likePost = async (post_id) => {
         try {
-            const res = await postAPIs.likePost({ post_id });
+            const res = await postAPIs.likePost({post_id});
             if (res.status === 200) {
                 const updatedItems = postData.map(item => {
                     if (item.post.id === post_id) {
@@ -74,7 +74,7 @@ const Posts = ({ postData, comment, isLoading }) => {
     const toggleActive = (itemId) => {
         const updatedItems = postData.map(item => {
             if (item.post.id === itemId) {
-                return { ...item, liked_by_current_user: !item.liked_by_current_user };
+                return {...item, liked_by_current_user: !item.liked_by_current_user};
             }
             return item;
         });
@@ -110,24 +110,23 @@ const Posts = ({ postData, comment, isLoading }) => {
         setImagesLoaded(imagesLoaded);
     };
     return (<>
-        {isLoading ? <SkeletonPostsLoading /> : followingData.map((item, ind) =>
-            <PostItem
-                key={ind}
-                item={item}
-                ind={ind}
-                likePost={likePost}
-                downloadMedia={downloadMedia}
-                redirectToOtherProfile={redirectToOtherProfile}
-                openModal={openModal}
-                copyToClipboard={copyToClipboard}
-                handleImageLoad={handleImageLoad}
-                handleImageError={handleImageError}
-                imagesLoaded={imagesLoaded}
-                comment={comment}
-            />)}
+        {isLoading ? <SkeletonPostsLoading/> : followingData.map((item, ind) => <PostItem
+            key={ind}
+            item={item}
+            ind={ind}
+            likePost={likePost}
+            downloadMedia={downloadMedia}
+            redirectToOtherProfile={redirectToOtherProfile}
+            openModal={openModal}
+            copyToClipboard={copyToClipboard}
+            handleImageLoad={handleImageLoad}
+            handleImageError={handleImageError}
+            imagesLoaded={imagesLoaded}
+            comment={comment}
+        />)}
 
         <ViewPost onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData}
-            avatar={avatar} />
+                  avatar={avatar}/>
     </>);
 };
 

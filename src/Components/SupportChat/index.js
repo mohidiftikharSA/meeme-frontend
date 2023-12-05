@@ -164,7 +164,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
       </div>
 
       <div className={`postionBottom ${classes.sendBox}`}>
-        <span>{file ? file?.name : ''}</span>
+        <span><p className="overflowText">{file ? file?.name : ''}</p></span>
         <span className={classes.attachBtn}>
           <span className={classes.attachBtn} onClick={triggerFileInput}>
             <input
