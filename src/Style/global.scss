@@ -1248,3 +1248,15 @@ main {
 .invalid-feedback{
   margin-bottom: 15px;
 }
+.extraText{
+  white-space: nowrap;
+    width: 80px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.overflowText{
+  width: 100px;
+    overflow: hidden;
+    padding-top: 17px;
+    margin-right: 10px;
+}

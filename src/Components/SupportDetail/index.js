@@ -100,7 +100,7 @@ const SupportDetail = () => {
           <img src={pic} alt='icon' />
         </label>
         <p className={classes.text}>Attach images or proof</p>
-        {selectedFileName && <p>{selectedFileName}</p>}
+        {selectedFileName && <p className="extraText">{selectedFileName}</p>}
       </div>
       <div className={'postionBottom'}>
         <button
