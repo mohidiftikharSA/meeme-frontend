@@ -15,7 +15,7 @@ import {toast} from "react-toastify";
 import SkeletonPostsLoading from '../Loader/SkeletonPostsLoading'
 import Skeleton from "react-loading-skeleton";
 
-const Posts = ({postData, comment, avatar, isLoading,disable}) => {
+const Posts = ({postData, comment, avatar, isLoading, disable}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [followingData, setFollowingData] = useState([]);

@@ -57,9 +57,10 @@ const Signup = () => {
         "Name must be alphanumeric with at least one number"
       )
       .min(6, "Name must be at least six characters long"),
-    phone: Yup.string()
+      phone: Yup.string()
       .required("Phone is required")
-      .min(10, "Phone must be at least ten characters long"),
+      .matches(/^[0-9]+$/, "Phone must contain only digits")
+      .min(8, "Phone must be at least eight characters long"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Confirm Password is required")
@@ -127,7 +128,7 @@ const Signup = () => {
 
                 <Form.Group controlId="phone">
                   <Form.Control
-                    type="tel"
+                    type="number"
                     placeholder="Phone"
                     name="phone"
                     value={values.phone}
