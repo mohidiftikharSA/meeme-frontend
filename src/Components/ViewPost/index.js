@@ -74,7 +74,7 @@ const ViewPost = (props) => {
       <Modal.Body>
         <Row className='text-start'>
           <Col lg={7} className='view-modal'>
-            <Posts postData={[selectedPost]} avatar={user2} comment disable />
+            <Posts postData={[selectedPost]} avatar={user2} comment />
           </Col>
           <Col lg={5} className='position-relative'>
             <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId} user={user} setChildCommentCreated={setChildCommentCreated} />
