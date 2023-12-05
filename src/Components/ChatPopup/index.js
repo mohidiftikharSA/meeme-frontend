@@ -20,7 +20,7 @@ const ChatPopup = ({isOpen, onClose, profile, data}) => {
     const [msgSent, setMsgSent] = useState();
 
 
-    const {actionCable} = useActionCable(`wss://v2.meeme.appscorridor.com/cable?token=${accessToken}`);
+    const {actionCable} = useActionCable(`${process.env.REACT_APP_WS_URL ?? 'wss://v2.meeme.appscorridor.com'}/cable?token=${accessToken}`);
     const {subscribe, unsubscribe, send} = useChannel(actionCable)
 
 
@@ -212,32 +212,32 @@ const ChatPopup = ({isOpen, onClose, profile, data}) => {
     }
 
     return (<>
-            <ChatDropdown
-                isDropdownOpen={isDropdownOpen}
-                toggleDropdown={toggleDropdown}
-                countOnlineUsers={countOnlineUsers}
-                isWideScreen={isWideScreen}
-                isOpen={isOpen}
-                inboxList={inboxList}
-                handleClick={handleClick}
-                user={user}
-            />
-            {isChatVisible && (<ChatWindow
-                    isChatVisible={isChatVisible}
-                    chatToggle={chatToggle}
-                    selectedChat={selectedChat}
-                    msgsList={msgsList}
-                    inputText={inputText}
-                    handleInputChange={handleInputChange}
-                    handleKeyPress={handleKeyPress}
-                    sendMessage={sendMessage}
-                    handleImageUpload={handleImageUpload}
-                    user={user}
-                    handleFileInput={handleFileInput}
-                    handleFileChange={handleFileChange}
-                    fileInputRef={fileInputRef}
-                />)}
-        </>);
+        <ChatDropdown
+            isDropdownOpen={isDropdownOpen}
+            toggleDropdown={toggleDropdown}
+            countOnlineUsers={countOnlineUsers}
+            isWideScreen={isWideScreen}
+            isOpen={isOpen}
+            inboxList={inboxList}
+            handleClick={handleClick}
+            user={user}
+        />
+        {isChatVisible && (<ChatWindow
+            isChatVisible={isChatVisible}
+            chatToggle={chatToggle}
+            selectedChat={selectedChat}
+            msgsList={msgsList}
+            inputText={inputText}
+            handleInputChange={handleInputChange}
+            handleKeyPress={handleKeyPress}
+            sendMessage={sendMessage}
+            handleImageUpload={handleImageUpload}
+            user={user}
+            handleFileInput={handleFileInput}
+            handleFileChange={handleFileChange}
+            fileInputRef={fileInputRef}
+        />)}
+    </>);
 };
 
 export default ChatPopup;

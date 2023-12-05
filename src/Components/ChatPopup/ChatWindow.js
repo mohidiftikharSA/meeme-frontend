@@ -36,7 +36,7 @@ const ChatWindow = ({
                 <div className="messages">
                     {msgsList && msgsList.map((item, index) => {
                         return (<>  {item?.sender_id !== user.id ? <>
-                            <div className="receiverBox">
+                            <div key={`${item.id}_${index}`} className="receiverBox">
                                 <div className="userImg">
                                     <img src={item?.sender_image || user1} alt="img"/>
                                 </div>
@@ -45,7 +45,7 @@ const ChatWindow = ({
                                         <div className="message-user">{item.body}</div>
                                         {item?.message_images && item?.message_images?.map((img, ind) => {
                                             return (<>
-                                                <div className="message-user">
+                                                <div id={`${ind}_img`} className="message-user">
                                                     <img src={img || img?.message_image}/>
                                                 </div>
                                             </>)
@@ -54,7 +54,7 @@ const ChatWindow = ({
                                 </div>
                             </div>
                         </> : <>
-                            <div className="senderBox">
+                            <div key={`${item.id}_${index}`} className="senderBox">
                                 <div
                                     key={index}
                                     className={`message ${item.sender_id === user.id ? "sent" : "received"}`}
@@ -66,7 +66,7 @@ const ChatWindow = ({
                                         <div className="message-text ">{item?.body}</div>
                                         {item?.message_images && item?.message_images?.map((img, ind) => {
                                             return (<>
-                                                <div className="message-user">
+                                                <div key={`${ind}_img`} className="message-user">
                                                     {typeof (img) === 'string' ? <img src={img}/> :
                                                         <img src={img?.message_image}/>}
                                                 </div>
