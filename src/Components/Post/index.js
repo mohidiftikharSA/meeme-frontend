@@ -15,8 +15,10 @@ const Posts = ({postData, comment, isLoading}) => {
     const [imagesLoaded, setImagesLoaded] = useState([]);
     const openModal = (postId) => {
         console.log('postId', postId)
-        setSelectedPostId(postId);
-        setIsModalOpen(true);
+        if (!comment) {
+            setSelectedPostId(postId);
+            setIsModalOpen(true);
+        }
     }
 
     const closeModal = () => {
@@ -125,8 +127,11 @@ const Posts = ({postData, comment, isLoading}) => {
             comment={comment}
         />)}
 
-        <ViewPost onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData}
-                  avatar={avatar}/>
+        {
+            isModalOpen &&
+            <ViewPost onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData}
+                      avatar={avatar}/>
+        }
     </>);
 };
 
