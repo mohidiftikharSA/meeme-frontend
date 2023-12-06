@@ -152,7 +152,11 @@ const Signup = () => {
                     isValid={touched.password && !errors.password}
                     isInvalid={touched.password && !!errors.password}
                   />
-                  <span><FiEyeOff /></span>
+                  <span
+                      style={{ display: !errors.password ? "block" : "none" }}
+                    >
+                      <FiEyeOff />
+                    </span>
                   <Form.Control.Feedback type="invalid">
                     {errors.password}
                   </Form.Control.Feedback>
@@ -170,7 +174,11 @@ const Signup = () => {
                       touched.confirmPassword && !!errors.confirmPassword
                     }
                   />
-                  <span><FiEyeOff /></span>
+                  <span
+                      style={{ display: !errors.password ? "block" : "none" }}
+                    >
+                      <FiEyeOff />
+                    </span>
                   <Form.Control.Feedback type="invalid" className="mb-3">
                     {errors.confirmPassword}
                   </Form.Control.Feedback>
