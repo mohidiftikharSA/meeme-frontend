@@ -40,7 +40,7 @@ const LoginFrom = () => {
             accessToken: res.data.token,
           })
         );
-    
+
         navigate(`/home`);
         toast.success("Login Successfully", {
           position: "top-right",
@@ -98,9 +98,20 @@ const LoginFrom = () => {
               <Form.Control.Feedback type="invalid">
                 {errors.password}
               </Form.Control.Feedback>
-              <p className={classes.password} onClick={nextPage}>
-                Forgot password?
-              </p>
+              <div className="check">
+                <span>
+                <Form.Check
+          type="checkbox"
+          id="check"
+          label="Remember me"
+          className={classes.customCheckbox} 
+        />
+                </span>
+                <p className={classes.password} onClick={nextPage}>
+                  Forgot password?
+                </p>
+              </div>
+
               {isLoading ?
                 <Button type="submit" className="w-100 p-2 authButton" disabled>
                   Sign in

@@ -1277,3 +1277,44 @@ main {
     font-size: 20px;
   }
 }
+.check{
+  display: flex;
+  justify-content: space-between;
+
+  label{
+    padding-left: 5px;
+    font-size: 12px;
+    font-weight: 300;
+  }
+  input{
+    vertical-align: middle;
+  }
+  .form-check-input:checked {
+    background-color: #fff;
+    border-color: #fff;
+}
+.form-check-input:checked[type=checkbox] {
+  background-image: url(../Images/check12.png);
+}
+.form-check-input:focus {
+  border-color: transparent;
+  outline: 0;
+  box-shadow: none;
+}
+}
+aside.EmojiPickerReact.epr-main{
+  height: 369px !important;
+  width: 303px !important;
+  position: absolute;
+  bottom: 45px;
+  left: 8px;
+}
+.emoji{
+  aside.EmojiPickerReact.epr-main {
+    height: 369px !important;
+    width: 260px !important;
+    position: absolute;
+    bottom: 34px;
+    left: 99px;
+  }
+}

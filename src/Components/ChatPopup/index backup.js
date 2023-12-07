@@ -325,8 +325,10 @@ const ChatPopup = ({isOpen, onClose, profile, data}) => {
                                         {item?.message_images && item?.message_images?.map((img, ind) => {
                                             return (<>
                                                 <div className="message-user">
-                                                    {typeof (img) === 'string' ? <img src={img}/> :
-                                                        <img src={img?.message_image}/>}
+                                                    {/* {typeof (img) === 'string' ? <img src={img}/> :
+                                                         <img src={img || img?.message_image}/>} */}
+                                                         <img src={img || img?.message_image}/>
+
                                                 </div>
                                             </>)
                                         })}

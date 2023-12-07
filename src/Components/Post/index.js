@@ -7,7 +7,7 @@ import SkeletonPostsLoading from '../Loader/SkeletonPostsLoading'
 import PostItem from "./PostItem";
 import avatar from "../../Images/avatar.jpg";
 
-const Posts = ({postData, comment, isLoading}) => {
+const Posts = ({postData, comment, isLoading,disable}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [followingData, setFollowingData] = useState([]);
@@ -133,6 +133,7 @@ const Posts = ({postData, comment, isLoading}) => {
             handleImageError={handleImageError}
             imagesLoaded={imagesLoaded}
             comment={comment}
+            disable
         />)}
 
         {isModalOpen &&

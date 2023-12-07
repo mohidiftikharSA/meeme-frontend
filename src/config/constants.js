@@ -1,5 +1,5 @@
 //export const API_URL = "http://127.0.0.1:8000/api";
-export const API_URL = `${process.env.REACT_APP_BASE_URL ?? 'https://v2.meeme.appscorridor.com'}/api/v1`//"https://v2.meeme.appscorridor.com/api/v1";
+export const API_URL = `${process.env.REACT_APP_BASE_URL ?? 'http://stg.memeeapi.appscorridor.com'}/api/v1`//"https://v2.meeme.appscorridor.com/api/v1";
 export const GOOGLE_CLIENT_ID = "233269390911-a70r33iv5l4jqjl1ccbar8f5k2q0pniq.apps.googleusercontent.com";
 
 
