@@ -21,10 +21,17 @@ const Posts = ({postData, comment, isLoading}) => {
         }
     }
 
-    const closeModal = () => {
+    const closeModal = (modifiedPost) => {
         setIsModalOpen(false);
+        const updatedItems = postData.map(item => {
+            console.log("Post ", JSON.stringify(modifiedPost))
+            if (item.post.id === modifiedPost.post.id) {
+                return modifiedPost
+            }
+            return item
+        });
+        setFollowingData(updatedItems);
     }
-
 
     useEffect(() => {
         setFollowingData(postData);
@@ -36,10 +43,12 @@ const Posts = ({postData, comment, isLoading}) => {
             if (res.status === 200) {
                 const updatedItems = postData.map(item => {
                     if (item.post.id === post_id) {
+                        console.log('updating with like')
                         return {
                             ...item,
                             liked_by_current_user: res.data.type_data.is_liked,
-                            post_likes: res.data.likes_count
+                            post_likes: res.data.likes_count,
+                            test: ''
                         };
                     }
                     return item
@@ -90,8 +99,6 @@ const Posts = ({postData, comment, isLoading}) => {
     }
 
     const downloadMedia = (mediaUrl, id) => {
-        console.log("media url === ", mediaUrl);
-
         const link = document.createElement('a');
         link.href = mediaUrl;
         link.download = 'image.jpg'; // You can set the desired filename here
@@ -112,6 +119,7 @@ const Posts = ({postData, comment, isLoading}) => {
         setImagesLoaded(imagesLoaded);
     };
     return (<>
+        <iframe id="my_iframe" style={{display: "none"}}></iframe>
         {isLoading ? <SkeletonPostsLoading/> : followingData.map((item, ind) => <PostItem
             key={ind}
             item={item}
@@ -127,11 +135,9 @@ const Posts = ({postData, comment, isLoading}) => {
             comment={comment}
         />)}
 
-        {
-            isModalOpen &&
-            <ViewPost onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData}
-                      avatar={avatar}/>
-        }
+        {isModalOpen &&
+            <ViewPost onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={followingData}
+                      avatar={avatar}/>}
     </>);
 };
 
