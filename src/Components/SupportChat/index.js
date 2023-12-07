@@ -10,8 +10,9 @@ import { IoMdSend } from "react-icons/io";
 import { FaSmile } from "react-icons/fa";
 import { Form } from "react-bootstrap";
 import { useWizard } from "react-use-wizard";
-import MessagesAPIs from '../../APIs/messages';
+import MessagesAPIs from "../../APIs/messages";
 import Loader from "Components/Loader";
+import EmojiPicker from "emoji-picker-react";
 
 const SupportChat = ({ selectedSupportTicket }) => {
   const { goToStep } = useWizard();
@@ -23,19 +24,19 @@ const SupportChat = ({ selectedSupportTicket }) => {
 
   useEffect(() => {
     getTicketMessages();
-  }, [selectedSupportTicket, sent])
+  }, [selectedSupportTicket, sent]);
 
   const getTicketMessages = async () => {
     setIsLoading(true);
     const data = {
       message_ticket: selectedSupportTicket?.message_ticket,
-      admin_user_id: 1
-    }
+      admin_user_id: 1,
+    };
     console.log("Data --- ", data);
     const msgs = await MessagesAPIs.getTicketMessages(data);
     if (msgs) {
       console.log("Ticket messages successfull - ", msgs?.data?.messages);
-      const arr = [...msgs?.data?.messages]
+      const arr = [...msgs?.data?.messages];
       setAllMsgsArr(arr.reverse());
     }
     setIsLoading(false);
@@ -46,27 +47,37 @@ const SupportChat = ({ selectedSupportTicket }) => {
       setIsLoading(true);
       setIsLoading(true);
       const data = new FormData();
-      data.append('conversation_id', selectedSupportTicket?.conversation_id);
-      data.append('admin_user_id', 1);
-      data.append('body', reply);
+      data.append("conversation_id", selectedSupportTicket?.conversation_id);
+      data.append("admin_user_id", 1);
+      data.append("body", reply);
       if (file) {
-        data.append('message_images[]', file);
+        data.append("message_images[]", file);
       }
       const send = await MessagesAPIs.replySupportChat(data);
       if (send) {
         setSent(send.data);
-        setReply('');
+        setReply("");
         setFile(null);
         console.log("Reply sent successfully = ", send.data);
       }
     }
     setIsLoading(false);
-  }
+  };
 
   function formatDate(inputDate) {
     const months = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
     ];
 
     const dateObj = new Date(inputDate);
@@ -91,12 +102,25 @@ const SupportChat = ({ selectedSupportTicket }) => {
     }
   };
 
+  const [replye, setReplye] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+
+  const handleEmojiClick = () => {
+    setShowEmojiPicker(!showEmojiPicker);
+  };
+
+  const handleEmojiSelect = (emoji) => {
+    setReplye(replye + emoji.native);
+  };
 
   return (
     <>
       <Loader isLoading={isLoading} />
       <div className={classes.ChatBoxHolder}>
-        <span style={{ display: "inline-block", width: "105px" }} onClick={() => (goToStep(0))}>
+        <span
+          style={{ display: "inline-block", width: "105px" }}
+          onClick={() => goToStep(0)}
+        >
           <Heading title={"Support"} />
         </span>
 
@@ -105,7 +129,9 @@ const SupportChat = ({ selectedSupportTicket }) => {
             <>
               <div className={classes.sender}>
                 <div
-                  className={"d-flex align-items-start justify-content-between mb-3"}
+                  className={
+                    "d-flex align-items-start justify-content-between mb-3"
+                  }
                 >
                   <div className={classes.textBox}>
                     <div className={classes.profileImg}>
@@ -116,27 +142,22 @@ const SupportChat = ({ selectedSupportTicket }) => {
                       <p>{formatDate(item?.created_at)}</p>
                     </div>
                   </div>
-                  <span className={classes.status}>{item?.status === 'Ongoing' ? 'Pending' : item?.status}</span>
+                  <span className={classes.status}>
+                    {item?.status === "Ongoing" ? "Pending" : item?.status}
+                  </span>
                 </div>
-                <p className={classes.msg}>
-                  {item?.body}
-                </p>
-                {item &&
+                <p className={classes.msg}>{item?.body}</p>
+                {item && (
                   <div className={classes.attachment}>
                     {item?.message_images?.map((img) => {
-                      return (
-                        <img src={img?.message_image} alt="img" />
-                      )
+                      return <img src={img?.message_image} alt="img" />;
                     })}
-
                   </div>
-                }
+                )}
               </div>
             </>
-          )
+          );
         })}
-
-
 
         {/* <div className={`${classes.sender} ${classes.recive}`}>
           <div
@@ -164,7 +185,9 @@ const SupportChat = ({ selectedSupportTicket }) => {
       </div>
 
       <div className={`postionBottom ${classes.sendBox}`}>
-        <span><p className="overflowText">{file ? file?.name : ''}</p></span>
+        <span>
+          <p className="overflowText">{file ? file?.name : ""}</p>
+        </span>
         <span className={classes.attachBtn}>
           <span className={classes.attachBtn} onClick={triggerFileInput}>
             <input
@@ -177,12 +200,25 @@ const SupportChat = ({ selectedSupportTicket }) => {
           </span>
         </span>
         <div className={classes.sendBox}>
-          <Form.Control placeholder="Aa" value={reply} onChange={(e) => { setReply(e.target.value) }} />
-          <span className={classes.smiley}>
+          <Form.Control
+            placeholder="Aa"
+            value={replye}
+            onChange={(e) => setReplye(e.target.value)}
+          />
+          <span className={classes.smiley} onClick={handleEmojiClick}>
             <FaSmile />
           </span>
+
+          {showEmojiPicker && (
+            <EmojiPicker onEmojiClick={handleEmojiSelect} disableAutoFocus />
+          )}
         </div>
-        <span className={classes.sendBtn} onClick={() => { sendReply() }}>
+        <span
+          className={classes.sendBtn}
+          onClick={() => {
+            sendReply();
+          }}
+        >
           <IoMdSend />
         </span>
       </div>

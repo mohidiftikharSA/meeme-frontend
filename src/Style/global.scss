@@ -1302,3 +1302,19 @@ main {
   box-shadow: none;
 }
 }
+aside.EmojiPickerReact.epr-main{
+  height: 369px !important;
+  width: 303px !important;
+  position: absolute;
+  bottom: 45px;
+  left: 8px;
+}
+.emoji{
+  aside.EmojiPickerReact.epr-main {
+    height: 369px !important;
+    width: 260px !important;
+    position: absolute;
+    bottom: 34px;
+    left: 99px;
+  }
+}
