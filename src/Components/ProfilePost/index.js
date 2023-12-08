@@ -13,7 +13,7 @@ const ProfilePost = ({data}) => {
     const [isActive, setIsActive] = useState(false);
     const navigate = useNavigate();
     const [postData, setPostData] = useState();
-
+    const [monthOptions, setMonthOptions] = useState([]);
 
     const openModal = (postId, postData) => {
         console.log('postId', postId);
@@ -33,26 +33,55 @@ const ProfilePost = ({data}) => {
         setFollowingData(data);
     }, [data]);
 
+    const prepareMonthOptions = () => {
+        const monthNames = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+        ];
+        const currentDate = new Date();
+        const currentMonth = currentDate.getMonth() + 1;
+        const monthOptions = Array.from({length: 3}, (_, index) => {
+            const monthValue = currentMonth - index;
+            const monthLabel = monthNames[monthValue - 1];
+            return {value: `${monthValue}`, label: monthLabel};
+        });
+        setMonthOptions(monthOptions);
+    }
+    useEffect(() => {
+        prepareMonthOptions()
+    }, []);
     return (
         <>
             <div className={classes.postHolder}>
                 <div className={classes.header}>
                     <h4>{data?.length} Posts</h4>
                     <Form.Select className="form" style={{width: "120px"}}>
-                        <option value="1">April</option>
-                        <option value="2">May</option>
-                        <option value="3">June</option>
+                        {monthOptions.map((month) => (
+                            <option key={month.value} value={month.value}>
+                                {month.label}
+                            </option>
+                        ))}
                     </Form.Select>
                 </div>
                 <div className={classes.box}>
                     {data?.slice()?.reverse()?.map((item, ind) => (
-                        <div key={ind} className={classes.imgBox} onClick={() => openModal(item?.post_id, item)}>
+                        <div key={ind} className={classes.imgBox} onClick={() => openModal(item.post?.id, item)}>
                             <img src={item?.post_image} alt=""/>
                         </div>
                     ))}
                 </div>
             </div>
-            {/* <ViewPost profile onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData} avatar={avatar}  /> */}
+            {/*<ViewPost profile onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData} avatar={avatar}  />*/}
         </>
     );
 };
