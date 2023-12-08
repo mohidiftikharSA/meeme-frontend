@@ -16,7 +16,7 @@ const FooterTabs = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className='subTitle' style={{background:'transparent' , padding: '0' , margin: '0'}}  >
-        <TabDetails footer tabTitle={props.tabTitles}/>
+        <TabDetails isPublic footer tabTitle={props.tabTitles}/>
       </Modal.Body>
     </Modal>
   )

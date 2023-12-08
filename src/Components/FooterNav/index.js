@@ -6,13 +6,13 @@ import { Nav, Navbar } from "react-bootstrap";
 
 const FooterNav = () => {
   const [aboutUsModalShow, setAboutUsModalShow] = useState(false);
-  const [show, setshow] = useState(false);
+  const [show, setShow] = useState(false);
   const [tutorial, setTutorial] = useState(false);
-  const [tabTitles, settabTitle] = useState(false);
+  const [tabTitle, setTabTitle] = useState(false);
 
   const clickHandler = (type) => {
-    setshow(true);
-    settabTitle(type);
+    setShow(true);
+    setTabTitle(type);
   };
 
   return (
@@ -40,8 +40,8 @@ const FooterNav = () => {
 
       <FooterTabs
         show={show}
-        tabTitles={tabTitles}
-        onHide={() => setshow(false)}
+        tabTitles={tabTitle}
+        onHide={() => setShow(false)}
       />
       <TutorialModals
         show={tutorial}

@@ -77,8 +77,8 @@ const data2 = [{
 },];
 
 const TabDetails = ({
-                        tournament, first, main, footer, tabTitle, storeitems, profile, customizeProfile, profilePosts
-
+                        tournament, first, main, footer, tabTitle, storeitems, profile, customizeProfile, profilePosts,
+                        isPublic
                     }) => {
     const [recentPosts, setRecentPosts] = useState([]);
     const [trendingPosts, setTrendingPosts] = useState([]);
@@ -124,7 +124,9 @@ const TabDetails = ({
             await getRecentPost();
             await getTrendingPost();
         };
-        fetchData();
+        if (!isPublic) {
+            fetchData();
+        }
     }, []);
 
     return (<>
