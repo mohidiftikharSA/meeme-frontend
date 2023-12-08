@@ -5,7 +5,7 @@ import classes from "./index.module.scss"
 import wallet from "../../Images/Wallet.png"
 import calender from "../../Images/Calendar.png"
 import password from "../../Images/Password.png"
-import postAPIs from "../../APIs/settings";
+import api from "../../APIs/settings";
 import NotificationService from "../../Services/NotificationService";
 import {useSelector} from "react-redux";
 
@@ -67,7 +67,7 @@ const BillingDetails = () => {
             if (data == null) {
                 return;
             }
-            const res = await postAPIs.addUserBillingCard(data);
+            const res = await api.addUserBillingCard(data);
             if (res.status === 200) {
                 NotificationService.showSuccess('Billing details saved successfully.')
             } else {

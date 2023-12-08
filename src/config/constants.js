@@ -40,13 +40,14 @@ export const ENDPOINT = {
         create_child_comment: `${API_URL}/comments/create_child_comment`
     },
     settings: {
-        create_user_billing_card: `${API_URL}/users/payments/add_a_card`
+        create_user_billing_card: `${API_URL}/users/payments/add_a_card`,
+        toggle_user_notifications: `${API_URL}/users/notification_settings`
     },
     comments: `${API_URL}/comments`,
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,
     stories: `${API_URL}/stories`,
-    coinprices:`${API_URL}/coin_prices`,
+    coinprices: `${API_URL}/coin_prices`,
     socialLogin: `${API_URL}/social/social_login`,
     followingPosts: `${API_URL}/posts/following_posts`,
     likePost: `${API_URL}/likes`,
