@@ -44,6 +44,11 @@ export const ENDPOINT = {
         create_user_billing_card: `${API_URL}/users/payments/add_a_card`,
         toggle_user_notifications: `${API_URL}/users/notification_settings`
     },
+    profile: {
+        settings:{
+            delete_user_account: `${API_URL}/users`,
+        }
+    },
     comments: `${API_URL}/comments`,
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,
