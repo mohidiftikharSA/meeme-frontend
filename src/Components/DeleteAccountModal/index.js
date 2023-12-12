@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 const DeleteAccountModal = (props) => {
   const [modalShow, setModalShow] = useState(false);
-  const handleBuyClick = () => {
-    // Perform the purchase logic here
-    // Once the purchase is successful, show the success modal
+  console.log("Props ",JSON.stringify(props))
+  const onClickDelete = () => {
     setModalShow(true);
-    // Close the purchase modal
     props.onHide();
   };
   const handleDeleteModal = () => {
@@ -33,7 +31,7 @@ const DeleteAccountModal = (props) => {
             Deleting your account will remove all of your account’s data,
             contacts, and other information. Are you sure you want to proceed?
           </p>
-          <Button className="del-btn w-100 mb-2" onClick={handleBuyClick}>
+          <Button className="del-btn w-100 mb-2" onClick={onClickDelete}>
             Delete
           </Button>
           <br />

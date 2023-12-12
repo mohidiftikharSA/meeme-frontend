@@ -103,7 +103,7 @@ const deleteMethod = async (endpoint, authentication = true, data = null) => {
         var bearer_token = auth.accessToken || localStorage.getItem('accessToken');
         var header = {
             headers: {
-                "Authorization": `Bearer ${JSON.parse(bearer_token)}`
+                "Authorization": `Bearer ${bearer_token}`
             }
         }
     }
