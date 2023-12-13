@@ -1365,12 +1365,22 @@ aside.EmojiPickerReact.epr-main {
 
       &.dotsborder {
         border: 1px dashed rgba(255, 255, 255, 0.28);
-        height: 450px;
+        // height: 450px;
       }
 
       .bodyContant {
         padding: 120px;
-        p{
+
+        @include media("<tablet-x") {
+          padding: 50px;
+        }
+
+        @include media("<xs-phone") {
+          padding: 30px;
+          font-size: 12px;
+        }
+
+        p {
           overflow: hidden;
         }
 
@@ -1390,6 +1400,14 @@ aside.EmojiPickerReact.epr-main {
           background: #333333;
           border: none;
           color: #fff;
+          @include media("<xs-phone") {
+            padding: 5px 10px;
+            font-size: 12px;
+          }
+        }
+
+        @include media("<tablet-x") {
+          width: 100% !important;
         }
       }
 
@@ -1404,7 +1422,13 @@ aside.EmojiPickerReact.epr-main {
         height: 315px;
         width: 100%;
         border-radius: 20px;
-        object-fit: cover;
+        object-fit: contain;
+        @include media("<tablet-x") {
+          height: auto;
+        }
+        @include media("<xs-phone") {
+          height: auto;
+        }
       }
     }
 
