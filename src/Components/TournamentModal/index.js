@@ -27,15 +27,6 @@ export default function PostContentModal(props) {
     }
   };
 
-  const bodyStyle = selectedImage
-    ? {
-      backgroundImage: `url(${selectedImage})`,
-      backgroundSize: "contain",
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "center",
-    }
-    : {};
-
   const handleContinue = () => {
     if (selectedImage) {
       setShowForm(true);
