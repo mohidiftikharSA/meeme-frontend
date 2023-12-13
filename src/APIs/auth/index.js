@@ -41,15 +41,19 @@ const getCurrentUserProfile = async () => {
 }
 
 const updateUser = async (data) => {
-    return await API.putMethod(ENDPOINT.users.updateUser, true, data, true) 
+    return await API.putMethod(ENDPOINT.users.updateUser, true, data, true)
 
 }
 
-const otherUserProfile = async(id)=>{
-    return await API.getMethod(`${ENDPOINT.users.otherUserProfile}?id=${id}`,true);
+const otherUserProfile = async (id) => {
+    return await API.getMethod(`${ENDPOINT.users.otherUserProfile}?id=${id}`, true);
 }
-const getcoinprices = async(id)=>{
-    return await API.getMethod(`${ENDPOINT.coinprices}`,true);
+const getcoinprices = async (id) => {
+    return await API.getMethod(`${ENDPOINT.coinprices}`, true);
+}
+
+const createPost = async (data) => {
+    return await API.postMethod(ENDPOINT.post.createPost, true, data, true);
 }
 
 
@@ -64,5 +68,6 @@ export default {
     getCurrentUserProfile,
     updateUser,
     otherUserProfile,
-    getcoinprices
+    getcoinprices,
+    createPost
 }

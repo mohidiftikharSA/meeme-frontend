@@ -1,7 +1,5 @@
 //export const API_URL = "http://127.0.0.1:8000/api";
 export const API_URL = `${process.env.REACT_APP_BASE_URL ?? 'http://stg.memeeapi.appscorridor.com'}/api/v1`//"https://v2.meeme.appscorridor.com/api/v1";
-// export const GOOGLE_CLIENT_ID = "233269390911-a70r33iv5l4jqjl1ccbar8f5k2q0pniq.apps.googleusercontent.com";
-// export const GOOGLE_CLIENT_ID = "457976303469-09mmvdm5qbqv6hvpvct4ovj22eog663l.apps.googleusercontent.com";
 export const GOOGLE_CLIENT_ID = "260786829240-jir9b8uqo51meq2jbc81crjlgvof0830.apps.googleusercontent.com";
 
 export const ENDPOINT = {
@@ -34,7 +32,8 @@ export const ENDPOINT = {
     },
 
     post: {
-        getTags: `${API_URL}/posts/tags`
+        getTags: `${API_URL}/posts/tags`,
+        createPost: `${API_URL}/posts`
     },
 
     comment: {
@@ -49,6 +48,13 @@ export const ENDPOINT = {
             delete_user_account: `${API_URL}/users`,
         }
     },
+
+    tournaments :{
+        tournamentBanner : `${API_URL}/tournament_banners`,
+        enroll : `${API_URL}/tournament_banners/enroll_in_tournament`,
+        getRules : `${API_URL}/tournament_banners/show_tournament_rules?id=`
+    },
+
     comments: `${API_URL}/comments`,
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,

@@ -26,7 +26,6 @@ const Explore = () => {
 
       const resTags  = await postAPIs.getTags();
       if(resTags){
-        console.log("Tags response =====================", resTags.data.tags);
         setTags(resTags.data.tags);
       }
     } catch (error) {

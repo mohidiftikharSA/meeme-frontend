@@ -13,19 +13,22 @@ const UploadPost = () => {
 
   return (
     <>
-    <div className={classes.postWrapper}>
+      <div className={classes.postWrapper} onClick={() => {
+              settournamentModalShow(true);
+            }}>
         <Form.Group className={classes.formGroup}>
-            <Form.Control placeholder='Post something'/>
-           <div className='d-flex align-items-center'>
-           <img src={profile?.user_image || user} alt='img' style={{objectFit:"cover"}}/>
-           <img src={attachment} alt='img' className={classes.attachmentes} onClick={() => {
-          settournamentModalShow(true);
-        }}/>
-           </div>
+          <div className={classes.createPost}>
+            <span>Post Something</span>
+          </div>
+
+          <div className='d-flex align-items-center'>
+            <img src={profile?.user_image || user} alt='img' style={{ objectFit: "cover" }} />
+            <img src={attachment} alt='img' className={classes.attachmentes}  />
+          </div>
 
         </Form.Group>
-    </div>
-    <PostContentModal show={tournamentModalShow} onHide={() => settournamentModalShow(false)} />
+      </div>
+      <PostContentModal post show={tournamentModalShow} onHide={() => settournamentModalShow(false)} />
     </>
   )
 }
