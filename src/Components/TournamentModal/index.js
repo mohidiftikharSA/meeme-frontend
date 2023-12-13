@@ -73,20 +73,33 @@ export default function PostContentModal(props) {
 
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="dotsborder" style={bodyStyle}>
-          {selectedImage && showForm ? (
-            <Form>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control type="text" placeholder="Give this meme a title" />
-              </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Control type="text" placeholder="Description" />
-              </Form.Group>
-            </Form>
-          ) : (
+
+        <Modal.Body className="dotsborder">
+
+          {showForm &&
+            <>
+              <div>
+                <Form>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Control type="text" placeholder="Give this meme a title" />
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlTextarea1"
+                  >
+                    <Form.Control type="text" placeholder="Description" />
+                  </Form.Group>
+                </Form>
+              </div>
+
+            </>
+          }
+          {selectedImage &&
+            <div>
+              <img src={selectedImage} alt="img" />
+            </div>
+          }
+          {!selectedImage &&
             <div className="bodyContant">
               <div style={{ textAlign: "center" }}>
                 <label
@@ -125,7 +138,8 @@ export default function PostContentModal(props) {
                 </label>
               </div>
             </div>
-          )}
+          }
+
         </Modal.Body>
       </Modal>
     </>
