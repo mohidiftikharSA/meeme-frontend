@@ -4,9 +4,11 @@ import img from "../../Images/tornament.png";
 import { BiInfoCircle } from "react-icons/bi";
 import { Button } from "react-bootstrap";
 import InfoModal from "Components/InfoModal";
+import PostContentModal from "Components/TournamentModal";
 
 const TournamentTabs = () => {
   const [show, setShow] = useState(false);
+  const [tournamentModalShow, settournamentModalShow] = useState(false);
   return (
     <>
      <div className="text-end mb-2">
@@ -27,9 +29,12 @@ const TournamentTabs = () => {
         </div>
       </div>
       <div className="text-center">
-        <Button className={`p-2 authButton ${classes.btn}`}>Enter Tournament</Button>
+        <Button className={`p-2 authButton ${classes.btn}`} onClick={() => {
+          settournamentModalShow(true);
+        }}>Enter Tournament</Button>
       </div>
       <InfoModal show={show} onHide={() => setShow(false)} />
+      <PostContentModal show={tournamentModalShow} onHide={() => settournamentModalShow(false)} />
     </>
   );
 };

@@ -250,8 +250,7 @@ section {
     &.active,
     &:hover {
       color: #ffcd2f;
-      filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
-        saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
     }
   }
 
@@ -268,8 +267,7 @@ section {
 
     img {
       color: #ffcd2f;
-      filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
-        saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
       width: 17px;
     }
   }
@@ -488,6 +486,13 @@ main {
 
       &.congrats {
         background-image: url(../Images/congrats.png);
+        background-size: 420px;
+        background-position: center -90px;
+        background-repeat: no-repeat;
+      }
+
+      &.Postsuccess {
+        background-image: url(../Images/tournamenmodal.png);
         background-size: 420px;
         background-position: center -90px;
         background-repeat: no-repeat;
@@ -923,13 +928,11 @@ main {
       content: counter(section) ".";
       left: 0;
       top: 0;
-      background: linear-gradient(
-        180deg,
-        #ffe486 0%,
-        #ffcc4e 51.56%,
-        #ffd02b 100%,
-        #d2a61b 100%
-      );
+      background: linear-gradient(180deg,
+          #ffe486 0%,
+          #ffcc4e 51.56%,
+          #ffd02b 100%,
+          #d2a61b 100%);
       width: 20px;
       height: 20px;
       border-radius: 50%;
@@ -1103,13 +1106,11 @@ main {
         padding-right: 42px;
 
         .messageBox {
-          background: linear-gradient(
-            180deg,
-            #ffe486 0%,
-            #ffcc4e 51.56%,
-            #ffd02b 100%,
-            #d2a61b 100%
-          );
+          background: linear-gradient(180deg,
+              #ffe486 0%,
+              #ffcc4e 51.56%,
+              #ffd02b 100%,
+              #d2a61b 100%);
           color: #000;
           border-radius: 20px 20px 0px 20px;
           padding: 12px 15px;
@@ -1248,16 +1249,19 @@ main {
   font-size: 17px;
   text-align: center;
 }
+
 .invalid-feedback {
   margin-bottom: 15px;
 }
+
 .extraText {
   white-space: nowrap;
   width: 80px;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   margin: 0 auto;
 }
+
 .overflowText {
   width: 90px;
   text-overflow: ellipsis;
@@ -1266,9 +1270,10 @@ main {
   overflow: hidden;
 }
 
-.password{
+.password {
   position: relative;
-  span{
+
+  span {
     position: absolute;
     top: 50%;
     color: #CFCFCF;
@@ -1277,44 +1282,141 @@ main {
     font-size: 20px;
   }
 }
-.check{
+
+.check {
   display: flex;
   justify-content: space-between;
 
-  label{
+  label {
     padding-left: 5px;
     font-size: 12px;
     font-weight: 300;
   }
-  input{
+
+  input {
     vertical-align: middle;
   }
+
   .form-check-input:checked {
     background-color: #fff;
     border-color: #fff;
+  }
+
+  .form-check-input:checked[type=checkbox] {
+    background-image: url(../Images/check12.png);
+  }
+
+  .form-check-input:focus {
+    border-color: transparent;
+    outline: 0;
+    box-shadow: none;
+  }
 }
-.form-check-input:checked[type=checkbox] {
-  background-image: url(../Images/check12.png);
-}
-.form-check-input:focus {
-  border-color: transparent;
-  outline: 0;
-  box-shadow: none;
-}
-}
-aside.EmojiPickerReact.epr-main{
+
+aside.EmojiPickerReact.epr-main {
   height: 369px !important;
   width: 303px !important;
   position: absolute;
   bottom: 45px;
   left: 8px;
 }
-.emoji{
+
+.emoji {
   aside.EmojiPickerReact.epr-main {
     height: 369px !important;
     width: 260px !important;
     position: absolute;
     bottom: 34px;
     left: 99px;
+  }
+}
+
+.PostContentModal {
+
+  // .fullscreen-modal {
+  //   width: 100vw;
+  //   height: 100vh;
+  // }
+  .modal-content {
+    background: #201E23;
+
+    .modal-title {
+      display: flex;
+      align-items: center;
+      color: #fff;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 14px;
+
+      span {
+        padding-left: 15px;
+        font-size: 14px;
+      }
+
+      Button {
+        font-size: 13px;
+      }
+    }
+
+    .modal-body {
+      background: #201E23;
+      border-radius: 20px;
+
+
+      &.dotsborder {
+        border: 1px dashed rgba(255, 255, 255, 0.28);
+        height: 450px;
+      }
+
+      .bodyContant {
+        padding: 120px;
+        p{
+          overflow: hidden;
+        }
+
+        ul {
+          li {
+            list-style-position: inside;
+          }
+        }
+
+      }
+
+      Form {
+        width: 480px;
+        margin: 0 auto;
+
+        .form-control {
+          background: #333333;
+          border: none;
+          color: #fff;
+        }
+      }
+
+      .imgBox {
+        width: 35%;
+        margin: 0 auto;
+        height: 330px;
+      }
+
+      img {
+        display: block;
+        height: 315px;
+        width: 100%;
+        border-radius: 20px;
+        object-fit: cover;
+      }
+    }
+
+    .trimbtn {
+      background: #333333;
+      border: none;
+      border-radius: 20px;
+      border-radius: 20px;
+      padding: 8px 35px;
+      text-align: center;
+      color: currentColor;
+    }
+
   }
 }
