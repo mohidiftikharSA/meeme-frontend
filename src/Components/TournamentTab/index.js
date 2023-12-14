@@ -28,13 +28,14 @@ const TournamentTabs = () => {
       /**
        * Get Rukes of the Tournamnet after getting Tournament.
        */
-      const rules = await TournamentAPIs.getRules(res.data.tournament.id);
+      const rules = await TournamentAPIs.getRules(res.data.tournament.id).finally(()=>{
+        setIsLoading(false);
+      });
       if(rules){
         console.log("Rules of the Tournament == ", rules.data?.tournament_rules?.rules[0]);
         setRules(rules.data?.tournament_rules?.rules[0])
       }
     }
-    setIsLoading(false);
   }
 
   return (

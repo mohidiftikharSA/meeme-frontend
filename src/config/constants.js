@@ -44,15 +44,17 @@ export const ENDPOINT = {
         toggle_user_notifications: `${API_URL}/users/notification_settings`
     },
     profile: {
-        settings:{
+        settings: {
             delete_user_account: `${API_URL}/users`,
         }
     },
 
-    tournaments :{
-        tournamentBanner : `${API_URL}/tournament_banners`,
-        enroll : `${API_URL}/tournament_banners/enroll_in_tournament`,
-        getRules : `${API_URL}/tournament_banners/show_tournament_rules?id=`
+    tournaments: {
+        tournamentBanner: `${API_URL}/tournament_banners`,
+        enroll: `${API_URL}/tournament_banners/enroll_in_tournament`,
+        getRules: `${API_URL}/tournament_banners/show_tournament_rules?id=`,
+        tournamentJudge: `${API_URL}/tournament_banners/judge`,
+        tournamentPosts: `${API_URL}/tournament_banners/tournament_posts`,
     },
 
     comments: `${API_URL}/comments`,
