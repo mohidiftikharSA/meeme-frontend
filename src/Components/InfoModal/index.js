@@ -17,9 +17,8 @@ const InfoModal = ({ tournament, rules, ...props }) => {
             </Modal.Header>
             <Modal.Body className='m-0'>
                 {tournament ?
-                <div dangerouslySetInnerHTML={{ __html: rules }} />
-
-                     :
+                    <div dangerouslySetInnerHTML={{ __html: rules }} />
+                    :
                     <>
                         <h6 className={classes.rule}>Rules & Regulations</h6>
                         <ul className={`ruleList mb-4`}>

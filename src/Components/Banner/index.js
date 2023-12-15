@@ -27,6 +27,7 @@ const Banner = ({ other, profile }) => {
   };
 
   useEffect(() => {
+    console.log("Other profile console log --- ", profile);
     if (profile?.follower_added) {
       setIsFollowing(true);
     }
