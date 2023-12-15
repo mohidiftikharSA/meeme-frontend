@@ -1,8 +1,8 @@
 import API from 'APIs/base'
-import {ENDPOINT} from 'config/constants'
+import { ENDPOINT } from 'config/constants'
 
 const getTournamentBanner = async (id) => {
-    return await API.getMethod(ENDPOINT.tournaments.tournamentBanner, true, false);
+    return await API.getMethod(ENDPOINT.tournaments.tournamentBanner, true,false);
 }
 
 const enrollInTournament = async (data) => {
@@ -14,15 +14,22 @@ const createTournamentPost = async (data) => {
 }
 
 const getRules = async (id) => {
-    return await API.getMethod(`${ENDPOINT.tournaments.getRules}${id}`, true);
+    return await API.getMethod(`${ENDPOINT.tournaments.getRules}${id}`, true, false);
 }
 
 const getTournamentJudge = async () => {
-    return await API.getMethod(`${ENDPOINT.tournaments.tournamentJudge}`, true)
+    return await API.getMethod(`${ENDPOINT.tournaments.tournamentJudge}`, true, false)
 }
 
 const getTournamentPosts = async () => {
     return await API.getMethod(`${ENDPOINT.tournaments.tournamentPosts}`, true)
+}
+
+const likeTournamentPost = async (data) => {
+    return await API.postMethod(`${ENDPOINT.tournaments.likeTournamentPost}`, true, data)
+}
+const disLikeTournamentPost = async (data) => {
+    return await API.postMethod(`${ENDPOINT.tournaments.disLikeTournamentPost}`, true, data)
 }
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -32,4 +39,6 @@ export default {
     getRules,
     getTournamentJudge,
     getTournamentPosts,
+    likeTournamentPost,
+    disLikeTournamentPost,
 }

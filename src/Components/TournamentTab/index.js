@@ -14,7 +14,7 @@ const TournamentTabs = () => {
   const [tournamentModalShow, settournamentModalShow] = useState(false);
   const [joined, setJoined] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [rules , setRules ] = useState();
+  const [rules, setRules] = useState();
   useEffect(() => {
     getTournamentBanner();
 
@@ -28,14 +28,15 @@ const TournamentTabs = () => {
       /**
        * Get Rukes of the Tournamnet after getting Tournament.
        */
-      const rules = await TournamentAPIs.getRules(res.data.tournament.id).finally(()=>{
+      const rules = await TournamentAPIs.getRules(res.data.tournament.id).finally(() => {
         setIsLoading(false);
       });
-      if(rules){
+      if (rules) {
         console.log("Rules of the Tournament == ", rules.data?.tournament_rules?.rules[0]);
         setRules(rules.data?.tournament_rules?.rules[0])
       }
     }
+    setIsLoading(false)
   }
 
   return (

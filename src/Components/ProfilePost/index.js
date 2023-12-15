@@ -16,15 +16,13 @@ const ProfilePost = ({data}) => {
     const [monthOptions, setMonthOptions] = useState([]);
 
     const openModal = (postId, postData) => {
-        console.log('postId', postId);
-        console.log("Post Arr == ", data);
+
         setPostData(postData);
         setSelectedPostId(postId);
         setIsModalOpen(true);
 
     }
 
-    console.log("data", data)
     const closeModal = () => {
         setSelectedPostId(null);
         setIsModalOpen(false);

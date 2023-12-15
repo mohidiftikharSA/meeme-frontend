@@ -85,7 +85,6 @@ const TabDetails = ({
     const [isLoadingRecentPosts, setIsLoadingRecentPosts] = useState(false);
     const [isLoadingTrendingPosts, setIsLoadingTrendingPosts] = useState(false);
     const getRecentPost = async () => {
-        console.log('calling get recent posts')
         setIsLoadingRecentPosts(true)
         try {
             const res = await postAPIs.getRecentPosts();
@@ -102,7 +101,6 @@ const TabDetails = ({
         }
     };
     const getTrendingPost = async () => {
-        console.log('calling get trending posts')
         try {
             setIsLoadingTrendingPosts(true)
             const res = await postAPIs.getTrendingPosts();
