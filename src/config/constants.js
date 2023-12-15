@@ -55,6 +55,8 @@ export const ENDPOINT = {
         getRules: `${API_URL}/tournament_banners/show_tournament_rules?id=`,
         tournamentJudge: `${API_URL}/tournament_banners/judge`,
         tournamentPosts: `${API_URL}/tournament_banners/tournament_posts`,
+        likeTournamentPost: `${API_URL}/tournament_banners/like_unlike_a_tournament_post`,
+        disLikeTournamentPost: `${API_URL}/tournament_banners/dislike_a_tournament_post`,
     },
 
     comments: `${API_URL}/comments`,

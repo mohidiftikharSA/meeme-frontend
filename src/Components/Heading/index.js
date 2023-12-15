@@ -1,41 +1,48 @@
-import React, { useState } from 'react'
-import { IoIosArrowBack } from 'react-icons/io';
+import React, {useEffect, useState} from 'react'
+import {IoIosArrowBack} from 'react-icons/io';
 import classes from "./index.module.scss"
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import CongratsModal from 'Components/CongratsModal';
-import { Button } from 'react-bootstrap';
-const Heading = ({ title, judge,badge,linkPath }) => {
-  const [modalShow, setModalShow] = useState(false);
-  const navigate = useNavigate();
-  const backPage = () => {
-    if (linkPath) {
-      navigate(`/${linkPath}`);
-      console.log(linkPath);
-    }
-  };
+import {Button} from 'react-bootstrap';
 
-  const handleDeleteModal = () => {
-    setModalShow(false);
-  };
-  return (
-    <>
-      <div className={`${classes.heading} ${[badge,judge] && `${classes.heading} d-flex align-items-center justify-content-between`} `} onClick={backPage}>
-        <h5><IoIosArrowBack />{title}</h5>
-        {
-          judge &&
-          <div className={classes.memeNo} onClick={() => setModalShow(true)}><span className='text-light'>40</span>/100</div>
+const Heading = ({title, judge, badge, linkPath, likedCounts}) => {
+    const [modalShow, setModalShow] = useState(false);
+    const navigate = useNavigate();
+    const backPage = () => {
+        if (linkPath) {
+            navigate(`/${linkPath}`);
+            console.log(linkPath);
         }
-        {
-          badge &&
-          
-            <Button style={{height:"42px", lineHeight:"42px", padding:"0 42px"}}>Upload Badge</Button>
-        }
-      </div>
-      <CongratsModal
-        show={modalShow}
-        onHide={handleDeleteModal} />
-    </>
-  )
+    };
+
+    const handleDeleteModal = () => {
+        setModalShow(false);
+    };
+    useEffect(() => {
+            console.log("Counts ",likedCounts)
+    }, [likedCounts]);
+    return (
+        <>
+            <div
+                className={`${classes.heading} ${[badge, judge] && `${classes.heading} d-flex align-items-center justify-content-between`} `}
+                onClick={backPage}>
+                <h5><IoIosArrowBack/>{title}</h5>
+                {
+                    judge &&
+                    <div className={classes.memeNo} onClick={() => setModalShow(true)}><span
+                        className='text-light'>{likedCounts ?? 0}</span>/100</div>
+                }
+                {
+                    badge &&
+
+                    <Button style={{height: "42px", lineHeight: "42px", padding: "0 42px"}}>Upload Badge</Button>
+                }
+            </div>
+            <CongratsModal
+                show={modalShow}
+                onHide={handleDeleteModal}/>
+        </>
+    )
 }
 
 export default Heading

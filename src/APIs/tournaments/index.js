@@ -24,6 +24,13 @@ const getTournamentJudge = async () => {
 const getTournamentPosts = async () => {
     return await API.getMethod(`${ENDPOINT.tournaments.tournamentPosts}`, true)
 }
+
+const likeTournamentPost = async (data) => {
+    return await API.postMethod(`${ENDPOINT.tournaments.likeTournamentPost}`, true, data)
+}
+const disLikeTournamentPost = async (data) => {
+    return await API.postMethod(`${ENDPOINT.tournaments.disLikeTournamentPost}`, true, data)
+}
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getTournamentBanner,
@@ -32,4 +39,6 @@ export default {
     getRules,
     getTournamentJudge,
     getTournamentPosts,
+    likeTournamentPost,
+    disLikeTournamentPost,
 }
