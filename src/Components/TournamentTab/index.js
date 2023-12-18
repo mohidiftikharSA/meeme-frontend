@@ -57,8 +57,10 @@ const TournamentTabs = () => {
           <div className={`imgBox mb-4 position-relative ${classes.imgBox}`}>
             {/* <img src={img} alt="img" /> */}
             <div className={classes.bannerCard} >
-              <img src={banner?.tournament_banner_image} alt="Bannerimage" />
-              <p>{banner?.tournament?.title}</p>
+              <div className={classes.bannerImg}> <img src={banner?.tournament_banner_image} alt="Bannerimage" /></div>
+             
+              {/* <h2>{banner?.tournament?.title}</h2> */}
+              <h2>FOR THE March<br></br>TOURNAMENT</h2>
             </div>
             <div className={classes.scoreBoard}>
               <span>{banner?.tournament_users_count} Particpants</span>
