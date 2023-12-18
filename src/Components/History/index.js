@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import classes from "./index.module.scss";
-import { Button, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import {Button, Form} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
 import EarnCoinsModal from "Components/EarnCoinsModal";
 
 const historyData = [{
@@ -13,13 +13,13 @@ const historyData = [{
 }, {
     days: "04", memeNo: "100", status: true,
 },];
-const History = ({ tournamentData }) => {
+const History = ({tournamentData}) => {
     console.log(JSON.stringify(tournamentData));
     const [judgedPosts, setJudgedPosts] = useState([])
     //const [historyData, setHistoryData] = useState([]);
     const navigate = useNavigate();
-    const nextPage = () => {
-        navigate(`/judge`);
+    const nextPage = (count) => {
+        navigate(`/judge?count=${count}`);
     };
     const hydrateFields = () => {
         const daysJudgedPosts = (tournamentData?.judged_posts ?? [])
@@ -41,7 +41,7 @@ const History = ({ tournamentData }) => {
             </ul>
             <ul className={` ${classes.list} ${classes.historyList}`}>
                 {judgedPosts.map((item, ind) => {
-                    return (<li key={`${item.id}_${ind}`} onClick={() => { if (ind === 0) { nextPage() } }}>
+                    return (<li key={`${item.id}_${ind}`} onClick={() => nextPage(item.judged_post_date_count)}>
                         <div className={classes.counter}>
                             <span>{ind + 1}</span>
                         </div>
