@@ -1337,6 +1337,43 @@ aside.EmojiPickerReact.epr-main {
   //   width: 100vw;
   //   height: 100vh;
   // }
+
+
+  &.postView{
+    .modal-header{
+      padding: 0;
+      .data{
+        font-size: 12px;
+      }
+    }
+    .modal-body{
+      margin: 0;
+      padding: 0;
+      button{
+        margin: 0 5px;
+        background: #333333;
+        border: none;
+        svg{
+          margin: 0 5px;
+        }
+        &.green{
+          color: #00853D !important;
+          &:hover{
+            background: #00853D;
+            color: #fff !important;
+          }
+        }
+        &.red{
+          color: #F44336 !important;
+          &:hover{
+            background: #F44336;
+            color: #fff !important;
+          }
+        }
+      }
+    
+    }
+  }
   .modal-content {
     background: #201E23;
 

@@ -5,18 +5,18 @@ import Form from "react-bootstrap/Form";
 import AuthAPIs from '../../APIs/auth';
 import { toast } from "react-toastify";
 import Loader from "Components/Loader";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import TournamentAPIs from '../../APIs/tournaments';
 
-export default function PostContentModal({ tournamentJoined ,...props}) {
+export default function PostContentModal({ tournamentJoined, ...props }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [continueClicked, setContinueClicked] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [apiImg , setApiImg ] = useState(null);
-  const {user} = useSelector((state) => state.auth);
+  const [apiImg, setApiImg] = useState(null);
+  const { user } = useSelector((state) => state.auth);
 
   const [PostContentModalShow, setPostContentModalShow] = useState(false);
 
@@ -59,22 +59,22 @@ export default function PostContentModal({ tournamentJoined ,...props}) {
         toast.success('Post Created Successfully');
         props.onHide();
       }
-    }else if(props.tournament){
+    } else if (props.tournament) {
       /**
        * Join the Tournament First Before posting
        */
       console.log("Tournaments Joining =", props?.tournamentid);
       console.log("user id =", user?.id);
-      const join = await TournamentAPIs.enrollInTournament({user_id:user?.id , tournament_banner_id: props?.tournamentid });
-      if(join){
+      const join = await TournamentAPIs.enrollInTournament({ user_id: user?.id, tournament_banner_id: props?.tournamentid });
+      if (join) {
         tournamentJoined(true);
         const postImg = await TournamentAPIs.createTournamentPost(data);
-        if(postImg){
+        if (postImg) {
           toast.success("Tournamnet Post Created Successfully");
           props.onHide();
         }
       }
-    
+
 
     }
     setIsLoading(false);
@@ -180,6 +180,7 @@ export default function PostContentModal({ tournamentJoined ,...props}) {
         </Modal.Body>
       </Modal>
     </>
+   
   );
 }
 
