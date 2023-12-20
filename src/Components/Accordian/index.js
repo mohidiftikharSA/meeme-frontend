@@ -86,6 +86,10 @@ const AccordianData = ({following = "", responsive}) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
 
+    const onTagSelect = (val) => {
+        console.log("Vale ",val)
+    }
+
     useEffect(() => {
         getFollowersAndFollowings();
         getTags();
@@ -129,7 +133,7 @@ const AccordianData = ({following = "", responsive}) => {
                             Trending Tags
                         </Accordion.Header>
                         <AccordionBody>
-                            <AccordianBadge data={tags}/>
+                            <AccordianBadge data={tags} onTagSelect={onTagSelect}/>
                         </AccordionBody>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
