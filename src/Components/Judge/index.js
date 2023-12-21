@@ -10,10 +10,13 @@ const Judge = () => {
     const [tournamentData, setTournamentData] = useState([])
     const getTournamentJudge = async () => {
         setIsLoading(true)
-        const response = await api.getTournamentJudge().finally(() => {
+        await api.getTournamentJudge().then(response => {
+            if (response?.status == 200 && response?.data) {
+                setTournamentData(response.data)
+            }
+        }).finally(() => {
             setIsLoading(false);
         });
-        setTournamentData(response.data)
     }
     useEffect(() => {
         getTournamentJudge();
