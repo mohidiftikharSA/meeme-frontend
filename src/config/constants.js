@@ -63,6 +63,7 @@ export const ENDPOINT = {
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,
     stories: `${API_URL}/stories`,
+    postStory: `${API_URL}/stories`,
     coinprices: `${API_URL}/coin_prices`,
     socialLogin: `${API_URL}/social/social_login`,
     followingPosts: `${API_URL}/posts/following_posts`,
