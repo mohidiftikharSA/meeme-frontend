@@ -55,7 +55,7 @@ const FollowingContent = () => {
     useEffect(() => {
         console.log("First call on mount..");
         const fetchData = async () => {
-            //  await getFollowerPosts()
+            await getFollowerPosts()
             await getStories()
         }
         fetchData();
