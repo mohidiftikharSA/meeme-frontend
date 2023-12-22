@@ -119,8 +119,8 @@ const TabDetails = ({
 
     useEffect(() => {
         const fetchData = async () => {
-            await getRecentPost();
-            await getTrendingPost();
+          //  await getRecentPost();
+          //  await getTrendingPost();
         };
         if (!isPublic) {
             fetchData();

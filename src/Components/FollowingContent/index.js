@@ -17,7 +17,7 @@ const FollowingContent = () => {
             if (res.status === 200) {
                 // Assuming a 200 status code means success
                 if (res.data.user_stories && res.data.user_stories[0]) {
-                    const data = res.data.user_stories[0]?.stories;
+                    const data = res.data.user_stories;//[0]?.stories;
                     setStoryData(data);
                 }
                 // Assuming the data is in a property called 'data'
@@ -48,10 +48,14 @@ const FollowingContent = () => {
         }
 
     };
+    const onStoryUpdate = () => {
+        console.log('story refresh')
+        getStories();
+    }
     useEffect(() => {
         console.log("First call on mount..");
         const fetchData = async () => {
-            await getFollowerPosts()
+            //  await getFollowerPosts()
             await getStories()
         }
         fetchData();
@@ -64,7 +68,7 @@ const FollowingContent = () => {
         return () => console.log("Cleanup..");
     }, []);
     return (<>
-        <Stories data={storyData}/>
+        <Stories data={storyData} onStoryUpdate={onStoryUpdate}/>
         <UploadPost/>
         <Posts postData={followingData} isLoading={isLoading}/>
     </>);

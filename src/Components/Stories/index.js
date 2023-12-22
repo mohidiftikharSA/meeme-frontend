@@ -12,12 +12,13 @@ import UploadModal from "Components/UploadViewModal";
 
 const otherUserStories = [];
 
-const Stories = (data) => {
+const Stories = (props) => {
 
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow, setModalShow] = useState(false);
     const [selectedStoryIndex, setSelectedStoryIndex] = useState(null);
     const [storyData, setStoryData] = useState([]);
     const [addStory, setAddStory] = useState(false);
+    const [userStories, setUserStories] = useState([]);
     const {profile} = useSelector((state) => state.auth);
 
 
@@ -28,6 +29,7 @@ const Stories = (data) => {
     }
     const openModalWithStory = (index) => {
         setSelectedStoryIndex(index);
+        setUserStories(props.data[index])
         setModalShow(true);
     };
     const onModalHide = () => {
@@ -36,11 +38,19 @@ const Stories = (data) => {
         setModalShow(false)
     }
     const onStoryAdded = () => {
-        console.log("Val ")
+        props.onStoryUpdate();
+    }
+    const hydrateFields = () => {
+        props.data.forEach((userStory, index) => {
+            setStoryData(prevState => {
+                return userStory.stories?.[0] ? [...prevState, userStory.stories[0]] : prevState;
+            })
+        })
+        // setStoryData(props.data)
     }
     useEffect(() => {
-        setStoryData(data.data)
-    }, [data]);
+        hydrateFields()
+    }, [props]);
 
 
     // useEffect(() => {
@@ -105,6 +115,7 @@ const Stories = (data) => {
             show={modalShow}
             onHide={onModalHide}
             story={storyData[selectedStoryIndex]}
+            stories={userStories?.stories ?? []}
             title={addStory ? "Add Story" : 'Story'}
             addStory={addStory}
             storyAdded={onStoryAdded}

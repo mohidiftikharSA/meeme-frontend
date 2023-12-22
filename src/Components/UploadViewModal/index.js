@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Modal} from "react-bootstrap";
 import classes from "./index.module.scss";
 import avatar from "../../Images/youuser.png";
@@ -7,23 +7,26 @@ import user from "../../Images/avatar.jpg"
 // import { height } from "@mui/system";
 import api from 'APIs/dashboard/home'
 import NotificationService from "../../Services/NotificationService";
+import SpinnerLoader from "../Loader/SpinnerLoader";
 
 const UploadModal = (props) => {
-    const {story, title, addStory, storyAdded} = props;
+    const {title, addStory, stories} = props;
     const [image, setImage] = useState(null)
     const [imageToShow, setImageToShow] = useState(null)
     const [isLoading, setIsLoading] = useState(false);
-    // const [images, setImages] = React.useState([]);
-    // const maxNumber = 1;
-    // const onChange = (imageList, addUpdateIndex) => {
-    //   setImages(imageList);
-    // };
+    const [story, setStory] = useState(null);
+    const [storyLoaded, setStoryLoaded] = useState(false);
+    const [selectedIndex, setSelectedIndex] = useState(0)
+    useEffect(() => {
+        setStory(stories[0]);
+        setStoryLoaded(false);
+        setSelectedIndex(0)
+    }, [props.stories]);
     const bgStyle = {
         backgroundColor: addStory ? '#3c3a40' : '#000'
     }
     const onClickSelectStory = (e) => {
         const file = e.target.files[0];
-        console.log("File ", file)
         if (file) {
             setImage(file)
             const reader = new FileReader();
@@ -44,9 +47,39 @@ const UploadModal = (props) => {
         if (response.status == 200) {
             NotificationService.showSuccess('Story posted successfully')
             setImageToShow(null)
-            setImageToShow(null);
             props.storyAdded()
             props.onHide()
+        }
+    }
+
+    const handleImageError = () => {
+        console.log("Error")
+        setStoryLoaded(true)
+    }
+    const handleImageLoad = () => {
+        console.log("Loaded")
+        setStoryLoaded(true)
+    }
+    const onClickStoryImage = (e) => {
+        const {clientX, target} = e;
+        const {left, width} = target.getBoundingClientRect();
+        const clickPosition = clientX - left;
+        if (clickPosition > width / 2) {
+            if ((selectedIndex + 1) < stories.length) {
+                setStoryLoaded(false)
+                setStory(stories[selectedIndex + 1])
+                setSelectedIndex(prevState => {
+                    return prevState + 1;
+                })
+            }
+        } else {
+            if (selectedIndex > 0) {
+                setStoryLoaded(false)
+                setStory(stories[selectedIndex - 1])
+                setSelectedIndex(prevState => {
+                    return prevState - 1;
+                })
+            }
         }
     }
     return (<Modal
@@ -99,21 +132,43 @@ const UploadModal = (props) => {
       </Modal.Body> */}
 
         <Modal.Body className="p-0" style={bgStyle}>
+
+            {!addStory && <div style={{display: 'flex'}} className="mt-2">
+                {stories.map((item, index) => {
+                    return (<div key={`user_story_${index}`} style={{
+                        flex: 1, height: '2px', backgroundColor: '#ccc', margin: '0 1px',
+                    }}>
+                    </div>);
+                })}
+            </div>
+            }
             {!addStory ? <>
                 <div className={classes.prilfe}>
-                    {/* <img src={story?.user_image||avatar} alt="img" /> */}
                     <img src={story?.user_image || user} alt='img' style={{objectFit: "cover"}}/>
                     <p>{story?.username}</p>
                 </div>
                 <div className={classes.preview}>
-                    {story && (<img src={story?.story_image} alt="Selected Story"/>)}
+                    {story && (<>
+                        <div style={{
+                            display: storyLoaded ? 'none' : 'block'
+                        }}>
+                            <SpinnerLoader></SpinnerLoader>
+                        </div>
+                        <img
+                            style={{display: storyLoaded ? 'block' : 'none'}}
+                            src={story?.story_image}
+                            onClick={onClickStoryImage}
+                            onLoad={handleImageLoad}
+                            onError={handleImageError}
+                            alt="Selected Story"/>
+                    </>)}
                 </div>
             </> : <>
-
                 <div className={classes.preview} style={{cursor: 'pointer'}}>
                     {imageToShow ? <>
                         <div>
-                            <img src={imageToShow} alt="img"/>
+                            <img src={imageToShow}
+                                 alt="img"/>
                         </div>
                     </> : <>
                         <label
