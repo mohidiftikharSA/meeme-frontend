@@ -99,38 +99,6 @@ const UploadModal = (props) => {
                 {!title ? <h6>Post a content</h6> : <h6>{title}</h6>}
             </Modal.Title>
         </Modal.Header>
-        {/* <Modal.Body className="p-0">
-        <ReactImageUploading
-          multiple
-          value={images}
-          onChange={onChange}
-          maxNumber={maxNumber}
-          dataURLKey="data_url"
-          acceptType={["jpg", "jpeg", "png"]}
-        >
-          {({
-            imageList,
-            onImageUpload,
-            onImageRemoveAll,
-            onImageUpdate,
-            onImageRemove,
-            isDragging,
-            dragProps,
-          }) => (
-            <>
-              <div className={classes.preview}>
-                {imageList.length > 0 && (
-                  <img src={imageList[0]["data_url"]} alt="" />
-                )}
-              </div>
-              <Button className="w-100" onClick={onImageUpload}>
-                Post Story
-              </Button>
-            </>
-          )}
-        </ReactImageUploading>
-      </Modal.Body> */}
-
         <Modal.Body className="p-0" style={bgStyle}>
 
             {!addStory && <div style={{display: 'flex'}} className="mt-2">
