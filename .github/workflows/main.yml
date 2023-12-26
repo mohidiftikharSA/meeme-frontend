@@ -17,8 +17,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
        
-    # - name: copy Env
-    #  run: cp /.env /actions-runner/_work/meeme-frontend/meeme-frontend
+    - name: copy Env
+      run: mv .env.example .env
 
     - name: install node Modules 
       run: npm install
