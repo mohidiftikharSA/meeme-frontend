@@ -27,7 +27,7 @@ const Banner = ({ other, profile }) => {
   };
 
   useEffect(() => {
-    console.log("Other profile console log --- ", profile);
+    // console.log("Other profile console log --- ", profile);
     if (profile?.follower_added) {
       setIsFollowing(true);
     }
@@ -47,7 +47,7 @@ const Banner = ({ other, profile }) => {
   }, [profile]);
 
   const followOrUnfollow = async (action) => {
-    console.log("Follow Profile = ", profile);
+    // console.log("Follow Profile = ", profile);
     if (action === 'follow') {
       const follow = await FollowerAPIs.sendFollowRequest({ follower_user_id: profile?.user?.id });
       if (follow) {
@@ -72,7 +72,7 @@ const Banner = ({ other, profile }) => {
   };
 
   const handleOpenChat = () => {
-    console.log("Profile == ", profile);
+    // console.log("Profile == ", profile);
     setShowChat(!showChat);
   };
 
