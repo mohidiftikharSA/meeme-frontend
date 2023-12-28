@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import ViewPost from "Components/ViewPost";
 import classes from "./index.module.scss";
 import avatar from "../../Images/avatar.jpg"
+import PostViewModal from "Components/PostViewModal";
 
 
 const ProfilePost = ({data}) => {
@@ -14,6 +15,7 @@ const ProfilePost = ({data}) => {
     const navigate = useNavigate();
     const [postData, setPostData] = useState();
     const [monthOptions, setMonthOptions] = useState([]);
+    const [PostViewModalShow, setPostViewModalShow] = useState(false);
 
     const openModal = (postId, postData) => {
 
@@ -74,12 +76,13 @@ const ProfilePost = ({data}) => {
                 <div className={classes.box}>
                     {data?.slice()?.reverse()?.map((item, ind) => (
                         <div key={ind} className={classes.imgBox} onClick={() => openModal(item.post?.id, item)}>
-                            <img src={item?.post_image} alt=""/>
+                            <img src={item?.post_image} alt=""onClick={() => setPostViewModalShow(true)} />
                         </div>
                     ))}
                 </div>
             </div>
             {/*<ViewPost profile onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData} avatar={avatar}  />*/}
+            <PostViewModal post show={PostViewModalShow} onHide={() => setPostViewModalShow(false)} />
         </>
     );
 };

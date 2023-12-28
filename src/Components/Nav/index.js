@@ -32,8 +32,8 @@ function Navigation({ header, footer }) {
       expand="lg"
       className={
         header
-          ? "navBar bg-body-tertiary"
-          : "navBar aside bg-body-tertiary pt-lg-5 pb-lg-3 py-3"
+          ? "navBar"
+          : "navBar aside pt-lg-5 pb-lg-3 py-3"
       }
     >
       {header ? (

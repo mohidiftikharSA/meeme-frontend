@@ -2,8 +2,13 @@ import React from 'react'
 import { AiFillHeart } from 'react-icons/ai';
 import { FaTimes } from 'react-icons/fa';
 import memeeimg from "../../Images/memeeimage.png";
+import { Button, Modal } from 'react-bootstrap';
 
-const PostViewModal = () => {
+const PostViewModal = (props) => {
+  const onClose = () => {
+    props.onHide();
+    
+  };
     return (
         <Modal
         className={"PostContentModal postView"}
