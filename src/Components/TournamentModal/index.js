@@ -1,37 +1,36 @@
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import icon from "../../Images/imagelogo.png";
-import { useState } from "react";
-import Form from "react-bootstrap/Form";
-import AuthAPIs from '../../APIs/auth';
 import { toast } from "react-toastify";
 import Loader from "Components/Loader";
 import { useSelector } from "react-redux";
+import Form from "react-bootstrap/Form";
+import AuthAPIs from '../../APIs/auth';
 import TournamentAPIs from '../../APIs/tournaments';
+import PostContentModal from "Components/PostContentModal";
 
-export default function PostContentModal({ tournamentJoined, ...props }) {
+export default function TournamentModal({ tournamentJoined, ...props }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const [continueClicked, setContinueClicked] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [apiImg, setApiImg] = useState(null);
   const { user } = useSelector((state) => state.auth);
-
-  const [PostContentModalShow, setPostContentModalShow] = useState(false);
+  const [modalType, setModalType] = useState("main");
 
   const onClose = () => {
     props.onHide();
     setSelectedImage(null);
-    setContinueClicked(false);
-    setShowForm(false)
+    setShowForm(false);
     setApiImg(null);
+    setModalType("main");
   };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setApiImg(file)
+      setApiImg(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result);
@@ -43,7 +42,6 @@ export default function PostContentModal({ tournamentJoined, ...props }) {
   const handleContinue = () => {
     if (selectedImage) {
       setShowForm(true);
-      setContinueClicked(true);
     }
   };
 
@@ -53,6 +51,7 @@ export default function PostContentModal({ tournamentJoined, ...props }) {
     data.append('description', title || '');
     data.append('tag_list', description || '');
     data.append('post_image', apiImg);
+
     if (props.post) {
       const res = await AuthAPIs.createPost(data);
       if (res) {
@@ -60,61 +59,61 @@ export default function PostContentModal({ tournamentJoined, ...props }) {
         props.onHide();
       }
     } else if (props.tournament) {
-      /**
-       * Join the Tournament First Before posting
-       */
-      console.log("Tournaments Joining =", props?.tournamentid);
-      console.log("user id =", user?.id);
       const join = await TournamentAPIs.enrollInTournament({ user_id: user?.id, tournament_banner_id: props?.tournamentid });
       if (join) {
         tournamentJoined(true);
         const postImg = await TournamentAPIs.createTournamentPost(data);
         if (postImg) {
-          toast.success("Tournamnet Post Created Successfully");
+          toast.success("Tournament Post Created Successfully");
           props.onHide();
         }
       }
-
-
     }
+
     setIsLoading(false);
-  }
+  };
+
+  const openPostContentModal = () => {
+    setModalType("postContent");
+  };
 
   return (
     <>
       {isLoading && <Loader isLoading={isLoading} />}
-      <Modal
-        className={"PostContentModal"}
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton={false}>
-          <Modal.Title id="contained-modal-title-vcenter">
-            <i className="fa fa-angle-left" aria-hidden="true" onClick={onClose}>
-              <span>Post a content</span>
-            </i>
-            {!continueClicked && (
-              <Button className="btn" onClick={handleContinue}>
-                Continue
-              </Button>
-            )}
+      {modalType === "main" && (
+        <Modal
+          className={"PostContentModal"}
+          {...props}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header closeButton={false}>
+            <Modal.Title id="contained-modal-title-vcenter">
+              <i className="fa fa-angle-left" aria-hidden="true" onClick={onClose}>
+                <span>Post a content</span>
+              </i>
+              {!showForm && (
+                <Button className="btn" onClick={handleContinue}>
+                  Continue
+                </Button>
+              )}
 
-            {continueClicked && (
-              <Button className="btn" onClick={handleSubmit} >
-                Next
-              </Button>
-            )}
+              {showForm && (
+                <>
+                  <Button className="btn" onClick={handleSubmit}>
+                    Next
+                  </Button>
+                  <Button className="btn" onClick={openPostContentModal}>
+                    Modal
+                  </Button>
+                </>
+              )}
+            </Modal.Title>
+          </Modal.Header>
 
-
-          </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body className="dotsborder">
-
-          {showForm &&
-            <>
+          <Modal.Body className="dotsborder">
+            {showForm && (
               <div>
                 <Form>
                   <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -128,60 +127,69 @@ export default function PostContentModal({ tournamentJoined, ...props }) {
                   </Form.Group>
                 </Form>
               </div>
-
-            </>
-          }
-          {selectedImage &&
-            <div>
-              <img src={selectedImage} alt="img" />
-            </div>
-          }
-          {!selectedImage &&
-            <div className="bodyContant">
-              <div style={{ textAlign: "center" }}>
-                <label
-                  htmlFor="imageInput"
-                  style={{ cursor: "pointer", display: "block" }}
-                >
-                  {!selectedImage && (
-                    <>
-                      <img
-                        src={icon}
-                        alt="Icon"
-                        style={{
-                          width: "50px",
-                          height: "50px",
-                          margin: "0 auto",
-                        }}
-                      />
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        style={{ display: "none" }}
-                        id="imageInput"
-                      />
-                      <div style={{ textAlign: "center", color: "white" }}>
-                        <>
-                          <p>Drag and drop an image, or Browse</p>
-                          <ul>
-                            <li>High resolution meme images (png, jpg)</li>
-                            <li>Videos (mp4)</li>
-                          </ul>
-                        </>
-                      </div>
-                    </>
-                  )}
-                </label>
+            )}
+            {selectedImage && (
+              <div>
+                <img src={selectedImage} alt="img" />
               </div>
-            </div>
-          }
-
-        </Modal.Body>
-      </Modal>
+            )}
+            {!selectedImage && (
+              <div className="bodyContant">
+                <div style={{ textAlign: "center" }}>
+                  <label
+                    htmlFor="imageInput"
+                    style={{ cursor: "pointer", display: "block" }}
+                  >
+                    {!selectedImage && (
+                      <>
+                        <img
+                          src={icon}
+                          alt="Icon"
+                          style={{
+                            width: "50px",
+                            height: "50px",
+                            margin: "0 auto",
+                          }}
+                        />
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          style={{ display: "none" }}
+                          id="imageInput"
+                        />
+                        <div style={{ textAlign: "center", color: "white" }}>
+                          <>
+                            <p>Drag and drop an image, or Browse</p>
+                            <ul>
+                              <li>High-resolution meme images (png, jpg)</li>
+                              <li>Videos (mp4)</li>
+                            </ul>
+                          </>
+                        </div>
+                      </>
+                    )}
+                  </label>
+                </div>
+              </div>
+            )}
+          </Modal.Body>
+        </Modal>
+      )}
+     {modalType === "postContent" && (
+  <PostContentModal
+    show={true}
+    onHide={() => {
+      setModalType("main");
+      props.onHide(); 
+    }}
+  />
+)}
     </>
-   
   );
 }
+
+
+
 
 

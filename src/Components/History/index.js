@@ -3,6 +3,7 @@ import classes from "./index.module.scss";
 import {Button, Form} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import EarnCoinsModal from "Components/EarnCoinsModal";
+import JudgeModal from "Components/JudgeModal";
 
 const historyData = [{
     days: "01", memeNo: "40", status: false,
@@ -17,6 +18,7 @@ const History = ({tournamentData}) => {
     console.log(JSON.stringify(tournamentData));
     const [judgedPosts, setJudgedPosts] = useState([])
     //const [historyData, setHistoryData] = useState([]);
+    const [JudgeModalShow, setJudgeModalShow] = useState(false);
     const navigate = useNavigate();
     const nextPage = (count) => {
         navigate(`/judge?count=${count}`);
@@ -33,6 +35,7 @@ const History = ({tournamentData}) => {
     }, [])
     return (<>
         <div className="my-4">
+            <span onClick={() => setJudgeModalShow(true)} ><h5>History</h5></span>
             <h5>History</h5>
             <ul className={classes.list}>
                 <li>Days</li>
@@ -45,7 +48,7 @@ const History = ({tournamentData}) => {
                         <div className={classes.counter}>
                             <span>{ind + 1}</span>
                         </div>
-                        <div>{item.judged_post_date_count}/100</div>
+                        <div>{item.judged_post_date_count}/100 </div>
                         <div className={classes.checkboxHolder}>
                             <Form.Check
                                 type={"checkbox"}
@@ -57,7 +60,9 @@ const History = ({tournamentData}) => {
                 })}
             </ul>
         </div>
-    </>);
+        <JudgeModal post show={JudgeModalShow} onHide={() => setJudgeModalShow(false)} />
+    </>
+    );
 };
 
 export default History;

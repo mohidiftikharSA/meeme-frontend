@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from "react";
-import {Form} from "react-bootstrap";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import ViewPost from "Components/ViewPost";
 import classes from "./index.module.scss";
 import avatar from "../../Images/avatar.jpg"
+import PostViewModal from "Components/PostViewModal";
 
 
-const ProfilePost = ({data}) => {
+const ProfilePost = ({ data }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [followingData, setFollowingData] = useState([]);
@@ -14,6 +15,8 @@ const ProfilePost = ({data}) => {
     const navigate = useNavigate();
     const [postData, setPostData] = useState();
     const [monthOptions, setMonthOptions] = useState([]);
+    const [PostViewModalShow, setPostViewModalShow] = useState(false);
+    const [modalData, setModalData] = useState(null);
 
     const openModal = (postId, postData) => {
 
@@ -48,10 +51,10 @@ const ProfilePost = ({data}) => {
         ];
         const currentDate = new Date();
         const currentMonth = currentDate.getMonth() + 1;
-        const monthOptions = Array.from({length: 3}, (_, index) => {
+        const monthOptions = Array.from({ length: 3 }, (_, index) => {
             const monthValue = currentMonth - index;
             const monthLabel = monthNames[monthValue - 1];
-            return {value: `${monthValue}`, label: monthLabel};
+            return { value: `${monthValue}`, label: monthLabel };
         });
         setMonthOptions(monthOptions);
     }
@@ -63,7 +66,7 @@ const ProfilePost = ({data}) => {
             <div className={classes.postHolder}>
                 <div className={classes.header}>
                     <h4>{data?.length} Posts</h4>
-                    <Form.Select className="form" style={{width: "120px"}}>
+                    <Form.Select className="form" style={{ width: "120px" }}>
                         {monthOptions.map((month) => (
                             <option key={month.value} value={month.value}>
                                 {month.label}
@@ -74,12 +77,16 @@ const ProfilePost = ({data}) => {
                 <div className={classes.box}>
                     {data?.slice()?.reverse()?.map((item, ind) => (
                         <div key={ind} className={classes.imgBox} onClick={() => openModal(item.post?.id, item)}>
-                            <img src={item?.post_image} alt=""/>
+                            <img src={item?.post_image} alt="" onClick={() => {
+                                setPostViewModalShow(true)
+                                setModalData(item)
+                            }} />
                         </div>
                     ))}
                 </div>
             </div>
             {/*<ViewPost profile onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={postData} avatar={avatar}  />*/}
+            <PostViewModal post data={modalData} show={PostViewModalShow} onHide={() => setPostViewModalShow(false)} />
         </>
     );
 };

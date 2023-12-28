@@ -42,7 +42,6 @@ const FlagPostModal = ({ image, postId, ...props }) => {
       if (res) {
         setFlagSectionVisibility(false);
         setConfirmationSectionVisibility(true);
-        console.log("Fag === ", res.data);
       }
     } catch (e) {
       console.log("Error  ===", e);
@@ -74,8 +73,6 @@ const FlagPostModal = ({ image, postId, ...props }) => {
         <i className="far fa-flag"><span>Flag Post </span></i>
         <i className="far fa-flag"><span>Flag Post </span></i>
          </div> */}
-
-
 
           {!isConfirmationSectionVisible && <div className='flag-btn mt-5'>
             <p className='mb-4'>Why are you flagging this photo?</p>

@@ -10,8 +10,8 @@ export default function PostContentModal(props) {
   }
   return (
     <>
-      <Modal
-        className={"infoModal"}
+      <Modal 
+        className={"infoModal black"} 
         {...props}
         size="sm"
         aria-labelledby="contained-modal-title-vcenter"
@@ -22,9 +22,9 @@ export default function PostContentModal(props) {
             <LiaTimesSolid />
           </span>
         </Modal.Header>
-        <Modal.Body className="m-0 congrats">
+        <Modal.Body className="m-0 congrats tournament">
           <div
-            className="imgBox mb-4"
+            className="imgBox  mb-4"
             style={{ width: "75px", margin: "auto", marginTop: "150px" }}
           >
           </div>
