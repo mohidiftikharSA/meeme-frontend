@@ -63,6 +63,11 @@ export const ENDPOINT = {
         getByType: `${API_URL}/audits/type?type=`
     },
 
+
+    block:{
+        create: `${API_URL}/block_users`
+    },
+
     comments: `${API_URL}/comments`,
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,

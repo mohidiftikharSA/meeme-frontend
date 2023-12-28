@@ -41,6 +41,10 @@ const getTags = async () => {
 const postStory = async (data) => {
     return await API.postMethod(ENDPOINT.postStory, true, data)
 }
+
+const flagOrReportPost = async (data) => {
+    return await API.postMethod(ENDPOINT.block.create, true, data);
+}
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getRecentPosts,
@@ -52,5 +56,6 @@ export default {
     likePost,
     getTags,
     createChildComment,
-    postStory
+    postStory,
+    flagOrReportPost
 }

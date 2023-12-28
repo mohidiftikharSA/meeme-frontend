@@ -116,7 +116,7 @@ const PostItem = ({
                 </ul>
             </div>
             <FlagPostModal post show={FlagPostModalShow} image={item.compress_image} postId={item.post.id} onHide={() => setFlagPostModalShow(false)} />
-            <ReportPostModal post show={ReportPostModalShow} onHide={() => setReportPostModalShow(false)} />
+            <ReportPostModal post show={ReportPostModalShow} image={item.compress_image} postId={item.post.id} onHide={() => setReportPostModalShow(false)} />
         </>
     );
 };

@@ -50,8 +50,8 @@ export default function PostContentModal({ tournamentJoined, ...props }) {
   const handleSubmit = async () => {
     setIsLoading(true);
     const data = new FormData();
-    data.append('description', title);
-    data.append('tag_list', description);
+    data.append('description', title || '');
+    data.append('tag_list', description || '');
     data.append('post_image', apiImg);
     if (props.post) {
       const res = await AuthAPIs.createPost(data);

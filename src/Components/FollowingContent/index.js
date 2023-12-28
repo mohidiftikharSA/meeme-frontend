@@ -9,7 +9,6 @@ const FollowingContent = () => {
 
     const [storyData, setStoryData] = useState([]);
     const [followingData, setFollowingData] = useState([]);
-    const [apiCallMade, setApiCallMade] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const getStories = async () => {
         try {
