@@ -1534,7 +1534,7 @@ aside.EmojiPickerReact.epr-main {
         justify-content: center;
 
         button {
-          width: 50%;
+          width: 100%;
           background: transparent;
           border: none;
           color: #fff;
@@ -1542,8 +1542,7 @@ aside.EmojiPickerReact.epr-main {
           font-size: 12px;
           opacity: 0.6;
           padding: 10px;
-
-          &:hover {
+          &.flag_selected{
             background: rgba(255, 255, 255, 0.25);
             border-radius: 5px;
             opacity: 999999;
