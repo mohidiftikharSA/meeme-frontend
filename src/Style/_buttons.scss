@@ -17,6 +17,23 @@
   @include media("<phone"){
     font-size: 12px !important;
   }
+  &.flag{
+    width: 50%;
+    background: linear-gradient(180deg, #FFE299 0%, #F6B202 100%);
+    padding: 23px 0;
+    line-height: 0;
+    color: #000;
+    margin-top: 25px;
+    // &:hover {
+    //   background: linear-gradient(100%, #FFE299 0%, #F6B202 180) !important;
+    //   font-weight: 700;
+    //   color: #fff;
+    //   background: transparent ;
+    // }
+    &.report{
+      width: 30%;
+    }
+  }
 
   .btnHolder {
     max-width: 430px;

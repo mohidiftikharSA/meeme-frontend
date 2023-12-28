@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { timeAgo, formatNumber } from "../../Helper/Converters";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,8 @@ import message from "../../Images/message.svg";
 import send from "../../Images/sendbtn.png";
 import user2 from "../../Images/avatar.jpg";
 import avatar from "../../Images/avatar.jpg";
+import FlagPostModal from "Components/FlagPostModal";
+import ReportPostModal from "Components/ReportPostModal";
 
 const PostItem = ({
     item,
@@ -24,8 +26,11 @@ const PostItem = ({
     comment
 }) => {
     const navigate = useNavigate();
+    const [FlagPostModalShow, setFlagPostModalShow] = useState(false);
+    const [ReportPostModalShow, setReportPostModalShow] = useState(false);
 
     return (
+        <>
     <div className={classes.postWrapper} key={ind}>
         <div className={classes.postHeader}>
             <div className={classes.profile}>
@@ -48,10 +53,14 @@ const PostItem = ({
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1"><i className="far fa-flag"></i> Flag
+                    <Dropdown.Item href="#/action-1"onClick={() => {
+              setFlagPostModalShow(true);
+            }} ><i className="far fa-flag"></i> Flag
                         Post</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2"><i
-                        className="fas fa-exclamation"></i>Report</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2" onClick={() => {
+                            setReportPostModalShow(true);
+                          }}><i
+                        className="fas fa-exclamation" ></i>Report</Dropdown.Item>
                     <Dropdown.Item href="#/action-3" onClick={() => {
                         downloadMedia(item.compress_image, item?.id)
                     }}><i className="fas fa-download"></i>Download</Dropdown.Item>
@@ -105,7 +114,11 @@ const PostItem = ({
                 {/* <span>{formatNumber(item.post.share_count)}</span> */}
             </li>
         </ul>
-    </div>);
+    </div>
+    <FlagPostModal post show={FlagPostModalShow} onHide={() => setFlagPostModalShow(false)} />
+    <ReportPostModal post show={ReportPostModalShow} onHide={() => setReportPostModalShow(false)} />
+    </>
+    );
 };
 
 export default PostItem;
