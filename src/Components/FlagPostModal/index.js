@@ -50,20 +50,6 @@ const FlagPostModal = (props) => {
           <p className='text'>Photo successfully flagged. We will review your report. Thank you for your cooperation.</p>
         </div>
       )}
-
-      
-   {/* <div className='form'>
-   <Form>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Control as="textarea" rows={5} />
-      </Form.Group>
-      <a className='btn flag'>Report</a>
-    </Form>
-   </div>
-   <div className='textBox'>
-    <h6>Photo Reported</h6>
-    <p className='text'>Photo successfully reported. We will review your report. Thank you for your cooperation.</p>
-   </div> */}
         
     </Modal.Body>
 </Modal>
