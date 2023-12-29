@@ -26,7 +26,16 @@
 .form-group {
   position: relative;
 }
-.forms{
+.forms{ 
+  &.textholder{
+    color: #fff;
+    .form-control{
+      &::placeholder{
+        color: #fff;
+      }
+    }
+  
+  }
   .form-control {
     font-size: 14px;
     border-radius: 0;
@@ -72,6 +81,7 @@
     .form-label {
       font-size: 12px;
       margin: 0;
+      color: #fff;
     }
   }
 }
@@ -110,3 +120,4 @@ input::-webkit-inner-spin-button {
 .invalid-feedback{
   margin-left: 18px;
 }
+

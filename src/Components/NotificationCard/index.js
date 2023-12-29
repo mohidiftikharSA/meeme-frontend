@@ -39,7 +39,7 @@ const NotificationCard = () => {
                         checked={isPushNotificationChecked}
                     />
                 </li>
-                <li>
+                {/* <li>
                     <div className={classes.box}>
                         <img src={sms} alt="icon"/>
                         <h6 className="mb-0">SMS Alerts</h6>
@@ -58,7 +58,7 @@ const NotificationCard = () => {
                         type="switch"
                         id="custom-switch"
                     />
-                </li>
+                </li> */}
             </ul>
         </div>
     </Card>);
