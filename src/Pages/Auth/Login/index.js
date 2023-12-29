@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import classes from "../index.module.scss";
 import Logo from "Components/Logo";
 import AuthHeader from "Components/AuthHeader";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom/dist";
 import AuthAPIs from "APIs/auth";
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
@@ -100,12 +100,12 @@ const LoginFrom = () => {
               </Form.Control.Feedback>
               <div className="check">
                 <span>
-                <Form.Check
-          type="checkbox"
-          id="check"
-          label="Remember me"
-          className={classes.customCheckbox} 
-        />
+                  <Form.Check
+                    type="checkbox"
+                    id="check"
+                    label="Remember me"
+                    className={classes.customCheckbox}
+                  />
                 </span>
                 <p className={classes.password} onClick={nextPage}>
                   Forgot password?
@@ -124,6 +124,12 @@ const LoginFrom = () => {
             </Form>
           )}
         </Formik>
+        <p style={{ textAlign: "center", paddingTop: '10px' }} className={classes.dark}>
+          New to memee?
+          <Link className={classes.light} to="/signUp">
+            Sign up
+          </Link>
+        </p>
       </div>
     </>
   );
