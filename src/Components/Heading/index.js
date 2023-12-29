@@ -9,7 +9,6 @@ import JudgeModal from "Components/JudgeModal";
 const Heading = ({ title, judge, badge, linkPath, likedCounts }) => {
     const [modalShow, setModalShow] = useState(false);
     const [JudgeModalShow, setJudgeModalShow] = useState(false);
-
     const navigate = useNavigate();
     const backPage = () => {
         if (linkPath) {
@@ -33,7 +32,7 @@ const Heading = ({ title, judge, badge, linkPath, likedCounts }) => {
                 {
                     judge &&
                     <div className={classes.memeNo} onClick={() => setModalShow(true)}><span
-                        className='text-light'>{likedCounts ?? 0}</span>/100</div>
+                        className='text-light' onClick={() => setJudgeModalShow(true)} >{likedCounts ?? 0}</span>/100</div>
                 }
                 {
                     badge &&

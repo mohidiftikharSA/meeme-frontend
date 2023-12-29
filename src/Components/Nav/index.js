@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ButtonGroup, Nav, Navbar } from "react-bootstrap";
+import { ButtonGroup, Dropdown, Nav, Navbar } from "react-bootstrap";
 import { FaBars } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { Link, useLocation } from 'react-router-dom';
@@ -13,6 +13,9 @@ import judge from "../../Images/judges.png";
 import shop from "../../Images/shop.png";
 import trophies from "../../Images/trophy (1) 1.png";
 import classes from "./index.module.scss";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import ab from "../../Images/ab.png";
+
 
 function Navigation({ header, footer }) {
   const location = useLocation();
@@ -26,6 +29,33 @@ function Navigation({ header, footer }) {
   const toggleActive = () => {
     setIsActive(!isActive);
   };
+  const [notifications] = useState([
+    {
+      image: ab,
+      message: 'You have successfully changed your password.',
+      timestamp: 'Jan 10, 2023 11:20 AM',
+    },
+    {
+      image: ab,
+      message: 'You have successfully changed your password.',
+      timestamp: 'Jan 10, 2023 11:20 AM',
+    },
+    {
+      image: ab,
+      message: 'You have successfully changed your password.',
+      timestamp: 'Jan 10, 2023 11:20 AM',
+    },
+    {
+      image: ab,
+      message: 'You have successfully changed your password.',
+      timestamp: 'Jan 10, 2023 11:20 AM',
+    },
+    {
+      image: ab,
+      message: 'You have successfully changed your password.',
+      timestamp: 'Jan 10, 2023 11:20 AM',
+    },
+  ]);
 
   return (
     <Navbar
@@ -69,6 +99,36 @@ function Navigation({ header, footer }) {
                 <img src={Buy} alt="icon" />
                 Store
               </Nav.Link>
+              <span className="notification">
+                <Dropdown>
+                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                   <span className="bell-icon"> <IoMdNotificationsOutline /></span>
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <ul>
+                      <span className="list">
+                        <p className="white">
+                          Notifications
+                        </p>
+                        <p className="yellow" >Mark all as read</p>
+                      </span>
+                      {notifications.map((notification, index) => (
+                        <li key={index}>
+                          <div>
+                            <img src={notification.image}/>
+                          </div>
+                          <div>
+                            <p className="white">{notification.message}</p>
+                            <p className="light">{notification.timestamp}</p>
+                          </div>
+                        </li>
+                      ))}
+                                              
+                    </ul>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </span>
               <ButtonGroup className="align-items-center" id="profile-btn">
                 <Link to={"/Purchase"} className={`btn ${classes.iconBtn}`}>
                   <span className={classes.icon}>
@@ -94,7 +154,7 @@ function Navigation({ header, footer }) {
             <img src={trophies} alt="icon" />
             Tournament
           </Nav.Link>
-          <Nav.Link  as={Link} to="/tornament"className="btn btn-primary btn-bg store mb-3">
+          <Nav.Link as={Link} to="/tornament" className="btn btn-primary btn-bg store mb-3">
             <img src={judge} alt="icon" />
             Judge
           </Nav.Link>
@@ -102,7 +162,7 @@ function Navigation({ header, footer }) {
             <img src={shop} alt="icon" />
             Store
           </Nav.Link>
-          
+
         </Nav>
       )}
     </Navbar>
