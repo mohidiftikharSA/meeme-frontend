@@ -49,7 +49,7 @@ const History = ({tournamentData}) => {
                             <span>{ind + 1}</span>
                         </div>
                         <div>{item.judged_post_date_count}/100 </div>
-                        <div className={classes.checkboxHolder}>
+                        <div className={classes.checkboxHolder} >
                             <Form.Check
                                 type={"checkbox"}
                                 className="custom-checkbox"

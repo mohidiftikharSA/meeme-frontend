@@ -4,9 +4,11 @@ import classes from "./index.module.scss"
 import {useNavigate} from 'react-router-dom';
 import CongratsModal from 'Components/CongratsModal';
 import {Button} from 'react-bootstrap';
+import JudgeModal from 'Components/JudgeModal';
 
 const Heading = ({title, judge, badge, linkPath, likedCounts}) => {
     const [modalShow, setModalShow] = useState(false);
+    const [JudgeModalShow, setJudgeModalShow] = useState(false);
     const navigate = useNavigate();
     const backPage = () => {
         if (linkPath) {
@@ -30,7 +32,7 @@ const Heading = ({title, judge, badge, linkPath, likedCounts}) => {
                 {
                     judge &&
                     <div className={classes.memeNo} onClick={() => setModalShow(true)}><span
-                        className='text-light'>{likedCounts ?? 0}</span>/100</div>
+                        className='text-light' onClick={() => setJudgeModalShow(true)} >{likedCounts ?? 0}</span>/100</div>
                 }
                 {
                     badge &&
@@ -41,6 +43,7 @@ const Heading = ({title, judge, badge, linkPath, likedCounts}) => {
             <CongratsModal
                 show={modalShow}
                 onHide={handleDeleteModal}/>
+                <JudgeModal post show={JudgeModalShow} onHide={() => setJudgeModalShow(false)} />
         </>
     )
 }
