@@ -20,8 +20,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 // input,.form-control{
@@ -78,9 +77,10 @@ nav {
   @include media("<tablet-x") {
     border: none;
     width: 80px;
-    position: fixed;
+    // position: fixed;
     z-index: 99999;
     transition: all ease 0.3s;
+
   }
 
   &.active {
@@ -126,7 +126,7 @@ nav {
   @include media("<tablet-x") {
     width: 100%;
     transition: all ease 0.3s;
-    padding-top: 60px !important;
+    padding-top: 10px !important;
   }
 }
 
@@ -186,6 +186,8 @@ section {
       &.active {
         right: 0;
         transition: all ease 0.3s;
+        max-height: 100vh;
+        overflow: scroll;
       }
 
       .navbar-nav {
@@ -250,7 +252,8 @@ section {
     &.active,
     &:hover {
       color: #ffcd2f;
-      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%)
+        contrast(100%);
     }
   }
 
@@ -267,7 +270,8 @@ section {
 
     img {
       color: #ffcd2f;
-      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%)
+        contrast(100%);
       width: 17px;
     }
   }
@@ -946,11 +950,7 @@ main {
       content: counter(section) ".";
       left: 0;
       top: 0;
-      background: linear-gradient(180deg,
-          #ffe486 0%,
-          #ffcc4e 51.56%,
-          #ffd02b 100%,
-          #d2a61b 100%);
+      background: linear-gradient(180deg, #ffe486 0%, #ffcc4e 51.56%, #ffd02b 100%, #d2a61b 100%);
       width: 20px;
       height: 20px;
       border-radius: 50%;
@@ -1124,11 +1124,7 @@ main {
         padding-right: 42px;
 
         .messageBox {
-          background: linear-gradient(180deg,
-              #ffe486 0%,
-              #ffcc4e 51.56%,
-              #ffd02b 100%,
-              #d2a61b 100%);
+          background: linear-gradient(180deg, #ffe486 0%, #ffcc4e 51.56%, #ffd02b 100%, #d2a61b 100%);
           color: #000;
           border-radius: 20px 20px 0px 20px;
           padding: 12px 15px;
@@ -1610,12 +1606,12 @@ aside.EmojiPickerReact.epr-main {
     &:after {
       position: absolute;
       content: "";
-      top: 0;
-      right: 0px;
-      width: 3px;
-      height: 3px;
+      top: 1px;
+      right: 2px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background-color: #ff0100
+      background-color: #ff0100;
     }
   }
 
@@ -1624,7 +1620,17 @@ aside.EmojiPickerReact.epr-main {
     padding-top: 5px;
 
     svg {
+      width: 20px;
+      height: 20px;
       color: #9b9b9b;
+      &:hover {
+        filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%)
+          contrast(100%);
+      }
+      @include media("<tablet-x") {
+        margin-left: 20px;
+        margin-top: 10px;
+      }
     }
 
     .list {
@@ -1698,5 +1704,10 @@ aside.EmojiPickerReact.epr-main {
     left: -272px;
     background: #201e23;
     border: 1px solid;
+    @include media("<tablet-x") {
+      margin-left: 20px;
+      width: 240px;
+      left: -25px;
+    }
   }
 }

@@ -33,14 +33,14 @@ const SupportDetail = () => {
       setSubjectError('Subject is required.');
       setIsLoading(false);
       return;
-    }else{
+    } else {
       setSubjectError('');
     }
     if (!msg) {
       setMsgError('Message is required.');
       setIsLoading(false);
       return;
-    }else{
+    } else {
       setMsgError('');
     }
     const data = new FormData();
@@ -81,9 +81,13 @@ const SupportDetail = () => {
 
         <div>
           <p className={classes.texts}>Your message</p>
-          <Form.Group className="forms mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Type here</Form.Label>
-            <Form.Control as="textarea" rows={1} onChange={(e) => { setMsg(e.target.value); }} />
+          <Form.Group className="forms textholder mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Control
+              as="textarea"
+              rows={1}
+              placeholder="Type here"
+              onChange={(e) => { setMsg(e.target.value); }}
+            />
           </Form.Group>
           <p className='customeErrors'>{msgError}</p>
         </div>
