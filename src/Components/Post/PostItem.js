@@ -23,7 +23,9 @@ const PostItem = ({
     handleImageLoad,
     handleImageError,
     imagesLoaded,
-    comment
+    comment,
+    postRemovalId,
+    setIsModalOpen
 }) => {
     const navigate = useNavigate();
     const [FlagPostModalShow, setFlagPostModalShow] = useState(false);
@@ -115,8 +117,8 @@ const PostItem = ({
                     </li>
                 </ul>
             </div>
-            <FlagPostModal post show={FlagPostModalShow} image={item.compress_image} postId={item.post.id} onHide={() => setFlagPostModalShow(false)} />
-            <ReportPostModal post show={ReportPostModalShow} onHide={() => setReportPostModalShow(false)} />
+            <FlagPostModal post show={FlagPostModalShow} image={item.compress_image} postId={item.post.id} onHide={() => setFlagPostModalShow(false)} postRemovalId={postRemovalId} />
+            <ReportPostModal post show={ReportPostModalShow} image={item.compress_image} postId={item.post.id} onHide={() => setReportPostModalShow(false)}  postRemovalId={postRemovalId} />
         </>
     );
 };

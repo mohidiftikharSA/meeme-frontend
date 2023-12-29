@@ -39,14 +39,15 @@ const Stories = (props) => {
     }
     const onStoryAdded = () => {
         props.onStoryUpdate();
+        console.log('story added')
     }
     const hydrateFields = () => {
+        setStoryData([])
         props.data.forEach((userStory, index) => {
             setStoryData(prevState => {
                 return userStory.stories?.[0] ? [...prevState, userStory.stories[0]] : prevState;
             })
         })
-        // setStoryData(props.data)
     }
     useEffect(() => {
         hydrateFields()

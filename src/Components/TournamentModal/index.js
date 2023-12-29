@@ -48,8 +48,8 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
   const handleSubmit = async () => {
     setIsLoading(true);
     const data = new FormData();
-    data.append('description', title);
-    data.append('tag_list', description);
+    data.append('description', title || '');
+    data.append('tag_list', description || '');
     data.append('post_image', apiImg);
 
     if (props.post) {
@@ -65,16 +65,13 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
         const postImg = await TournamentAPIs.createTournamentPost(data);
         if (postImg) {
           toast.success("Tournament Post Created Successfully");
+          setModalType("postContent");
           props.onHide();
         }
       }
     }
 
     setIsLoading(false);
-  };
-
-  const openPostContentModal = () => {
-    setModalType("postContent");
   };
 
   return (
@@ -103,9 +100,6 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
                 <>
                   <Button className="btn" onClick={handleSubmit}>
                     Next
-                  </Button>
-                  <Button className="btn" onClick={openPostContentModal}>
-                    Modal
                   </Button>
                 </>
               )}
@@ -176,15 +170,15 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
           </Modal.Body>
         </Modal>
       )}
-     {modalType === "postContent" && (
-  <PostContentModal
-    show={true}
-    onHide={() => {
-      setModalType("main");
-      props.onHide(); 
-    }}
-  />
-)}
+      {modalType === "postContent" && (
+        <PostContentModal
+          show={true}
+          onHide={() => {
+            setModalType("main");
+            props.onHide();
+          }}
+        />
+      )}
     </>
   );
 }

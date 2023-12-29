@@ -77,3 +77,10 @@ export function timeAgo(timestamp) {
     return 'just now';
   }
 }
+
+export function formatDate(isoDate) {
+  const date = new Date(isoDate);
+  const options = { month: 'long', day: 'numeric', year: 'numeric' };
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+  return formattedDate;
+}

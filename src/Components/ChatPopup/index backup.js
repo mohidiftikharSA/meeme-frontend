@@ -50,8 +50,6 @@ const ChatPopup = ({isOpen, onClose, profile, data}) => {
         // if (chat[0] && chat) {
         //   setSelectedChat(chat);
         // }
-
-
         if (data && profile) {
             const obj = {
                 sender_id: data?.user?.id,

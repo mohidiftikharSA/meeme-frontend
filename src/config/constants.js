@@ -46,7 +46,8 @@ export const ENDPOINT = {
     profile: {
         settings: {
             delete_user_account: `${API_URL}/users`,
-        }
+        },
+        searchUser: `${API_URL}/users/search?username=`
     },
 
     tournaments: {
@@ -61,6 +62,11 @@ export const ENDPOINT = {
 
     audits:{
         getByType: `${API_URL}/audits/type?type=`
+    },
+
+
+    block:{
+        create: `${API_URL}/block_users`
     },
 
     comments: `${API_URL}/comments`,

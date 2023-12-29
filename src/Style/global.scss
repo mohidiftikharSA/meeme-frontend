@@ -20,7 +20,8 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 // input,.form-control{
@@ -249,8 +250,8 @@ section {
     &.active,
     &:hover {
       color: #ffcd2f;
-      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%)
-        contrast(100%);
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
+        saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
     }
   }
 
@@ -267,8 +268,8 @@ section {
 
     img {
       color: #ffcd2f;
-      filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%)
-        contrast(100%);
+      filter: brightness(0) saturate(100%) invert(93%) sepia(24%)
+        saturate(7458%) hue-rotate(332deg) brightness(108%) contrast(100%);
       width: 17px;
     }
   }
@@ -946,7 +947,13 @@ main {
       content: counter(section) ".";
       left: 0;
       top: 0;
-      background: linear-gradient(180deg, #ffe486 0%, #ffcc4e 51.56%, #ffd02b 100%, #d2a61b 100%);
+      background: linear-gradient(
+        180deg,
+        #ffe486 0%,
+        #ffcc4e 51.56%,
+        #ffd02b 100%,
+        #d2a61b 100%
+      );
       width: 20px;
       height: 20px;
       border-radius: 50%;
@@ -1120,7 +1127,13 @@ main {
         padding-right: 42px;
 
         .messageBox {
-          background: linear-gradient(180deg, #ffe486 0%, #ffcc4e 51.56%, #ffd02b 100%, #d2a61b 100%);
+          background: linear-gradient(
+            180deg,
+            #ffe486 0%,
+            #ffcc4e 51.56%,
+            #ffd02b 100%,
+            #d2a61b 100%
+          );
           color: #000;
           border-radius: 20px 20px 0px 20px;
           padding: 12px 15px;
@@ -1594,6 +1607,8 @@ aside.EmojiPickerReact.epr-main {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 0 10px 0 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
       .white {
         color: #fff;
       }
@@ -1605,12 +1620,25 @@ aside.EmojiPickerReact.epr-main {
       padding: 0;
       margin: 0;
 
-      li  {
+      li {
         color: #fff;
         display: flex;
-        border-bottom:1px solid  rgba(255, 255, 255, 0.25);
-        padding: 10px 0;
-        margin: 0 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 10px 10px 10px 30px;
+        position: relative;
+        &:after {
+          position: absolute;
+          content: "";
+          top: 15px;
+          left: 12px;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #d2a61b;
+        }
+        &:last-child {
+          border-bottom: none;
+        }
         img {
           width: 20px;
           height: 20px;
@@ -1632,10 +1660,10 @@ aside.EmojiPickerReact.epr-main {
     }
   }
   .dropdown-menu {
-    top: 145% ;
+    top: 145%;
     margin-top: var(--bs-dropdown-spacer);
     left: -272px;
     background: #201e23;
-    border: 1px solid ;
+    border: 1px solid;
   }
 }

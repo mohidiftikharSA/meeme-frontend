@@ -30,7 +30,7 @@ const consoleErrorPerformRedirection = (error) => {
     if (error?.response?.status === 401) {
         redirectToLogin()
     }
-    throw error
+    // throw error
 }
 
 //Get Method

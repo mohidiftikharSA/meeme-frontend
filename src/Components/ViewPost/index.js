@@ -9,7 +9,7 @@ import {useSelector} from "react-redux";
 import user2 from "../../Images/avatar.jpg";
 
 
-const ViewPost = (props) => {
+const ViewPost = ({ setIsModalOpen,...props}) => {
     const {selectedPostId, onHide, show, postData, avatar, profile} = props;
     const [commentsData, setCommentsData] = useState([]);
     const [childCommentCreated, setChildCommentCreated] = useState();
@@ -30,7 +30,6 @@ const ViewPost = (props) => {
             const res = await postAPIs.getCommentsByPost(id);
             if (res.status === 200) {
                 setCommentsData(res.data.comments);
-                console.log("Comments Response  === ", res.data.comments);
             } else {
                 console.error("Error: Unexpected status code", res.status);
             }
@@ -75,7 +74,7 @@ const ViewPost = (props) => {
             <Modal.Body>
                 <Row className='text-start'>
                     <Col lg={7} className='view-modal'>
-                        <Posts postData={[selectedPost]} avatar={user2} comment/>
+                        <Posts postData={[selectedPost]} avatar={user2} comment setIsModalOpen/>
                     </Col>
                     <Col lg={5} className='position-relative'>
                         <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId}

@@ -6,23 +6,27 @@ import { toast } from "react-toastify";
 import SkeletonPostsLoading from '../Loader/SkeletonPostsLoading'
 import PostItem from "./PostItem";
 import avatar from "../../Images/avatar.jpg";
+import { useSelector } from "react-redux";
 
-const Posts = ({ postData, comment, isLoading, disable }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+const Posts = ({ postData, comment, isLoading,disable }) => {
+    const [isModalOpen, setIsModalOpenfull] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [followingData, setFollowingData] = useState([]);
     const navigate = useNavigate();
     const [imagesLoaded, setImagesLoaded] = useState([]);
+    const [postRemovalId, setPostRemovalId] = useState();
+    const {userId } = useSelector(state => state.auth);
+
     const openModal = (postId) => {
         console.log('postId', postId)
         if (!comment) {
             setSelectedPostId(postId);
-            setIsModalOpen(true);
+            setIsModalOpenfull(true);
         }
     }
 
     const closeModal = (modifiedPost) => {
-        setIsModalOpen(false);
+        setIsModalOpenfull(false);
         const updatedItems = postData.map(item => {
             console.log("Post ", JSON.stringify(modifiedPost))
             if (item.post.id === modifiedPost.post.id) {
@@ -118,6 +122,20 @@ const Posts = ({ postData, comment, isLoading, disable }) => {
         imagesLoaded[index] = true;
         setImagesLoaded(imagesLoaded);
     };
+
+    /**
+     * Remove the post from Array when Flagged or Report
+     */
+    useEffect(() => {
+        console.log("Post Removal id ===", postRemovalId);
+        console.log("followingData ===", followingData);
+        if (postRemovalId) {
+            const updatedData = followingData.filter(item => item?.post?.id !== postRemovalId);
+            setFollowingData(updatedData);
+        }
+
+    }, [postRemovalId])
+
     return (<>
         <iframe id="my_iframe" style={{ display: "none" }}></iframe>
         {isLoading ? <SkeletonPostsLoading /> : followingData.map((item, ind) => <PostItem
@@ -134,6 +152,7 @@ const Posts = ({ postData, comment, isLoading, disable }) => {
             imagesLoaded={imagesLoaded}
             comment={comment}
             disable
+            postRemovalId={setPostRemovalId}
         />)}
 
         {isModalOpen &&

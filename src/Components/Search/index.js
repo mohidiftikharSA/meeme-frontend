@@ -9,7 +9,6 @@ const Search = ({ expolore, text, contactList, badgeList, onSearchChange }) => {
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
-    console.log("Searched Value  = ", value);
     setSearchValue(value);
     onSearchChange(value);
   };
