@@ -6,11 +6,11 @@ import { toast } from 'react-toastify'
 import DashboardAPIs from '../../APIs/dashboard/home';
 import Loader from 'Components/Loader'
 
-const FlagPostModal = ({ image, postId, ...props }) => {
-  const [isFlagSectionVisible, setFlagSectionVisibility] = useState(true);
+const FlagPostModal = ({ image, postId, postRemovalId, ...props }) => {
   const [isConfirmationSectionVisible, setConfirmationSectionVisibility] = useState(false);
   const [selectedReason, setSelectedReason] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [flagSuccess, setFlagSuccess] = useState(false);
 
   const flagReasons = [
     'I just don’t like it',
@@ -40,8 +40,8 @@ const FlagPostModal = ({ image, postId, ...props }) => {
     try {
       const res = await DashboardAPIs.flagOrReportPost(data);
       if (res) {
-        setFlagSectionVisibility(false);
         setConfirmationSectionVisibility(true);
+        setFlagSuccess(true);
       }
     } catch (e) {
       console.log("Error  ===", e);
@@ -60,7 +60,13 @@ const FlagPostModal = ({ image, postId, ...props }) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton >
+        <Modal.Header closeButton
+          onHide={() => {
+            if (flagSuccess)
+              postRemovalId(postId);
+              setConfirmationSectionVisibility(false);
+              setFlagSuccess(false)
+          }} >
           <Modal.Title id="contained-modal-title-vcenter">
           </Modal.Title>
         </Modal.Header>

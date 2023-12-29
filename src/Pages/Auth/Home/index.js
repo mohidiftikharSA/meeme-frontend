@@ -34,17 +34,17 @@ const Home = () => {
             <MdMail />
             Continue with Email
           </Button>
-            <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+            {/* <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
                 <GoogleAuth className="google-custom-button"></GoogleAuth>
-            </GoogleOAuthProvider>
-            <Button className="mt-3" variant="outline-light">
+            </GoogleOAuthProvider> */}
+            {/* <Button className="mt-3" variant="outline-light">
             <FaFacebook style={{ color: '#5090ff' }}/>
            Continue with Facebook
-          </Button>
-          <Button className="" variant="outline-light">
+          </Button> */}
+          {/* <Button className="" variant="outline-light">
            <BsTwitter />
            Continue with Twitter
-          </Button>
+          </Button> */}
         </div>
         <div className={classes.loginLinks}>
           <p className={classes.dark}>
