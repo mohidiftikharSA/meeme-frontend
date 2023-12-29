@@ -1,5 +1,5 @@
 import API from 'APIs/base'
-import { ENDPOINT } from 'config/constants'
+import {ENDPOINT} from 'config/constants'
 
 
 const getRecentPosts = async () => {
@@ -41,6 +41,9 @@ const getTags = async () => {
 const postStory = async (data) => {
     return await API.postMethod(ENDPOINT.postStory, true, data)
 }
+const searchUser = async (search_param) => {
+    return await API.getMethod(`${ENDPOINT.profile.searchUser}${search_param}`, true);
+}
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getRecentPosts,
@@ -52,5 +55,6 @@ export default {
     likePost,
     getTags,
     createChildComment,
-    postStory
+    postStory,
+    searchUser
 }
