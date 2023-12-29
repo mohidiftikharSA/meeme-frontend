@@ -1,56 +1,87 @@
 @import "../../Style/base";
+
 .iconBtn {
-    background: linear-gradient(321deg, #73ff66 0%, #19850f 100%);
-    border-radius: 30px !important;
-    padding: 0 10px;
+  background: linear-gradient(321deg, #73ff66 0%, #19850f 100%);
+  border-radius: 30px !important;
+  padding: 0 10px;
+  color: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  @include media("<tablet-x") {
+    justify-content: space-between;
+    display: flex !important;
+    margin: 10px 35px 10px 21px;
+    width: 80%;
+  }
+
+  &:hover {
     color: #fff;
-    position: relative;
-    display: flex;
-    align-items: center;
-    @include media("<tablet-x"){
-      justify-content: space-between;
-      display: flex !important;
-      margin: 10px 35px 10px 21px;
-      width: 80%;
-    }
-    &:hover{
-        color: #fff;
-        opacity: 0.9;
-    }
-    .icon {
-      background-color: #fff;
-      color: #000;
-      border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      line-height: 25px;
-      font-size: 12px;
-    }
-    span{
-        margin-right: 5px;
-        
-    }
-
-    img {
-      width: 28px;
-    }
+    opacity: 0.9;
   }
 
-  .profileBtn{
+  .icon {
+    background-color: #fff;
+    color: #000;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+  }
+
+  span {
+    margin-right: 5px;
+
+  }
+
+  img {
+    width: 28px;
+  }
+}
+
+.profileBtn {
+  height: auto;
+  width: 100px;
+
+  img {
+    border: 3px solid #fff;
+    width: 100%;
     height: auto;
-    width: 100px;
-    
-    img{
-        border: 3px solid #fff;
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 50%;
-        @include media("<tablet-x"){
-          position: absolute;
-          top: -395px;
-          left: 66px;
-          width: 65%;
-                }
+    display: block;
+    border-radius: 50%;
+    @include media("<tablet-x") {
+      position: absolute;
+      top: -395px;
+      left: 66px;
+      width: 65%;
     }
   }
+}
+
+
+.roundedImageContainer {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 20px; /* Adjust the width and height as needed */
+  height: 20px;
+  margin-right: 10px;
+  background-color: #06B6D4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*.roundedImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}*/
+
+.letter {
+  font-size: 10px; /* Adjust the font size as needed */
+  color: #fff; /* Text color */
+  text-align: center;
+  line-height: 20px; /* Should be equal to the container height */
+  margin: 0;
+}
