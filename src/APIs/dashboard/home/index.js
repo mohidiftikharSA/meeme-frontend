@@ -48,6 +48,9 @@ const searchUser = async (search_param) => {
 const flagOrReportPost = async (data) => {
     return await API.postMethod(ENDPOINT.block.create, true, data);
 }
+const getUserNotificationsList = async () => {
+    return await API.getMethod(ENDPOINT.notifications.user_notifications, true);
+}
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getRecentPosts,
@@ -62,4 +65,5 @@ export default {
     postStory,
     searchUser,
     flagOrReportPost,
+    getUserNotificationsList
 }
