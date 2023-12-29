@@ -46,7 +46,8 @@ export const ENDPOINT = {
     profile: {
         settings: {
             delete_user_account: `${API_URL}/users`,
-        }
+        },
+        searchUser: `${API_URL}/users/search?username=`
     },
 
     tournaments: {

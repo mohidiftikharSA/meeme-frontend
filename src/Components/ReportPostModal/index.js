@@ -5,13 +5,14 @@ import DashboardAPIs from '../../APIs/dashboard/home';
 import Loader from 'Components/Loader'
 import { toast } from 'react-toastify';
 
-const ReportPostModal = ({ image, postId, ...props }) => {
+const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
 
   const [isFlagSectionVisible, setFlagSectionVisibility] = useState(true);
   const [isConfirmationSectionVisible, setConfirmationSectionVisibility] = useState(false);
   const [isFormDisabled, setFormDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [reportSuccess, setReportSuccess] = useState(false);
 
 
   const reportPost = async () => {
@@ -25,11 +26,12 @@ const ReportPostModal = ({ image, postId, ...props }) => {
       post_id: postId,
       message: message
     };
-    
+
     setIsLoading(true);
     try {
       const res = await DashboardAPIs.flagOrReportPost(data);
       if (res) {
+        setReportSuccess(true);
         setFlagSectionVisibility(false);
         setConfirmationSectionVisibility(true);
         setFormDisabled(true);
@@ -51,7 +53,15 @@ const ReportPostModal = ({ image, postId, ...props }) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton >
+        <Modal.Header closeButton
+          onHide={() => {
+            if (reportSuccess)
+              postRemovalId(postId);
+            setConfirmationSectionVisibility(false);
+            setReportSuccess(false);
+            setFlagSectionVisibility(true);
+            setFormDisabled(false);
+          }} >
           <Modal.Title id="contained-modal-title-vcenter">
           </Modal.Title>
         </Modal.Header>
