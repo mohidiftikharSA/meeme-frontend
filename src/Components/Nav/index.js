@@ -102,7 +102,7 @@ function Navigation({ header, footer }) {
               <span className="notification">
                 <Dropdown>
                   <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    <IoMdNotificationsOutline />
+                   <span className="bell-icon"> <IoMdNotificationsOutline /></span>
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
