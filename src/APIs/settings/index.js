@@ -8,7 +8,13 @@ const togglePushNotifications = async (data) => {
     return await API.postMethod(ENDPOINT.settings.toggle_user_notifications, true, data, true);
 }
 
+const getAudits = async(type)=>{
+    return await API.getMethod(`${ENDPOINT.audits.getByType}${type}`,true);
+}
+
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     addUserBillingCard,
-    togglePushNotifications
+    togglePushNotifications,
+    getAudits
 }

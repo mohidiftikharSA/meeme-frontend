@@ -79,7 +79,7 @@ const TournamentTabs = () => {
           <InfoModal tournament rules={rules} show={show} onHide={() => setShow(false)} />
           <PostContentModal tournament tournamentid={banner?.tournament?.id} show={tournamentModalShow} onHide={() => settournamentModalShow(false)} tournamentJoined={setJoined} />
         </>
-        : <p>No Tournament is Played at the Moment</p>
+        : <p className="text-center">No Tournament is Played at the Moment</p>
       }
     </>
   );

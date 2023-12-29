@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import ViewPost from "Components/ViewPost";
 import postAPIs from "../../APIs/dashboard/home";
-import {useNavigate} from "react-router-dom";
-import {toast} from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import SkeletonPostsLoading from '../Loader/SkeletonPostsLoading'
 import PostItem from "./PostItem";
 import avatar from "../../Images/avatar.jpg";
 
-const Posts = ({postData, comment, isLoading,disable}) => {
+const Posts = ({ postData, comment, isLoading, disable }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [followingData, setFollowingData] = useState([]);
@@ -39,7 +39,7 @@ const Posts = ({postData, comment, isLoading,disable}) => {
 
     const likePost = async (post_id) => {
         try {
-            const res = await postAPIs.likePost({post_id});
+            const res = await postAPIs.likePost({ post_id });
             if (res.status === 200) {
                 const updatedItems = postData.map(item => {
                     if (item.post.id === post_id) {
@@ -85,7 +85,7 @@ const Posts = ({postData, comment, isLoading,disable}) => {
     const toggleActive = (itemId) => {
         const updatedItems = postData.map(item => {
             if (item.post.id === itemId) {
-                return {...item, liked_by_current_user: !item.liked_by_current_user};
+                return { ...item, liked_by_current_user: !item.liked_by_current_user };
             }
             return item;
         });
@@ -98,10 +98,10 @@ const Posts = ({postData, comment, isLoading,disable}) => {
         navigate(`/otherProfile/${data?.post?.user_id}`)
     }
 
-    const downloadMedia = (mediaUrl, id) => {
+    const downloadMedia = async (mediaUrl, id) => {
         const link = document.createElement('a');
         link.href = mediaUrl;
-        link.download = 'image.jpg'; // You can set the desired filename here
+        link.setAttribute('download', 'Fariha.png');
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -119,8 +119,8 @@ const Posts = ({postData, comment, isLoading,disable}) => {
         setImagesLoaded(imagesLoaded);
     };
     return (<>
-        <iframe id="my_iframe" style={{display: "none"}}></iframe>
-        {isLoading ? <SkeletonPostsLoading/> : followingData.map((item, ind) => <PostItem
+        <iframe id="my_iframe" style={{ display: "none" }}></iframe>
+        {isLoading ? <SkeletonPostsLoading /> : followingData.map((item, ind) => <PostItem
             key={ind}
             item={item}
             ind={ind}
@@ -138,7 +138,7 @@ const Posts = ({postData, comment, isLoading,disable}) => {
 
         {isModalOpen &&
             <ViewPost onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={followingData}
-                      avatar={avatar}/>}
+                avatar={avatar} />}
     </>);
 };
 
