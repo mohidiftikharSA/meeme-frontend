@@ -9,6 +9,7 @@ import FollowModal from "Components/FollowModal";
 import FollowerAPIs from '../../APIs/followers';
 import { toast } from "react-toastify";
 import ChatPopup from "Components/ChatPopup";
+import { useSelector } from "react-redux";
 
 const Banner = ({ other, profile }) => {
   const [show, setShow] = useState(false);
@@ -18,6 +19,7 @@ const Banner = ({ other, profile }) => {
   const [followersList, setFollowersList] = useState([]);
   const [showChat, setShowChat] = useState(false);
   const navigate = useNavigate();
+  const { user } = useSelector(state => state.auth);
 
   const nextPage = () => {
     navigate(`/CustomizeProfile`);
@@ -106,12 +108,18 @@ const Banner = ({ other, profile }) => {
                 </h5>
               </li>
               <li>
-                <h5 onClick={() => { setfollowrshow(true) }}>
+                <h5 onClick={() => {
+                  if (profile?.user?.id === user?.id) { setfollowrshow(true) }
+                }}>
                   {profile?.followers} <span>Followers</span>
                 </h5>
               </li>
               <li>
-                <h5 onClick={() => { setShow(true) }}>
+                <h5 onClick={() => {
+                  if (profile?.user?.id === user?.id) {
+                    setShow(true)
+                  }
+                }}>
                   {profile?.following} <span>Followings</span>
                 </h5>
               </li>
@@ -119,14 +127,14 @@ const Banner = ({ other, profile }) => {
             <h6 className="mb-4 text-center">
               {profile?.user?.bio}
             </h6>
-            <div className={classes.btnGroup}>
+            {!other && <div className={classes.btnGroup}>
               <Button onClick={nextPage}>
                 <img src={edit} alt="img" />
               </Button>
               <Button onClick={nextPages}>
                 <img src={setting} alt="img" />
               </Button>
-            </div>
+            </div>}
           </div>
         </div>
       </div>

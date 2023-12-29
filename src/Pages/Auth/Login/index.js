@@ -22,9 +22,9 @@ const LoginFrom = () => {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Invalid email address") // Specify the error message for invalid email
-      .required("Email is required"), // Specify the error message for an empty email
-    password: Yup.string().required("Password is required"), // Specify the error message for an empty password
+      .email("Invalid email address") 
+      .required("Email is required"), 
+    password: Yup.string().required("Password is required"),
   });
 
   const loginRes = async (data) => {
@@ -51,7 +51,7 @@ const LoginFrom = () => {
       setIsLoading(false);
       console.error("Error while logging in:", error);
     }
-
+    setIsLoading(false);
   };
 
   return (

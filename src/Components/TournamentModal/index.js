@@ -18,6 +18,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
   const [apiImg, setApiImg] = useState(null);
   const { user } = useSelector((state) => state.auth);
   const [modalType, setModalType] = useState("main");
+  const [tagError, setTagError] = useState(null);
 
   const onClose = () => {
     props.onHide();
@@ -74,6 +75,35 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
     setIsLoading(false);
   };
 
+  const handleDescriptionChange = (e) => {
+    const tags = e.target.value.split(' ');
+    const isValid = tags.every(tag => tag.startsWith('#'));
+    if (isValid) {
+      setDescription(e.target.value);
+      setTagError(null);
+    } else {
+      setTagError('Tags should start with # and should not contain space.')
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+
+    // Access the dropped files
+    const droppedFiles = e.dataTransfer.files;
+
+    // Assuming you want to handle only the first dropped file
+    const droppedImage = droppedFiles[0];
+
+    // Perform your image upload logic here
+    handleImageUpload({ target: { files: [droppedImage] } });
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+
   return (
     <>
       {isLoading && <Loader isLoading={isLoading} />}
@@ -109,7 +139,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
           <Modal.Body className="dotsborder">
             {showForm && (
               <div>
-                <Form>
+                <Form className="">
                   <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Control type="text" placeholder="Give this meme a title" onChange={(e) => setTitle(e.target.value)} />
                   </Form.Group>
@@ -117,7 +147,8 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
                     className="mb-3"
                     controlId="exampleForm.ControlTextarea1"
                   >
-                    <Form.Control type="text" placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
+                    <Form.Control type="text" placeholder="Tags" onChange={handleDescriptionChange} value={description} />
+                    {tagError && <p style={{ color: "red" }}>{tagError}</p>}
                   </Form.Group>
                 </Form>
               </div>
@@ -129,7 +160,10 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
             )}
             {!selectedImage && (
               <div className="bodyContant">
-                <div style={{ textAlign: "center" }}>
+                <div style={{ textAlign: "center" }}
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                >
                   <label
                     htmlFor="imageInput"
                     style={{ cursor: "pointer", display: "block" }}
@@ -157,7 +191,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
                             <p>Drag and drop an image, or Browse</p>
                             <ul>
                               <li>High-resolution meme images (png, jpg)</li>
-                              <li>Videos (mp4)</li>
+                              {/* <li>Videos (mp4)</li> */}
                             </ul>
                           </>
                         </div>
