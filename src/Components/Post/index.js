@@ -8,7 +8,7 @@ import PostItem from "./PostItem";
 import avatar from "../../Images/avatar.jpg";
 import { useSelector } from "react-redux";
 
-const Posts = ({ postData, comment, isLoading,disable }) => {
+const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
     const [isModalOpen, setIsModalOpenfull] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [followingData, setFollowingData] = useState([]);
@@ -41,31 +41,7 @@ const Posts = ({ postData, comment, isLoading,disable }) => {
         setFollowingData(postData);
     }, [postData, isLoading]);
 
-    const likePost = async (post_id) => {
-        try {
-            const res = await postAPIs.likePost({ post_id });
-            if (res.status === 200) {
-                const updatedItems = postData.map(item => {
-                    if (item.post.id === post_id) {
-                        console.log('updating with like')
-                        return {
-                            ...item,
-                            liked_by_current_user: res.data.type_data.is_liked,
-                            post_likes: res.data.likes_count,
-                            test: ''
-                        };
-                    }
-                    return item
-                });
-                setFollowingData(updatedItems);
-            } else {
-                console.error("Error: Unexpected status code", res.status);
-            }
-        } catch (error) {
-            console.error("Error while fetching data:", error);
-        }
-
-    };
+ 
 
     const copyToClipboard = (linkToCopy) => {
         console.log("Copy Link function =", linkToCopy);
