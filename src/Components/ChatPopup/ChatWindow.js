@@ -1,5 +1,5 @@
 import React from "react";
-import {useState} from "react";
+import { useState } from "react";
 import { LiaTimesSolid } from "react-icons/lia";
 import { IoIosSend } from "react-icons/io";
 import classes from "./index.module.scss";
@@ -25,7 +25,7 @@ const ChatWindow = ({
     handleFileChange,
     fileInputRef
 }) => {
-
+    
     const [replye, setReplye] = useState("");
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
@@ -59,7 +59,8 @@ const ChatWindow = ({
                                         {item?.message_images && item?.message_images?.map((img, ind) => {
                                             return (<>
                                                 <div id={`${ind}_img`} className="message-user">
-                                                    <img src={img || img?.message_image} />
+                                                    {typeof (img) === 'string' ? <img src={img} /> :
+                                                        <img src={img?.message_image} />}
                                                 </div>
                                             </>)
                                         })}
@@ -100,13 +101,13 @@ const ChatWindow = ({
                         onKeyDown={handleKeyPress}
                     />
                     <div className={"iconBox"}>
-                    <span className={classes.smiley} onClick={handleEmojiClick}>
-            <FaSmile />
-          </span>
+                        <span className={classes.smiley} onClick={handleEmojiClick}>
+                            <FaSmile />
+                        </span>
 
-          {showEmojiPicker && (
-            <EmojiPicker onEmojiClick={handleEmojiSelect} disableAutoFocus />
-          )}
+                        {showEmojiPicker && (
+                            <EmojiPicker onEmojiClick={handleEmojiSelect} disableAutoFocus />
+                        )}
                         <span className={classes.uploadBtn} onChange={handleFileInput} onClick={handleImageUpload}>
                             <CgAttachment />
                             <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileChange}
