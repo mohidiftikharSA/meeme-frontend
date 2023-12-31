@@ -68,7 +68,7 @@ const Posts = ({ postData, comment, isLoading,disable }) => {
     };
 
     const copyToClipboard = (linkToCopy) => {
-
+        console.log("Copy Link function =", linkToCopy);
         navigator.clipboard.writeText(linkToCopy)
             .then(() => {
                 console.log('Link copied to clipboard:', linkToCopy);
@@ -129,10 +129,10 @@ const Posts = ({ postData, comment, isLoading,disable }) => {
     useEffect(() => {
         console.log("Post Removal id ===", postRemovalId);
         console.log("followingData ===", followingData);
-        if (postRemovalId) {
-            const updatedData = followingData.filter(item => item?.post?.id !== postRemovalId);
-            setFollowingData(updatedData);
-        }
+        // if (postRemovalId) {
+        //     const updatedData = followingData.filter(item => item?.post?.id !== postRemovalId);
+        //     setFollowingData(updatedData);
+        // }
 
     }, [postRemovalId])
 

@@ -21,6 +21,8 @@ const SupportChat = ({ selectedSupportTicket }) => {
   const [reply, setReply] = useState();
   const [file, setFile] = useState();
   const [sent, setSent] = useState();
+  const [emojis, setEmojis] = useState([]);
+
 
   useEffect(() => {
     getTicketMessages();
@@ -110,7 +112,19 @@ const SupportChat = ({ selectedSupportTicket }) => {
   };
 
   const handleEmojiSelect = (emoji) => {
-    setReplye(replye + emoji.native);
+    setReplye(replye + emoji.emoji);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Backspace') {
+      handleEmojiRemove();
+    }
+  };
+
+  const handleEmojiRemove = () => {
+    const currentReplye = replye || '';
+    const newReplye = currentReplye.slice(0, -1);
+    setReplye(newReplye);
   };
 
   return (
@@ -204,6 +218,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
             placeholder="Aa"
             value={replye}
             onChange={(e) => setReplye(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <span className={classes.smiley} onClick={handleEmojiClick}>
             <FaSmile />

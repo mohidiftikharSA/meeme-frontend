@@ -10,6 +10,7 @@ import TournamentAPIs from '../../APIs/tournaments';
 import PostContentModal from "Components/PostContentModal";
 
 export default function TournamentModal({ tournamentJoined, ...props }) {
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState('');
@@ -26,6 +27,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
     setShowForm(false);
     setApiImg(null);
     setModalType("main");
+    setTagError(null);
   };
 
   const handleImageUpload = (e) => {
@@ -75,16 +77,35 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
     setIsLoading(false);
   };
 
+
   const handleDescriptionChange = (e) => {
-    const tags = e.target.value.split(' ');
-    const isValid = tags.every(tag => tag.startsWith('#'));
-    if (isValid) {
-      setDescription(e.target.value);
-      setTagError(null);
-    } else {
-      setTagError('Tags should start with # and should not contain space.')
+    const inputValue = e.target.value;
+    const selectionStart = e.target.selectionStart;
+    const selectionEnd = e.target.selectionEnd;
+  
+    let tags = inputValue.split(/\s+/).map(tag => {
+      // Ensure tags start with #
+      return tag.trim().startsWith('#') ? tag.trim() : `#${tag.trim()}`;
+    });
+    if (e.nativeEvent.inputType === 'deleteContentBackward' && selectionStart === selectionEnd) {
+      const currentTagStart = inputValue.lastIndexOf('#', selectionStart - 1);
+      const currentTagEnd = inputValue.indexOf(' ', selectionStart);
+      if (currentTagEnd === -1) {
+        tags.pop(); // Remove the last tag
+      } else {
+        tags = tags.filter(tag => {
+          const tagStart = inputValue.indexOf(tag);
+          return tagStart < currentTagStart || tagStart >= currentTagEnd;
+        });
+      }
     }
+    const formattedTags = tags.join(' ');
+    setDescription(formattedTags);
+    // setTagError(formattedTags.includes(' #') ? 'Tags should not contain space.' : null);
   };
+  
+  
+  
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -136,7 +157,10 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
             </Modal.Title>
           </Modal.Header>
 
-          <Modal.Body className="dotsborder">
+          <Modal.Body className="dotsborder"
+           onDragOver={handleDragOver}
+           onDrop={handleDrop}
+          >
             {showForm && (
               <div>
                 <Form className="">
@@ -161,8 +185,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
             {!selectedImage && (
               <div className="bodyContant">
                 <div style={{ textAlign: "center" }}
-                  onDragOver={handleDragOver}
-                  onDrop={handleDrop}
+                 
                 >
                   <label
                     htmlFor="imageInput"

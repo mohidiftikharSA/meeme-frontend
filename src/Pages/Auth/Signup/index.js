@@ -163,7 +163,7 @@ const Signup = () => {
                   <span
                       style={{ display: !errors.password ? "block" : "none" }}
                     >
-                      <FiEyeOff />
+                      {/* <FiEyeOff /> */}
                     </span>
                   <Form.Control.Feedback type="invalid">
                     {errors.password}
@@ -185,7 +185,7 @@ const Signup = () => {
                   <span
                       style={{ display: !errors.password ? "block" : "none" }}
                     >
-                      <FiEyeOff />
+                      {/* <FiEyeOff /> */}
                     </span>
                   <Form.Control.Feedback type="invalid" className="mb-3">
                     {errors.confirmPassword}
