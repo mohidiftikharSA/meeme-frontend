@@ -1,7 +1,7 @@
 import FollowingContent from "Components/FollowingContent";
 import MemesDetails from "Components/Memes";
 import React, { useEffect, useMemo, useState } from "react";
-import { Tab, Tabs } from "react-bootstrap";
+import { Button, Tab, Tabs } from "react-bootstrap";
 import img13 from "../../Images/bg1.png";
 import img14 from "../../Images/bg2.png";
 import img15 from "../../Images/bg3.png";
@@ -87,25 +87,22 @@ const TabDetails = ({
     const [isLoadingRecentPosts, setIsLoadingRecentPosts] = useState(false);
     const [isLoadingTrendingPosts, setIsLoadingTrendingPosts] = useState(false);
     const { data } = useSelector(state => state.searchTagData);
-    const [eventTrending, setEventTrending] = useState(null);
+    const [eventTrending, setEventTrending] = useState('first');
+    const [activeTab, setActiveTab] = useState('first');
+    const changeTab = (tabKey) => {
+        setActiveTab(tabKey);
+    };
 
-    useEffect(() => {
-        if (data && data[0]) {
-            setTagTrendingPost(data);
-            setEventTrending('trending')
-        } else {
-            setTagTrendingPost([]);
-            setEventTrending('first')
-        }
-
-    }, [data])
+    const handleButtonClick = () => {
+        changeTab('trending');
+    };
 
     const getRecentPost = async () => {
         setIsLoadingRecentPosts(true)
         try {
             const res = await postAPIs.getRecentPosts();
             if (res.status === 200) {
-                setRecentPosts(res.data.recent_posts); 
+                setRecentPosts(res.data.recent_posts);
             } else {
                 console.error("Error: Unexpected status code", res.status);
             }
@@ -141,9 +138,26 @@ const TabDetails = ({
         }
     }, []);
 
+    useEffect(() => {
+        if (data && data[0]) {
+            setTagTrendingPost(data);
+            setEventTrending('trending');
+            handleButtonClick();
+        } else {
+            setTagTrendingPost([]);
+            setEventTrending('first')
+        }
+
+    }, [data]);
+
+    useEffect(() => {
+        setEventTrending('trending');
+    }, [data]);
+
     return (<>
         {main && (<Tabs
-            defaultActiveKey={first}
+            activeKey={activeTab}
+            onSelect={(tabKey) => changeTab(tabKey)}
             id="uncontrolled-tab-example"
             className="mb-lg-5 mb-3"
         >

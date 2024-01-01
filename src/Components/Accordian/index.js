@@ -95,7 +95,6 @@ const AccordianData = ({ following = "", responsive }) => {
         if (value.length > 0) {
             const resTag = await postAPIs.user_search_tag({ tag: value[0] });
             if (resTag) {
-                console.log("Tags search from accordian ---= ", resTag.data?.recent_posts);
                 dispatch(
                     setSearchTagData({
                         data: resTag.data?.recent_posts
