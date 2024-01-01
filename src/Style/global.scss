@@ -45,14 +45,23 @@ nav {
   font-size: 38px;
   margin: 12px 0;
   display: none;
+  background-color: transparent;
+  z-index: 9999;
+  position: relative;
+  &.active{
+    position: fixed;
+    top: 60px;
+    z-index: 99999999999;
+    left: 230px;
 
+  }
   @include media("<tablet-x") {
     display: block;
   }
 }
 
 .aside-responsive {
-  border-right: 1px solid rgba(255, 255, 255, 0.31);
+  border-right: 1px solid rgba(255, 255, 255, 0.31) ; 
 
   &.profile-setting {
     border: none !important;
@@ -62,7 +71,7 @@ nav {
       border: none;
 
       &.active {
-        height: 100vh;
+        min-height: 100vh;
         overflow: auto;
         left: 0;
         top: 0;
@@ -87,7 +96,10 @@ nav {
     width: 320px;
     background-color: #1c1c1c;
     transition: all ease 0.3s;
-    height: 100%;
+    height: 100vh;
+    #aisde{
+      background-color: #1c1c1c !important;
+    }
   }
 
   #aisde {
@@ -98,7 +110,7 @@ nav {
     width: 295px;
     transition: all ease 0.3s;
     overflow: auto;
-
+   
     @include media("<tablet-x") {
       display: none;
     }
@@ -187,7 +199,7 @@ section {
         right: 0;
         transition: all ease 0.3s;
         max-height: 100vh;
-        overflow: scroll;
+        overflow: auto;
       }
 
       .navbar-nav {
@@ -214,6 +226,7 @@ section {
       @include media("<tablet-x") {
         display: block;
         padding: 20px;
+        position: unset !important;
       }
     }
   }
@@ -1229,7 +1242,7 @@ main {
       background-color: #646370;
       color: #fff;
       border: none;
-      padding: 15px;
+      padding: 15px 100px 15px 15px;
 
       &::placeholder {
         color: #838593;
