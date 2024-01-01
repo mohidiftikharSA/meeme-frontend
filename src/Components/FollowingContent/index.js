@@ -66,10 +66,38 @@ const FollowingContent = () => {
          }, 3000)*/
         return () => console.log("Cleanup..");
     }, []);
+
+    const likePost = async (post_id) => {
+        try {
+            const res = await postAPIs.likePost({ post_id });
+            if (res.status === 200) {
+                const updatedItems = followingData.map(item => {
+                    if (item.post.id === post_id) {
+                        console.log('updating with like')
+                        return {
+                            ...item,
+                            liked_by_current_user: res.data.type_data.is_liked,
+                            post_likes: res.data.likes_count,
+                            test: ''
+                        };
+                    }
+                    return item
+                });
+                setFollowingData(updatedItems);
+            } else {
+                console.error("Error: Unexpected status code", res.status);
+            }
+        } catch (error) {
+            console.error("Error while fetching data:", error);
+        }
+
+    };
+
+
     return (<>
         <Stories data={storyData} onStoryUpdate={onStoryUpdate}/>
         <UploadPost/>
-        <Posts postData={followingData} isLoading={isLoading}/>
+        <Posts postData={followingData} isLoading={isLoading} likePost={likePost} />
     </>);
 };
 

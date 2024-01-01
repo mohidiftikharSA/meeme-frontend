@@ -45,9 +45,13 @@ const EditProfile = () => {
   }
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string()
-      .required("Username is required.")
-      .min(5, "Name must be at least five characters long"),
+      name: Yup.string()
+      .required("Username is required")
+      .matches(
+        /^(?=.*[0-9])[a-zA-Z0-9]*$/,
+        "Name must be alphanumeric with at least one number"
+      )
+      .min(6, "Name must be at least six characters long"),
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),

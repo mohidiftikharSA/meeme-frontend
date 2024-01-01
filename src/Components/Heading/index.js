@@ -14,8 +14,15 @@ const Heading = ({ title, judge, badge, linkPath, likedCounts }) => {
         if (linkPath) {
             navigate(`/${linkPath}`);
             console.log(linkPath);
+
+        }else{
+            navigate(`/home`);
+
         }
     };
+    const handleCloseClick = () => {
+        window.close();
+      };
 
     const handleDeleteModal = () => {
         setModalShow(false);

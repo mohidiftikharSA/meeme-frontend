@@ -1,7 +1,7 @@
 import FollowingContent from "Components/FollowingContent";
 import MemesDetails from "Components/Memes";
-import React, {useEffect, useState} from "react";
-import {Tab, Tabs} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Tab, Tabs } from "react-bootstrap";
 import img13 from "../../Images/bg1.png";
 import img14 from "../../Images/bg2.png";
 import img15 from "../../Images/bg3.png";
@@ -31,6 +31,7 @@ import Theme3 from "../../Images/Theme3.png";
 import UltraRare from "Components/UltraRare";
 import ThemeRare from "Components/ThemeRare";
 import postAPIs from "APIs/dashboard/home";
+import { useSelector } from "react-redux";
 
 const backgroundOverlayData = [{
     img: img13, coin: "100", title: "Pink Sky",
@@ -77,13 +78,25 @@ const data2 = [{
 },];
 
 const TabDetails = ({
-                        tournament, first, main, footer, tabTitle, storeitems, profile, customizeProfile, profilePosts,
-                        isPublic
-                    }) => {
+    tournament, first, main, footer, tabTitle, storeitems, profile, customizeProfile, profilePosts,
+    isPublic
+}) => {
     const [recentPosts, setRecentPosts] = useState([]);
     const [trendingPosts, setTrendingPosts] = useState([]);
+    const [tagTrendingPost, setTagTrendingPost] = useState([]);
     const [isLoadingRecentPosts, setIsLoadingRecentPosts] = useState(false);
     const [isLoadingTrendingPosts, setIsLoadingTrendingPosts] = useState(false);
+    const { data } = useSelector(state => state.searchTagData)
+
+    useEffect(() => {
+        if (data && data[0]) {
+            setTagTrendingPost(data);
+        }else{
+            setTagTrendingPost([]);
+        }
+    }, data)
+
+
     const getRecentPost = async () => {
         setIsLoadingRecentPosts(true)
         try {
@@ -134,13 +147,13 @@ const TabDetails = ({
             className="mb-lg-5 mb-3"
         >
             <Tab eventKey="following" title="Following">
-                <FollowingContent/>
+                <FollowingContent />
             </Tab>
             <Tab eventKey="memes" title="New Memes">
-                <MemesDetails newMemesData={recentPosts} isLoading={isLoadingRecentPosts}/>
+                <MemesDetails newMemesData={recentPosts} isLoading={isLoadingRecentPosts} />
             </Tab>
             <Tab eventKey="trending" title="Trending">
-                <MemesDetails newMemesData={trendingPosts} isLoading={isLoadingTrendingPosts}/>
+                <MemesDetails newMemesData={tagTrendingPost[0] ? tagTrendingPost : trendingPosts} isLoading={isLoadingTrendingPosts} />
             </Tab>
         </Tabs>)}
         {tournament && (<div className={classes.contentHolder}>
@@ -150,13 +163,13 @@ const TabDetails = ({
                 className="mb-3"
             >
                 <Tab eventKey="tournament" title="Tournament">
-                    <TournamentTabs/>
+                    <TournamentTabs />
                 </Tab>
                 <Tab eventKey="store" title="Store">
-                    <Store/>
+                    <Store />
                 </Tab>
                 <Tab eventKey="judge" title="Judge">
-                    <Judge/>
+                    <Judge />
                 </Tab>
             </Tabs>
         </div>)}
@@ -366,24 +379,24 @@ const TabDetails = ({
             className="mb-5 noBg"
         >
             <Tab eventKey="Icons" title="Icons">
-                <SubTabs icon/>
+                <SubTabs icon />
             </Tab>
             <Tab eventKey="themes" title="Themes">
-                <SubTabs themes/>
+                <SubTabs themes />
             </Tab>
             <Tab eventKey="overlay" title="Background Overlay">
-                <BackgroundOverlay data={backgroundOverlayData}/>
+                <BackgroundOverlay data={backgroundOverlayData} />
             </Tab>
             <Tab eventKey="profile" title="Profile Overlay">
-                <ProfileOverlay data={ProfileOverlayData}/>
+                <ProfileOverlay data={ProfileOverlayData} />
             </Tab>
         </Tabs>)}
         {profile && (<Tabs defaultActiveKey={"post"} className="mb-5 double">
             <Tab eventKey="post" title="Post">
-                <ProfilePost data={profilePosts}/>
+                <ProfilePost data={profilePosts} />
             </Tab>
             <Tab eventKey="tournament" title="Tournament Entry">
-                <ProfilePost data={[]}/>
+                <ProfilePost data={[]} />
             </Tab>
         </Tabs>)}
         {customizeProfile && (<Tabs
@@ -392,16 +405,16 @@ const TabDetails = ({
             className="mb-5 noBg"
         >
             <Tab eventKey="Icons" title="Icons">
-                <UltraRare noCoin data={data}/>
+                <UltraRare noCoin data={data} />
             </Tab>
             <Tab eventKey="themes" title="Themes">
-                <ThemeRare card data2={data2}/>
+                <ThemeRare card data2={data2} />
             </Tab>
             <Tab eventKey="overlay" title="Background Overlay">
-                <BackgroundOverlay noCoin data={backgroundOverlayData}/>
+                <BackgroundOverlay noCoin data={backgroundOverlayData} />
             </Tab>
             <Tab eventKey="profile" title="Profile Overlay">
-                <ProfileOverlay noCoin data={ProfileOverlayDataProfile}/>
+                <ProfileOverlay noCoin data={ProfileOverlayDataProfile} />
             </Tab>
         </Tabs>)}
     </>);

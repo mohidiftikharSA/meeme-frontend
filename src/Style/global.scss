@@ -77,9 +77,10 @@ nav {
   @include media("<tablet-x") {
     border: none;
     width: 80px;
-    position: fixed;
+    // position: fixed;
     z-index: 99999;
     transition: all ease 0.3s;
+
   }
 
   &.active {
@@ -125,7 +126,7 @@ nav {
   @include media("<tablet-x") {
     width: 100%;
     transition: all ease 0.3s;
-    padding-top: 60px !important;
+    padding-top: 10px !important;
   }
 }
 
@@ -185,6 +186,8 @@ section {
       &.active {
         right: 0;
         transition: all ease 0.3s;
+        max-height: 100vh;
+        overflow: scroll;
       }
 
       .navbar-nav {
@@ -474,6 +477,7 @@ main {
       //   background: #000;
       // }
     }
+
     &.judge {
       .modal-content {
         .modal-body {
@@ -1452,6 +1456,10 @@ aside.EmojiPickerReact.epr-main {
           border: none;
           color: #fff;
 
+          &::placeholder {
+            color: grey;
+          }
+
           @include media("<xs-phone") {
             padding: 5px 10px;
             font-size: 12px;
@@ -1505,6 +1513,7 @@ aside.EmojiPickerReact.epr-main {
 
 .flagPost {
   backdrop-filter: blur(3px);
+
   .modal-content {
     background: transparent;
 
@@ -1535,6 +1544,7 @@ aside.EmojiPickerReact.epr-main {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
         .flag-options {
           width: 50%;
         }
@@ -1548,6 +1558,7 @@ aside.EmojiPickerReact.epr-main {
           font-size: 12px;
           opacity: 0.6;
           padding: 10px;
+
           &.flag_selected {
             background: rgba(255, 255, 255, 0.25);
             border-radius: 5px;
@@ -1555,11 +1566,14 @@ aside.EmojiPickerReact.epr-main {
           }
         }
       }
+
       .textBox {
         margin-top: 50px;
+
         h6 {
           padding: 5px 0;
         }
+
         .text {
           max-width: 50%;
           text-align: center;
@@ -1569,6 +1583,7 @@ aside.EmojiPickerReact.epr-main {
         }
       }
     }
+
     form {
       .form-control {
         font-size: 12px;
@@ -1583,45 +1598,97 @@ aside.EmojiPickerReact.epr-main {
     }
   }
 }
+
 .notification {
+  .bell-icon {
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: "";
+      top: 1px;
+      right: 2px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: #ff0100;
+    }
+  }
+
   .dropdown {
     margin: 0 10px;
     padding-top: 5px;
+
     svg {
+      width: 20px;
+      height: 20px;
       color: #9b9b9b;
+      &:hover {
+        filter: brightness(0) saturate(100%) invert(93%) sepia(24%) saturate(7458%) hue-rotate(332deg) brightness(108%)
+          contrast(100%);
+      }
+      @include media("<tablet-x") {
+        margin-left: 20px;
+        margin-top: 10px;
+      }
     }
+
     .list {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 0 10px 0 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+
       .white {
         color: #fff;
       }
+
       .yellow {
         color: #ffd02b;
       }
     }
+
     ul {
       padding: 0;
       margin: 0;
 
-      li  {
+      li {
         color: #fff;
         display: flex;
-        border-bottom:1px solid  rgba(255, 255, 255, 0.25);
-        padding: 10px 0;
-        margin: 0 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 10px 10px 10px 30px;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          content: "";
+          top: 15px;
+          left: 12px;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #d2a61b;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+
         img {
           width: 20px;
           height: 20px;
           margin-right: 10px;
+          border-radius: 50px;
         }
+
         .white {
           font-size: 12px;
           color: #fff;
           font-weight: 100;
           margin-bottom: 5px;
         }
+
         .light {
           font-size: 10px;
           color: #c5c3c3;
@@ -1631,11 +1698,17 @@ aside.EmojiPickerReact.epr-main {
       }
     }
   }
+
   .dropdown-menu {
-    top: 145% ;
+    top: 145%;
     margin-top: var(--bs-dropdown-spacer);
     left: -272px;
     background: #201e23;
-    border: 1px solid ;
+    border: 1px solid;
+    @include media("<tablet-x") {
+      margin-left: 20px;
+      width: 240px;
+      left: -25px;
+    }
   }
 }

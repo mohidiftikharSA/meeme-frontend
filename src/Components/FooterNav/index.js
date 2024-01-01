@@ -17,7 +17,7 @@ const FooterNav = () => {
 
   return (
     <>
-      <Navbar expand="lg" className="navBar aside bg-body-tertiary px-md-3 px-0 ">
+      <Navbar expand="lg" className="navBar aside  px-md-3 px-0 ">
         <Nav className="nav-ps flex-sm-row flex-column">
           <Nav.Link onClick={() => setAboutUsModalShow(true)}>
             About Us

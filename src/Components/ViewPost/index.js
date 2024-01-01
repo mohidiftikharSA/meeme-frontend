@@ -9,7 +9,7 @@ import {useSelector} from "react-redux";
 import user2 from "../../Images/avatar.jpg";
 
 
-const ViewPost = ({ setIsModalOpen,...props}) => {
+const ViewPost = ({ setIsModalOpen, ...props}) => {
     const {selectedPostId, onHide, show, postData, avatar, profile} = props;
     const [commentsData, setCommentsData] = useState([]);
     const [childCommentCreated, setChildCommentCreated] = useState();

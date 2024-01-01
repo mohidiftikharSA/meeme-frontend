@@ -33,7 +33,8 @@ export const ENDPOINT = {
 
     post: {
         getTags: `${API_URL}/posts/tags`,
-        createPost: `${API_URL}/posts`
+        createPost: `${API_URL}/posts`,
+        user_search_tag: `${API_URL}/posts/user_search_tags`
     },
 
     comment: {
@@ -60,15 +61,17 @@ export const ENDPOINT = {
         disLikeTournamentPost: `${API_URL}/tournament_banners/dislike_a_tournament_post`,
     },
 
-    audits:{
+    audits: {
         getByType: `${API_URL}/audits/type?type=`
     },
 
 
-    block:{
+    block: {
         create: `${API_URL}/block_users`
     },
-
+    notifications: {
+        user_notifications: `${API_URL}/notifications/user_notifications`
+    },
     comments: `${API_URL}/comments`,
     getRecentPosts: `${API_URL}/posts/recent_posts`,
     getTrendingPost: `${API_URL}/posts/trending_posts`,

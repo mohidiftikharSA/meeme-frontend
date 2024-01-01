@@ -20,7 +20,7 @@ const ChatPopup = ({isOpen, onClose, profile, data}) => {
     const [msgSent, setMsgSent] = useState();
 
 
-    const {actionCable} = useActionCable(`${process.env.REACT_APP_WS_URL ?? 'wss://v2.meeme.appscorridor.com'}/cable?token=${accessToken}`);
+    const {actionCable} = useActionCable(`${process.env.REACT_APP_WS_URL ?? 'ws://localhost:3000'}/cable?token=${accessToken}`);
     const {subscribe, unsubscribe, send} = useChannel(actionCable)
 
 
@@ -202,7 +202,9 @@ const ChatPopup = ({isOpen, onClose, profile, data}) => {
 
     function countOnlineUsers() {
         const trueCount = inboxList.reduce((count, item) => {
-            if (item.receiver_active_status === true) {
+            if (item.receiver_active_status === true && item?.receiver_id !== user?.id) {
+                return count + 1;
+            }else if(item.sender_active_status === true && item?.sender_id !== user?.id){
                 return count + 1;
             }
             return count;

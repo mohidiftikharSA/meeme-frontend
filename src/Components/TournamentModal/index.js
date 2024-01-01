@@ -10,6 +10,7 @@ import TournamentAPIs from '../../APIs/tournaments';
 import PostContentModal from "Components/PostContentModal";
 
 export default function TournamentModal({ tournamentJoined, ...props }) {
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState('');
@@ -18,6 +19,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
   const [apiImg, setApiImg] = useState(null);
   const { user } = useSelector((state) => state.auth);
   const [modalType, setModalType] = useState("main");
+  const [tagError, setTagError] = useState(null);
 
   const onClose = () => {
     props.onHide();
@@ -25,6 +27,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
     setShowForm(false);
     setApiImg(null);
     setModalType("main");
+    setTagError(null);
   };
 
   const handleImageUpload = (e) => {
@@ -74,6 +77,54 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
     setIsLoading(false);
   };
 
+
+  const handleDescriptionChange = (e) => {
+    const inputValue = e.target.value;
+    const selectionStart = e.target.selectionStart;
+    const selectionEnd = e.target.selectionEnd;
+  
+    let tags = inputValue.split(/\s+/).map(tag => {
+      // Ensure tags start with #
+      return tag.trim().startsWith('#') ? tag.trim() : `#${tag.trim()}`;
+    });
+    if (e.nativeEvent.inputType === 'deleteContentBackward' && selectionStart === selectionEnd) {
+      const currentTagStart = inputValue.lastIndexOf('#', selectionStart - 1);
+      const currentTagEnd = inputValue.indexOf(' ', selectionStart);
+      if (currentTagEnd === -1) {
+        tags.pop(); // Remove the last tag
+      } else {
+        tags = tags.filter(tag => {
+          const tagStart = inputValue.indexOf(tag);
+          return tagStart < currentTagStart || tagStart >= currentTagEnd;
+        });
+      }
+    }
+    const formattedTags = tags.join(' ');
+    setDescription(formattedTags);
+    // setTagError(formattedTags.includes(' #') ? 'Tags should not contain space.' : null);
+  };
+  
+  
+  
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+
+    // Access the dropped files
+    const droppedFiles = e.dataTransfer.files;
+
+    // Assuming you want to handle only the first dropped file
+    const droppedImage = droppedFiles[0];
+
+    // Perform your image upload logic here
+    handleImageUpload({ target: { files: [droppedImage] } });
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+
   return (
     <>
       {isLoading && <Loader isLoading={isLoading} />}
@@ -106,10 +157,13 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
             </Modal.Title>
           </Modal.Header>
 
-          <Modal.Body className="dotsborder">
+          <Modal.Body className="dotsborder"
+           onDragOver={handleDragOver}
+           onDrop={handleDrop}
+          >
             {showForm && (
               <div>
-                <Form>
+                <Form className="">
                   <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Control type="text" placeholder="Give this meme a title" onChange={(e) => setTitle(e.target.value)} />
                   </Form.Group>
@@ -117,7 +171,8 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
                     className="mb-3"
                     controlId="exampleForm.ControlTextarea1"
                   >
-                    <Form.Control type="text" placeholder="Description" onChange={(e) => setDescription(e.target.value)} />
+                    <Form.Control type="text" placeholder="Tags" onChange={handleDescriptionChange} value={description} />
+                    {tagError && <p style={{ color: "red" }}>{tagError}</p>}
                   </Form.Group>
                 </Form>
               </div>
@@ -129,7 +184,9 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
             )}
             {!selectedImage && (
               <div className="bodyContant">
-                <div style={{ textAlign: "center" }}>
+                <div style={{ textAlign: "center" }}
+                 
+                >
                   <label
                     htmlFor="imageInput"
                     style={{ cursor: "pointer", display: "block" }}
@@ -157,7 +214,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
                             <p>Drag and drop an image, or Browse</p>
                             <ul>
                               <li>High-resolution meme images (png, jpg)</li>
-                              <li>Videos (mp4)</li>
+                              {/* <li>Videos (mp4)</li> */}
                             </ul>
                           </>
                         </div>

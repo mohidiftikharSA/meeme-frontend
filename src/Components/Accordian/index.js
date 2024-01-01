@@ -2,12 +2,15 @@ import AccordianBadge from "Components/AccordainBadge";
 import AccordianPrize from "Components/AccordainPrize";
 import BuyCoin from "Components/BuyCoin";
 import ContactList from "Components/ContactList";
-import React, {useEffect, useState, useCallback} from "react";
-import {Accordion} from "react-bootstrap";
+import React, { useEffect, useState, useCallback } from "react";
+import { Accordion } from "react-bootstrap";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
 import user from "../../Images/user44.png";
 import FollowerAPIs from '../../APIs/followers';
 import apis from "../../APIs/dashboard/home";
+import postAPIs from '../../APIs/dashboard/home';
+import { useDispatch } from "react-redux";
+import { setSearchTagData } from "Redux/reducers/searchTagData";
 
 const data = [
     "Funny",
@@ -77,17 +80,36 @@ const contactData = [
 
 ]
 
-const AccordianData = ({following = "", responsive}) => {
+const AccordianData = ({ following = "", responsive }) => {
     const [activeIndex, setActiveIndex] = useState(null);
     const [followingList, setFollowingList] = useState([]);
     const [tags, setTags] = useState([]);
+    const dispatch = useDispatch();
 
     const toggleActive = (index) => {
         setActiveIndex(activeIndex === index ? null : index);
     };
 
-    const onTagSelect = (val) => {
-        console.log("Vale ",val)
+    const onTagSelect = async (value) => {
+        console.log("Vale--- ", value);
+        if (value.length > 0) {
+            const resTag = await postAPIs.user_search_tag({ tag: value[0] });
+            if (resTag) {
+                console.log("Tags search from accordian ---= ", resTag.data?.recent_posts);
+                dispatch(
+                    setSearchTagData({
+                        data: resTag.data?.recent_posts
+                    })
+                )
+                return;
+            }
+        } else {
+            dispatch(
+                setSearchTagData({
+                    data: null
+                })
+            )
+        }
     }
 
     useEffect(() => {
@@ -112,14 +134,14 @@ const AccordianData = ({following = "", responsive}) => {
         <>
             {following ? (
                 <Accordion className={`${activeIndex !== null ? "active following-active" : ""} `}
-                           style={responsive ? {height: 'unset'} : {height: '100%'}}>
+                    style={responsive ? { height: 'unset' } : { height: '100%' }}>
                     <div className={`py-xl-5 px-xl-4 p-0 following`}>
-                        <Accordion.Item eventKey="3" style={{background: '#201E23', textAlign: 'center'}}>
+                        <Accordion.Item eventKey="3" style={{ background: '#201E23', textAlign: 'center' }}>
                             <Accordion.Header onClick={() => toggleActive(0)}>
                                 <span className="all-text">Followings</span>
                             </Accordion.Header>
                             <AccordionBody>
-                                <ContactList link following data={followingList}/>
+                                <ContactList link following data={followingList} />
                             </AccordionBody>
                         </Accordion.Item>
                     </div>
@@ -127,13 +149,13 @@ const AccordianData = ({following = "", responsive}) => {
             ) : (
 
                 <Accordion className={`${activeIndex !== null ? "active" : ""}`}
-                           style={responsive ? {height: 'unset'} : {height: '100%'}}>
+                    style={responsive ? { height: 'unset' } : { height: '100%' }}>
                     <Accordion.Item eventKey="0">
                         <Accordion.Header onClick={() => toggleActive(1)}>
                             Trending Tags
                         </Accordion.Header>
                         <AccordionBody>
-                            <AccordianBadge data={tags} onTagSelect={onTagSelect}/>
+                            <AccordianBadge data={tags} onTagSelect={onTagSelect} />
                         </AccordionBody>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
@@ -141,14 +163,14 @@ const AccordianData = ({following = "", responsive}) => {
                             Buy Coins
                         </Accordion.Header>
                         <Accordion.Body className="p-2 pt-1 pb-3">
-                            <BuyCoin/>
+                            <BuyCoin />
                         </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="2">
                         <Accordion.Header onClick={() => toggleActive(3)}>
                             Ranking Prizes
                         </Accordion.Header>
-                        <AccordianPrize/>
+                        <AccordianPrize />
                     </Accordion.Item>
                 </Accordion>
 

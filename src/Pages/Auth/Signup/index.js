@@ -42,8 +42,16 @@ const Signup = () => {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
+    .email("Invalid email address")
+    .test('dot-after-at', 'Dot should be present after "@"', function (value) {
+      if (value) {
+        const atIndex = value.indexOf('@');
+        const dotIndex = value.indexOf('.', atIndex);
+        return dotIndex > atIndex && dotIndex !== -1;
+      }
+      return false;
+    })
+    .required("Email is required"),
     password: Yup.string()
       .required("Password is required")
       .matches(
@@ -155,7 +163,7 @@ const Signup = () => {
                   <span
                       style={{ display: !errors.password ? "block" : "none" }}
                     >
-                      <FiEyeOff />
+                      {/* <FiEyeOff /> */}
                     </span>
                   <Form.Control.Feedback type="invalid">
                     {errors.password}
@@ -177,7 +185,7 @@ const Signup = () => {
                   <span
                       style={{ display: !errors.password ? "block" : "none" }}
                     >
-                      <FiEyeOff />
+                      {/* <FiEyeOff /> */}
                     </span>
                   <Form.Control.Feedback type="invalid" className="mb-3">
                     {errors.confirmPassword}
