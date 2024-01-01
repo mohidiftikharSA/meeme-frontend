@@ -78,14 +78,31 @@ const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
         navigate(`/otherProfile/${data?.post?.user_id}`)
     }
 
+
     const downloadMedia = async (mediaUrl, id) => {
-        const link = document.createElement('a');
-        link.href = mediaUrl;
-        link.setAttribute('download', 'Fariha.png');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+        try {
+          const response = await fetch(mediaUrl, {
+            method: 'GET',
+          });
+      
+          if (!response.ok) {
+            throw new Error('Failed to download the file');
+          }
+      
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+      
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', 'Fariha.png');
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
     const handleImageLoad = (index) => {
         setImagesLoaded((prevImagesLoaded) => {
             const newImagesLoaded = [...prevImagesLoaded];

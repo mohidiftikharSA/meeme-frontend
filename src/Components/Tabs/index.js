@@ -1,6 +1,6 @@
 import FollowingContent from "Components/FollowingContent";
 import MemesDetails from "Components/Memes";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import img13 from "../../Images/bg1.png";
 import img14 from "../../Images/bg2.png";
@@ -87,27 +87,25 @@ const TabDetails = ({
     const [isLoadingRecentPosts, setIsLoadingRecentPosts] = useState(false);
     const [isLoadingTrendingPosts, setIsLoadingTrendingPosts] = useState(false);
     const { data } = useSelector(state => state.searchTagData);
-    const [eventTrending , setEventTrending ] = useState();
+    const [eventTrending, setEventTrending] = useState(null);
 
     useEffect(() => {
         if (data && data[0]) {
             setTagTrendingPost(data);
             setEventTrending('trending')
-        }else{
+        } else {
             setTagTrendingPost([]);
-            setEventTrending('trending')
-
+            setEventTrending('first')
         }
-    }, data)
 
+    }, [data])
 
     const getRecentPost = async () => {
         setIsLoadingRecentPosts(true)
         try {
             const res = await postAPIs.getRecentPosts();
             if (res.status === 200) {
-                // Assuming a 200 status code means success
-                setRecentPosts(res.data.recent_posts); // Assuming the data is in a property called 'data'
+                setRecentPosts(res.data.recent_posts); 
             } else {
                 console.error("Error: Unexpected status code", res.status);
             }
@@ -122,8 +120,7 @@ const TabDetails = ({
             setIsLoadingTrendingPosts(true)
             const res = await postAPIs.getTrendingPosts();
             if (res.status === 200) {
-                // Assuming a 200 status code means success
-                setTrendingPosts(res.data.trending_posts); // Assuming the data is in a property called 'data'
+                setTrendingPosts(res.data.trending_posts);
             } else {
                 console.error("Error: Unexpected status code", res.status);
             }
