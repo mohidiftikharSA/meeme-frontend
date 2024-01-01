@@ -1,12 +1,12 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import MessagesAPIs from '../../APIs/messages';
-import {useSelector} from "react-redux";
-import {useActionCable, useChannel} from '@aersoftware/react-use-action-cable';
+import { useSelector } from "react-redux";
+import { useActionCable, useChannel } from '@aersoftware/react-use-action-cable';
 import ChatDropdown from "./ChatDropdown";
 import ChatWindow from "./ChatWindow";
 
 
-const ChatPopup = ({isOpen, onClose, profile, data}) => {
+const ChatPopup = ({ isOpen, onClose, profile, data }) => {
     const [inputText, setInputText] = useState("");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isWideScreen, setIsWideScreen] = useState(window.innerWidth >= 992);
@@ -14,14 +14,14 @@ const ChatPopup = ({isOpen, onClose, profile, data}) => {
     const [inboxList, setInboxList] = useState([]);
     const [selectedChat, setSelectedChat] = useState();
     const [msgsList, setMsgsList] = useState([]);
-    const {user, accessToken} = useSelector((state) => state.auth);
+    const { user, accessToken } = useSelector((state) => state.auth);
     const [imgForAPI, setImgForAPI] = useState(null);
     const fileInputRef = useRef(null);
     const [msgSent, setMsgSent] = useState();
 
 
-    const {actionCable} = useActionCable(`${process.env.REACT_APP_WS_URL ?? 'ws://localhost:3000'}/cable?token=${accessToken}`);
-    const {subscribe, unsubscribe, send} = useChannel(actionCable)
+    const { actionCable } = useActionCable(`${process.env.REACT_APP_WS_URL ?? 'ws://localhost:3000'}/cable?token=${accessToken}`);
+    const { subscribe, unsubscribe, send } = useChannel(actionCable)
 
 
     useEffect(() => {
@@ -104,9 +104,9 @@ const ChatPopup = ({isOpen, onClose, profile, data}) => {
 
     const sendMessage = async () => {
         if (!selectedChat.conversation_id) {
-            var res = await MessagesAPIs.createConversation({receiver_id: selectedChat?.sender_id})
+            var res = await MessagesAPIs.createConversation({ receiver_id: selectedChat?.sender_id })
             if (res) {
-                const resObj = {...selectedChat};
+                const resObj = { ...selectedChat };
                 resObj['conversation_id'] = res.data?.conversation?.id
                 console.log("New Response obj of Conversation == ", resObj);
                 setSelectedChat(resObj);
@@ -201,10 +201,11 @@ const ChatPopup = ({isOpen, onClose, profile, data}) => {
     };
 
     function countOnlineUsers() {
+        console.log("Count ---", inboxList);
         const trueCount = inboxList.reduce((count, item) => {
             if (item.receiver_active_status === true && item?.receiver_id !== user?.id) {
                 return count + 1;
-            }else if(item.sender_active_status === true && item?.sender_id !== user?.id){
+            } else if (item.sender_active_status === true && item?.sender_id !== user?.id) {
                 return count + 1;
             }
             return count;

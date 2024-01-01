@@ -15,7 +15,7 @@ const DeleteConfirmationModal = (props) => {
         console.log("Profile ", confirmationText)
         if (confirmationText == 'DELETE') {
             const response = await api.deleteUserAccount(profile?.user?.id)
-            if (response.status == 200) {
+            if (response?.status == 200) {
                 setSuccessModalShow(true);
                 props.onHide();
                 setTimeout(()=>{

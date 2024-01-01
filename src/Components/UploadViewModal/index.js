@@ -44,7 +44,7 @@ const UploadModal = (props) => {
         const response = await api.postStory(data).finally(() => {
             setIsLoading(false)
         })
-        if (response.status == 200) {
+        if (response?.status == 200) {
             NotificationService.showSuccess('Story posted successfully')
             setImageToShow(null)
             props.storyAdded()

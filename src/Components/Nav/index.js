@@ -47,7 +47,7 @@ function Navigation({header, footer}) {
     }
     const fetchUserNotifications = async () => {
         const response = await api.getUserNotificationsList();
-        if (response.status == 200) {
+        if (response?.status == 200) {
             prepareNotifications(response.data.notifications)
         }
     }

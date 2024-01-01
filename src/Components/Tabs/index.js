@@ -86,13 +86,17 @@ const TabDetails = ({
     const [tagTrendingPost, setTagTrendingPost] = useState([]);
     const [isLoadingRecentPosts, setIsLoadingRecentPosts] = useState(false);
     const [isLoadingTrendingPosts, setIsLoadingTrendingPosts] = useState(false);
-    const { data } = useSelector(state => state.searchTagData)
+    const { data } = useSelector(state => state.searchTagData);
+    const [eventTrending , setEventTrending ] = useState();
 
     useEffect(() => {
         if (data && data[0]) {
             setTagTrendingPost(data);
+            setEventTrending('trending')
         }else{
             setTagTrendingPost([]);
+            setEventTrending('trending')
+
         }
     }, data)
 

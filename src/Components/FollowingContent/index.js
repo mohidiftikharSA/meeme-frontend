@@ -13,7 +13,7 @@ const FollowingContent = () => {
     const getStories = async () => {
         try {
             const res = await postAPIs.getStories();
-            if (res.status === 200) {
+            if (res?.status === 200) {
                 // Assuming a 200 status code means success
                 if (res.data.user_stories && res.data.user_stories[0]) {
                     const data = res.data.user_stories;//[0]?.stories;

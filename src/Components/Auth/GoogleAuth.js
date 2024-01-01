@@ -62,9 +62,15 @@ const GoogleAuth = () => {
         }
     };
 
+    const comingSoon = async () => {
+        toast.error("Coming Soon.")
+        return;
+    }
+
+
     return (
         <div>
-            <Button className="mb-0" variant="outline-light" onClick={handleCustomGoogleLogin}>
+            <Button className="mb-0" variant="outline-light" onClick={comingSoon}>
                 <FcGoogle />
                 Continue with Google
             </Button>
