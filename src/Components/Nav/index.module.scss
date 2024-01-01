@@ -32,7 +32,6 @@
 
   span {
     margin-right: 5px;
-
   }
 
   img {
@@ -43,22 +42,28 @@
 .profileBtn {
   height: auto;
   width: 100px;
-
+  @include media("<tablet-x") {
+    position: absolute !important;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px !important;
+    padding: 0 !important;
+    img{
+      width: 100% !important;
+      height: 80px !important;
+      object-fit: cover;
+    }
+  }
   img {
     border: 3px solid #fff;
     width: 100%;
     height: auto;
     display: block;
     border-radius: 50%;
-    @include media("<tablet-x") {
-      position: absolute;
-      top: -395px;
-      left: 66px;
-      width: 65%;
-    }
   }
 }
-
 
 .roundedImageContainer {
   border-radius: 50%;
@@ -66,7 +71,7 @@
   width: 20px; /* Adjust the width and height as needed */
   height: 20px;
   margin-right: 10px;
-  background-color: #06B6D4;
+  background-color: #06b6d4;
   display: flex;
   justify-content: center;
   align-items: center;
