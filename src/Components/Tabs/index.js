@@ -87,14 +87,16 @@ const TabDetails = ({
     const [isLoadingRecentPosts, setIsLoadingRecentPosts] = useState(false);
     const [isLoadingTrendingPosts, setIsLoadingTrendingPosts] = useState(false);
     const { data } = useSelector(state => state.searchTagData);
-    const [eventTrending, setEventTrending] = useState('first');
-    const [activeTab, setActiveTab] = useState('first');
+
+    const [activeTab, setActiveTab] = useState('following');
     const changeTab = (tabKey) => {
         setActiveTab(tabKey);
     };
 
     const handleButtonClick = () => {
-        changeTab('trending');
+        if (tagTrendingPost && tagTrendingPost[0]) {
+            changeTab('trending');
+        }
     };
 
     const getRecentPost = async () => {
@@ -141,21 +143,17 @@ const TabDetails = ({
     useEffect(() => {
         if (data && data[0]) {
             setTagTrendingPost(data);
-            setEventTrending('trending');
             handleButtonClick();
         } else {
             setTagTrendingPost([]);
-            setEventTrending('first')
+            setActiveTab('following')
         }
 
     }, [data]);
 
-    useEffect(() => {
-        setEventTrending('trending');
-    }, [data]);
-
     return (<>
         {main && (<Tabs
+            defaultActiveKey={first}
             activeKey={activeTab}
             onSelect={(tabKey) => changeTab(tabKey)}
             id="uncontrolled-tab-example"
