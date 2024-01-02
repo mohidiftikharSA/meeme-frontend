@@ -55,7 +55,7 @@ const ProfileOverlayDataProfile = [{
     img: img21, coin: "100", title: "Orange",
 },];
 
-const data = [{
+const data44 = [{
     title: "Sunflower Theme", img: img1,
 }, {
     title: "Nature Theme", img: img2,
@@ -418,7 +418,7 @@ const TabDetails = ({
             className="mb-5 noBg"
         >
             <Tab eventKey="Icons" title="Icons">
-                <UltraRare noCoin data={data} />
+                <UltraRare noCoin data={data44} />
             </Tab>
             <Tab eventKey="themes" title="Themes">
                 <ThemeRare card data2={data2} />

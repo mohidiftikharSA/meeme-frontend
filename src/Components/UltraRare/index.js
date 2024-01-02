@@ -6,7 +6,7 @@ import coin from "../../Images/coin.png";
 const UltraRare = ({ data ,noCoin }) => {
   return (
     <Row>
-      {data.map((item, ind) => {
+      {data?.map((item, ind) => {
         return (
           <Col md={4} sm={6}  key={ind} className={classes.col}>
             <Card>

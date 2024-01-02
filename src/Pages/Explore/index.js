@@ -16,7 +16,6 @@ const Explore = () => {
     const getRecentPostAndTags = async () => {
         try {
             const res = await postAPIs.getRecentPosts();
-            console.log("Recent POsts  ==== ", res.data);
             if (res.status === 200) {
                 // Assuming a 200 status code means success
                 setRecentPosts(res.data.recent_posts);
