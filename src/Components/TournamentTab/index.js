@@ -39,6 +39,16 @@ const TournamentTabs = () => {
     setIsLoading(false)
   }
 
+  function getCurrentMonth() {
+    const currentDate = new Date();
+    const month = currentDate.getMonth(); // getMonth() returns a zero-based index (0 for January, 11 for December)
+    const monthsArray = [
+      'January', 'February', 'March', 'April', 'May', 'June', 
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    return monthsArray[month];
+  }
+
   return (
     <>
       {isLoading && <Loader isLoading={isLoading} />}
@@ -60,7 +70,7 @@ const TournamentTabs = () => {
               <div className={classes.bannerImg}> <img src={banner?.tournament_banner_image} alt="Bannerimage" /></div>
              
               {/* <h2>{banner?.tournament?.title}</h2> */}
-              <h2>FOR THE March<br></br>TOURNAMENT</h2>
+              <h2>FOR THE {getCurrentMonth()}<br></br>{banner?.tournament?.title}</h2>
             </div>
             <div className={classes.scoreBoard}>
               <span>{banner?.tournament_users_count} Particpants</span>
