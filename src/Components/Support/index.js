@@ -85,7 +85,7 @@ const Support = ({ supportTicket }) => {
     <>
       <Loader isLoading={isLoading} />
       <div className={classes.supportSection}>
-        <Heading title={"Support"} linkPath={"home"} />
+        <Heading title={"Support"} noLink />
         <ul className={classes.support}>
           {allChatsData[0] ? allChatsData.map((item, ind) => {
             return (

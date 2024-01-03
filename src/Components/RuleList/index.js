@@ -19,7 +19,7 @@ const RuleList = () => {
 
   return (
     <Card className="profileCard">
-      <Heading title={"Rules & Regulations"} linkPath={"home"} />
+      <Heading title={"Rules & Regulations"} noLink />
       {rules?.description ? <div style={{ color: 'white' }} dangerouslySetInnerHTML={{ __html: rules?.description }} /> :
         <p style={{ textAlign: 'center', color: 'white' }} >No Rules List to Show</p>}
 

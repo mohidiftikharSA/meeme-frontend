@@ -65,7 +65,7 @@ const SupportDetail = () => {
       <Loader isLoading={isLoading} />
       <div className={classes.supportDropdown}>
         <span style={{ display: "inline-block", width: "105px" }} onClick={() => (previousStep())}>
-          <Heading title={'Support'} linkPath={"#"} />
+          <Heading title={'Support'} noLink/>
         </span>
         <Form.Select aria-label="Select Subject" onChange={(e) => { setSelectedSubject(e.target.value); }} value={selectedSubject} >
           <option>Select Subject</option>

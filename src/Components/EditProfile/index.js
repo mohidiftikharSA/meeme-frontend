@@ -101,7 +101,7 @@ const EditProfile = () => {
     <>
       <Loader isLoading={isSubmitting} />
       <Card className="profileCard">
-        <Heading title={"Edit Profile"} />
+        <Heading title={"Edit Profile"} noLink />
         <div className={classes.Profile}>
           <div className={classes.profilDetails}>
             <div className={classes.Uploader}>

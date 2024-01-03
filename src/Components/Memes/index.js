@@ -44,6 +44,7 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
                 selectedPostId={selectedPostId}
                 postData={postData}
                 avatar={avatar}
+                explore
             />
         </>
     );

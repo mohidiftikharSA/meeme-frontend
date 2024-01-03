@@ -13,14 +13,14 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 .prilfe {
   display: flex;
   padding: 20px;
   img {
-    width: 38px;
+  width: 38px;
     height: 38px;
     object-fit: cover;
     border-radius: 50%;

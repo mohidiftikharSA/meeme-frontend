@@ -135,7 +135,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
           style={{ display: "inline-block", width: "105px" }}
           onClick={() => goToStep(0)}
         >
-          <Heading title={"Support"} />
+          <Heading title={"Support"} noLink />
         </span>
 
         {allMsgsArr?.map((item, index) => {

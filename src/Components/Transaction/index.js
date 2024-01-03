@@ -16,7 +16,7 @@ const Transaction = ({ data, noCard }) => {
           </div>
         </>
       ) : (
-        <Heading title={"Transaction History"} linkPath={"home"}/>
+        <Heading title={"Transaction History"} noLink/>
       )}
       <ul className={`${classes.transaction} ${noCard && `${classes.minHeight}`}`}>
         {data.map((item, ind) => {

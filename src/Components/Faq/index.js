@@ -21,7 +21,7 @@ const FAQ = () => {
 
   return (
     <Card className="profileCard">
-      <Heading title={"FAQ"} linkPath={"home"} />
+      <Heading title={"FAQ"} noLink />
       <div className={classes.modalContant}>
         {faqs[0] ? faqs?.map((item) => {
           return (

@@ -43,7 +43,7 @@ const BuyCoin = () => {
   return (
     <section>
       <div className="sectionHolder" style={{ maxWidth: "800px" }}>
-        <Heading title={"Buy Coins"} />
+        <Heading title={"Buy Coins"} linkPath={"home"} />
         <CoinCard data={coinData} />
         <Transaction noCard data={transactionData} />
       </div>

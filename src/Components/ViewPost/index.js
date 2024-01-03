@@ -78,7 +78,7 @@ const ViewPost = ({ setIsModalOpen, ...props}) => {
                     </Col>
                     <Col lg={5} className='position-relative'>
                         <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId}
-                                  user={user} setChildCommentCreated={setChildCommentCreated}/>
+                                  user={user} setChildCommentCreated={setChildCommentCreated} onHide={props.onHide}/>
                     </Col>
                 </Row>
             </Modal.Body>

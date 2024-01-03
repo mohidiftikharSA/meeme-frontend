@@ -24,7 +24,7 @@ const NotificationCard = () => {
         setIsPushNotificationChecked(notifications.enabled_push_notification)
     }, []);
     return (<Card className="profileCard">
-        <Heading title={"Notifications"} linkPath={"home"}/>
+        <Heading title={"Notifications"} noLink/>
         <div className={classes.notificationHolder}>
             <ul>
                 <li>

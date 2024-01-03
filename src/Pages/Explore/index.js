@@ -74,7 +74,7 @@ const Explore = () => {
                 <Search expolore text={"Search hashtags, usernames"} onSearchChange={onTextSearch} />
                 <AccordianBadge data={tags} expolore
                     onTagSelect={onTagSearch} />
-                <MemesDetails isLoading={loading} newMemesData={filteredPosts} avatar={avatar} explore />
+                <MemesDetails isLoading={loading} newMemesData={filteredPosts} avatar={avatar} explore  />
             </Container>
         </section>
     </>);

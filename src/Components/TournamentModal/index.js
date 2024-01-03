@@ -5,16 +5,15 @@ import { toast } from "react-toastify";
 import Loader from "Components/Loader";
 import { useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
-import AuthAPIs from '../../APIs/auth';
-import TournamentAPIs from '../../APIs/tournaments';
+import AuthAPIs from "../../APIs/auth";
+import TournamentAPIs from "../../APIs/tournaments";
 import PostContentModal from "Components/PostContentModal";
 
 export default function TournamentModal({ tournamentJoined, ...props }) {
-
   const [selectedImage, setSelectedImage] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [apiImg, setApiImg] = useState(null);
   const { user } = useSelector((state) => state.auth);
@@ -51,18 +50,21 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
   const handleSubmit = async () => {
     setIsLoading(true);
     const data = new FormData();
-    data.append('description', title || '');
-    data.append('tag_list', description || '');
-    data.append('post_image', apiImg);
+    data.append("description", title || "");
+    data.append("tag_list", description || "");
+    data.append("post_image", apiImg);
 
     if (props.post) {
       const res = await AuthAPIs.createPost(data);
       if (res) {
-        toast.success('Post Created Successfully');
+        toast.success("Post Created Successfully");
         props.onHide();
       }
     } else if (props.tournament) {
-      const join = await TournamentAPIs.enrollInTournament({ user_id: user?.id, tournament_banner_id: props?.tournamentid });
+      const join = await TournamentAPIs.enrollInTournament({
+        user_id: user?.id,
+        tournament_banner_id: props?.tournamentid,
+      });
       if (join) {
         tournamentJoined(true);
         const postImg = await TournamentAPIs.createTournamentPost(data);
@@ -77,35 +79,34 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
     setIsLoading(false);
   };
 
-
   const handleDescriptionChange = (e) => {
     const inputValue = e.target.value;
     const selectionStart = e.target.selectionStart;
     const selectionEnd = e.target.selectionEnd;
-  
-    let tags = inputValue.split(/\s+/).map(tag => {
+
+    let tags = inputValue.split(/\s+/).map((tag) => {
       // Ensure tags start with #
-      return tag.trim().startsWith('#') ? tag.trim() : `#${tag.trim()}`;
+      return tag.trim().startsWith("#") ? tag.trim() : `#${tag.trim()}`;
     });
-    if (e.nativeEvent.inputType === 'deleteContentBackward' && selectionStart === selectionEnd) {
-      const currentTagStart = inputValue.lastIndexOf('#', selectionStart - 1);
-      const currentTagEnd = inputValue.indexOf(' ', selectionStart);
+    if (
+      e.nativeEvent.inputType === "deleteContentBackward" &&
+      selectionStart === selectionEnd
+    ) {
+      const currentTagStart = inputValue.lastIndexOf("#", selectionStart - 1);
+      const currentTagEnd = inputValue.indexOf(" ", selectionStart);
       if (currentTagEnd === -1) {
         tags.pop(); // Remove the last tag
       } else {
-        tags = tags.filter(tag => {
+        tags = tags.filter((tag) => {
           const tagStart = inputValue.indexOf(tag);
           return tagStart < currentTagStart || tagStart >= currentTagEnd;
         });
       }
     }
-    const formattedTags = tags.join(' ');
+    const formattedTags = tags.join(" ");
     setDescription(formattedTags);
     // setTagError(formattedTags.includes(' #') ? 'Tags should not contain space.' : null);
   };
-  
-  
-  
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -124,7 +125,6 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
     e.preventDefault();
   };
 
-
   return (
     <>
       {isLoading && <Loader isLoading={isLoading} />}
@@ -138,9 +138,10 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
         >
           <Modal.Header closeButton={false}>
             <Modal.Title id="contained-modal-title-vcenter">
-              <i className="fa fa-angle-left" aria-hidden="true" onClick={onClose}>
-                <span>Post a content</span>
-              </i>
+              <h5 aria-hidden="true" onClick={onClose} style={{fontSize:"14px"}} className="d-flex align-items-center">
+              <i className="fa fa-angle-left me-2"></i> Post a content
+              </h5>
+              
               {!showForm && (
                 <Button className="btn" onClick={handleContinue}>
                   Continue
@@ -157,21 +158,34 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
             </Modal.Title>
           </Modal.Header>
 
-          <Modal.Body className="dotsborder"
-           onDragOver={handleDragOver}
-           onDrop={handleDrop}
+          <Modal.Body
+            className="dotsborder"
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
           >
             {showForm && (
               <div>
                 <Form className="">
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Control type="text" placeholder="Give this meme a title" onChange={(e) => setTitle(e.target.value)} />
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Control
+                      type="text"
+                      placeholder="Give this meme a title"
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
                   </Form.Group>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlTextarea1"
                   >
-                    <Form.Control type="text" placeholder="Tags" onChange={handleDescriptionChange} value={description} />
+                    <Form.Control
+                      type="text"
+                      placeholder="Tags"
+                      onChange={handleDescriptionChange}
+                      value={description}
+                    />
                     {tagError && <p style={{ color: "red" }}>{tagError}</p>}
                   </Form.Group>
                 </Form>
@@ -184,9 +198,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
             )}
             {!selectedImage && (
               <div className="bodyContant">
-                <div style={{ textAlign: "center" }}
-                 
-                >
+                <div style={{ textAlign: "center" }}>
                   <label
                     htmlFor="imageInput"
                     style={{ cursor: "pointer", display: "block" }}
@@ -239,8 +251,3 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
     </>
   );
 }
-
-
-
-
-

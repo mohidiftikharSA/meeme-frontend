@@ -79,7 +79,7 @@ const BillingDetails = () => {
     }
 
     return (<Card className="profileCard">
-        <Heading title={'Billing'}/>
+        <Heading title={'Billing'} noLink/>
         <div className={classes.billingHolder}>
             <h6>Card Number</h6>
             <div className={classes.box}>

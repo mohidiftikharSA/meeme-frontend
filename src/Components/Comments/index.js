@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import DashboardAPIs from '../../APIs/dashboard/home';
 
 
-const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCreated }) => {
+const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCreated,onHide }) => {
   const [replayVisible, setReplayVisible] = useState(false);
   const [comment, setComment] = useState("");
   const [childComment, setChildComment] = useState('');
@@ -76,10 +76,12 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
      
     }
   }
+ 
 
   return (
     <div className="py-lg-5 py-3 px-3">
-      <Heading title={"Comments"} />
+      <Heading title={"Comments"} onHide={onHide} />
+      
       <ul className={classes.commentList}>
         {allCommentsArr
           .slice()

@@ -42,7 +42,7 @@
     border-radius: 8px !important;
     padding: 10px 40px;
 
-    &:placeholder {
+    &::placeholder {
       color: rgba(255, 234, 234, 0.392);
     }
 
