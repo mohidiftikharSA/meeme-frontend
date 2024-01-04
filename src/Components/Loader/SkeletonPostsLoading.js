@@ -2,7 +2,7 @@ import React from 'react';
 import Skeleton, {SkeletonTheme} from 'react-loading-skeleton';
 
 const SkeletonPostsLoading = () => {
-    return (<SkeletonTheme baseColor="#c4c4c4" highlightColor="#b2b2b2">
+    return (<SkeletonTheme baseColor="#7c7b7c" highlightColor="#969696" >
         <div>
             {[...Array(10)].map((_, index) => (<div key={index} style={{marginTop: '20px'}}>
                 <div style={{display: 'flex', marginRight: '10px'}}>

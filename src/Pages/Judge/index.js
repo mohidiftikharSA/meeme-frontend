@@ -64,6 +64,9 @@ const JudgePage = () => {
     }, []);
 
 
+
+
+
     return (
         <>
             <section>
@@ -75,35 +78,42 @@ const JudgePage = () => {
                                 marginTop: '10px', textAlign: 'center'
                             }}> There's no Tournament Posts to Show</p>
                         ) : tournamentPosts.map((item, ind) => {
-                            return (<div
-                                key={`${item.id}_t_posts_${ind}`}
-                                className={classes.postHolder}>
-                                <div style={{ display: imagesLoaded[ind] ? 'none' : 'block' }}>
-                                    <Skeleton
-                                        height={300} width="100%"
-                                        style={{
-                                            marginTop: '10px', borderRadius: '20px'
-                                        }} />
-                                </div>
-                                <div className="imgBox">
-                                    <img
-                                        src={item.post_image}
-                                        alt="icon"
-                                        style={{ borderRadius: "30px", display: imagesLoaded[ind] ? 'block' : 'none' }}
-                                        onLoad={() => handleImageLoad(ind)}
-                                        onError={() => handleImageError(ind)}
-                                    />
-                                </div>
-                                <div className={classes.btnGroup}>
-                                    <Button onClick={() => {
-                                        likeDislikePost(item.id)
-                                    }}><AiFillHeart /></Button>
+                            return (
+                                <div
+                                    key={`${item.id}_t_posts_${ind}`}
+                                    className={classes.postHolder}>
+                                    {item.post_type === "image/jpeg" || item.post_type === "image/png" ? (<div>
+                                        <div style={{ display: imagesLoaded[ind] ? 'none' : 'block' }}>
+                                            <Skeleton
+                                                baseColor="#7c7b7c"
+                                                highlightColor="#969696"
+                                                height={300} width="100%"
+                                                style={{
+                                                    marginTop: '10px', borderRadius: '20px'
+                                                }} />
+                                        </div>
+                                        <img
+                                            style={{ display: imagesLoaded[ind] ? 'block' : 'none' }}
+                                            onLoad={() => handleImageLoad(ind)}
+                                            onError={() => handleImageError(ind)}
+                                            src={item.post_image} alt="img"
+                                        />
+                                    </div>) : (
+                                        <video width="93%" height="700px" style={{objectFit:"cover"}}  controls>
+                                            <source src={item.post_image} type="video/mp4" />
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    )}
+                                    <div className={classes.btnGroup}>
+                                        <Button style={{ zIndex: '2' }} onClick={() => {
+                                            likeDislikePost(item.id)
+                                        }}><AiFillHeart /></Button>
 
-                                    <Button onClick={() => {
-                                        likeDislikePost(item.id, false)
-                                    }}><FaTimes /></Button>
-                                </div>
-                            </div>);
+                                        <Button style={{ zIndex: '2' }} onClick={() => {
+                                            likeDislikePost(item.id, false)
+                                        }}><FaTimes /></Button>
+                                    </div>
+                                </div>);
                         })}
                     </div>
                 </Container>

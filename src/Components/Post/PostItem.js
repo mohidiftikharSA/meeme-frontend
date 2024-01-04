@@ -78,6 +78,8 @@ const PostItem = ({
                     {item.post_type === "image/jpeg" || item.post_type === "image/png" ? (<div>
                         <div style={{ display: imagesLoaded[ind] ? 'none' : 'block' }}>
                             <Skeleton
+                                baseColor="#7c7b7c"
+                                highlightColor="#969696"
                                 height={300} width="100%"
                                 style={{
                                     marginTop: '10px', borderRadius: '20px'
@@ -118,7 +120,7 @@ const PostItem = ({
                 </ul>
             </div>
             <FlagPostModal post show={FlagPostModalShow} image={item.compress_image} postId={item.post.id} onHide={() => setFlagPostModalShow(false)} postRemovalId={postRemovalId} />
-            <ReportPostModal post show={ReportPostModalShow} image={item.compress_image} postId={item.post.id} onHide={() => setReportPostModalShow(false)}  postRemovalId={postRemovalId} />
+            <ReportPostModal post show={ReportPostModalShow} image={item.compress_image} postId={item.post.id} onHide={() => setReportPostModalShow(false)} postRemovalId={postRemovalId} />
         </>
     );
 };
