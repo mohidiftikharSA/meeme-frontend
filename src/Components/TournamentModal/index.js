@@ -32,12 +32,16 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setApiImg(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImage(reader.result);
-      };
-      reader.readAsDataURL(file);
+      if (file.type === 'image/jpeg' || file.type === 'image/png') {
+        setApiImg(file);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setSelectedImage(reader.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        toast.error('Invalid File type.')
+      }
     }
   };
 

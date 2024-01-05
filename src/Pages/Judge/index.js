@@ -24,6 +24,7 @@ const JudgePage = () => {
         const response = await api.getTournamentPosts().finally(() => {
             setIsLoading(false);
         })
+        console.log("Response === ", response.data);
         const notJudgedPosts = response?.data.tournament_posts?.filter(item => item.post_judged_by_current_user == false);
         setTournamentPosts(notJudgedPosts);
         /*const likedCounts = response.data.tournament_posts.filter((item) => item.is_liked_by_current_user == true).length;
@@ -81,7 +82,7 @@ const JudgePage = () => {
                                 <div
                                     key={`${item.id}_t_posts_${ind}`}
                                     className={classes.postHolder}>
-                                    {item.post_type === "image/jpeg" || item.post_type === "image/png" ? (<div>
+                                    {item.post_type === "image/jpeg" || item.post_type === "image/png" || item.post_type === "image/webp" ? (<div>
                                         <div style={{ display: imagesLoaded[ind] ? 'none' : 'block' }}>
                                             <Skeleton
                                                 baseColor="#7c7b7c"
@@ -98,7 +99,7 @@ const JudgePage = () => {
                                             src={item.post_image} alt="img"
                                         />
                                     </div>) : (
-                                        <video width="93%" height="700px" style={{objectFit:"cover"}}  controls>
+                                        <video width="93%" height="700px" style={{ objectFit: "cover" }} controls>
                                             <source src={item.post_image} type="video/mp4" />
                                             Your browser does not support the video tag.
                                         </video>
