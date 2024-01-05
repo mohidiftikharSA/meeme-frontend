@@ -48,6 +48,10 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
   };
 
   const handleSubmit = async () => {
+    if (!apiImg) {
+      toast.error("Image not selected.");
+      return;
+    }
     setIsLoading(true);
     const data = new FormData();
     data.append("description", title || "");
@@ -95,7 +99,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
       const currentTagStart = inputValue.lastIndexOf("#", selectionStart - 1);
       const currentTagEnd = inputValue.indexOf(" ", selectionStart);
       if (currentTagEnd === -1) {
-        tags.pop(); // Remove the last tag
+        tags.pop();
       } else {
         tags = tags.filter((tag) => {
           const tagStart = inputValue.indexOf(tag);
@@ -138,12 +142,20 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
         >
           <Modal.Header closeButton={false}>
             <Modal.Title id="contained-modal-title-vcenter">
-              <h5 aria-hidden="true" onClick={onClose} style={{fontSize:"14px"}} className="d-flex align-items-center">
-              <i className="fa fa-angle-left me-2"></i> Post a content
+              <h5 aria-hidden="true" onClick={onClose} style={{ fontSize: "14px" }} className="d-flex align-items-center">
+                <i className="fa fa-angle-left me-2"></i> Post a content
               </h5>
-              
+
               {!showForm && (
-                <Button className="btn" onClick={handleContinue}>
+                <Button className="btn" onClick={() => {
+                  if (props.tournament) {
+                    handleSubmit()
+                    return;
+                  } else {
+                    handleContinue();
+                    return;
+                  }
+                }}>
                   Continue
                 </Button>
               )}
@@ -163,7 +175,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
             onDragOver={handleDragOver}
             onDrop={handleDrop}
           >
-            {showForm && (
+            {showForm && !props.tournament ? (
               <div>
                 <Form className="">
                   <Form.Group
@@ -190,7 +202,7 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
                   </Form.Group>
                 </Form>
               </div>
-            )}
+            ) : ''}
             {selectedImage && (
               <div>
                 <img src={selectedImage} alt="img" />

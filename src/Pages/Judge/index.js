@@ -30,7 +30,6 @@ const JudgePage = () => {
         setLikedPostsCount(likedCounts)*/
     }
     const likeDislikePost = async (post_id, isLike = true) => {
-        console.log("Post ID ", post_id)
         const response = isLike ? await api.likeTournamentPost({ post_id }) : await api.disLikeTournamentPost({ post_id });
         if (response?.status == 200) {
             removePostFromList(post_id)

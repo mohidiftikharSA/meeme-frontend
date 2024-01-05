@@ -43,11 +43,24 @@ const TournamentTabs = () => {
     const currentDate = new Date();
     const month = currentDate.getMonth(); // getMonth() returns a zero-based index (0 for January, 11 for December)
     const monthsArray = [
-      'January', 'February', 'March', 'April', 'May', 'June', 
+      'January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'
     ];
     return monthsArray[month];
   }
+
+  useEffect(() => {
+    if (joined) {
+      setBanner((prev) => {
+        return {
+          ...prev,
+          tournament_users_count: prev.tournament_users_count + 1,
+          tournament_posts_count: prev.tournament_posts_count + 1
+        }
+      })
+    }
+
+  }, [joined])
 
   return (
     <>
@@ -68,9 +81,9 @@ const TournamentTabs = () => {
             {/* <img src={img} alt="img" /> */}
             <div className={classes.bannerCard} >
               <div className={classes.bannerImg}> <img src={banner?.tournament_banner_image} alt="Bannerimage" /></div>
-             
+
               {/* <h2>{banner?.tournament?.title}</h2> */}
-              <h2>FOR THE {getCurrentMonth()}<br></br>{banner?.tournament?.title}</h2>
+              <h2>FOR THE {getCurrentMonth()?.toUpperCase()}<br></br>{banner?.tournament?.title}</h2>
             </div>
             <div className={classes.scoreBoard}>
               <span>{banner?.tournament_users_count} Particpants</span>
