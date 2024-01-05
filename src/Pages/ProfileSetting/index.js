@@ -74,7 +74,7 @@ const ProfileSetting = () => {
           <div
             className="vertical-NavHolder"
           >
-            <Heading title="Setting" linkPath={"home"} />
+            <Heading title="Setting" linkPath={"profile"} />
             <Tab.Container id="verticalNav" defaultActiveKey={textParam}>
               <Row>
                 <Col
