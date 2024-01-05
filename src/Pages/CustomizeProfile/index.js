@@ -9,7 +9,7 @@ const CustomizeProfile = () => {
     <section className='py-5'>
     <Container>
    <div className={'sectionHolder'} style={{maxWidth:"650px"}}>
-    <Heading title={"Customize Profile"}/>
+    <Heading title={"Customize Profile"} linkPath={"home"}/>
    <TabDetails customizeProfile /> 
     </div>   
     </Container>
