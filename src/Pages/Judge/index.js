@@ -24,7 +24,7 @@ const JudgePage = () => {
         const response = await api.getTournamentPosts().finally(() => {
             setIsLoading(false);
         })
-        const notJudgedPosts = response.data.tournament_posts?.filter(item => item.post_judged_by_current_user == false);
+        const notJudgedPosts = response?.data.tournament_posts?.filter(item => item.post_judged_by_current_user == false);
         setTournamentPosts(notJudgedPosts);
         /*const likedCounts = response.data.tournament_posts.filter((item) => item.is_liked_by_current_user == true).length;
         setLikedPostsCount(likedCounts)*/
@@ -72,11 +72,11 @@ const JudgePage = () => {
                 <Container>
                     <div className="sectionHolder">
                         <Heading title={"Judge"} judge linkPath={"tornament"} likedCounts={likedPostsCount} />
-                        {isLoading ? <SkeletonTournamentPostsLoading /> : tournamentPosts.length === 0 ? (
+                        {isLoading ? <SkeletonTournamentPostsLoading /> : tournamentPosts?.length === 0 ? (
                             <p style={{
                                 marginTop: '10px', textAlign: 'center'
                             }}> There's no Tournament Posts to Show</p>
-                        ) : tournamentPosts.map((item, ind) => {
+                        ) : tournamentPosts?.map((item, ind) => {
                             return (
                                 <div
                                     key={`${item.id}_t_posts_${ind}`}
