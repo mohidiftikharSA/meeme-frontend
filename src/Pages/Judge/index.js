@@ -93,7 +93,7 @@ const JudgePage = () => {
                                                 }} />
                                         </div>
                                         <img
-                                            style={{ display: imagesLoaded[ind] ? 'block' : 'none' }}
+                                            style={{ width: '100%', display: imagesLoaded[ind] ? 'block' : 'none' }}
                                             onLoad={() => handleImageLoad(ind)}
                                             onError={() => handleImageError(ind)}
                                             src={item.post_image} alt="img"
