@@ -1681,12 +1681,13 @@ aside.EmojiPickerReact.epr-main {
         color: #fff;
         display: flex;
         border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-        padding: 10px 10px 10px 30px;
+        padding: 10px 10px 10px 10px;
+        align-items: center;
         position: relative;
 
         &:after {
           position: absolute;
-          content: "";
+          
           top: 15px;
           left: 12px;
           width: 8px;
@@ -1700,8 +1701,8 @@ aside.EmojiPickerReact.epr-main {
         }
 
         img {
-          width: 20px;
-          height: 20px;
+          width: 30px !important;
+          height: 30px !important;
           margin-right: 10px;
           border-radius: 50px;
         }
