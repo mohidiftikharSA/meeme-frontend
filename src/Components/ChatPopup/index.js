@@ -201,7 +201,6 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
     };
 
     function countOnlineUsers() {
-        console.log("Count ---", inboxList);
         const trueCount = inboxList.reduce((count, item) => {
             if (item.receiver_active_status === true && item?.receiver_id !== user?.id) {
                 return count + 1;

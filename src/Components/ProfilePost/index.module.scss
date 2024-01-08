@@ -15,11 +15,20 @@
     column-gap: 0;
     .imgBox {
         width: 100%;
+        position: relative;
+        [class*="form-check-input"]{
+          position: absolute;
+          top: 12px;
+          left: 12px;
+        }
         img{
             display: block;
             width: 100%;
             height: auto;
         }
     }
+    
   }
 }
+
+

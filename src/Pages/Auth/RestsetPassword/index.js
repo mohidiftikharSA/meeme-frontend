@@ -19,7 +19,6 @@ const ResetPassword = () => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const email = searchParams.get("email");
-    console.log("email", email);
     setEmail(email);
   }, [location.search]);
 

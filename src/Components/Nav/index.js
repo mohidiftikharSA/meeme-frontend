@@ -54,7 +54,6 @@ function Navigation({ header, footer }) {
     }
     useEffect(() => {
         fetchUserNotifications()
-        console.log("fetching notifications..")
     }, []);
 
     const navigateToOtherProfile = (id)=>{

@@ -56,7 +56,6 @@ const SupportDetail = () => {
       autoClose: 2000,
     });
     previousStep();
-    console.log("Ticket is created = ", createTicket);
     setIsLoading(false);
   }
 

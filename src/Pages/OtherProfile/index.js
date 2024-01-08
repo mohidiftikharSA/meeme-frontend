@@ -20,7 +20,6 @@ const OtherProfile = () => {
     setIsLoading(true);
     const user = await AuthAPIs.otherUserProfile(id);
     if (user) {
-      // console.log(" Other User =  ", user?.data?.profile);
       setProfile(user?.data?.profile)
     }
     setIsLoading(false);

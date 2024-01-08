@@ -24,7 +24,6 @@ const JudgePage = () => {
         const response = await api.getTournamentPosts().finally(() => {
             setIsLoading(false);
         })
-        console.log("Response === ", response.data);
         const notJudgedPosts = response?.data.tournament_posts?.filter(item => item.post_judged_by_current_user == false);
         setTournamentPosts(notJudgedPosts);
         /*const likedCounts = response.data.tournament_posts.filter((item) => item.is_liked_by_current_user == true).length;

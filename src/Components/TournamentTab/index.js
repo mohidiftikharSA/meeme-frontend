@@ -32,7 +32,6 @@ const TournamentTabs = () => {
         setIsLoading(false);
       });
       if (rules) {
-        console.log("Rules of the Tournament == ", rules.data?.tournament_rules?.rules[0]);
         setRules(rules.data?.tournament_rules?.rules[0])
       }
     }
