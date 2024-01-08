@@ -9,7 +9,7 @@ import Loader from "Components/Loader";
 import Skeleton from "react-loading-skeleton";
 
 
-const ProfilePost = ({ data, postRemoved }) => {
+const ProfilePost = ({ data, postRemoved, myProfile, otherProfile }) => {
     const [selectedPostIds, setSelectedPostIds] = useState([]);
     const [selectAll, setSelectAll] = useState(false);
     const [PostViewModalShow, setPostViewModalShow] = useState(false);
@@ -82,13 +82,16 @@ const ProfilePost = ({ data, postRemoved }) => {
         <>
             {isLoading && <Loader isLoading={isLoading} />}
             <div className="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                <Form.Check
-                    type="checkbox"
-                    label="Select All"
-                    checked={selectAll}
-                    onChange={toggleSelectAll}
-                />
-                <span onClick={() => { deleteSelectedPosts() }} className="btn btn-danger" style={{ padding: "0px 12px", borderRadius: "8px" }}><FaTrash size={12} /></span>
+                {!otherProfile ?
+                    <>
+                        <Form.Check
+                            type="checkbox"
+                            label="Select All"
+                            checked={selectAll}
+                            onChange={toggleSelectAll}
+                        />
+                        <span onClick={() => { deleteSelectedPosts() }} className="btn btn-danger" style={{ padding: "0px 12px", borderRadius: "8px" }}><FaTrash size={12} /></span
+                        ></> : ''}
             </div>
             <div className={classes.postHolder}>
 
@@ -96,15 +99,13 @@ const ProfilePost = ({ data, postRemoved }) => {
                     {data?.slice()?.reverse()?.map((item, ind) => (
                         <div key={ind} className={classes.imgBox}>
                             <label className={classes.checkboxLabel}>
-                                <Form.Check
+                                {myProfile && !otherProfile ? <Form.Check
                                     type="checkbox"
-                                    checked={selectedPostIds.includes(
-                                        item.post_id
-                                    )}
+                                    checked={selectedPostIds.includes(item.post_id)}
                                     onChange={() =>
                                         toggleSelectPost(item.post_id)
                                     }
-                                />
+                                /> : ''}
                                 <div className={classes.imgBox} style={{ display: imagesLoaded[ind] ? 'none' : 'block' }}>
                                     <Skeleton
                                         baseColor="#7c7b7c"

@@ -32,7 +32,7 @@ const OtherProfile = () => {
       <section>
         <div className="sectionHolder py-5">
           <EarnBadge />
-          <TabDetails profile profilePosts={profile?.profile_posts} />
+          <TabDetails otherProfile profile profilePosts={profile?.profile_posts} />
         </div>
       </section>
     </>
