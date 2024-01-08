@@ -149,7 +149,9 @@ const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
         />)}
 
         {isModalOpen &&
-            <ViewPost onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={followingData}
+            <ViewPost
+                likePost={likePost}
+                onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={followingData}
                 avatar={avatar} />}
     </>);
 };
