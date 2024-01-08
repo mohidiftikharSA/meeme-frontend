@@ -4,6 +4,7 @@ import ViewPost from "Components/ViewPost";
 import avatar from "../../Images/avatar.jpg";
 import MemeItem from "./MemeItem";
 import MemeItemSkeleton from "./MemeItemSkeleton";
+import postAPIs from "../../APIs/dashboard/home";
 
 const MemesDetails = ({newMemesData, explore, isLoading}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +24,30 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
-
+    const likePost = async (post_id) => {
+        try {
+            const res = await postAPIs.likePost({post_id});
+            if (res.status === 200) {
+                const updatedItems = postData.map(item => {
+                    if (item.post.id === post_id) {
+                        return {
+                            ...item,
+                            liked_by_current_user: res.data.type_data.is_liked,
+                            post_likes: res.data.likes_count,
+                            test: ''
+                        };
+                    }
+                    return item
+                });
+                setPostData(updatedItems);
+            } else {
+                console.error("Error: Unexpected status code", res.status);
+            }
+        } catch (error) {
+            console.error("Error while fetching data:", error);
+        }
+    }
+    
     return (
         <>
             {
@@ -44,6 +68,7 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
                 selectedPostId={selectedPostId}
                 postData={postData}
                 avatar={avatar}
+                likePost={likePost}
                 explore
             />
         </>
