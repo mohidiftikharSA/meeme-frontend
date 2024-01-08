@@ -1,5 +1,5 @@
 import API from 'APIs/base'
-import {ENDPOINT} from 'config/constants'
+import { ENDPOINT } from 'config/constants'
 
 
 const getRecentPosts = async () => {
@@ -52,8 +52,12 @@ const getUserNotificationsList = async () => {
     return await API.getMethod(ENDPOINT.notifications.user_notifications, true);
 }
 
-const user_search_tag = async(data)=>{
-    return await API.postMethod(ENDPOINT.post.user_search_tag,true,data);
+const user_search_tag = async (data) => {
+    return await API.postMethod(ENDPOINT.post.user_search_tag, true, data);
+}
+
+const deletePosts = async (data) => {
+    return API.deleteMethod(ENDPOINT.post.delete_posts, true, data);
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -71,5 +75,6 @@ export default {
     searchUser,
     flagOrReportPost,
     getUserNotificationsList,
-    user_search_tag
+    user_search_tag,
+    deletePosts
 }

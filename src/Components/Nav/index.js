@@ -56,7 +56,7 @@ function Navigation({ header, footer }) {
         fetchUserNotifications()
     }, []);
 
-    const navigateToOtherProfile = (id)=>{
+    const navigateToOtherProfile = (id) => {
         navigate(`/otherProfile/${id}`)
     }
     return (<Navbar
@@ -110,7 +110,7 @@ function Navigation({ header, footer }) {
                                         {/* <p className="yellow">Mark all as read</p>*/}
                                     </span>
                                     {notifications.length ? notifications.map((notification, index) => (<li key={index}>
-                                        <div onClick={()=>{navigateToOtherProfile(notification?.sender_id)}}>
+                                        <div onClick={() => { navigateToOtherProfile(notification?.sender_id) }}>
                                             {notification.sender_image ? <img src={notification.sender_image} decoding={"async"} /> :
                                                 <div className={classes.roundedImageContainer}>
                                                     <p className={classes.letter}>
@@ -119,14 +119,15 @@ function Navigation({ header, footer }) {
                                                 </div>
                                             }
                                         </div>
-                                        <div style={{cursor:'pointer'}}  onClick={()=>{navigateToOtherProfile(notification?.sender_id)}}>
+                                        <div style={{ cursor: 'pointer' }} onClick={() => { navigateToOtherProfile(notification?.sender_id) }}>
                                             <p className="white">{notification.body}</p>
                                             <p className="light">{notification.date}</p>
                                         </div>
                                     </li>)) :
-                                        <li>
-                                            &nbsp; &nbsp; &nbsp; Notification list is empty. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                                        <li style={{ color: '#7c7b7c' }}>
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  No New Notifications &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
                                         </li>
+                                        // <p style={{ textAlign: 'center', color: 'white', width: '100%' }}>No New Notifications</p>
                                     }
 
                                 </ul>

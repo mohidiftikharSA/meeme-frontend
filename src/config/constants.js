@@ -34,7 +34,8 @@ export const ENDPOINT = {
     post: {
         getTags: `${API_URL}/posts/tags`,
         createPost: `${API_URL}/posts`,
-        user_search_tag: `${API_URL}/posts/user_search_tags`
+        user_search_tag: `${API_URL}/posts/user_search_tags`,
+        delete_posts : `${API_URL}/posts/destroy_multiple`
     },
 
     comment: {
