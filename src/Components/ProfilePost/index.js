@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import ViewPost from "Components/ViewPost";
 import classes from "./index.module.scss";
-import avatar from "../../Images/avatar.jpg";
 import PostViewModal from "Components/PostViewModal";
+import { FaTrash } from "react-icons/fa";
 
 const ProfilePost = ({ data }) => {
     const [selectedPostIds, setSelectedPostIds] = useState([]);
@@ -23,37 +21,41 @@ const ProfilePost = ({ data }) => {
 
     const deleteSelectedPosts = async () => {
         console.log("Deletion IDs: ", selectedPostIds);
-        // Call your delete API or perform delete action here using selectedPostIds
     };
 
     const toggleSelectAll = () => {
         if (selectAll) {
             setSelectedPostIds([]);
         } else {
-            const allPostIds = data?.map((item) => item.post?.id) || [];
+            const allPostIds = data?.map((item) => item.post_id) || [];
             setSelectedPostIds(allPostIds);
         }
         setSelectAll(!selectAll);
     };
 
-    const prepareMonthOptions = () => {
-        // ... Your existing prepareMonthOptions logic
-    };
-
+    // Handle checking/unchecking all individual post checkboxes when clicking "Select All"
     useEffect(() => {
-        prepareMonthOptions();
-    }, []);
+        if (selectAll) {
+            const allPostIds = data?.map((item) => item.post_id) || [];
+            setSelectedPostIds(allPostIds);
+        } else {
+            setSelectedPostIds([]);
+        }
+    }, [selectAll, data]);
 
     return (
         <>
-            <h1 onClick={deleteSelectedPosts}>Delete</h1>
+           <div className="d-flex align-items-center justify-content-between flex-wrap mb-3">
+           <Form.Check
+           type="checkbox"
+           label="Select All"
+           checked={selectAll}
+           onChange={toggleSelectAll}
+           />
+           <span className="btn btn-danger" style={{padding:"0px 12px", borderRadius:"8px"}}><FaTrash  size={12}/></span>
+           </div>
             <div className={classes.postHolder}>
-                <Form.Check
-                    type="checkbox"
-                    label="Select All"
-                    checked={selectAll}
-                    onChange={toggleSelectAll}
-                />
+                
                 <div className={classes.box}>
                     {data?.slice()?.reverse()?.map((item, ind) => (
                         <div key={ind} className={classes.imgBox}>
