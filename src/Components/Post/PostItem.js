@@ -91,7 +91,8 @@ const PostItem = ({
                             style={{ display: imagesLoaded[ind] ? 'block' : 'none' }}
                             onLoad={() => handleImageLoad(ind)}
                             onError={() => handleImageError(ind)}
-                            src={item.compress_image} alt="img" />
+                            src={item.compress_image} alt="img"
+                        />
                     </div>) : (<video width="100%" height="auto" controls>
                         <source src={item.post_image} type="video/mp4" />
                         Your browser does not support the video tag.

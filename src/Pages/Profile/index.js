@@ -10,20 +10,29 @@ import AuthAPIs from "APIs/auth";
 const ProfilePage = () => {
 
   const [isLoading, setIsLoading] = useState(false);
-  const [profile , setProfile ] = useState();
+  const [profile, setProfile] = useState();
+  const [postRemoved, setPostRemoved] = useState();
 
-  useEffect(()=>{
+  useEffect(() => {
     getUserProfile();
-  },[])
+  }, [])
 
-  const getUserProfile = async ()=>{
+  const getUserProfile = async () => {
     setIsLoading(true);
     const userDetails = await AuthAPIs.getCurrentUserProfile();
-    if(userDetails){
+    if (userDetails) {
       setIsLoading(false);
       setProfile(userDetails.data.profile)
     }
   }
+
+  useEffect(() => {
+
+    if (postRemoved) {
+      getUserProfile();
+    }
+
+  }, [postRemoved])
 
   return (
     <>  {
@@ -33,7 +42,7 @@ const ProfilePage = () => {
           <section>
             <div className="sectionHolder py-md-5 py-3">
               <EarnBadge />
-              <TabDetails profile profilePosts={profile?.profile_posts} />
+              <TabDetails profile profilePosts={profile?.profile_posts} postRemoved={setPostRemoved} />
             </div>
           </section>
         </>

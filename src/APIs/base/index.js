@@ -1,7 +1,7 @@
 import axios from "axios";
-import {toast} from "react-toastify";
-import {logout} from "Redux/reducers/authSlice";
-import {store} from "Redux/store";
+import { toast } from "react-toastify";
+import { logout } from "Redux/reducers/authSlice";
+import { store } from "Redux/store";
 
 const clearLocalStorage = () => {
     localStorage.removeItem('userId')
@@ -28,7 +28,7 @@ const consoleErrorPerformRedirection = (error) => {
         autoClose: 2000,
     });
     if (error?.response?.status === 401) {
-        redirectToLogin()
+        // redirectToLogin()
     }
     // throw error
 }
@@ -38,7 +38,7 @@ const getMethod = async (endpoint, authentication = true, showError = true, data
     let params = {};
     let bearer_token;
     if (authentication) {
-        const {auth} = store.getState();
+        const { auth } = store.getState();
         bearer_token = auth.accessToken || localStorage.getItem('accessToken');
 
         params = {
@@ -72,7 +72,7 @@ const postMethod = async (endpoint, authentication = true, data = null, multipar
 
     console.log('data', data)
     if (authentication) {
-        const {auth} = store.getState();
+        const { auth } = store.getState();
         var bearer_token = auth.accessToken || localStorage.getItem('accessToken');
         headers["Authorization"] = `Bearer ${bearer_token}`
         headers["Accept"] = "application/json"
@@ -81,7 +81,7 @@ const postMethod = async (endpoint, authentication = true, data = null, multipar
         headers['content-type'] = 'multipart/form-data'
     }
     console.log([endpoint, data, headers])
-    return await axios.post(endpoint, data, {headers})
+    return await axios.post(endpoint, data, { headers })
         .then((res) => {
             console.log(res)
             return res
@@ -97,18 +97,15 @@ const postMethod = async (endpoint, authentication = true, data = null, multipar
 
 // Delete Method
 const deleteMethod = async (endpoint, authentication = true, data = null) => {
-    header = {};
+    let headers = {};
     if (authentication) {
-        const {auth} = store.getState();
+        const { auth } = store.getState();
         var bearer_token = auth.accessToken || localStorage.getItem('accessToken');
-        var header = {
-            headers: {
-                "Authorization": `Bearer ${bearer_token}`
-            }
-        }
+        headers["Authorization"] = `Bearer ${bearer_token}`
+        headers["Accept"] = "application/json"
     }
-    console.log(header);
-    return await axios.delete(endpoint, header)
+    console.log([endpoint, headers, data])
+    return await axios.delete(endpoint, { headers, data })
         .then((res) => {
             return res
         })
@@ -124,14 +121,14 @@ const patchMethod = async (endpoint, authentication = true, data = null, multipa
     console.log(data);
 
     if (authentication) {
-        const {auth} = store.getState();
+        const { auth } = store.getState();
         var bearer_token = auth.accessToken || localStorage.getItem('accessToken');
         headers["Authorization"] = `Bearer ${JSON.parse(bearer_token)}`
     }
     if (multipart) {
         headers['content-type'] = 'multipart/form-data'
     }
-    return await axios.patch(endpoint, data, {headers})
+    return await axios.patch(endpoint, data, { headers })
         .then((res) => {
             console.log(res)
             return res
@@ -148,14 +145,14 @@ const putMethod = async (endpoint, authentication = true, data = null, multipart
     console.log(data);
 
     if (authentication) {
-        const {auth} = store.getState();
+        const { auth } = store.getState();
         var bearer_token = auth.accessToken || localStorage.getItem('accessToken');
         headers["Authorization"] = `Bearer ${bearer_token}`
     }
     if (multipart) {
         headers['content-type'] = 'multipart/form-data'
     }
-    return await axios.put(endpoint, data, {headers})
+    return await axios.put(endpoint, data, { headers })
         .then((res) => {
             console.log(res)
             return res
