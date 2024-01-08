@@ -30,7 +30,9 @@ const PostItem = ({
     const navigate = useNavigate();
     const [FlagPostModalShow, setFlagPostModalShow] = useState(false);
     const [ReportPostModalShow, setReportPostModalShow] = useState(false);
-
+    const onClickLikePost = (id) => {
+        likePost(id)
+    }
     return (
         <>
             <div className={classes.postWrapper} key={ind}>
@@ -99,7 +101,7 @@ const PostItem = ({
                 <ul className={classes.postFooter}>
                     <li key={item.post.id}
                         className={`item ${item.liked_by_current_user ? `${classes.active}` : ''}`}
-                        onClick={() => likePost(item.post.id)}>
+                        onClick={() => onClickLikePost(item.post.id)}>
                         <img src={like} alt="img" />
                         <span> {formatNumber(item.post_likes)}</span>
                     </li>
