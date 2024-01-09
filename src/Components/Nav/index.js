@@ -21,7 +21,7 @@ import { useSelector } from "react-redux";
 
 function Navigation({ header, footer }) {
     const location = useLocation();
-    const { profile } = useSelector((state) => state.auth);
+    const { profile, user } = useSelector((state) => state.auth);
     const navigate = useNavigate();
 
 
@@ -139,7 +139,7 @@ function Navigation({ header, footer }) {
                             <span className={classes.icon}>
                                 <i className="fas fa-plus"></i>
                             </span>
-                            <span className={classes.text}>0</span>
+                            <span className={classes.text}>{user?.coins || '0'} </span>
                             <img src={coin} alt="icon" />
                         </Link>
                         <Link to={"/profile"} className={`btn ${classes.profileBtn}`}>

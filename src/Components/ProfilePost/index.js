@@ -99,7 +99,7 @@ const ProfilePost = ({ data, postRemoved, myProfile, otherProfile }) => {
                     {data?.slice()?.reverse()?.map((item, ind) => (
                         <div key={ind} className={classes.imgBox}>
                             <label className={classes.checkboxLabel}>
-                                {myProfile && !otherProfile ? <Form.Check
+                                {!otherProfile ? <Form.Check
                                     type="checkbox"
                                     checked={selectedPostIds.includes(item.post_id)}
                                     onChange={() =>

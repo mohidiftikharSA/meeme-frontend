@@ -1,20 +1,20 @@
 import Logo from "Components/Logo";
-import React, {useEffect, useState} from "react";
-import {ButtonGroup, Container} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { ButtonGroup, Container } from "react-bootstrap";
 import classes from "./index.module.scss";
 import Search from "Components/Search";
 import SearchResults from "Components/Search/SearchResult";
 import Navigation from "Components/Nav";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import coin from "../../Images/coin.png";
 import avatar from "../../Images/avatar.jpg"
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import api from 'APIs/dashboard/home'
 import SpinnerLoader from "../Loader/SpinnerLoader";
 
 const Header = () => {
     const [scrolling, setScrolling] = useState(false);
-    const {profile} = useSelector((state) => state.auth);
+    const { profile, user } = useSelector((state) => state.auth);
     const [searchResults, setSearchResults] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
     let timeoutId;
@@ -52,21 +52,21 @@ const Header = () => {
     return (<header className={`${scrolling ? `${classes.headerFixed} ${classes.header}` : classes.header}`}>
         <Container fluid>
             <div className="d-flex align-items-center justify-content-between">
-                <Logo link={'/home'}/>
+                <Logo link={'/home'} />
                 <div className={classes.rightSide}>
-                    <Search text={"Search"} onSearchChange={onSearch}/>
-                    <Navigation header/>
+                    <Search text={"Search"} onSearchChange={onSearch} />
+                    <Navigation header />
                     <ButtonGroup className="align-items-center" id="profile-btn">
                         <Link to={"/Purchase"} className={`btn ${classes.iconBtn}`}>
-                <span className={classes.icon}>
-                <i className="fas fa-plus"></i>
-                </span>
-                            <span className={classes.text}>0</span>
-                            <img src={coin} alt="icon"/>
+                            <span className={classes.icon}>
+                                <i className="fas fa-plus"></i>
+                            </span>
+                            <span className={classes.text}>{user?.coins || '0'}</span>
+                            <img src={coin} alt="icon" />
                         </Link>
 
                         <Link to={"/profile"} className={`btn ${classes.profileBtn}`}>
-                            <img src={profile?.user_image || avatar} alt="icon"/>
+                            <img src={profile?.user_image || avatar} alt="icon" />
                         </Link>
                     </ButtonGroup>
                 </div>
@@ -82,7 +82,7 @@ const Header = () => {
             <div className={classes.floatingResults}>
                 <SearchResults
                     clearResult={() => setSearchResults([])}
-                    style={{marginTop: '20px'}} results={searchResults}/>
+                    style={{ marginTop: '20px' }} results={searchResults} />
             </div>
 
         </div>)}
