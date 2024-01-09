@@ -69,19 +69,15 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
         props.onHide();
       }
     } else if (props.tournament) {
-      const join = await TournamentAPIs.enrollInTournament({
-        user_id: user?.id,
-        tournament_banner_id: props?.tournamentid,
-      });
-      if (join) {
-        tournamentJoined(true);
-        const postImg = await TournamentAPIs.createTournamentPost(data);
-        if (postImg) {
-          toast.success("Tournament Post Created Successfully");
-          setModalType("postContent");
-          props.onHide();
-        }
+
+      const postImg = await TournamentAPIs.createTournamentPost(data);
+      if (postImg) {
+        toast.success("Tournament Post Created Successfully");
+        setModalType("postContent");
+        setApiImg(null); 
+        props.onHide();
       }
+
     }
 
     setIsLoading(false);
@@ -113,19 +109,12 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
     }
     const formattedTags = tags.join(" ");
     setDescription(formattedTags);
-    // setTagError(formattedTags.includes(' #') ? 'Tags should not contain space.' : null);
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
-
-    // Access the dropped files
     const droppedFiles = e.dataTransfer.files;
-
-    // Assuming you want to handle only the first dropped file
     const droppedImage = droppedFiles[0];
-
-    // Perform your image upload logic here
     handleImageUpload({ target: { files: [droppedImage] } });
   };
 

@@ -7,6 +7,9 @@ import InfoModal from "Components/InfoModal";
 import PostContentModal from "Components/TournamentModal";
 import TournamentAPIs from '../../APIs/tournaments';
 import Loader from "Components/Loader";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+
 
 const TournamentTabs = () => {
   const [show, setShow] = useState(false);
@@ -15,9 +18,11 @@ const TournamentTabs = () => {
   const [joined, setJoined] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [rules, setRules] = useState();
+  const { user } = useSelector((state) => state.auth);
+
+
   useEffect(() => {
     getTournamentBanner();
-
   }, [])
 
   const getTournamentBanner = async () => {
@@ -48,18 +53,28 @@ const TournamentTabs = () => {
     return monthsArray[month];
   }
 
-  useEffect(() => {
-    if (joined) {
+
+  /**
+   * Submit Hander to Join Tournament
+   */
+  const joinTournamentHandler = async () => {
+
+    const join = await TournamentAPIs.enrollInTournament({
+      user_id: user?.id,
+      tournament_banner_id: banner?.tournament?.id,
+    });
+    if (join) {
+      toast.success("Tournament Joined Successfully.");
       setBanner((prev) => {
         return {
           ...prev,
           tournament_users_count: prev.tournament_users_count + 1,
-          tournament_posts_count: prev.tournament_posts_count + 1
+          tournament_posts_count: prev.tournament_posts_count + 1,
+          is_current_user_enrolled: prev.is_current_user_enrolled = true
         }
       })
     }
-
-  }, [joined])
+  }
 
   return (
     <>
@@ -90,13 +105,18 @@ const TournamentTabs = () => {
             </div>
           </div>
 
-          {!banner?.is_current_user_enrolled && !joined ?
+          {!banner?.is_current_user_enrolled  ?
+            <div className="text-center">
+              <Button className={`p-2 authButton ${classes.btn}`} onClick={() => {
+                joinTournamentHandler();
+              }}>Enter Tournament</Button>
+            </div>
+            :
             <div className="text-center">
               <Button className={`p-2 authButton ${classes.btn}`} onClick={() => {
                 settournamentModalShow(true);
-              }}>Enter Tournament</Button>
+              }}>Create Tournament Post</Button>
             </div>
-            : ''
           }
           <InfoModal tournament rules={rules} show={show} onHide={() => setShow(false)} />
           <PostContentModal tournament tournamentid={banner?.tournament?.id} show={tournamentModalShow} onHide={() => settournamentModalShow(false)} tournamentJoined={setJoined} />
