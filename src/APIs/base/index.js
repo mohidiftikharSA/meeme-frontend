@@ -28,7 +28,7 @@ const consoleErrorPerformRedirection = (error) => {
         autoClose: 2000,
     });
     if (error?.response?.status === 401) {
-        // redirectToLogin()
+        redirectToLogin()
     }
     // throw error
 }

@@ -9,7 +9,7 @@ import AuthAPIs from "../../APIs/auth";
 import TournamentAPIs from "../../APIs/tournaments";
 import PostContentModal from "Components/PostContentModal";
 
-export default function TournamentModal({ tournamentJoined, ...props }) {
+export default function TournamentModal({ setPostCount, ...props }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
@@ -72,14 +72,14 @@ export default function TournamentModal({ tournamentJoined, ...props }) {
 
       const postImg = await TournamentAPIs.createTournamentPost(data);
       if (postImg) {
+        setPostCount(postImg?.data);
         toast.success("Tournament Post Created Successfully");
-        setModalType("postContent");
-        setApiImg(null); 
+        onClose();
         props.onHide();
       }
 
     }
-
+    onClose();
     setIsLoading(false);
   };
 

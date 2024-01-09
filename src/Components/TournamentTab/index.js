@@ -15,10 +15,12 @@ const TournamentTabs = () => {
   const [show, setShow] = useState(false);
   const [banner, setBanner] = useState(null);
   const [tournamentModalShow, settournamentModalShow] = useState(false);
-  const [joined, setJoined] = useState(false);
+  const [postCount, setPostCount] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [rules, setRules] = useState();
   const { user } = useSelector((state) => state.auth);
+  const [modalType, setModalType] = useState("main");
+
 
 
   useEffect(() => {
@@ -53,6 +55,22 @@ const TournamentTabs = () => {
     return monthsArray[month];
   }
 
+  /**
+   * Increament +1 on Tournament Post Created
+   */
+  useEffect(() => {
+
+    if (postCount) {
+      setBanner((prev) => {
+        return {
+          ...prev,
+          tournament_posts_count: prev.tournament_posts_count + 1
+        }
+      })
+    }
+
+  }, [postCount])
+
 
   /**
    * Submit Hander to Join Tournament
@@ -73,6 +91,7 @@ const TournamentTabs = () => {
           is_current_user_enrolled: prev.is_current_user_enrolled = true
         }
       })
+      setModalType("postContent");
     }
   }
 
@@ -105,7 +124,7 @@ const TournamentTabs = () => {
             </div>
           </div>
 
-          {!banner?.is_current_user_enrolled  ?
+          {!banner?.is_current_user_enrolled ?
             <div className="text-center">
               <Button className={`p-2 authButton ${classes.btn}`} onClick={() => {
                 joinTournamentHandler();
@@ -119,7 +138,15 @@ const TournamentTabs = () => {
             </div>
           }
           <InfoModal tournament rules={rules} show={show} onHide={() => setShow(false)} />
-          <PostContentModal tournament tournamentid={banner?.tournament?.id} show={tournamentModalShow} onHide={() => settournamentModalShow(false)} tournamentJoined={setJoined} />
+          <PostContentModal tournament tournamentid={banner?.tournament?.id} show={tournamentModalShow} onHide={() => settournamentModalShow(false)} setPostCount={setPostCount} />
+          {modalType === "postContent" && (
+            <PostContentModal
+              show={true}
+              onHide={() => {
+                setModalType("main");
+              }}
+            />
+          )}
         </>
         : <p className="text-center">No Tournament is Played at the Moment</p>
       }

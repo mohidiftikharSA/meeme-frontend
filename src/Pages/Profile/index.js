@@ -42,7 +42,7 @@ const ProfilePage = () => {
           <section>
             <div className="sectionHolder py-md-5 py-3">
               <EarnBadge />
-              <TabDetails profile profilePosts={profile?.profile_posts} postRemoved={setPostRemoved} />
+              <TabDetails profile tournamentPosts={profile?.tournament_posts} profilePosts={profile?.profile_posts} postRemoved={setPostRemoved} />
             </div>
           </section>
         </>

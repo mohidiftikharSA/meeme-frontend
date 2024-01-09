@@ -79,7 +79,7 @@ const data2 = [{
 
 const TabDetails = ({
     tournament, first, main, footer, tabTitle, storeitems, profile, customizeProfile, profilePosts,
-    isPublic, postRemoved, otherProfile
+    isPublic, postRemoved, otherProfile, tournamentPosts
 }) => {
     const [recentPosts, setRecentPosts] = useState([]);
     const [trendingPosts, setTrendingPosts] = useState([]);
@@ -409,7 +409,7 @@ const TabDetails = ({
                 <ProfilePost myProfile otherProfile={otherProfile} data={profilePosts} postRemoved={postRemoved} />
             </Tab>
             <Tab eventKey="tournament" title="Tournament Entry">
-                <ProfilePost data={[]} />
+                <ProfilePost otherProfile  tournament data={tournamentPosts} />
             </Tab>
         </Tabs>)}
         {customizeProfile && (<Tabs
