@@ -5,6 +5,7 @@ import { BiInfoCircle } from "react-icons/bi";
 import { Button } from "react-bootstrap";
 import InfoModal from "Components/InfoModal";
 import PostContentModal from "Components/TournamentModal";
+import TournamentJoinSuccess from "Components/PostContentModal";
 import TournamentAPIs from '../../APIs/tournaments';
 import Loader from "Components/Loader";
 import { useSelector } from "react-redux";
@@ -82,12 +83,10 @@ const TournamentTabs = () => {
       tournament_banner_id: banner?.tournament?.id,
     });
     if (join) {
-      toast.success("Tournament Joined Successfully.");
       setBanner((prev) => {
         return {
           ...prev,
           tournament_users_count: prev.tournament_users_count + 1,
-          tournament_posts_count: prev.tournament_posts_count + 1,
           is_current_user_enrolled: prev.is_current_user_enrolled = true
         }
       })
@@ -140,7 +139,7 @@ const TournamentTabs = () => {
           <InfoModal tournament rules={rules} show={show} onHide={() => setShow(false)} />
           <PostContentModal tournament tournamentid={banner?.tournament?.id} show={tournamentModalShow} onHide={() => settournamentModalShow(false)} setPostCount={setPostCount} />
           {modalType === "postContent" && (
-            <PostContentModal
+            <TournamentJoinSuccess
               show={true}
               onHide={() => {
                 setModalType("main");
