@@ -172,6 +172,7 @@ const TabDetails = ({
         {tournament && (<div className={classes.contentHolder}>
             <Tabs
                 defaultActiveKey={first}
+                activeKey={first}
                 id="uncontrolled-tab-example"
                 className="mb-3"
             >

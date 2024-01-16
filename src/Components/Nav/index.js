@@ -59,6 +59,7 @@ function Navigation({ header, footer }) {
     const navigateToOtherProfile = (id) => {
         navigate(`/otherProfile/${id}`)
     }
+   
     return (<Navbar
         expand="lg"
         className={header ? "navBar" : "navBar aside pt-lg-5 pb-lg-3 py-3"}
@@ -87,11 +88,11 @@ function Navigation({ header, footer }) {
                         <img src={explore} alt="icon" />
                         Explore
                     </Nav.Link>
-                    <Nav.Link as={Link} to="/tornament" className={isLinkActive('/tornament')}>
+                    <Nav.Link as={Link} to="/tornament/tournament" className={isLinkActive('/tornament')}>
                         <img src={trophy} alt="icon" />
                         Tournament
                     </Nav.Link>
-                    <Nav.Link as={Link} to="/BuyCoin" className={isLinkActive('/BuyCoin')}>
+                    <Nav.Link as={Link} to="/tornament/store" className={isLinkActive('/BuyCoin')}>
                         <img src={Buy} alt="icon" />
                         Store
                     </Nav.Link>

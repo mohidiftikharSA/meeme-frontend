@@ -81,27 +81,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000; // Adjust as needed
+  z-index: 1000;
 }
 
 .floatingResults {
-  background-color: rgba(255, 255, 255, 0.97); // Adjust background color
-  border: 1px solid #ccc; // Adjust border styles
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional box shadow
+  background-color: #3d3b3f;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-height: 100px;
-  max-height: 300px; // Adjust as needed
+  max-height: 300px;
   overflow-y: auto;
-  width: 40%; // Adjust as needed
+  width: 40%;
   color: black;
   border-radius: 8px;
 }
 
 .floatingLoader {
-  background-color: rgba(255, 255, 255, 0.97); // Adjust background color
-  border: 1px solid #ccc; // Adjust border styles
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional box shadow
+  background-color: #3d3b3f;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   height: 60px;
   overflow-y: hidden;
-  width: 40%; // Adjust as needed
+  width: 40%;
   border-radius: 8px;
 }
