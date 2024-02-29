@@ -43,7 +43,8 @@ export const ENDPOINT = {
     },
     settings: {
         create_user_billing_card: `${API_URL}/users/payments/add_a_card`,
-        toggle_user_notifications: `${API_URL}/users/notification_settings`
+        toggle_user_notifications: `${API_URL}/users/notification_settings`,
+        fetch_all_card: `${API_URL}/users/payments/fetch_all_card`
     },
     profile: {
         settings: {
