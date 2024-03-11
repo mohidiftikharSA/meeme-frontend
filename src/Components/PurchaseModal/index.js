@@ -3,6 +3,8 @@ import { Button, Modal } from "react-bootstrap";
 import icon from "../../Images/coin.png";
 import classes from "./index.module.scss";
 import SuccessPurchase from "Components/SuccessPurchase";
+import { useDispatch } from "react-redux";
+import { coinsBuy } from "Redux/reducers/buyCoins";
 
 const PurchaseModal = (props) => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -11,11 +13,12 @@ const PurchaseModal = (props) => {
     setShowSuccessModal(false);
   };
 
+  const dispatch = useDispatch();
+
   const handleBuyClick = () => {
-    // Perform the purchase logic here
-    // Once the purchase is successful, show the success modal
     setShowSuccessModal(true);
-    // Close the purchase modal
+    props.buyCoins();
+    dispatch(coinsBuy(props.selectedCoin.coin));
     props.onHide();
   };
 
@@ -33,9 +36,10 @@ const PurchaseModal = (props) => {
           <div className="mb-3">
             <img width={"60px"} src={icon} alt="icon" />
           </div>
-          <h2 className="grad-text fw-bold">10,000</h2>
+          <h2 className="grad-text fw-bold">{props?.selectedCoin?.coin}</h2>
           <p className="text-light fw-bold">
-            are you sure you want to buy 10,000 coins for $10?
+            are you sure you want to buy {props?.selectedCoin?.coin} coins for $
+            {props?.selectedCoin?.price}?
           </p>
           <div className={classes.btnBox}>
             <Button onClick={handleBuyClick}>Buy</Button>
@@ -43,10 +47,14 @@ const PurchaseModal = (props) => {
           </div>
         </Modal.Body>
       </Modal>
-      <SuccessPurchase
-        show={showSuccessModal}
-        onHide={handleCloseSuccessModal}
-      />
+      {/* {props.flag ? (
+        <></>
+      ) : (
+        <SuccessPurchase
+          show={showSuccessModal}
+          onHide={handleCloseSuccessModal}
+        />
+      )} */}
     </>
   );
 };

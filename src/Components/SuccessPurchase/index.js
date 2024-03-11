@@ -1,5 +1,5 @@
-import React from 'react'
-import { Modal } from 'react-bootstrap'
+import React from "react";
+import { Modal } from "react-bootstrap";
 
 const SuccessPurchae = (props) => {
   return (
@@ -13,15 +13,12 @@ const SuccessPurchae = (props) => {
     >
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
-        <div className="mb-3">
-        </div>
+        <div className="mb-3"></div>
         {/* <h6>SELECT YOUR CARD</h6> */}
-        <p className="text-light">
-        No Card Available
-        </p>
+        <p className="text-light">Successfully Coins Buy</p>
       </Modal.Body>
     </Modal>
-  )
-}
+  );
+};
 
-export default SuccessPurchae
+export default SuccessPurchae;

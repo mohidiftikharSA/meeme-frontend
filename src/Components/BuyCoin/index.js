@@ -8,6 +8,7 @@ import shuffle from "../../Images/shuffle.png";
 import logo from "../../Images/logo.png";
 
 const BuyCoin = ({ purchase }) => {
+  console.log(purchase, "purchase");
   const [sliderValue, setSliderValue] = useState(0); // Initial value
   const minValue = 1;
   const maxValue = 14000;
@@ -41,32 +42,44 @@ const BuyCoin = ({ purchase }) => {
       ) : (
         <h6 className="mb-3">Amount</h6>
       )}
-      <div className={`${classes.box} ${purchase && `${classes.box} ${classes.cardBox}`}`}>
+      <div
+        className={`${classes.box} ${
+          purchase && `${classes.box} ${classes.cardBox}`
+        }`}
+      >
         <div className={classes.header}>
           <img width={"40"} src={coin} alt="coin" />
           <h3>{sliderValue}</h3>
         </div>
 
         <div className="px-2">
-          {purchase ?
+          {purchase ? (
+            <></>
+          ) : (
             <>
-
-            </> : (
-              <>
-                <Slider
-                  min={minValue}
-                  max={maxValue}
-                  value={sliderValue}
-                  onChange={handleSliderChange}
-                  className="mb-3"
-                />
-                <div className="d-flex align-items-center justify-content-between">
-                  <p><span style={{marginRight:'5px'}}><img width={"20"} src={coin} alt="coin" /></span>0</p>
-                  <p>14,000<span style={{marginLeft:'5px'}}><img width={"20"} src={coin} alt="coin" /></span></p>
-                </div>
-              </>
-
-            )}
+              <Slider
+                min={minValue}
+                max={maxValue}
+                value={sliderValue}
+                onChange={handleSliderChange}
+                className="mb-3"
+              />
+              <div className="d-flex align-items-center justify-content-between">
+                <p>
+                  <span style={{ marginRight: "5px" }}>
+                    <img width={"20"} src={coin} alt="coin" />
+                  </span>
+                  0
+                </p>
+                <p>
+                  14,000
+                  <span style={{ marginLeft: "5px" }}>
+                    <img width={"20"} src={coin} alt="coin" />
+                  </span>
+                </p>
+              </div>
+            </>
+          )}
           <div className={classes.inputBox}>
             {purchase ? (
               ""
