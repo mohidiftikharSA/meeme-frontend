@@ -36,9 +36,9 @@ function Navigation({ header, footer }) {
     };
     const [notifications, setNotifications] = useState([]);
     const prepareNotifications = (_notifications) => {
-        _notifications.forEach(item => {
+        _notifications?.forEach(item => {
             //.filter(row => row.status === 'un_read')
-            item.data.forEach(row => {
+            item?.data?.forEach(row => {
                 setNotifications(prevState => {
                     return [...prevState, { ...row, date: dayjs(row.created_at).format('MMM DD, YYYY h:mm A') }];
                 })
