@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Nav, Row, Tab } from "react-bootstrap";
 import Profile from "../../Images/Profile.png";
 import Wallet from "../../Images/Wallet.png";
@@ -27,6 +27,7 @@ import { BiMenuAltLeft } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import api from "../../APIs/settings";
 
 
 const transactionData = [
@@ -45,6 +46,12 @@ const ProfileSetting = () => {
   const [deleteAccountModalShow, setDeleteAccountShow] = useState(false);
   const [show, setShow] = useState(false);
   const [selectedSupportTicket , setSelectedSupportTicket] = useState();
+  const [existingCardDetails, setExistingCardDetails] = useState({
+    number: "",
+    expiry: "",
+    cvc: "",
+    brand: ""
+  });
   const location = useLocation();
 
   const textParam = new URLSearchParams(location.search).get("text");
@@ -65,6 +72,23 @@ const ProfileSetting = () => {
 
   const toggleActive = () => {
     setIsActive(!isActive);
+  };
+
+  useEffect(() => {
+    getUserCard();
+  }, []);
+
+  const getUserCard = async () => {
+    const card = await api.getCard();
+    if (card) {
+      let existingCard = card?.data?.user_cards[0];
+      setExistingCardDetails({
+        number: `**** **** **** ${existingCard?.last4}`,
+        expiry: `${existingCard?.exp_month} / ${existingCard?.exp_year}`,
+        cvc: existingCard?.cvc,
+        brand: existingCard?.brand
+      });
+    }
   };
 
   return (
@@ -136,7 +160,7 @@ const ProfileSetting = () => {
                         </span>
                         <div className="profileDetails">
                           <h6 className="mb-1">Billing Details</h6>
-                          <p>Mastercard ****0123</p>
+                          <p>{existingCardDetails?.brand} {existingCardDetails?.number.slice(-9)}</p>
                         </div>
                       </Nav.Link>
                     </Nav.Item>
@@ -229,7 +253,7 @@ const ProfileSetting = () => {
                       <RuleList />
                     </Tab.Pane>
                     <Tab.Pane eventKey="billing">
-                      <BillingDetails />
+                      <BillingDetails existingCardDetails={existingCardDetails} />
                     </Tab.Pane>
                     <Tab.Pane eventKey="support">
                       <Wizard>

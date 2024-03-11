@@ -51,8 +51,16 @@ export const ENDPOINT = {
   profile: {
     settings: {
       delete_user_account: `${API_URL}/users`,
+      create_user_billing_card: `${API_URL}/users/payments/add_a_card`,
+      toggle_user_notifications: `${API_URL}/users/notification_settings`,
+      fetch_all_card: `${API_URL}/users/payments/fetch_all_card`,
     },
-    searchUser: `${API_URL}/users/search?username=`,
+    profile: {
+      settings: {
+        delete_user_account: `${API_URL}/users`,
+      },
+      searchUser: `${API_URL}/users/search?username=`,
+    },
   },
 
   tournaments: {

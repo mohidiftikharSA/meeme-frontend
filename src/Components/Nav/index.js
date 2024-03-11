@@ -36,9 +36,9 @@ function Navigation({ header, footer }) {
     };
     const [notifications, setNotifications] = useState([]);
     const prepareNotifications = (_notifications) => {
-        _notifications.forEach(item => {
+        _notifications?.forEach(item => {
             //.filter(row => row.status === 'un_read')
-            item.data.forEach(row => {
+            item?.data?.forEach(row => {
                 setNotifications(prevState => {
                     return [...prevState, { ...row, date: dayjs(row.created_at).format('MMM DD, YYYY h:mm A') }];
                 })
@@ -59,6 +59,7 @@ function Navigation({ header, footer }) {
     const navigateToOtherProfile = (id) => {
         navigate(`/otherProfile/${id}`)
     }
+   
     return (<Navbar
         expand="lg"
         className={header ? "navBar" : "navBar aside pt-lg-5 pb-lg-3 py-3"}
@@ -87,11 +88,11 @@ function Navigation({ header, footer }) {
                         <img src={explore} alt="icon" />
                         Explore
                     </Nav.Link>
-                    <Nav.Link as={Link} to="/tornament" className={isLinkActive('/tornament')}>
+                    <Nav.Link as={Link} to="/tornament/tournament" className={isLinkActive('/tornament')}>
                         <img src={trophy} alt="icon" />
                         Tournament
                     </Nav.Link>
-                    <Nav.Link as={Link} to="/BuyCoin" className={isLinkActive('/BuyCoin')}>
+                    <Nav.Link as={Link} to="/tornament/store" className={isLinkActive('/BuyCoin')}>
                         <img src={Buy} alt="icon" />
                         Store
                     </Nav.Link>

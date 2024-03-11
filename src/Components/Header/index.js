@@ -5,20 +5,23 @@ import classes from "./index.module.scss";
 import Search from "Components/Search";
 import SearchResults from "Components/Search/SearchResult";
 import Navigation from "Components/Nav";
-import { Link } from "react-router-dom";
-import coinImg from "../../Images/coin.png";
+import { Link, useNavigate } from "react-router-dom";
+import coin from "../../Images/coin.png";
 import avatar from "../../Images/avatar.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import api from "APIs/dashboard/home";
 import SpinnerLoader from "../Loader/SpinnerLoader";
-import CoinsAPIs from "../../APIs/coins";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   const { profile, user } = useSelector((state) => state.auth);
-  const coin = useSelector((state) => state.coins);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const navigateToStore = (id) => {
+    navigate(`/BuyCoin`);
+  };
   let timeoutId;
   const handleScroll = () => {
     if (window.scrollY > 80) {
@@ -27,6 +30,7 @@ const Header = () => {
       setScrolling(false);
     }
   };
+
   const onSearch = async (value) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(async () => {
@@ -65,14 +69,11 @@ const Header = () => {
             <Navigation header />
             <ButtonGroup className="align-items-center" id="profile-btn">
               <Link to={"/Purchase"} className={`btn ${classes.iconBtn}`}>
-                <span className={classes.icon}>
+                <span className={classes.icon} onClick={navigateToStore}>
                   <i className="fas fa-plus"></i>
                 </span>
-                <span className={classes.text}>
-                  {/* {user?.coins || ""} */}
-                  {coin.allCoins}
-                </span>
-                <img src={coinImg} alt="icon" />
+                <span className={classes.text}>{user?.coins || "0"}</span>
+                <img src={coin} alt="icon" />
               </Link>
 
               <Link to={"/profile"} className={`btn ${classes.profileBtn}`}>

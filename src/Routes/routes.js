@@ -77,7 +77,7 @@ const routes = [
         component: Explore,
     },
     {
-        path: "/tornament",
+        path: "/tornament/:tab",
         authenticated: false,
         layout: MainLayout,
         component: Tournament,
