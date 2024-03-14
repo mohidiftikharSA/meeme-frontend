@@ -33,6 +33,12 @@ const PostItem = ({
     const onClickLikePost = (id) => {
         likePost(id)
     }
+
+
+    function isImage(item) {
+        return item.post_type && item.post_type.startsWith("image/");
+    }
+
     return (
         <>
             <div className={classes.postWrapper} key={ind}>
@@ -40,7 +46,7 @@ const PostItem = ({
                     <div className={classes.profile}>
                         <div className={classes.imgBox}>
                             {/* update condition to profile post */}
-                            <img src={item.user_image || (avatar.avatar || user2)}
+                            <img src={item?.user_image || (avatar.avatar || user2)}
                                 alt="user" />
                         </div>
                         <div className={classes.userDetail}>
@@ -77,7 +83,7 @@ const PostItem = ({
                 </div>
                 <div className={`${classes.imgBox} memeImg mb-3`}
                     onClick={() => openModal(item.post.id)}>
-                    {item.post_type === "image/jpeg" || item.post_type === "image/png" ? (<div>
+                    {isImage(item) ? (<div>
                         <div style={{ display: imagesLoaded[ind] ? 'none' : 'block' }}>
                             <Skeleton
                                 baseColor="#7c7b7c"
@@ -92,6 +98,7 @@ const PostItem = ({
                             onLoad={() => handleImageLoad(ind)}
                             onError={() => handleImageError(ind)}
                             src={item.compress_image} alt="img"
+                            key={ind}
                         />
                     </div>) : (<video width="100%" height="auto" controls>
                         <source src={item.post_image} type="video/mp4" />

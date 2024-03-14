@@ -58,7 +58,7 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
                         }`}
                     >
                         {postData.map((item, ind) => (
-                            <MemeItem key={item.post.id} item={item} openModal={openModal} explore/>
+                            <MemeItem key={ind} item={item} openModal={openModal} explore/>
                         ))}
                     </div>
             }
