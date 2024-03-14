@@ -5,14 +5,15 @@ import Logo from "Components/Logo";
 import AuthHeader from "Components/AuthHeader";
 import { Link, useNavigate } from "react-router-dom/dist";
 import AuthAPIs from "APIs/auth";
+import ConisAPIs from "../../../APIs/coins";
 import { Formik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import * as Yup from "yup"; // Import yup
 import { authSuccess } from "Redux/reducers/authSlice";
+import { fetchCardId } from "Redux/reducers/fetchCardID";
 
 const LoginFrom = () => {
-
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,15 +23,15 @@ const LoginFrom = () => {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Invalid email address") 
-      .required("Email is required"), 
+      .email("Invalid email address")
+      .required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
 
   const loginRes = async (data) => {
     setIsLoading(true);
     try {
-      const res = await AuthAPIs.login(data.email, data.password);
+      const res = await AuthAPIs.login(data?.email, data?.password);
       if (res) {
         setIsLoading(false);
         localStorage.setItem("accessToken", res.data.token);
@@ -47,6 +48,11 @@ const LoginFrom = () => {
           autoClose: 2000,
         });
       }
+
+      const fetchALlcards = await ConisAPIs.fetchAllCard();
+      const fetchAllCardID = fetchALlcards?.data?.user_cards[0];
+      // console.log(fetchAllCardID, "fetchAllCardID");
+      dispatch(fetchCardId(fetchAllCardID));
     } catch (error) {
       setIsLoading(false);
       console.error("Error while logging in:", error);
@@ -112,19 +118,22 @@ const LoginFrom = () => {
                 </p>
               </div>
 
-              {isLoading ?
+              {isLoading ? (
                 <Button type="submit" className="w-100 p-2 authButton" disabled>
                   Sign in
                 </Button>
-                :
+              ) : (
                 <Button type="submit" className="w-100 p-2 authButton">
                   Sign in
                 </Button>
-              }
+              )}
             </Form>
           )}
         </Formik>
-        <p style={{ textAlign: "center", paddingTop: '10px' }} className={classes.dark}>
+        <p
+          style={{ textAlign: "center", paddingTop: "10px" }}
+          className={classes.dark}
+        >
           New to memee?
           <Link className={classes.light} to="/signUp">
             Sign up

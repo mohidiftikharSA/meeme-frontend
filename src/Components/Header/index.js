@@ -55,6 +55,8 @@ const Header = () => {
     };
   }, []);
 
+  const myCoins = useSelector((state) => state.coins);
+
   return (
     <header
       className={`${
@@ -68,13 +70,16 @@ const Header = () => {
             <Search text={"Search"} onSearchChange={onSearch} />
             <Navigation header />
             <ButtonGroup className="align-items-center" id="profile-btn">
-              <Link to={"/Purchase"} className={`btn ${classes.iconBtn}`}>
+              <div className={`btn ${classes.iconBtn}`}>
                 <span className={classes.icon} onClick={navigateToStore}>
                   <i className="fas fa-plus"></i>
                 </span>
-                <span className={classes.text}>{user?.coins || "0"}</span>
-                <img src={coin} alt="icon" />
-              </Link>
+                <Link to={"/Purchase"}>
+                  {/* <span className={classes.text}>{user?.coins || "0"}</span> */}
+                  <span className={classes.text}>{myCoins.allCoins}</span>
+                  <img src={coin} alt="icon" />
+                </Link>
+              </div>
 
               <Link to={"/profile"} className={`btn ${classes.profileBtn}`}>
                 <img src={profile?.user_image || avatar} alt="icon" />

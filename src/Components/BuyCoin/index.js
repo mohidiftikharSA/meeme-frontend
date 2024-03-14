@@ -6,15 +6,24 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import shuffle from "../../Images/shuffle.png";
 import logo from "../../Images/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import CoinsAPIs from "../../APIs/coins";
+import { coinsBuy } from "Redux/reducers/buyCoins";
 
 const BuyCoin = ({ purchase }) => {
-  console.log(purchase, "purchase");
   const [sliderValue, setSliderValue] = useState(0); // Initial value
-  const minValue = 1;
+  const minValue = 0;
   const maxValue = 14000;
+
+  const [calVal, setCalVal] = useState();
+
+  const dispatch = useDispatch();
 
   const handleSliderChange = (newValue) => {
     setSliderValue(newValue);
+    const newCalculatedValue =
+      newValue === 0 ? 0 : (newValue * 0.0005).toFixed(2);
+    setCalVal(newCalculatedValue);
   };
 
   const handleInputChange = (event) => {
@@ -32,6 +41,41 @@ const BuyCoin = ({ purchase }) => {
       }
     }
   };
+
+  const fetchCardID = useSelector((state) => state.cardID);
+  console.log(!fetchCardID.obj == [], "useSelector ID fetch");
+
+  const buyCoins = async () => {
+    try {
+      if (!fetchCardID.obj == []) {
+        return console.log("404 Error!");
+      } else {
+        const priceInteger = parseInt(calVal);
+        const data = {
+          amount_to_be_paid: priceInteger,
+          card_id: fetchCardID[0],
+        };
+        const res = await CoinsAPIs.customerCharge(data);
+        dispatch(coinsBuy(res?.data.coins));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // const [inputValue, setInputValue] = useState(0);
+  // const [calculatedValue, setCalculatedValue] = useState("0.0");
+
+  // const handleInput = (e) => {
+  //   const value = parseFloat(e.target.value);
+  //   setInputValue(value);
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const newCalculatedValue = (inputValue * 0.0005).toFixed(2);
+  //   setCalculatedValue(newCalculatedValue);
+  // };
 
   return (
     <>
@@ -93,8 +137,11 @@ const BuyCoin = ({ purchase }) => {
                 type="number"
                 min={minValue}
                 max={maxValue}
-                value={sliderValue}
+                value={calVal}
+                // value={inputValue}
+                // value={calVal}
                 onChange={handleInputChange}
+                // onChange={handleInput}
                 className={classes.buyCoinInput}
               />
               {purchase ? (
@@ -107,7 +154,9 @@ const BuyCoin = ({ purchase }) => {
               )}
             </Form.Group>
 
-            <Button className="w-75 fs-6">Top Up</Button>
+            <Button className="w-75 fs-6" onClick={buyCoins}>
+              Top Up
+            </Button>
           </div>
         </div>
       </div>

@@ -21,14 +21,19 @@ const redirectToLogin = () => {
   }, 3000);
 };
 
+const path = window.location.pathname;
+
 const consoleErrorPerformRedirection = (error) => {
-  console.error(error?.response?.data?.message || error, "myError");
   toast.error(error?.response?.data?.message, {
     position: "top-right",
     autoClose: 2000,
   });
-  if (error?.response?.status === 401) {
-    redirectToLogin();
+  if (path === "/login") {
+    return;
+  } else {
+    if (error?.response?.status === 401) {
+      redirectToLogin();
+    }
   }
   // throw error
 };
