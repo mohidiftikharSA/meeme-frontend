@@ -48,7 +48,7 @@ const postStory = async (data) => {
 
 const searchUser = async (search_param) => {
   return await API.getMethod(
-    `${ENDPOINT.profile.searchUser}${search_param}`,
+    `${ENDPOINT.profile.profile.searchUser}${search_param}`,
     true
   );
 };

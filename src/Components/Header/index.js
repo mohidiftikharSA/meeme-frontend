@@ -40,7 +40,7 @@ const Header = () => {
         const response = await api.searchUser(value).finally(() => {
           setIsLoading(false);
         });
-        setSearchResults(response.data.similar_users);
+        setSearchResults(response?.data?.similar_users);
       } else {
         //  setTimeout(() => {
         setSearchResults([]);
@@ -88,7 +88,7 @@ const Header = () => {
           </div>
         </div>
       </Container>
-      {searchResults.length === 0 && isLoading ? (
+      {searchResults?.length === 0 && isLoading ? (
         <>
           <div className={classes.overlay}>
             <div className={`${classes.floatingLoader}`}>
@@ -97,7 +97,7 @@ const Header = () => {
           </div>
         </>
       ) : (
-        searchResults.length > 0 && (
+        searchResults?.length > 0 && (
           <div className={classes.overlay}>
             <div className={classes.floatingResults}>
               <SearchResults

@@ -29,7 +29,6 @@ const FollowingContent = () => {
 
     };
     const getFollowerPosts = async () => {
-        console.log("Calling Follower Posts")
         try {
             setIsLoading(true)
             const res = await postAPIs.getFollowingPosts();
@@ -52,7 +51,6 @@ const FollowingContent = () => {
         getStories();
     }
     useEffect(() => {
-        console.log("First call on mount..");
         const fetchData = async () => {
             await getFollowerPosts()
             await getStories()
