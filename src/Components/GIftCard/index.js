@@ -16,8 +16,7 @@ const GiftCard = ({ data, setCardRemovalId }) => {
     const buy = await AmazonCardAPIs.purchaseAmazonCard({ card_id: id });
     if (buy) {
       setCardRemovalId(id);
-      console.log("Card buy ---", buy.data);
-      toast.success("Amazon Card has been to you via Email");
+      toast.success("Amazon Card has been Sent to you via Email");
     }
     setIsLoading(false);
   };
