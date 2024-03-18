@@ -43,8 +43,6 @@ const BuyCoin = ({ purchase }) => {
   };
 
   const fetchCardID = useSelector((state) => state.cardID);
-  console.log(!fetchCardID.obj == [], "useSelector ID fetch");
-
   const buyCoins = async () => {
     try {
       if (!fetchCardID.obj == []) {

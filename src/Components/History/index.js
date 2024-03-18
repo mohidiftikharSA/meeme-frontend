@@ -14,7 +14,6 @@ const historyData = [{
     days: "04", memeNo: "100", status: true,
 },];
 const History = ({ tournamentData }) => {
-    console.log(JSON.stringify(tournamentData));
     const [judgedPosts, setJudgedPosts] = useState([])
     const navigate = useNavigate();
     const nextPage = (count) => {
@@ -23,7 +22,6 @@ const History = ({ tournamentData }) => {
     const hydrateFields = () => {
         const daysJudgedPosts = (tournamentData?.judged_posts ?? [])
             .sort((a, b) => new Date(b.post_date) - new Date(a.post_date));
-        console.log("Posts# ", JSON.stringify(daysJudgedPosts))
         setJudgedPosts(daysJudgedPosts);
 
     }

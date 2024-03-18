@@ -87,6 +87,11 @@ export const ENDPOINT = {
     chargeCustomer: `${API_URL}/users/payments/charge_a_customer`,
     fetchAllCards: `${API_URL}/users/payments/fetch_all_card`,
   },
+
+  amazon_cards: {
+    get_all_cards: `${API_URL}/amazon_cards`,
+    purchase_card: `${API_URL}/amazon_cards/purchase_card`
+  },
   transactionHistory: `${API_URL}/users/payments/show_transactions_history`,
   comments: `${API_URL}/comments`,
   getRecentPosts: `${API_URL}/posts/recent_posts`,
