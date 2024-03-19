@@ -17,10 +17,13 @@ const PurchaseModal = (props) => {
 
   const handleBuyClick = () => {
     setShowSuccessModal(true);
-    props.buyCoins();
-    dispatch(coinsBuy(props.selectedCoin.coin));
+    props?.buycoin();
+    console.log(props.selectedcoin.coin, "props.selectedcoin.coin");
+    dispatch(coinsBuy(props.selectedcoin.coin));
     props.onHide();
   };
+
+  // const priceINT = parseInt(props?.selectedcoin?.price);
 
   return (
     <>
@@ -36,10 +39,10 @@ const PurchaseModal = (props) => {
           <div className="mb-3">
             <img width={"60px"} src={icon} alt="icon" />
           </div>
-          <h2 className="grad-text fw-bold">{props?.selectedCoin?.coin}</h2>
+          <h2 className="grad-text fw-bold">{props?.selectedcoin?.coin}</h2>
           <p className="text-light fw-bold">
-            are you sure you want to buy {props?.selectedCoin?.coin} coins for $
-            {props?.selectedCoin?.price}?
+            are you sure you want to buy {props?.selectedcoin?.coin} coins for $
+            {parseInt(props?.selectedcoin?.price)}?
           </p>
           <div className={classes.btnBox}>
             <Button onClick={handleBuyClick}>Buy</Button>

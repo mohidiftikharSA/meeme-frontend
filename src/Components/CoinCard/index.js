@@ -33,7 +33,7 @@ const CoinCard = ({ data }) => {
 
   const dispatch = useDispatch();
 
-  const buyCoins = async () => {
+  const buycoin = async () => {
     try {
       const resAllCard = await CoinsAPIs.fetchAllCard();
       const userCardData = resAllCard?.data?.user_cards[0];
@@ -42,10 +42,12 @@ const CoinCard = ({ data }) => {
         amount_to_be_paid: priceInteger,
         card_id: userCardData?.card_id,
       };
+      console.log(resAllCard, "resAllCard");
       if (resAllCard.status === 404) {
-        return console.log("404 Error");
+        toast.success("Error");
       } else {
         const res = await CoinsAPIs.customerCharge(data);
+        // console.log(res, "res");
         dispatch(coinsBuy(res?.data.coins));
         toast.success("Successfully Coins Buy");
       }
@@ -57,7 +59,7 @@ const CoinCard = ({ data }) => {
   return (
     <>
       <Row className="mb-4">
-        {coinsPrices.map((item, ind) => {
+        {coinsPrices?.map((item, ind) => {
           return (
             <Col md={3} sm={4} xs={6} key={ind} className="mb-3">
               <Card className={classes.cardHolder}>
@@ -83,11 +85,11 @@ const CoinCard = ({ data }) => {
         })}
       </Row>
       <PurchaseModal
-        selectedCoin={selectedCoin}
-        coinsPrices={[coinsPrices]}
+        selectedcoin={selectedCoin}
+        // coinsprices={[coinsPrices]}
         show={showPurchaseModal}
         onHide={handleClosePurchaseModal}
-        buyCoins={buyCoins}
+        buycoin={buycoin}
         // flag={allCards.status === 404}
       />
     </>

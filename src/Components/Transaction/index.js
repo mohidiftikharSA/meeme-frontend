@@ -46,9 +46,9 @@ const Transaction = ({ data, noCard }) => {
       <ul
         className={`${classes.transaction} ${noCard && `${classes.minHeight}`}`}
       >
-        {coinsHistory.map((item, ind) => {
+        {coinsHistory?.map((item, ind) => {
           return (
-            <li>
+            <li key={ind}>
               <div className={classes.head}>
                 <img src={coin} alt="coin"></img>
                 <p className={classes.title}>{item.coins}</p>

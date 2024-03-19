@@ -11,6 +11,7 @@ import avatar from "../../Images/avatar.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import api from "APIs/dashboard/home";
 import SpinnerLoader from "../Loader/SpinnerLoader";
+import { clearCoins } from "Redux/reducers/buyCoins";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -55,7 +56,12 @@ const Header = () => {
     };
   }, []);
 
+  const dispatch = useDispatch();
+
   const myCoins = useSelector((state) => state.coins);
+  dispatch(clearCoins());
+  // console.log(myCoins, "myCOins");
+  // console.log(user, "userHeader");
 
   return (
     <header
@@ -75,8 +81,11 @@ const Header = () => {
                   <i className="fas fa-plus"></i>
                 </span>
                 <Link to={"/Purchase"}>
-                  {/* <span className={classes.text}>{user?.coins || "0"}</span> */}
-                  <span className={classes.text}>{myCoins.allCoins}</span>
+                  <span className={classes.text}>
+                    {/* {myCoins.allCoins === 0 ? user.coins : myCoins.allCoins} */}
+                    {user?.coins || myCoins.allCoins}
+                  </span>
+                  {/* <span className={classes.text}>{myCoins.allCoins}</span> */}
                   <img src={coin} alt="icon" />
                 </Link>
               </div>

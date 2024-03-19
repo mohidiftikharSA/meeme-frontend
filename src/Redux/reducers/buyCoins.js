@@ -9,10 +9,15 @@ export const coinsSlice = createSlice({
   initialState,
   reducers: {
     coinsBuy: (state, action) => {
+      // console.log(action.payload, "action.Ppayload");
       state.allCoins = action.payload;
+      // state.allCoins += action.payload;
+    },
+    clearCoins: (state) => {
+      state.allCoins = initialState.allCoins;
     },
   },
 });
 
-export const { coinsBuy } = coinsSlice.actions;
+export const { coinsBuy, clearCoins } = coinsSlice.actions;
 export default coinsSlice.reducer;
