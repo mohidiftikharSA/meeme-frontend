@@ -13,9 +13,14 @@ const transactions = async () => {
   return await API.getMethod(ENDPOINT.transactionHistory);
 };
 
+const createCheckoutSession = async()=>{
+  return await API.postMethod(ENDPOINT.coins.create_checkout_session,true,{})
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   fetchAllCard,
   customerCharge,
   transactions,
+  createCheckoutSession
 };
