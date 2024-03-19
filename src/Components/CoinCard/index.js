@@ -51,22 +51,14 @@ const CoinCard = ({ data }) => {
       console.error("Stripe has not been initialized yet.");
       return;
     }
-  
     try {
-      // const res = await CoinsAPIs.createCheckoutSession();
-      // console.log("Session id  --- ", res.data.sessionId);
-      console.log("Stripe Object  === ", stripe);
-  
-      setTimeout(async () => {
-        console.log("2000000");
-        const { error } = await stripe.redirectToCheckout({
-          sessionId: "cs_test_a11XNrw07cgrBkxl30MWC94sBGvm4ZrZ4W8bxUZOq36Ai8188iwzfmQgUg",
-        });
-  
-        if (error) {
-          console.error("Error redirecting to Checkout:", error);
-        }
-      }, 2000); // 2 seconds delay
+      const res = await CoinsAPIs.createCheckoutSession();
+        // window.location.href = res.data.session_url
+        window.open(res.data.session_url, '_blank');
+        // const result = await stripe.redirectToCheckout({
+        //   sessionId: res.data.sessionId,
+        // });
+        // console.log("Results ===", result);
     } catch (error) {
       console.error("Error during checkout:", error);
     }
