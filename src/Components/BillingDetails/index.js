@@ -8,6 +8,7 @@ import password from "../../Images/Password.png";
 import api from "../../APIs/settings";
 import NotificationService from "../../Services/NotificationService";
 import { useSelector } from "react-redux";
+import { loadStripe } from "@stripe/stripe-js";
 
 const BillingDetails = ({ existingCardDetails }) => {
   const [cardDetails, setCardDetails] = useState({
@@ -73,20 +74,40 @@ const BillingDetails = ({ existingCardDetails }) => {
     };
   };
   const onClickSave = async () => {
-    try {
-      const data = preparedAndValidateData();
-      if (data == null) {
-        return;
-      }
-      const res = await api.addUserBillingCard(data);
-      if (res.status === 200) {
-        NotificationService.showSuccess("Billing details saved successfully.");
-      } else {
-        console.error("Error: Unexpected status code", res.status);
-      }
-    } catch (error) {
-      console.error("Error while fetching data:", error);
+    const stripe = await loadStripe(
+      "pk_test_51NzfErL8UjBw116SQB20JlqjZ6znVy11TYwZ7RBNBDKubR5UFeYiu4TcmkyVMG5gDTBA0ja6lJwy2xxFqDW6uNZN00RMBzr0E1"
+    );
+    const data = preparedAndValidateData();
+    console.log("Data in billinng ==", data);
+
+    const { error, token } = await stripe.createToken("card", {
+      name: 'ali',
+      number: data.number,
+      exp_month: data.exp_month,
+      exp_year: data.exp_year,
+      cvc: data.cvc,
+    });
+
+    if (error) {
+      console.error("Stripe error:", error);
+    } else {
+      console.log("Stripe token:", token);
     }
+
+    // try {
+    //   const data = preparedAndValidateData();
+    //   if (data == null) {
+    //     return;
+    //   }
+    //   const res = await api.addUserBillingCard(data);
+    //   if (res.status === 200) {
+    //     NotificationService.showSuccess("Billing details saved successfully.");
+    //   } else {
+    //     console.error("Error: Unexpected status code", res.status);
+    //   }
+    // } catch (error) {
+    //   console.error("Error while fetching data:", error);
+    // }
   };
 
   return (
