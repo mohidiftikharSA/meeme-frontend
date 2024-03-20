@@ -43,7 +43,7 @@ const CoinCard = ({ data }) => {
         card_id: userCardData?.card_id,
       };
       console.log(resAllCard, "resAllCard");
-      if (resAllCard.status === 404) {
+      if (resAllCard.status == 404) {
         toast.success("Error");
       } else {
         const res = await CoinsAPIs.customerCharge(data);

@@ -22,6 +22,7 @@ const Transaction = ({ data, noCard }) => {
         return { ...item, created_at: formattedDate };
       });
       setCoinsHistory(formattedHistory, "transaction res");
+      // console.log(formattedHistory, "transaction res");
     } catch (error) {
       console.log(error);
     }
@@ -30,6 +31,8 @@ const Transaction = ({ data, noCard }) => {
   useEffect(() => {
     getHistory();
   }, []);
+
+  console.log(coinsHistory, "coinsHistory");
 
   return (
     <Card className={`${noCard ? classes.cardBox : "profileCard"}`}>
@@ -46,17 +49,27 @@ const Transaction = ({ data, noCard }) => {
       <ul
         className={`${classes.transaction} ${noCard && `${classes.minHeight}`}`}
       >
-        {coinsHistory?.map((item, ind) => {
-          return (
-            <li key={ind}>
-              <div className={classes.head}>
-                <img src={coin} alt="coin"></img>
-                <p className={classes.title}>{item.coins}</p>
-              </div>
-              <span>{item.created_at}</span>
-            </li>
-          );
-        })}
+        {coinsHistory?.length == 0 ? (
+          <>
+            <p
+              style={{ textAlign: "center", color: "white", fontSize: "12px" }}
+            >
+              No History Found!
+            </p>
+          </>
+        ) : (
+          coinsHistory?.map((item, ind) => {
+            return (
+              <li key={ind}>
+                <div className={classes.head}>
+                  <img src={coin} alt="coin"></img>
+                  <p className={classes.title}>{item.coins}</p>
+                </div>
+                <span>{item.created_at}</span>
+              </li>
+            );
+          })
+        )}
       </ul>
     </Card>
   );
