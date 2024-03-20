@@ -28,7 +28,7 @@ const MemeItem = ({item, openModal}) => {
                     <img
                         style={{display: imageLoaded ? 'block' : 'none'}}
                         src={item.compress_image}
-                        alt="img"
+                        alt={item.compress_image}
                         onLoad={handleImageLoad}
                         onError={(e) => {
                             e.target.src = defaultImage;

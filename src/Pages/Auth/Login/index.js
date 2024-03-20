@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 import * as Yup from "yup"; // Import yup
 import { authSuccess } from "Redux/reducers/authSlice";
 import { fetchCardId } from "Redux/reducers/fetchCardID";
-import buyCoins from "Redux/reducers/buyCoins";
 
 const LoginFrom = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +32,6 @@ const LoginFrom = () => {
     setIsLoading(true);
     try {
       const res = await AuthAPIs.login(data?.email, data?.password);
-      console.log(res, "res");
       if (res) {
         setIsLoading(false);
         localStorage.setItem("accessToken", res.data.token);
@@ -43,9 +41,6 @@ const LoginFrom = () => {
             accessToken: res.data.token,
           })
         );
-
-        // console.log(res?.data?.user.coins, "login conis");
-        dispatch(buyCoins(res?.data?.user.coins));
 
         navigate(`/home`);
         toast.success("Login Successfully", {

@@ -17,17 +17,17 @@ const Store = () => {
   const getAmazonCard = async()=>{
    const cards = await AmazonCardAPIs.getAlAmazonCard();
    if(cards){
-     console.log("Amazon Cards ===", cards?.data);
      setCards(cards?.data)
    }
   }
 
   /**
-   * Remove Purshaded card from the list
+   * Remove Purshased card from the list
    */
   useEffect(()=>{
     if(cardRemovalId){
-      console.log("Card Removal Id from the parent t=== ",cardRemovalId );
+      const removeCard = cards.filter((item)=> item?.id !== cardRemovalId);
+      setCards(removeCard)
     }
   },[cardRemovalId])
 

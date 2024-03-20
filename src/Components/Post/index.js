@@ -120,8 +120,8 @@ const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
      * Remove the post from Array when Flagged or Report
      */
     useEffect(() => {
-        console.log("Post Removal id ===", postRemovalId);
-        console.log("followingData ===", followingData);
+        // console.log("Post Removal id ===", postRemovalId);
+        // console.log("followingData ===", followingData);
         // if (postRemovalId) {
         //     const updatedData = followingData.filter(item => item?.post?.id !== postRemovalId);
         //     setFollowingData(updatedData);

@@ -13,7 +13,7 @@ const Transaction = ({ data, noCard }) => {
     try {
       const res = await CoinsAPI.transactions();
 
-      const formattedHistory = res?.data?.total_history.map((item) => {
+      const formattedHistory = res?.data?.total_history?.map((item) => {
         const date = new Date(item.created_at);
         const options = { year: "numeric", month: "short", day: "2-digit" };
         const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
@@ -49,27 +49,17 @@ const Transaction = ({ data, noCard }) => {
       <ul
         className={`${classes.transaction} ${noCard && `${classes.minHeight}`}`}
       >
-        {coinsHistory?.length == 0 ? (
-          <>
-            <p
-              style={{ textAlign: "center", color: "white", fontSize: "12px" }}
-            >
-              No History Found!
-            </p>
-          </>
-        ) : (
-          coinsHistory?.map((item, ind) => {
-            return (
-              <li key={ind}>
-                <div className={classes.head}>
-                  <img src={coin} alt="coin"></img>
-                  <p className={classes.title}>{item.coins}</p>
-                </div>
-                <span>{item.created_at}</span>
-              </li>
-            );
-          })
-        )}
+        {coinsHistory?.map((item, ind) => {
+          return (
+            <li key={ind}>
+              <div className={classes.head}>
+                <img src={coin} alt="coin"></img>
+                <p className={classes.title}>{item.coins}</p>
+              </div>
+              <span>{item.created_at}</span>
+            </li>
+          );
+        })}
       </ul>
     </Card>
   );

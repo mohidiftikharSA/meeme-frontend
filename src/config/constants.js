@@ -86,6 +86,8 @@ export const ENDPOINT = {
   coins: {
     chargeCustomer: `${API_URL}/users/payments/charge_a_customer`,
     fetchAllCards: `${API_URL}/users/payments/fetch_all_card`,
+    create_checkout_session: `${API_URL}/users/payments/create_checkout_session`
+
   },
 
   amazon_cards: {

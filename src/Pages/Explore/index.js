@@ -13,16 +13,16 @@ const Explore = () => {
   const [tags, setTags] = useState([]);
   const pageNumberRef = useRef(1);
   const [hasMore, setHasMore] = useState(true);
-  const [fetchedFirst, setFetchedFirst] = useState(false);
+  let firstAPICall = false;
 
   const getRecentPostAndTags = async () => {
     try {
-      if (fetchedFirst && pageNumberRef.current === 1) {
+      if (firstAPICall && pageNumberRef.current === 1) {
         return;
       }
       const res = await postAPIs.getRecentPosts(pageNumberRef.current);
       if (res.status === 200) {
-        setFetchedFirst(true);
+        firstAPICall = true;
         // Extract IDs of recent posts
         const existingPostIds = new Set(
           recentPosts.map((post) => post.post.id)

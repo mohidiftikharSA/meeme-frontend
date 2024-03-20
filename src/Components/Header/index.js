@@ -11,7 +11,6 @@ import avatar from "../../Images/avatar.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import api from "APIs/dashboard/home";
 import SpinnerLoader from "../Loader/SpinnerLoader";
-import { clearCoins } from "Redux/reducers/buyCoins";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -41,7 +40,7 @@ const Header = () => {
         const response = await api.searchUser(value).finally(() => {
           setIsLoading(false);
         });
-        setSearchResults(response.data.similar_users);
+        setSearchResults(response?.data?.similar_users);
       } else {
         //  setTimeout(() => {
         setSearchResults([]);
@@ -56,12 +55,7 @@ const Header = () => {
     };
   }, []);
 
-  const dispatch = useDispatch();
-
   const myCoins = useSelector((state) => state.coins);
-  dispatch(clearCoins());
-  // console.log(myCoins, "myCOins");
-  // console.log(user, "userHeader");
 
   return (
     <header
@@ -82,7 +76,6 @@ const Header = () => {
                 </span>
                 <Link to={"/Purchase"}>
                   <span className={classes.text}>
-                    {/* {myCoins.allCoins === 0 ? user.coins : myCoins.allCoins} */}
                     {user?.coins || myCoins.allCoins}
                   </span>
                   {/* <span className={classes.text}>{myCoins.allCoins}</span> */}
@@ -97,7 +90,7 @@ const Header = () => {
           </div>
         </div>
       </Container>
-      {searchResults.length === 0 && isLoading ? (
+      {searchResults?.length === 0 && isLoading ? (
         <>
           <div className={classes.overlay}>
             <div className={`${classes.floatingLoader}`}>
@@ -106,7 +99,7 @@ const Header = () => {
           </div>
         </>
       ) : (
-        searchResults.length > 0 && (
+        searchResults?.length > 0 && (
           <div className={classes.overlay}>
             <div className={classes.floatingResults}>
               <SearchResults

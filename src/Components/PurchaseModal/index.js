@@ -4,7 +4,7 @@ import icon from "../../Images/coin.png";
 import classes from "./index.module.scss";
 import SuccessPurchase from "Components/SuccessPurchase";
 import { useDispatch } from "react-redux";
-import { coinsBuy } from "Redux/reducers/buyCoins";
+import { clearCoins, coinsBuy } from "Redux/reducers/buyCoins";
 
 const PurchaseModal = (props) => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -17,13 +17,11 @@ const PurchaseModal = (props) => {
 
   const handleBuyClick = () => {
     setShowSuccessModal(true);
-    props?.buycoin();
-    console.log(props.selectedcoin.coin, "props.selectedcoin.coin");
+    props.buycoins();
     dispatch(coinsBuy(props.selectedcoin.coin));
+    dispatch(clearCoins());
     props.onHide();
   };
-
-  // const priceINT = parseInt(props?.selectedcoin?.price);
 
   return (
     <>
@@ -42,6 +40,7 @@ const PurchaseModal = (props) => {
           <h2 className="grad-text fw-bold">{props?.selectedcoin?.coin}</h2>
           <p className="text-light fw-bold">
             are you sure you want to buy {props?.selectedcoin?.coin} coins for $
+            {/* {props?.selectedcoin?.price}? */}
             {parseInt(props?.selectedcoin?.price)}?
           </p>
           <div className={classes.btnBox}>
