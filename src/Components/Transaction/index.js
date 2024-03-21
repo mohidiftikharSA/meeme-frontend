@@ -13,7 +13,7 @@ const Transaction = ({ data, noCard }) => {
     try {
       const res = await CoinsAPI.transactions();
 
-      const formattedHistory = res?.data?.total_history.map((item) => {
+      const formattedHistory = res?.data?.total_history?.map((item) => {
         const date = new Date(item.created_at);
         const options = { year: "numeric", month: "short", day: "2-digit" };
         const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
@@ -22,6 +22,7 @@ const Transaction = ({ data, noCard }) => {
         return { ...item, created_at: formattedDate };
       });
       setCoinsHistory(formattedHistory, "transaction res");
+      // console.log(formattedHistory, "transaction res");
     } catch (error) {
       console.log(error);
     }
@@ -30,6 +31,8 @@ const Transaction = ({ data, noCard }) => {
   useEffect(() => {
     getHistory();
   }, []);
+
+  console.log(coinsHistory, "coinsHistory");
 
   return (
     <Card className={`${noCard ? classes.cardBox : "profileCard"}`}>
@@ -46,17 +49,23 @@ const Transaction = ({ data, noCard }) => {
       <ul
         className={`${classes.transaction} ${noCard && `${classes.minHeight}`}`}
       >
-        {coinsHistory.map((item, ind) => {
-          return (
-            <li>
-              <div className={classes.head}>
-                <img src={coin} alt="coin"></img>
-                <p className={classes.title}>{item.coins}</p>
-              </div>
-              <span>{item.created_at}</span>
-            </li>
-          );
-        })}
+        {coinsHistory && coinsHistory[0] ? (
+          coinsHistory?.map((item, ind) => {
+            return (
+              <li key={ind}>
+                <div className={classes.head}>
+                  <img src={coin} alt="coin"></img>
+                  <p className={classes.title}>{item.coins}</p>
+                </div>
+                <span>{item.created_at}</span>
+              </li>
+            );
+          })
+        ) : (
+          <p style={{ color: "white", textAlign: "center" }}>
+            No Purchasing History Available
+          </p>
+        )}
       </ul>
     </Card>
   );

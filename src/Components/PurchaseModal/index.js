@@ -4,7 +4,7 @@ import icon from "../../Images/coin.png";
 import classes from "./index.module.scss";
 import SuccessPurchase from "Components/SuccessPurchase";
 import { useDispatch } from "react-redux";
-import { coinsBuy } from "Redux/reducers/buyCoins";
+import { clearCoins, coinsBuy } from "Redux/reducers/buyCoins";
 
 const PurchaseModal = (props) => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -17,8 +17,9 @@ const PurchaseModal = (props) => {
 
   const handleBuyClick = () => {
     setShowSuccessModal(true);
-    props.buyCoins();
-    dispatch(coinsBuy(props.selectedCoin.coin));
+    props.buycoins(`${props?.selectedcoin?.coins} Coins`, Math.round(props?.selectedcoin?.price) );
+    // dispatch(coinsBuy(props.selectedcoin.coin));
+    // dispatch(clearCoins());
     props.onHide();
   };
 
@@ -36,10 +37,11 @@ const PurchaseModal = (props) => {
           <div className="mb-3">
             <img width={"60px"} src={icon} alt="icon" />
           </div>
-          <h2 className="grad-text fw-bold">{props?.selectedCoin?.coin}</h2>
+          <h2 className="grad-text fw-bold">{props?.selectedcoin?.coins}</h2>
           <p className="text-light fw-bold">
-            are you sure you want to buy {props?.selectedCoin?.coin} coins for $
-            {props?.selectedCoin?.price}?
+            are you sure you want to buy {props?.selectedcoin?.coin} coins for $
+            {/* {props?.selectedcoin?.price}? */}
+            {parseInt(props?.selectedcoin?.price)}?
           </p>
           <div className={classes.btnBox}>
             <Button onClick={handleBuyClick}>Buy</Button>

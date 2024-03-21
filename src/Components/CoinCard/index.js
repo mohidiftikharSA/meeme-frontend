@@ -9,32 +9,39 @@ import CoinsAPIs from "../../APIs/coins";
 import { useDispatch } from "react-redux";
 import { coinsBuy } from "Redux/reducers/buyCoins";
 import { toast } from "react-toastify";
-import { loadStripe } from "@stripe/stripe-js";
-
+import Loader from "Components/Loader";
+import { useLocation } from "react-router-dom";
+import SuccessPurchase from "Components/SuccessPurchase";
 
 const CoinCard = ({ data }) => {
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [coinsPrices, setCoinsPrices] = useState([]);
-  const [stripe, setStripe] = useState(null);
-  
+  const [isLoading, setIsLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const amount = searchParams.get("amount");
+    const coins = searchParams.get("coins");
+
+    console.log("Amount:", amount);
+    console.log("Coins:", coins);
+    if (amount && coins) {
+      setShowSuccessModal(true);
+    }
+  }, [location.search]);
+
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
   };
-  
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+  };
   useEffect(() => {
     getCoinPrices();
-    
- 
-    const initializeStripe = async () => {
-      const stripePromise = loadStripe(
-        "pk_test_51JVDVdETiAUwBhfEIyI7d2Fb0V2cnYM0K6irquHFzUHITElhnVbKnZdc0kEprNaikLTyv8nBz6exFHbMnZOjQ81e003bqOrlqE"
-      );
-      const stripeObject = await stripePromise;
-      setStripe(stripeObject);
-    };
-    initializeStripe();
   }, []);
-  
+
   const getCoinPrices = async () => {
     const coins = await AuthAPIs.getcoinprices();
     if (coins) {
@@ -45,26 +52,24 @@ const CoinCard = ({ data }) => {
   const [selectedCoin, setSelectedCoin] = useState(null);
 
   const dispatch = useDispatch();
-  
-  const buyCoins = async () => {
-    if (!stripe) {
-      console.error("Stripe has not been initialized yet.");
-      return;
-    }
+
+  const buyCoins = async (name, amount) => {
     try {
-      const res = await CoinsAPIs.createCheckoutSession();
-        // window.location.href = res.data.session_url
-        window.open(res.data.session_url, '_blank');
-        // const result = await stripe.redirectToCheckout({
-        //   sessionId: res.data.sessionId,
-        // });
-        // console.log("Results ===", result);
+      setIsLoading(true);
+      const res = await CoinsAPIs.createCheckoutSession({
+        product_name: name,
+        amount: amount,
+      });
+      if (res) {
+        setIsLoading(false);
+        window.location.href = res.data.session_url;
+      }
     } catch (error) {
-      console.error("Error during checkout:", error);
+      toast.error("Error Buying Coins");
     }
+    setIsLoading(false);
   };
-  
-  
+
   // try {
   //   const resAllCard = await CoinsAPIs.fetchAllCard();
   //   const userCardData = resAllCard?.data?.user_cards[0];
@@ -85,6 +90,7 @@ const CoinCard = ({ data }) => {
   // }
   return (
     <>
+      <Loader isLoading={isLoading} />
       <Row className="mb-4">
         {coinsPrices.map((item, ind) => {
           return (
@@ -93,7 +99,7 @@ const CoinCard = ({ data }) => {
                 <div className={"imgBox "}>
                   <img src={coin} alt="img" />
                 </div>
-                <h5>{item.coin}</h5>
+                <h5>{item.coins}</h5>
                 <Link
                   onClick={() => {
                     setShowPurchaseModal(true);
@@ -112,13 +118,19 @@ const CoinCard = ({ data }) => {
         })}
       </Row>
       <PurchaseModal
-        selectedCoin={selectedCoin}
-        coinsPrices={[coinsPrices]}
+        selectedcoin={selectedCoin}
+        coinsprices={[coinsPrices]}
         show={showPurchaseModal}
         onHide={handleClosePurchaseModal}
-        buyCoins={buyCoins}
+        buycoins={buyCoins}
         // flag={allCards.status === 404}
       />
+      {showSuccessModal && (
+        <SuccessPurchase
+          show={showSuccessModal}
+          onHide={handleCloseSuccessModal}
+        />
+      )}
     </>
   );
 };

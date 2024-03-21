@@ -75,8 +75,10 @@ const Header = () => {
                   <i className="fas fa-plus"></i>
                 </span>
                 <Link to={"/Purchase"}>
-                  {/* <span className={classes.text}>{user?.coins || "0"}</span> */}
-                  <span className={classes.text}>{myCoins.allCoins}</span>
+                  <span className={classes.text}>
+                    {user?.coins || myCoins.allCoins}
+                  </span>
+                  {/* <span className={classes.text}>{myCoins.allCoins}</span> */}
                   <img src={coin} alt="icon" />
                 </Link>
               </div>
