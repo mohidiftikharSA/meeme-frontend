@@ -28,7 +28,12 @@ import { RxCross1 } from "react-icons/rx";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import api from "../../APIs/settings";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
+const stripePromise = loadStripe(
+  "pk_test_51NzfErL8UjBw116SQB20JlqjZ6znVy11TYwZ7RBNBDKubR5UFeYiu4TcmkyVMG5gDTBA0ja6lJwy2xxFqDW6uNZN00RMBzr0E1"
+);
 
 const transactionData = [
   {
@@ -42,22 +47,20 @@ const transactionData = [
 ];
 
 const ProfileSetting = () => {
- 
   const [deleteAccountModalShow, setDeleteAccountShow] = useState(false);
   const [show, setShow] = useState(false);
-  const [selectedSupportTicket , setSelectedSupportTicket] = useState();
+  const [selectedSupportTicket, setSelectedSupportTicket] = useState();
   const [existingCardDetails, setExistingCardDetails] = useState({
     number: "",
     expiry: "",
     cvc: "",
-    brand: ""
+    brand: "",
   });
   const location = useLocation();
 
   const textParam = new URLSearchParams(location.search).get("text");
 
   const { profile } = useSelector((state) => state.auth);
-
 
   const deleteClick = () => {
     setDeleteAccountShow(true);
@@ -86,7 +89,7 @@ const ProfileSetting = () => {
         number: `**** **** **** ${existingCard?.last4}`,
         expiry: `${existingCard?.exp_month} / ${existingCard?.exp_year}`,
         cvc: existingCard?.cvc,
-        brand: existingCard?.brand
+        brand: existingCard?.brand,
       });
     }
   };
@@ -95,9 +98,7 @@ const ProfileSetting = () => {
     <>
       <section className="mb-5" style={{ position: "unset" }}>
         <Container>
-          <div
-            className="vertical-NavHolder"
-          >
+          <div className="vertical-NavHolder">
             <Heading title="Setting" linkPath={"profile"} />
             <Tab.Container id="verticalNav" defaultActiveKey={textParam}>
               <Row>
@@ -122,7 +123,7 @@ const ProfileSetting = () => {
                   </span>
                   <Nav variant="pills" className="flex-column">
                     <Nav.Item>
-                      <Nav.Link eventKey="account" >
+                      <Nav.Link eventKey="account">
                         <span>
                           <img src={Profile} alt="Profile" />
                         </span>
@@ -143,7 +144,7 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="transaction" >
+                      <Nav.Link eventKey="transaction">
                         <span>
                           <img src={documents} alt="document-icon" />
                         </span>
@@ -154,21 +155,21 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="billing" >
+                      <Nav.Link eventKey="billing">
                         <span>
                           <img src={Wallet} alt="wallet-icon" />
                         </span>
                         <div className="profileDetails">
                           <h6 className="mb-1">Billing Details</h6>
-                          <p>{existingCardDetails?.brand} {existingCardDetails?.number.slice(-9)}</p>
+                          <p>
+                            {existingCardDetails?.brand}{" "}
+                            {existingCardDetails?.number.slice(-9)}
+                          </p>
                         </div>
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link
-                        eventKey="notifications"
-                        
-                      >
+                      <Nav.Link eventKey="notifications">
                         <span>
                           <img src={Notification} alt="notification-icon" />
                         </span>
@@ -179,7 +180,7 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="support" >
+                      <Nav.Link eventKey="support">
                         <span>
                           <img src={support} alt="support-icon" />
                         </span>
@@ -189,7 +190,7 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="faq" >
+                      <Nav.Link eventKey="faq">
                         <span>
                           <img src={Faq} alt="faq-icon" />
                         </span>
@@ -199,7 +200,7 @@ const ProfileSetting = () => {
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="rule" >
+                      <Nav.Link eventKey="rule">
                         <span>
                           <img src={file} alt="file-icon" />
                         </span>
@@ -231,7 +232,7 @@ const ProfileSetting = () => {
                   </Nav>
                 </Col>
                 <Col
-                lg={6}
+                  lg={6}
                   className={`p-lg-0 content-responsive profile-setting ${
                     isActive ? "active" : ""
                   }`}
@@ -253,13 +254,19 @@ const ProfileSetting = () => {
                       <RuleList />
                     </Tab.Pane>
                     <Tab.Pane eventKey="billing">
-                      <BillingDetails existingCardDetails={existingCardDetails} />
+                      <Elements stripe={stripePromise}>
+                        <BillingDetails
+                          existingCardDetails={existingCardDetails}
+                        />
+                      </Elements>
                     </Tab.Pane>
                     <Tab.Pane eventKey="support">
                       <Wizard>
                         <Support supportTicket={setSelectedSupportTicket} />
                         <SupportDetail />
-                        <SupportChat selectedSupportTicket={selectedSupportTicket} />
+                        <SupportChat
+                          selectedSupportTicket={selectedSupportTicket}
+                        />
                       </Wizard>
                     </Tab.Pane>
                   </Tab.Content>

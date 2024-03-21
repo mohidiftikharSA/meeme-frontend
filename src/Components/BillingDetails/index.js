@@ -9,6 +9,12 @@ import api from "../../APIs/settings";
 import NotificationService from "../../Services/NotificationService";
 import { useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
+// import {
+//   CardElement,
+//   Elements,
+//   useStripe,
+//   useElements,
+// } from "@stripe/react-stripe-js";
 
 const BillingDetails = ({ existingCardDetails }) => {
   const [cardDetails, setCardDetails] = useState({
@@ -16,6 +22,10 @@ const BillingDetails = ({ existingCardDetails }) => {
     expiry: "",
     cvc: "",
   });
+
+  // const stripe = useStripe();
+  // const elements = useElements();
+  const [error, setError] = useState(null);
 
   const { profile } = useSelector((state) => state.auth);
   const onChangeHandler = (event, type) => {
@@ -73,26 +83,31 @@ const BillingDetails = ({ existingCardDetails }) => {
       cvc,
     };
   };
-  const onClickSave = async () => {
-    const stripe = await loadStripe(
-      "pk_test_51NzfErL8UjBw116SQB20JlqjZ6znVy11TYwZ7RBNBDKubR5UFeYiu4TcmkyVMG5gDTBA0ja6lJwy2xxFqDW6uNZN00RMBzr0E1"
-    );
-    const data = preparedAndValidateData();
-    console.log("Data in billinng ==", data);
+  const onClickSave = async (e) => {
+    e.preventDefault();
+    console.log("TODO");
+    // const data = preparedAndValidateData();
+    // console.log("Data in billinng ==", CardElement);
+    // console.log("stripe ....", stripe);
 
-    const { error, token } = await stripe.createToken("card", {
-      name: 'ali',
-      number: data.number,
-      exp_month: data.exp_month,
-      exp_year: data.exp_year,
-      cvc: data.cvc,
-    });
+    // if (!stripe || !elements) {
+    //   // Stripe.js has not loaded yet. Make sure to disable form submission until Stripe.js has loaded.
+    //   return;
+    // }
 
-    if (error) {
-      console.error("Stripe error:", error);
-    } else {
-      console.log("Stripe token:", token);
-    }
+    // const cardElement = elements.getElement(CardElement);
+    // console.log("Create token --", cardElement);
+    // setTimeout(async () => {
+    //   console.log("After 3 sec");
+    //   const { error, token } = await stripe.createToken(cardElement);
+    //   console.log("[Token]", token)
+    // }, 3000);
+
+    // if (error) {
+    //   console.log("[error]", error);
+    // } else {
+    //   // You can now use the token to make a payment or save it on your server
+    // }
 
     // try {
     //   const data = preparedAndValidateData();
@@ -160,6 +175,13 @@ const BillingDetails = ({ existingCardDetails }) => {
           Save
         </Button>
       </div>
+      {/* <form onSubmit={onClickSave}>
+        <CardElement />
+        {error && <div>{error}</div>}
+        <button type="submit" disabled={!stripe}>
+          Pay
+        </button>
+      </form> */}
     </Card>
   );
 };
