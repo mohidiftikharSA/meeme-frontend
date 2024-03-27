@@ -50,11 +50,6 @@ const LoginFrom = () => {
           autoClose: 2000,
         });
       }
-
-      const fetchALlcards = await ConisAPIs.fetchAllCard();
-      const fetchAllCardID = fetchALlcards?.data?.user_cards[0];
-      // console.log(fetchAllCardID, "fetchAllCardID");
-      dispatch(fetchCardId(fetchAllCardID));
     } catch (error) {
       setIsLoading(false);
       console.error("Error while logging in:", error);
