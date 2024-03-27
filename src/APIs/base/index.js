@@ -30,11 +30,9 @@ const consoleErrorPerformRedirection = (error) => {
   });
   if (path === "/login") {
     return;
-  } else {
-    if (error?.response?.status === 401) {
-      redirectToLogin();
-    }
-  }
+  } else if (error?.response?.status === 401) {
+    redirectToLogin();
+  };
   // throw error
 };
 

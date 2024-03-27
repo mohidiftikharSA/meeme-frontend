@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import PurchaseModal from "Components/PurchaseModal";
 import AuthAPIs from "../../APIs/auth";
 import CoinsAPIs from "../../APIs/coins";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { coinsBuy } from "Redux/reducers/buyCoins";
 import { toast } from "react-toastify";
 import Loader from "Components/Loader";
@@ -19,22 +19,26 @@ const CoinCard = ({ data }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const location = useLocation();
+  const dispatch = useDispatch();
+  const myCoins = useSelector((state) => state.coins);
+
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const amount = searchParams.get("amount");
     const coins = searchParams.get("coins");
 
-    console.log("Amount:", amount);
-    console.log("Coins:", coins);
+    let curr_coins = myCoins?.allCoins;
     if (amount && coins) {
+      curr_coins = parseInt(curr_coins) +  parseInt(coins)
+      dispatch(coinsBuy(curr_coins));
       setShowSuccessModal(true);
     }
   }, [location.search]);
 
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
-  };
+  };                                                                                        
   const handleCloseSuccessModal = () => {
     setShowSuccessModal(false);
   };
@@ -51,7 +55,6 @@ const CoinCard = ({ data }) => {
 
   const [selectedCoin, setSelectedCoin] = useState(null);
 
-  const dispatch = useDispatch();
 
   const buyCoins = async (name, amount) => {
     try {
@@ -70,24 +73,6 @@ const CoinCard = ({ data }) => {
     setIsLoading(false);
   };
 
-  // try {
-  //   const resAllCard = await CoinsAPIs.fetchAllCard();
-  //   const userCardData = resAllCard?.data?.user_cards[0];
-  //   const priceInteger = parseInt(selectedCoin.price);
-  //   const data = {
-  //     amount_to_be_paid: priceInteger,
-  //     card_id: userCardData?.card_id,
-  //   };
-  //   if (resAllCard.status === 404) {
-  //     return console.log("404 Error");
-  //   } else {
-  //     const res = await CoinsAPIs.customerCharge(data);
-  //     dispatch(coinsBuy(res?.data.coins));
-  //     toast.success("Successfully Coins Buy");
-  //   }
-  // } catch (error) {
-  //   console.log(error, "404 Error");
-  // }
   return (
     <>
       <Loader isLoading={isLoading} />
@@ -99,7 +84,7 @@ const CoinCard = ({ data }) => {
                 <div className={"imgBox "}>
                   <img src={coin} alt="img" />
                 </div>
-                <h5>{item.coins}</h5>
+                <h5>{item.coin || item.coins}</h5>
                 <Link
                   onClick={() => {
                     setShowPurchaseModal(true);

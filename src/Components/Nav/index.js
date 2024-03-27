@@ -23,6 +23,7 @@ function Navigation({ header, footer }) {
     const location = useLocation();
     const { profile, user } = useSelector((state) => state.auth);
     const navigate = useNavigate();
+    const {allCoins} = useSelector((state) => state.coins);
 
 
     const isLinkActive = (path) => {
@@ -140,7 +141,7 @@ function Navigation({ header, footer }) {
                             <span className={classes.icon}>
                                 <i className="fas fa-plus"></i>
                             </span>
-                            <span className={classes.text}>{user?.coins || '0'} </span>
+                            <span className={classes.text}>{allCoins || '0'} </span>
                             <img src={coin} alt="icon" />
                         </Link>
                         <Link to={"/profile"} className={`btn ${classes.profileBtn}`}>

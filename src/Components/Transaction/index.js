@@ -22,7 +22,6 @@ const Transaction = ({ data, noCard }) => {
         return { ...item, created_at: formattedDate };
       });
       setCoinsHistory(formattedHistory, "transaction res");
-      // console.log(formattedHistory, "transaction res");
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +31,6 @@ const Transaction = ({ data, noCard }) => {
     getHistory();
   }, []);
 
-  console.log(coinsHistory, "coinsHistory");
 
   return (
     <Card className={`${noCard ? classes.cardBox : "profileCard"}`}>

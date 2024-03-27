@@ -9,13 +9,15 @@ import logo from "../../Images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import CoinsAPIs from "../../APIs/coins";
 import { coinsBuy } from "Redux/reducers/buyCoins";
+import { toast } from "react-toastify";
+import Loader from "Components/Loader";
 
 const BuyCoin = ({ purchase }) => {
-  const [sliderValue, setSliderValue] = useState(0); // Initial value
+  const [sliderValue, setSliderValue] = useState(0);
+  const [calVal, setCalVal] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const minValue = 0;
   const maxValue = 14000;
-
-  const [calVal, setCalVal] = useState();
 
   const dispatch = useDispatch();
 
@@ -29,7 +31,7 @@ const BuyCoin = ({ purchase }) => {
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     if (inputValue === "") {
-      setSliderValue(""); // Clear the slider value when input is empty
+      setSliderValue("");
     } else {
       const newValue = parseInt(inputValue);
       if (!isNaN(newValue) && newValue >= minValue && newValue <= maxValue) {
@@ -42,41 +44,29 @@ const BuyCoin = ({ purchase }) => {
     }
   };
 
-  const fetchCardID = useSelector((state) => state.cardID);
   const buyCoins = async () => {
     try {
-      if (!fetchCardID.obj == []) {
-        return console.log("404 Error!");
-      } else {
-        const priceInteger = parseInt(calVal);
-        const data = {
-          amount_to_be_paid: priceInteger,
-          card_id: fetchCardID[0],
-        };
-        const res = await CoinsAPIs.customerCharge(data);
-        dispatch(coinsBuy(res?.data.coins));
+      setIsLoading(true);
+      console.log("slider vale  == ", sliderValue);
+      console.log("calVal vale  == ", parseFloat(calVal));
+
+      const res = await CoinsAPIs.createCheckoutSession({
+        product_name: sliderValue,
+        amount: parseFloat(calVal),
+      });
+      if (res) {
+        setIsLoading(false);
+        window.location.href = res.data.session_url;
       }
     } catch (error) {
-      console.log(error);
+      toast.error("Error Buying Coins");
     }
+    setIsLoading(false);
   };
-
-  // const [inputValue, setInputValue] = useState(0);
-  // const [calculatedValue, setCalculatedValue] = useState("0.0");
-
-  // const handleInput = (e) => {
-  //   const value = parseFloat(e.target.value);
-  //   setInputValue(value);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const newCalculatedValue = (inputValue * 0.0005).toFixed(2);
-  //   setCalculatedValue(newCalculatedValue);
-  // };
 
   return (
     <>
+      {isLoading && <Loader isLoading={isLoading} />}
       {purchase ? (
         <div className="text-center mb-5">
           <img width={"100px"} src={logo} alt="img" />

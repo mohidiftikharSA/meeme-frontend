@@ -9,9 +9,10 @@ import ConisAPIs from "../../../APIs/coins";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import * as Yup from "yup"; // Import yup
+import * as Yup from "yup"; 
 import { authSuccess } from "Redux/reducers/authSlice";
 import { fetchCardId } from "Redux/reducers/fetchCardID";
+import { coinsBuy } from "Redux/reducers/buyCoins";
 
 const LoginFrom = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,6 +42,7 @@ const LoginFrom = () => {
             accessToken: res.data.token,
           })
         );
+        dispatch(coinsBuy(res.data?.user.coins))
 
         navigate(`/home`);
         toast.success("Login Successfully", {
