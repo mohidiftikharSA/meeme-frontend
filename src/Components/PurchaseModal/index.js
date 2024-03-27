@@ -10,7 +10,7 @@ const PurchaseModal = (props) => {
   const dispatch = useDispatch();
 
   const handleBuyClick = () => {
-    props.buycoins(props?.selectedcoin?.coins, Math.round(props?.selectedcoin?.price) );
+    props.buycoins(props?.selectedcoin?.coins || props?.selectedcoin?.coin, Math.round(props?.selectedcoin?.price) );
     // dispatch(coinsBuy(props.selectedcoin.coin));
     // dispatch(clearCoins());
     props.onHide();

@@ -28,22 +28,6 @@ const BuyCoin = ({ purchase }) => {
     setCalVal(newCalculatedValue);
   };
 
-  const handleInputChange = (event) => {
-    const inputValue = event.target.value;
-    if (inputValue === "") {
-      setSliderValue("");
-    } else {
-      const newValue = parseInt(inputValue);
-      if (!isNaN(newValue) && newValue >= minValue && newValue <= maxValue) {
-        setSliderValue(newValue);
-      } else if (newValue < minValue) {
-        setSliderValue(minValue);
-      } else {
-        setSliderValue(maxValue);
-      }
-    }
-  };
-
   const buyCoins = async () => {
     try {
       setIsLoading(true);
@@ -63,6 +47,12 @@ const BuyCoin = ({ purchase }) => {
     }
     setIsLoading(false);
   };
+
+  const handleInput = async(e)=>{
+    setCalVal(e.target.value);
+    const numberOfCoins = e.target.value === 0 ? 0 : (e.target.value / 0.0005).toFixed(2);
+    setSliderValue(Math.round(numberOfCoins));
+  }
 
   return (
     <>
@@ -128,8 +118,7 @@ const BuyCoin = ({ purchase }) => {
                 value={calVal}
                 // value={inputValue}
                 // value={calVal}
-                onChange={handleInputChange}
-                // onChange={handleInput}
+                onChange={handleInput}
                 className={classes.buyCoinInput}
               />
               {purchase ? (
