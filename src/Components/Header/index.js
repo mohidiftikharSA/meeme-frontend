@@ -11,6 +11,7 @@ import avatar from "../../Images/avatar.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import api from "APIs/dashboard/home";
 import SpinnerLoader from "../Loader/SpinnerLoader";
+import { coinConvert } from "Helper/Converters";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -76,7 +77,7 @@ const Header = () => {
                 </span>
                 <Link to={"/Purchase"}>
                   <span className={classes.text}>
-                    {myCoins.allCoins}
+                    {coinConvert(myCoins.allCoins)}
                   </span>
                   {/* <span className={classes.text}>{myCoins.allCoins}</span> */}
                   <img src={coin} alt="icon" />

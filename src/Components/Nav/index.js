@@ -18,6 +18,7 @@ import ab from "../../Images/ab.png";
 import api from 'APIs/dashboard/home'
 import dayjs from 'dayjs';
 import { useSelector } from "react-redux";
+import { coinConvert } from "Helper/Converters";
 
 function Navigation({ header, footer }) {
     const location = useLocation();
@@ -141,7 +142,7 @@ function Navigation({ header, footer }) {
                             <span className={classes.icon}>
                                 <i className="fas fa-plus"></i>
                             </span>
-                            <span className={classes.text}>{allCoins || '0'} </span>
+                            <span className={classes.text}>{coinConvert(allCoins) || '0'} </span>
                             <img src={coin} alt="icon" />
                         </Link>
                         <Link to={"/profile"} className={`btn ${classes.profileBtn}`}>

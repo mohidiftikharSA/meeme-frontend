@@ -84,3 +84,27 @@ export function formatDate(isoDate) {
   const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
   return formattedDate;
 }
+
+export const coinConvert = (coins) => {
+  let coin = coins;
+
+  if (coin >= 1000000) {
+      if (coin % 1000000 == 0) {
+          coin = `${coin / 1000000}M`;
+          return coin;
+      } else {
+          coin = `${(coin / 1000000).toFixed(1)}M`;
+          return coin;
+      }
+  } else if (coin >= 1000) {
+      if (coin % 1000 == 0) {
+          coin = `${coin / 1000}K`;
+          return coin;
+      } else {
+          coin = `${(coin / 1000).toFixed(1)}K`;
+          return coin;
+      }
+  } else {
+      return coin;
+  }
+};
