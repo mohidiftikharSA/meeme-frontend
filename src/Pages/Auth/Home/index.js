@@ -41,13 +41,35 @@ const Home = () => {
     setProfile(null);
 };
 
-  const login = useGoogleLogin({
-    onSuccess: (codeResponse) => {
-      console.log("Google response  ---", codeResponse);
-      setUser(codeResponse)
-    },
-    onError: (error) => console.log("Login Failed:", error),
-  });
+const login = useGoogleLogin({
+  flow: 'auth-code',
+  ux_mode: 'redirect',
+  redirect_uri: 'http://localhost:3001',
+  select_account: true,
+  onSuccess: async ({ code }) => {
+    try {
+      console.log(code);
+      // const { data } = await axios.post(
+      //   'http://localhost:8000/auth/google',
+      //   null,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${code}`, // Sending the code as a Bearer token
+      //     },
+      //   }
+      // );
+      // localStorage.setItem('auth', JSON.stringify(data));
+      // onClose();
+    } catch (error) {
+      console.log(error);
+      alert('Failed to login');
+    }
+  },
+  onError: (error) => {
+    console.log(error);
+    // onClose();
+  },
+});
 
   useEffect(() => {
     if (user) {

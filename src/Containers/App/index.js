@@ -8,7 +8,9 @@ const App = () => {
   const initializeGapi = () => {
     gapi.client.init({
       clientId: "633610376912-pm1g8qjlufvrdfci1tj2jitupdg426n1.apps.googleusercontent.com",
-      scope: "",
+      scope: "email profile",
+      cookiepolicy: 'single_host_origin',
+      plugin_name: 'App Name that you used in google developer console API'
     });
   };
   
