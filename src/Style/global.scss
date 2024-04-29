@@ -858,6 +858,8 @@ main {
   font-family: Gilroy;
   max-width: 108px;
   margin: auto;
+  max-width: 85px;
+  height: 30px;
 
   &:hover {
     color: #fff;
@@ -1740,4 +1742,11 @@ aside.EmojiPickerReact.epr-main {
 .form-check-input:checked[type=checkbox]{
   background-color: #ffcc4e;
   border: none;
+}
+
+.purchasedPill{
+  button{
+    width:70px;
+    height: unset;
+  }
 }

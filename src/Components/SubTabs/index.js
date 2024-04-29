@@ -83,9 +83,11 @@ const data2 = [
 const SubTabs = ({ icon, themes }) => {
   const [themesAPI, setThemesAPI] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [purchasedItems, setPurchasedItems] = useState([]);
 
   useEffect(() => {
     getThemes();
+    getPurchasedItems();
   }, []);
 
   const getThemes = async () => {
@@ -96,6 +98,15 @@ const SubTabs = ({ icon, themes }) => {
       setIsLoading(false);
     }
     setIsLoading(false);
+  };
+
+  const getPurchasedItems = async () => {
+    setIsLoading(true);
+    const res = await ThemesAPIs.getPuchasedItems();
+    if (res) {
+      console.log("Response of the Purchased  == ", res.data);
+      setPurchasedItems(res.data?.store);
+    }
   };
 
   return (
@@ -122,16 +133,19 @@ const SubTabs = ({ icon, themes }) => {
         >
           <Tab eventKey="common" title="Common">
             <ThemeRare
+              purchasedList={purchasedItems}
               data2={themesAPI.filter((theme) => theme.rarity === "common")}
             />
           </Tab>
           <Tab eventKey="rare" title="Rare">
             <ThemeRare
+              purchasedList={purchasedItems}
               data2={themesAPI.filter((theme) => theme.rarity === "rare")}
             />
           </Tab>
           <Tab eventKey="ultra" title="Ultra Rare">
             <ThemeRare
+              purchasedList={purchasedItems}
               data2={themesAPI.filter((theme) => theme.rarity === "ultra_rare")}
             />
           </Tab>
