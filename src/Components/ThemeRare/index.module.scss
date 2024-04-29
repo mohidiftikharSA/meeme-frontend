@@ -1,6 +1,7 @@
 @import "../../Style/base";
 .col{
     margin-bottom: 20px;
+    text-align: center;
     [class*="imgBox"]{
         @include media("<tablet"){
             width: 200px;

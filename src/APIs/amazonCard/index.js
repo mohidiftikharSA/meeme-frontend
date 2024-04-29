@@ -17,10 +17,15 @@ const buyItem = async(data)=>{
   return await API.postMethod(ENDPOINT.stores.buy_item, true,data);
 }
 
+const getPuchasedItems = async()=>{
+  return await API.getMethod(ENDPOINT.stores.buy_item, true);
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getAlAmazonCard,
   purchaseAmazonCard,
   getThemes,
-  buyItem
+  buyItem,
+  getPuchasedItems
 };

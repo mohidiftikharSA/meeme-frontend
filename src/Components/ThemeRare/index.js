@@ -11,7 +11,7 @@ import { coinsUsed } from "Redux/reducers/buyCoins";
 import { coinConvert } from "Helper/Converters";
 
 
-const ThemeRare = ({ data2, card }) => {
+const ThemeRare = ({ data2, card , purchasedList}) => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch()
 
@@ -30,6 +30,11 @@ const ThemeRare = ({ data2, card }) => {
     }
     setIsLoading(false);
   };
+
+  function isItemPurchase(nameToCheck) {
+    return purchasedList?.some(obj => obj.name.includes(nameToCheck));
+}
+
   return (
     <>
       {isLoading && <Loader isLoading={isLoading} />}
@@ -48,16 +53,20 @@ const ThemeRare = ({ data2, card }) => {
                 {card ? (
                   ""
                 ) : (
-                  <Link
+                  <button
                     onClick={() => {
                       buyTheme(item?.ref, item?.coin);
+                      const isExist  = isItemPurchase('rare1');
+                      console.log("Is exist item -- ", isExist, '---Array---', purchasedList);
+
                     }}
-                    className={"btn iconBtncust"}
-                    style={{ maxWidth: "85px", height: "30px" }}
+                    className={`btn ${isItemPurchase(item?.ref) ? 'purchasedPill':'iconBtncust'} `}
+                    // style={{ maxWidth: "85px", height: "30px" }}
+                    disabled={isItemPurchase(item?.ref)}
                   >
-                    <img width={100} src={coin} alt="icon" />
-                    <span className={"text"}>{coinConvert(item.coin)}</span>
-                  </Link>
+                    {!isItemPurchase(item?.ref) && <img width={100} src={coin} alt="icon" />}
+                    <span className={"text"}>{isItemPurchase(item?.ref) ? 'Purchased' :coinConvert(item.coin)}</span>
+                  </button>
                 )}
               </div>
             </Col>
