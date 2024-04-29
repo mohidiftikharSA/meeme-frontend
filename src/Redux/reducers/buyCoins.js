@@ -14,8 +14,11 @@ export const coinsSlice = createSlice({
     clearCoins: (state) => {
       state.allCoins = initialState.allCoins;
     },
+    coinsUsed: (state, action) => {
+      state.allCoins -= action.payload;
+    },
   },
 });
 
-export const { coinsBuy, clearCoins } = coinsSlice.actions;
+export const { coinsBuy, clearCoins, coinsUsed } = coinsSlice.actions;
 export default coinsSlice.reducer;

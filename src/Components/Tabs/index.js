@@ -474,13 +474,13 @@ const TabDetails = ({
       )}
       {storeitems && (
         <Tabs
-          defaultActiveKey={"Icons"}
+          defaultActiveKey={"themes"}
           id="uncontrolled-tab-example"
           className="mb-5 noBg"
         >
-          <Tab eventKey="Icons" title="Icons">
+          {/* <Tab eventKey="Icons" title="Icons">
             <SubTabs icon />
-          </Tab>
+          </Tab> */}
           <Tab eventKey="themes" title="Themes">
             <SubTabs themes />
           </Tab>

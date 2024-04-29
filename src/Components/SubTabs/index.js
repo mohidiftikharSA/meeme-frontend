@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import img1 from "../../Images/rare1.png";
 import img2 from "../../Images/rare2.png";
@@ -15,88 +14,100 @@ import Theme2 from "../../Images/Theme2.png";
 import Theme3 from "../../Images/Theme3.png";
 import ThemeRare from "Components/ThemeRare";
 import UltraRare from "Components/UltraRare";
-
+import ThemesAPIs from "../../APIs/amazonCard";
+import Loader from "Components/Loader";
 
 const data = [
   {
     title: "Sunflower Theme",
     img: img1,
-    coin: "100"
+    coin: "100",
   },
   {
     title: "Nature Theme",
     img: img2,
-    coin: "100"
+    coin: "100",
   },
   {
     title: "Military Theme",
     img: img3,
-    coin: "100"
+    coin: "100",
   },
   {
     title: "Camping Theme",
     img: img4,
-    coin: "100"
+    coin: "100",
   },
   {
     title: "Psychedelic Theme",
     img: img5,
-    coin: "100"
+    coin: "100",
   },
   {
     title: "Banana Theme",
     img: img6,
-    coin: "100"
+    coin: "100",
   },
   {
     title: "Mango Theme",
     img: img7,
-    coin: "100"
+    coin: "100",
   },
   {
     title: "Fire Theme",
     img: img8,
-    coin: "100"
+    coin: "100",
   },
   {
     title: "Water Theme",
     img: img9,
-    coin: "100"
+    coin: "100",
   },
-
-]
+];
 
 const data2 = [
   {
-    
     img: Theme1,
-    coin: "100"
+    coin: "100",
   },
   {
-    
     img: Theme2,
-    coin: "100"
+    coin: "100",
   },
   {
-    
     img: Theme3,
-    coin: "100"
+    coin: "100",
   },
-  
-]
+];
 
+const SubTabs = ({ icon, themes }) => {
+  const [themesAPI, setThemesAPI] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-const SubTabs = ({ icon ,themes }) => {
+  useEffect(() => {
+    getThemes();
+  }, []);
+
+  const getThemes = async () => {
+    setIsLoading(true);
+    const res = await ThemesAPIs.getThemes();
+    if (res) {
+      setThemesAPI(res.data?.themes);
+      setIsLoading(false);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <>
+      {isLoading && <Loader isLoading={isLoading} />}
       {icon && (
         <Tabs
           defaultActiveKey={"ultra"}
           id="uncontrolled-tab-example"
           className="mb-5"
         >
-          <Tab eventKey="common" title="Common">
-          </Tab>
+          <Tab eventKey="common" title="Common"></Tab>
           <Tab eventKey="rare" title="Rare"></Tab>
           <Tab eventKey="ultra" title="Ultra Rare">
             <UltraRare data={data} />
@@ -105,19 +116,27 @@ const SubTabs = ({ icon ,themes }) => {
       )}
       {themes && (
         <Tabs
-          defaultActiveKey={"ultra"}
+          defaultActiveKey={"common"}
           id="uncontrolled-tab-example"
           className="mb-5"
         >
           <Tab eventKey="common" title="Common">
+            <ThemeRare
+              data2={themesAPI.filter((theme) => theme.rarity === "common")}
+            />
           </Tab>
-          <Tab eventKey="rare" title="Rare"></Tab>
+          <Tab eventKey="rare" title="Rare">
+            <ThemeRare
+              data2={themesAPI.filter((theme) => theme.rarity === "rare")}
+            />
+          </Tab>
           <Tab eventKey="ultra" title="Ultra Rare">
-            <ThemeRare data2={data2} />
+            <ThemeRare
+              data2={themesAPI.filter((theme) => theme.rarity === "ultra_rare")}
+            />
           </Tab>
         </Tabs>
       )}
-      
     </>
   );
 };
