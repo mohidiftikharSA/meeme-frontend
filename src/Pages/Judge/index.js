@@ -71,7 +71,7 @@ const JudgePage = () => {
             <section>
                 <Container>
                     <div className="sectionHolder">
-                        <Heading title={"Judge"} judge linkPath={"tornament"} likedCounts={likedPostsCount} />
+                        <Heading title={"Judge"} judge linkPath={"tornament/tournament"} likedCounts={likedPostsCount} />
                         {isLoading ? <SkeletonTournamentPostsLoading /> : tournamentPosts?.length === 0 ? (
                             <p style={{
                                 marginTop: '10px', textAlign: 'center'
