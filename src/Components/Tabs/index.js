@@ -215,7 +215,7 @@ const TabDetails = ({
    * Set Active tab
    */
   useEffect(() => {
-    if (first === "tournament" || first === "store") {
+    if (first === "tournament" || first === "store" || first === "judge" ) {
       setActiveTab(first);
     }
   }, [first]);
