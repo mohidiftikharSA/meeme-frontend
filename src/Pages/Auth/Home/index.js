@@ -10,6 +10,8 @@ import AuthLayout from "Layout/AuthLayout";
 import {
   googleLogout,
   useGoogleLogin,
+  useGoogleOneTapLogin,
+  hasGrantedAllScopesGoogle,
 } from "@react-oauth/google";
 import { GOOGLE_CLIENT_ID } from "../../../config/constants";
 import AuthAPIs from "../../../APIs/auth";
@@ -19,14 +21,14 @@ import { useDispatch } from "react-redux";
 import GoogleAuth from "../../../Components/Auth/GoogleAuth";
 import FooterTabs from "Components/FooterTabs";
 import { FaFacebook } from "react-icons/fa";
+import { gapi } from "gapi-script";
 
 const Home = () => {
   const [show, setshow] = useState(false);
   const [user, setUser] = useState([]);
   const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
-
-
+  var clientId = "633610376912-pm1g8qjlufvrdfci1tj2jitupdg426n1.apps.googleusercontent.com"
   const nextPage = () => {
     navigate(`/login`);
   };
@@ -39,54 +41,38 @@ const Home = () => {
   const logOut = () => {
     googleLogout();
     setProfile(null);
-};
+  };
+  useEffect(() => {
+    gapi.load("shareme_frontend:auth2", () => {
+     gapi.auth2.init({clientId:clientId})
+    })
+   }, []);
+   
 
-const login = useGoogleLogin({
-  flow: 'auth-code',
-  ux_mode: 'redirect',
-  redirect_uri: 'http://localhost:3001',
-  select_account: true,
-  onSuccess: async ({ code }) => {
-    try {
-      console.log(code);
-      // const { data } = await axios.post(
-      //   'http://localhost:8000/auth/google',
-      //   null,
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${code}`, // Sending the code as a Bearer token
-      //     },
-      //   }
-      // );
-      // localStorage.setItem('auth', JSON.stringify(data));
-      // onClose();
-    } catch (error) {
-      console.log(error);
-      alert('Failed to login');
-    }
-  },
-  onError: (error) => {
-    console.log(error);
-    // onClose();
-  },
-});
+  useEffect(() => {
+    gapi.load("shareme_frontend:auth2", () => {
+     gapi.auth2.init({clientId:clientId})
+    })
+   }, []);
 
   useEffect(() => {
     if (user) {
       console.log("User --", user);
-      // axios
-      //     .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-      //         headers: {
-      //             Authorization: `Bearer ${user.access_token}`,
-      //             Accept: 'application/json'
-      //         }
-      //     })
-      //     .then((res) => {
-      //         setProfile(res.data);
-      //     })
-      //     .catch((err) => console.log(err));
     }
   }, [user]);
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) =>
+      console.log("Google response in the console. === ", codeResponse),
+    onError: (code) => console.log("Error on google login --", code),
+    onNonOAuthError: (code) => console.log(" on non auth error == ", code),
+    flow: "auth-code",
+  });
+
+  const responseGoogle = (response) => {
+    console.log(response);
+    // Handle the response from Google here
+  };
 
   return (
     <>
@@ -102,21 +88,20 @@ const login = useGoogleLogin({
             </Button>
 
             {/* <GoogleAuth className="google-custom-button" onClick={comingSoon}></GoogleAuth> */}
-              {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
-              {profile ? (
-                <div>
-                    <img src={profile.picture} alt="user image" />
-                    <h3>User Logged in</h3>
-                    <p>Name: {profile.name}</p>
-                    <p>Email Address: {profile.email}</p>
-                    <br />
-                    <br />
-                    <button onClick={logOut}>Log out</button>
-                </div>
+            {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
+            {profile ? (
+              <div>
+                <img src={profile.picture} alt="user image" />
+                <h3>User Logged in</h3>
+                <p>Name: {profile.name}</p>
+                <p>Email Address: {profile.email}</p>
+                <br />
+                <br />
+                <button onClick={logOut}>Log out</button>
+              </div>
             ) : (
-                <button onClick={login}>Sign in with Google 🚀 </button>
+              <button onClick={login}>Sign in with Google 🚀 </button>
             )}
-
 
             <Button
               className="mt-3"
