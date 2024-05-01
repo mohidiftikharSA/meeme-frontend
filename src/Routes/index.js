@@ -32,7 +32,7 @@ const ClientRoutes = () => {
       if (accessToken) {
         return <ElementControl Component={component} Layout={layout} />;
       } else {
-        return <Navigate to="/login" />;
+        return <Navigate to="/" />;
       }
     }
   };

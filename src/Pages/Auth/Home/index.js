@@ -55,10 +55,7 @@ const Home = () => {
     onNonOAuthError: (error) => console.log("Login Failed:", error),
   });
 
-  const responseGoogle = (response) => {
-    console.log(response);
-    // Handle the response from Google here
-  };
+ 
 
   return (
     <>
@@ -72,36 +69,7 @@ const Home = () => {
               <MdMail />
               Continue with Email
             </Button>
-
-            {/* <GoogleAuth className="google-custom-button" onClick={comingSoon}></GoogleAuth> */}
-            {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
-              {/* <div>
-                  <h2>React Google Login</h2>
-                  <br />
-                  <br />
-                  {profile ? (
-                    <div>
-                      <img src={profile.picture} alt="user image" />
-                      <h3>User Logged in</h3>
-                      <p>Name: {profile.name}</p>
-                      <p>Email Address: {profile.email}</p>
-                      <br />
-                      <br />
-                      <button onClick={logOut}>Log out</button>
-                    </div>
-                  ) : (
-                    <button onClick={login}>Sign in with Google 🚀 </button>
-                  )}
-                </div> */}
-              <GoogleLogin
-                onSuccess={(credentialResponse) => {
-                  console.log(credentialResponse);
-                }}
-                onError={() => {
-                  console.log("Login Failed");
-                }}
-              />
-
+              <GoogleAuth className="google-custom-button" onClick={login}></GoogleAuth>
             <Button
               className="mt-3"
               variant="outline-light"
