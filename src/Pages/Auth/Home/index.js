@@ -38,24 +38,6 @@ const Home = () => {
     return;
   };
 
-  const logOut = () => {
-    googleLogout();
-    setProfile(null);
-  };
-
-  useEffect(() => {
-    if (user) {
-      console.log("User --", user);
-    }
-  }, [user]);
-
-  const login = useGoogleLogin({
-    onSuccess: (codeResponse) => setUser(codeResponse),
-    onError: (error) => console.log("Login Failed:", error),
-    onNonOAuthError: (error) => console.log("Login Failed:", error),
-  });
-
- 
 
   return (
     <>
@@ -69,7 +51,7 @@ const Home = () => {
               <MdMail />
               Continue with Email
             </Button>
-              <GoogleAuth className="google-custom-button" onClick={login}></GoogleAuth>
+              <GoogleAuth className="google-custom-button"/>
             <Button
               className="mt-3"
               variant="outline-light"
