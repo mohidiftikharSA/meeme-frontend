@@ -1,32 +1,18 @@
 import Logo from "Components/Logo";
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import classes from "../index.module.scss";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom/dist";
 import { MdMail } from "react-icons/md";
-import { FcGoogle } from "react-icons/fc";
 import { BsTwitter } from "react-icons/bs";
 import AuthLayout from "Layout/AuthLayout";
-import {
-  googleLogout,
-  useGoogleLogin,
-  useGoogleOneTapLogin,
-  GoogleLogin,
-  GoogleOAuthProvider,
-} from "@react-oauth/google";
-import { GOOGLE_CLIENT_ID } from "../../../config/constants";
-import AuthAPIs from "../../../APIs/auth";
 import { toast } from "react-toastify";
-import { authSuccess } from "../../../Redux/reducers/authSlice";
-import { useDispatch } from "react-redux";
 import GoogleAuth from "../../../Components/Auth/GoogleAuth";
 import FooterTabs from "Components/FooterTabs";
 import { FaFacebook } from "react-icons/fa";
 
 const Home = () => {
   const [show, setshow] = useState(false);
-  const [user, setUser] = useState([]);
-  const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
 
   const nextPage = () => {
