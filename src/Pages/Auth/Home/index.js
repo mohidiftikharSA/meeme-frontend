@@ -11,7 +11,8 @@ import {
   googleLogout,
   useGoogleLogin,
   useGoogleOneTapLogin,
-  hasGrantedAllScopesGoogle,
+  GoogleLogin,
+  GoogleOAuthProvider,
 } from "@react-oauth/google";
 import { GOOGLE_CLIENT_ID } from "../../../config/constants";
 import AuthAPIs from "../../../APIs/auth";
@@ -21,14 +22,13 @@ import { useDispatch } from "react-redux";
 import GoogleAuth from "../../../Components/Auth/GoogleAuth";
 import FooterTabs from "Components/FooterTabs";
 import { FaFacebook } from "react-icons/fa";
-import { gapi } from "gapi-script";
 
 const Home = () => {
   const [show, setshow] = useState(false);
   const [user, setUser] = useState([]);
   const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
-  var clientId = "633610376912-pm1g8qjlufvrdfci1tj2jitupdg426n1.apps.googleusercontent.com"
+
   const nextPage = () => {
     navigate(`/login`);
   };
@@ -42,18 +42,6 @@ const Home = () => {
     googleLogout();
     setProfile(null);
   };
-  useEffect(() => {
-    gapi.load("shareme_frontend:auth2", () => {
-     gapi.auth2.init({clientId:clientId})
-    })
-   }, []);
-   
-
-  useEffect(() => {
-    gapi.load("shareme_frontend:auth2", () => {
-     gapi.auth2.init({clientId:clientId})
-    })
-   }, []);
 
   useEffect(() => {
     if (user) {
@@ -62,11 +50,9 @@ const Home = () => {
   }, [user]);
 
   const login = useGoogleLogin({
-    onSuccess: (codeResponse) =>
-      console.log("Google response in the console. === ", codeResponse),
-    onError: (code) => console.log("Error on google login --", code),
-    onNonOAuthError: (code) => console.log(" on non auth error == ", code),
-    flow: "auth-code",
+    onSuccess: (codeResponse) => setUser(codeResponse),
+    onError: (error) => console.log("Login Failed:", error),
+    onNonOAuthError: (error) => console.log("Login Failed:", error),
   });
 
   const responseGoogle = (response) => {
@@ -89,19 +75,32 @@ const Home = () => {
 
             {/* <GoogleAuth className="google-custom-button" onClick={comingSoon}></GoogleAuth> */}
             {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
-            {profile ? (
-              <div>
-                <img src={profile.picture} alt="user image" />
-                <h3>User Logged in</h3>
-                <p>Name: {profile.name}</p>
-                <p>Email Address: {profile.email}</p>
-                <br />
-                <br />
-                <button onClick={logOut}>Log out</button>
-              </div>
-            ) : (
-              <button onClick={login}>Sign in with Google 🚀 </button>
-            )}
+              {/* <div>
+                  <h2>React Google Login</h2>
+                  <br />
+                  <br />
+                  {profile ? (
+                    <div>
+                      <img src={profile.picture} alt="user image" />
+                      <h3>User Logged in</h3>
+                      <p>Name: {profile.name}</p>
+                      <p>Email Address: {profile.email}</p>
+                      <br />
+                      <br />
+                      <button onClick={logOut}>Log out</button>
+                    </div>
+                  ) : (
+                    <button onClick={login}>Sign in with Google 🚀 </button>
+                  )}
+                </div> */}
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  console.log(credentialResponse);
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+              />
 
             <Button
               className="mt-3"

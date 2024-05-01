@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import MessagesAPIs from '../../APIs/messages';
 import { useSelector } from "react-redux";
-import { useActionCable, useChannel } from '@aersoftware/react-use-action-cable';
+// import { useActionCable, useChannel } from '@aersoftware/react-use-action-cable';
 import ChatDropdown from "./ChatDropdown";
 import ChatWindow from "./ChatWindow";
 
@@ -20,8 +20,8 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
     const [msgSent, setMsgSent] = useState();
 
 
-    const { actionCable } = useActionCable(`${process.env.REACT_APP_WS_URL ?? 'ws://localhost:3000'}/cable?token=${accessToken}`);
-    const { subscribe, unsubscribe, send } = useChannel(actionCable)
+    // const { actionCable } = useActionCable(`${process.env.REACT_APP_WS_URL ?? 'ws://localhost:3000'}/cable?token=${accessToken}`);
+    // const { subscribe, unsubscribe, send } = useChannel(actionCable)
 
 
     useEffect(() => {
@@ -149,30 +149,30 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
      */
 
     useEffect(() => {
-        if (selectedChat) {
-            try {
-                subscribe({
-                    channel: `ConversationsChannel`,
-                    channel_key: `conversation_${selectedChat.conversation_id}`,
-                    conversation_id: selectedChat.conversation_id,
-                }, {
-                    received: (msg) => {
-                        console.log("Recived Messages from Socket - ", msg.body);
-                        console.log("Msgs List === ", msgsList);
-                        setMsgsList((prevState) => ([...prevState, msg.body]));
+        // if (selectedChat) {
+        //     try {
+        //         subscribe({
+        //             channel: `ConversationsChannel`,
+        //             channel_key: `conversation_${selectedChat.conversation_id}`,
+        //             conversation_id: selectedChat.conversation_id,
+        //         }, {
+        //             received: (msg) => {
+        //                 console.log("Recived Messages from Socket - ", msg.body);
+        //                 console.log("Msgs List === ", msgsList);
+        //                 setMsgsList((prevState) => ([...prevState, msg.body]));
 
-                    }, connected: () => {
-                        console.log('Socket Connected Successfully');
-                    },
-                },);
-            } catch (err) {
-                console.log('err', err);
-            }
+        //             }, connected: () => {
+        //                 console.log('Socket Connected Successfully');
+        //             },
+        //         },);
+        //     } catch (err) {
+        //         console.log('err', err);
+        //     }
 
-            return () => {
-                unsubscribe();
-            };
-        }
+        //     return () => {
+        //         unsubscribe();
+        //     };
+        // }
     }, [selectedChat]);
 
     const handleFileChange = (e) => {
