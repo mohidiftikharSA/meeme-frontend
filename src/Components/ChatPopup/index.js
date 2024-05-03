@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import MessagesAPIs from "../../APIs/messages";
 import { useSelector } from "react-redux";
-import { ActionCableConsumer,ActionCableProvider } from "react-actioncable-provider";
+import { ActionCableConsumer, ActionCableProvider } from "react-actioncable-provider";
 import ChatDropdown from "./ChatDropdown";
 import ChatWindow from "./ChatWindow";
 
@@ -17,6 +17,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const [imgForAPI, setImgForAPI] = useState(null);
   const fileInputRef = useRef(null);
   const [msgSent, setMsgSent] = useState();
+  const [subscriptionEstablished, setSubscriptionEstablished] = useState(false); // Track if subscription is already established
 
   useEffect(() => {
     setIsChatVisible(isOpen);
@@ -51,20 +52,21 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   }, [msgSent]);
 
   useEffect(() => {
-    if (selectedChat) {
+    if (selectedChat && !subscriptionEstablished) { // Ensure subscription is not established before attempting
       if (user.id === selectedChat.sender_id) {
         getChatMessages(selectedChat.receiver_id);
       } else {
         getChatMessages(selectedChat.sender_id);
       }
     }
-  }, [selectedChat]);
+  }, [selectedChat, subscriptionEstablished]);
 
   const getChatMessages = async (receiverId) => {
     if (receiverId) {
       const msgs = await MessagesAPIs.getChatMessages(receiverId);
       if (msgs) {
         setMsgsList(msgs.data.messages.reverse());
+        setSubscriptionEstablished(true); // Mark subscription as established
       }
     }
   };
@@ -81,7 +83,44 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   };
 
   const sendMessage = async () => {
-    // Your existing sendMessage logic
+    console.log("Send Message ");
+    if (!selectedChat.conversation_id) {
+        var res = await MessagesAPIs.createConversation({
+          receiver_id: selectedChat?.sender_id,
+        });
+        if (res) {
+          const resObj = { ...selectedChat };
+          resObj["conversation_id"] = res.data?.conversation?.id;
+          console.log("New Response obj of Conversation == ", resObj);
+          setSelectedChat(resObj);
+        }
+      }
+      if (inputText.trim() === "") return;
+      const data = new FormData();
+      data.append(
+        "conversation_id",
+        selectedChat.conversation_id || res.data?.conversation?.id
+      );
+      data.append(
+        "receiver_id",
+        selectedChat.sender_id === user.id
+          ? selectedChat.receiver_id
+          : selectedChat.sender_id
+      );
+      data.append("body", inputText);
+      if (imgForAPI) {
+        data.append("message_images[]", imgForAPI);
+      }
+      const sendMsg = await MessagesAPIs.sendMessage(data);
+      if (sendMsg) {
+        setMsgSent(sendMsg.data);
+      }
+      const newMessage = {
+        text: inputText,
+        user: user,
+      };
+      setImgForAPI(null);
+      setInputText("");
   };
 
   const handleClick = (chat) => {
@@ -102,6 +141,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
     console.log("Received message:", response);
     setMsgsList((prevState) => [...prevState, response.body]);
   };
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -146,10 +186,11 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
     return trueCount;
   }
 
+
   return (
     <>
       <ActionCableProvider
-        url={`ws://localhost:3000/cable/cable?token=${accessToken}`}
+        url={`ws://localhost:3000/cable?token=${accessToken}`}
       >
         <ChatDropdown
           isDropdownOpen={isDropdownOpen}
@@ -180,10 +221,10 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
         )}
         {/* ActionCable component from react-actioncable-provider */}
         {selectedChat && (
-           <ActionCableConsumer
-           channel={{ channel: "ConversationsChannel", conversation_id: selectedChat?.conversation_id }}
-           onReceived={handleReceivedMessage}
-         />
+          <ActionCableConsumer
+            channel={{ channel: "ConversationsChannel", conversation_id: selectedChat?.conversation_id }}
+            onReceived={handleReceivedMessage}
+          />
         )}
       </ActionCableProvider>
     </>
