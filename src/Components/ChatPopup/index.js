@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import MessagesAPIs from "../../APIs/messages";
 import { useSelector } from "react-redux";
-import { ActionCable,ActionCableProvider } from "react-actioncable-provider";
+import { ActionCableConsumer,ActionCableProvider } from "react-actioncable-provider";
 import ChatDropdown from "./ChatDropdown";
 import ChatWindow from "./ChatWindow";
 
@@ -180,14 +180,10 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
         )}
         {/* ActionCable component from react-actioncable-provider */}
         {selectedChat && (
-          <ActionCable
-            key={selectedChat.conversation_id}
-            channel={{
-              channel: "ConversationsChannel",
-              conversation_id: selectedChat.conversation_id,
-            }}
-            onReceived={handleReceivedMessage}
-          />
+           <ActionCableConsumer
+           channel={{ channel: "ConversationsChannel", conversation_id: selectedChat?.conversation_id }}
+           onReceived={handleReceivedMessage}
+         />
         )}
       </ActionCableProvider>
     </>
