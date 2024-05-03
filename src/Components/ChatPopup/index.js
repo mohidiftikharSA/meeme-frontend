@@ -149,7 +149,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   return (
     <>
       <ActionCableProvider
-        url={`wss://1f9b-139-135-32-227.ngrok-free.app/cable?token=${accessToken}`}
+        url={`wss://v2.meeme.appscorridor.com/cable?token=${accessToken}`}
       >
         <ChatDropdown
           isDropdownOpen={isDropdownOpen}
