@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, CSSProperties } from "react";
 import { Button, Form } from "react-bootstrap";
 import classes from "../index.module.scss";
 import Logo from "Components/Logo";
@@ -9,10 +9,11 @@ import ConisAPIs from "../../../APIs/coins";
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import * as Yup from "yup"; 
+import * as Yup from "yup";
 import { authSuccess } from "Redux/reducers/authSlice";
 import { fetchCardId } from "Redux/reducers/fetchCardID";
 import { coinsBuy } from "Redux/reducers/buyCoins";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const LoginFrom = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +21,12 @@ const LoginFrom = () => {
   const navigate = useNavigate();
   const nextPage = () => {
     navigate(`/forgetPassword`);
+  };
+
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
   };
 
   const validationSchema = Yup.object().shape({
@@ -42,7 +49,7 @@ const LoginFrom = () => {
             accessToken: res.data.token,
           })
         );
-        dispatch(coinsBuy(res.data?.user.coins))
+        dispatch(coinsBuy(res.data?.user.coins));
 
         navigate(`/home`);
         toast.success("Login Successfully", {
@@ -116,8 +123,8 @@ const LoginFrom = () => {
               </div>
 
               {isLoading ? (
-                <Button type="submit" className="w-100 p-2 authButton" disabled>
-                  Sign in
+                <Button type="submit" disabled className="w-100 p-2 authButton">
+                  <ClipLoader className="mt-1 btn-loading" color="#000000"  />
                 </Button>
               ) : (
                 <Button type="submit" className="w-100 p-2 authButton">

@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-      <GoogleOAuthProvider clientId="633610376912-pm1g8qjlufvrdfci1tj2jitupdg426n1.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_SECRET}`}>
         <React.StrictMode>
           <App />
           <ToastContainer position="top-right" autoClose={2000} />
