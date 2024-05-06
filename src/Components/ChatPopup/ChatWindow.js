@@ -3,8 +3,7 @@ import { useState } from "react";
 import { LiaTimesSolid } from "react-icons/lia";
 import { IoIosSend } from "react-icons/io";
 import classes from "./index.module.scss";
-import user1 from "../../Images/chatuser.png";
-import user2 from "../../Images/profile1.png";
+import user2 from "../../Images/avatar.jpg";
 import { CgAttachment } from "react-icons/cg";
 import { Form } from "react-bootstrap";
 import { FaSmile } from "react-icons/fa";
@@ -51,7 +50,7 @@ const ChatWindow = ({
                         return (<>  {item?.sender_id !== user.id ? <>
                             <div key={`${item.id}_${index}`} className="receiverBox">
                                 <div className="userImg">
-                                    <img src={item?.sender_image || user1} alt="img" />
+                                    <img src={item?.sender_image || user2} alt="img" />
                                 </div>
                                 <div key={index} className="message received">
                                     <div className="messageBox">

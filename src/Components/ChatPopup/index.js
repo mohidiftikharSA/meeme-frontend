@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import MessagesAPIs from "../../APIs/messages";
 import { useSelector } from "react-redux";
-import { ActionCableConsumer, ActionCableProvider } from "react-actioncable-provider";
+import {
+  ActionCableConsumer,
+  ActionCableProvider,
+} from "react-actioncable-provider";
 import ChatDropdown from "./ChatDropdown";
 import ChatWindow from "./ChatWindow";
 
@@ -17,7 +20,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const [imgForAPI, setImgForAPI] = useState(null);
   const fileInputRef = useRef(null);
   const [msgSent, setMsgSent] = useState();
-  const [subscriptionEstablished, setSubscriptionEstablished] = useState(false); // Track if subscription is already established
+  const [subscriptionEstablished, setSubscriptionEstablished] = useState(false);
 
   useEffect(() => {
     setIsChatVisible(isOpen);
@@ -52,7 +55,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   }, [msgSent]);
 
   useEffect(() => {
-    if (selectedChat && !subscriptionEstablished) { // Ensure subscription is not established before attempting
+    if (selectedChat && !subscriptionEstablished) {
       if (user.id === selectedChat.sender_id) {
         getChatMessages(selectedChat.receiver_id);
       } else {
@@ -66,7 +69,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
       const msgs = await MessagesAPIs.getChatMessages(receiverId);
       if (msgs) {
         setMsgsList(msgs.data.messages.reverse());
-        setSubscriptionEstablished(true); // Mark subscription as established
+        setSubscriptionEstablished(true);
       }
     }
   };
@@ -74,6 +77,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const getInboxList = async () => {
     const res = await MessagesAPIs.getInboxList();
     if (res) {
+      console.log("Get Inbox List ---", res.data);
       setInboxList(res.data.messages);
     }
   };
@@ -85,47 +89,52 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const sendMessage = async () => {
     console.log("Send Message ");
     if (!selectedChat.conversation_id) {
-        var res = await MessagesAPIs.createConversation({
-          receiver_id: selectedChat?.sender_id,
-        });
-        if (res) {
-          const resObj = { ...selectedChat };
-          resObj["conversation_id"] = res.data?.conversation?.id;
-          console.log("New Response obj of Conversation == ", resObj);
-          setSelectedChat(resObj);
-        }
+      var res = await MessagesAPIs.createConversation({
+        receiver_id: selectedChat?.sender_id,
+      });
+      if (res) {
+        const resObj = { ...selectedChat };
+        resObj["conversation_id"] = res.data?.conversation?.id;
+        console.log("New Response obj of Conversation == ", resObj);
+        setSelectedChat(resObj);
       }
-      if (inputText.trim() === "") return;
-      const data = new FormData();
-      data.append(
-        "conversation_id",
-        selectedChat.conversation_id || res.data?.conversation?.id
-      );
-      data.append(
-        "receiver_id",
-        selectedChat.sender_id === user.id
-          ? selectedChat.receiver_id
-          : selectedChat.sender_id
-      );
-      data.append("body", inputText);
-      if (imgForAPI) {
-        data.append("message_images[]", imgForAPI);
-      }
-      const sendMsg = await MessagesAPIs.sendMessage(data);
-      if (sendMsg) {
-        setMsgSent(sendMsg.data);
-      }
-      const newMessage = {
-        text: inputText,
-        user: user,
-      };
-      setImgForAPI(null);
-      setInputText("");
+    }
+    if (inputText.trim() === "") return;
+    const data = new FormData();
+    data.append(
+      "conversation_id",
+      selectedChat.conversation_id || res.data?.conversation?.id
+    );
+    data.append(
+      "receiver_id",
+      selectedChat.sender_id === user.id
+        ? selectedChat.receiver_id
+        : selectedChat.sender_id
+    );
+    data.append("body", inputText);
+    if (imgForAPI) {
+      data.append("message_images[]", imgForAPI);
+    }
+    const sendMsg = await MessagesAPIs.sendMessage(data);
+    if (sendMsg) {
+      setMsgSent(sendMsg.data);
+    }
+    const newMessage = {
+      text: inputText,
+      user: user,
+    };
+    setImgForAPI(null);
+    setInputText("");
   };
 
-  const handleClick = (chat) => {
+  const handleClick = async (chat) => {
     setIsChatVisible(true);
     setSelectedChat(chat);
+    if (user.id === chat.sender_id) {
+      getChatMessages(chat.receiver_id);
+    } else {
+      getChatMessages(chat.sender_id);
+    }
   };
 
   const chatToggle = () => {
@@ -137,9 +146,15 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   };
 
   const handleReceivedMessage = (response) => {
-    // Process received messages here
-    console.log("Received message:", response);
-    setMsgsList((prevState) => [...prevState, response.body]);
+    /**
+     * Sometime message replicates that's why there's check implemented
+     * if message already exists in the Messages array then don't add in list
+     */
+    let isExist = msgsList?.some((obj) => obj?.id === response?.body?.id);
+    console.log("Message Exist == ", isExist);
+    if (!isExist) {
+      setMsgsList((prevState) => [...prevState, response.body]);
+    }
   };
 
   const handleFileChange = (e) => {
@@ -186,7 +201,6 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
     return trueCount;
   }
 
-
   return (
     <>
       <ActionCableProvider
@@ -222,8 +236,11 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
         {/* ActionCable component from react-actioncable-provider */}
         {selectedChat && (
           <ActionCableConsumer
-            channel={{ channel: "ConversationsChannel", conversation_id: selectedChat?.conversation_id }}
-            onReceived={handleReceivedMessage}
+            channel={{
+              channel: "ConversationsChannel",
+              conversation_id: selectedChat?.conversation_id,
+            }}
+            onReceived={(res) => handleReceivedMessage(res)}
           />
         )}
       </ActionCableProvider>
