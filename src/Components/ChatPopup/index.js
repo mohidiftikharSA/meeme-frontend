@@ -204,7 +204,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   return (
     <>
       <ActionCableProvider
-        url={`ws://localhost:3000/cable?token=${accessToken}`}
+        url={`${process.evv.REACT_APP_WS_URL}/cable?token=${accessToken}`}
       >
         <ChatDropdown
           isDropdownOpen={isDropdownOpen}
