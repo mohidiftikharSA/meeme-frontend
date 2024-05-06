@@ -68,8 +68,9 @@ const Signup = () => {
       .min(6, "Name must be at least six characters long"),
       phone: Yup.string()
       .required("Phone is required")
-      .matches(/^[0-9]+$/, "Phone must contain only digits")
-      .min(8, "Phone must be at least eight characters long"),
+      .min(8, "Phone must be at least 8 characters long")
+      .max(15, "Phone must be at most 15 characters long")
+      .matches(/^[0-9]+$/, "Phone must contain only digits"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Confirm Password is required")
