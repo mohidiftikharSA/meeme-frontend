@@ -21,7 +21,7 @@ jobs:
       run: mv .env.example .env
 
     - name: install node Modules 
-      run: npm install
+      run: npm install --legacy-peer-deps
       
     - name: Creating Build using npm manager
       run: npm run build
