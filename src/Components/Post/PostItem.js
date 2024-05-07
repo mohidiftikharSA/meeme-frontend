@@ -72,7 +72,7 @@ const PostItem = ({
                             }}><i
                                 className="fas fa-exclamation" ></i>Report</Dropdown.Item>
                             <Dropdown.Item href="#/action-3" onClick={() => {
-                                downloadMedia(item.compress_image, item?.id)
+                                downloadMedia(item.compress_image, item)
                             }}><i className="fas fa-download"></i>Download</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>

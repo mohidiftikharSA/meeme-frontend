@@ -141,6 +141,7 @@ const Signup = () => {
                     type="number"
                     placeholder="Phone"
                     name="phone"
+                    maxLength={15}
                     value={values.phone}
                     onChange={handleChange}
                     isValid={touched.phone && !errors.phone}

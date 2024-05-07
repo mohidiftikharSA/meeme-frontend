@@ -77,7 +77,6 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const getInboxList = async () => {
     const res = await MessagesAPIs.getInboxList();
     if (res) {
-      console.log("Get Inbox List ---", res.data);
       setInboxList(res.data.messages);
     }
   };

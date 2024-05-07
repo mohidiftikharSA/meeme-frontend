@@ -30,7 +30,7 @@ const Banner = ({ other, profile }) => {
 
   useEffect(() => {
     // console.log("Other profile console log --- ", profile);
-    if (profile?.follower_added) {
+    if (profile?.follower_added || profile?.follow_each_other) {
       setIsFollowing(true);
     }
     getFollowersAndFollowings();

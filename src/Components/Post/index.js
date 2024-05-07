@@ -28,7 +28,7 @@ const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
     const closeModal = (modifiedPost) => {
         setIsModalOpenfull(false);
         const updatedItems = postData.map(item => {
-            console.log("Post ", JSON.stringify(modifiedPost))
+            // console.log("Post ", JSON.stringify(modifiedPost))
             if (item.post.id === modifiedPost.post.id) {
                 return modifiedPost
             }
@@ -79,7 +79,8 @@ const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
     }
 
 
-    const downloadMedia = async (mediaUrl, id) => {
+    const downloadMedia = async (mediaUrl, post) => {
+        console.log("Download  == ",post);
         try {
           const response = await fetch(mediaUrl, {
             method: 'GET',
@@ -94,7 +95,7 @@ const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
       
           const link = document.createElement('a');
           link.href = url;
-          link.setAttribute('download', 'Fariha.png');
+          link.setAttribute('download', `Meme_${post?.username}_${post?.post?.id}.png`);
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
