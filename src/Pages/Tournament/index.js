@@ -8,6 +8,14 @@ import Loader from "Components/Loader";
 const Tournament = () => {
   let { tab } = useParams();
 
+  const con = ()=>{
+    console.log("Tournament useEffect");
+  }
+
+  useEffect(()=>{
+    con();
+  },[])
+
   return (
     <>
         <section className="py-3">
