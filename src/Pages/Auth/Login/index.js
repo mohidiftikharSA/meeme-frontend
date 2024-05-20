@@ -81,6 +81,7 @@ const LoginFrom = () => {
             password: "",
           }}
           validationSchema={validationSchema}
+          validateOnChange={false}
         >
           {({ handleSubmit, handleChange, values, errors }) => (
             <Form className="formHolder" noValidate onSubmit={handleSubmit}>

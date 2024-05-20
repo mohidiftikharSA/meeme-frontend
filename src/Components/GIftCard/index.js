@@ -7,16 +7,16 @@ import coin from "../../Images/coin.png";
 import AmazonCardAPIs from "../../APIs/amazonCard";
 import { toast } from "react-toastify";
 import Loader from "Components/Loader";
+import { coinConvert } from "Helper/Converters";
 
-const GiftCard = ({ data, setCardRemovalId }) => {
+const GiftCard = ({ data }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const purshaseAmazonCard = async (id) => {
     setIsLoading(true);
     const buy = await AmazonCardAPIs.purchaseAmazonCard({ card_id: id });
     if (buy) {
-      setCardRemovalId(id);
-      toast.success("Amazon Card has been Sent to you via Email");
+      toast.success("Amazon Card will be  Sent to you Via Email in 24/48 hours");
     }
     setIsLoading(false);
   };
@@ -32,7 +32,7 @@ const GiftCard = ({ data, setCardRemovalId }) => {
               <Card className="mb-3">
                 <div className={classes.box}>
                   <small className="text-light">
-                    <b>$ {item?.amount}</b>
+                    <b>£ {item?.amount}</b>
                   </small>
                   <div className={classes.icon}>
                     <img width={35} src={amazon} alt="icon" />
@@ -46,7 +46,7 @@ const GiftCard = ({ data, setCardRemovalId }) => {
                 }}
               >
                 <img src={coin} alt="icon" />
-                <span className={"text"}>{item?.coin_price}</span>
+                <span className={"text"}>{coinConvert(item?.coin_price)}</span>
               </Link>
             </div>
           );

@@ -25,7 +25,7 @@ export const Aside = ({isActive, toggleActive}) => {
 
 
   const logoutUser = () => {
-    navigate('/login')
+    navigate('/')
     dispatch(logout());
     localStorage.removeItem("accessToken");
   };

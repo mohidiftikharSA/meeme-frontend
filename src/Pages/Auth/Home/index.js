@@ -46,10 +46,6 @@ const Home = () => {
               <FaFacebook style={{ color: "#5090ff" }} />
               Continue with Facebook
             </Button>
-            <Button className="" variant="outline-light" onClick={comingSoon}>
-              <BsTwitter />
-              Continue with Twitter
-            </Button>
           </div>
           <div className={classes.loginLinks}>
             <p className={classes.dark}>

@@ -17,18 +17,18 @@ const performLogout = () => {
 const redirectToLogin = () => {
   performLogout();
   setTimeout(() => {
-    window.location = "/login";
+    window.location = "/";
   }, 3000);
 };
-
-const path = window.location.pathname;
 
 const consoleErrorPerformRedirection = (error) => {
   toast.error(error?.response?.data?.message, {
     position: "top-right",
     autoClose: 2000,
   });
-  if (path === "/login") {
+  const currPath =  window.location.pathname;
+  console.log("Current Chrome path == ", currPath);
+  if (currPath === "/login") {
     return;
   } else if (error?.response?.status === 401) {
     redirectToLogin();

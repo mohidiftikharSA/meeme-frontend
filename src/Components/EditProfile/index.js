@@ -55,7 +55,7 @@ const EditProfile = () => {
       .required("Phone is required")
       .matches(/^[0-9]+$/, "Phone must contain only digits")
       .min(8, "Phone must be at least 8 characters long")
-      .max(8, "Phone must be at most 15 characters long"),
+      .max(15, "Phone must be at most 15 characters long"),
     bio: Yup.string()
       .min(10, "Bio must be at least ten characters long"),
   });

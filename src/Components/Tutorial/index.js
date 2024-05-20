@@ -26,7 +26,7 @@ const TutorialModals = (props) => {
         <div className="mb-4">
           <img width={"120px"} src={icon} alt="icon" />
         </div>
-        <h2 className={`text-start ${classes.heading}`}>Welcome to Memee</h2>
+        <h2 className={`text-center ${classes.heading}`}>Welcome to Memee</h2>
         <h5 className="text-light mb-4">Tournament Rules</h5>
 
         <ul className={`ruleList ${classes.ruleList}`}>

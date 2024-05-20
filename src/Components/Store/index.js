@@ -8,8 +8,7 @@ import { toast } from 'react-toastify'
 const Store = () => {
 
   const [cards , setCards ] = useState([]);
-  const [cardRemovalId  , setCardRemovalId  ] = useState();
-
+  
   useEffect(()=>{
     getAmazonCard();
   },[])
@@ -21,20 +20,10 @@ const Store = () => {
    }
   }
 
-  /**
-   * Remove Purshased card from the list
-   */
-  useEffect(()=>{
-    if(cardRemovalId){
-      const removeCard = cards.filter((item)=> item?.id !== cardRemovalId);
-      setCards(removeCard)
-    }
-  },[cardRemovalId])
-
 
   return (
     <>
-    <GiftCard data={cards} setCardRemovalId={setCardRemovalId}/>
+    <GiftCard data={cards}/>
     <StoreItems/>
     <TabDetails storeitems/>
     </>
