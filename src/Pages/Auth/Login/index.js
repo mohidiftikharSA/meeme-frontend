@@ -14,8 +14,14 @@ import { authSuccess } from "Redux/reducers/authSlice";
 import { fetchCardId } from "Redux/reducers/fetchCardID";
 import { coinsBuy } from "Redux/reducers/buyCoins";
 import ClipLoader from "react-spinners/ClipLoader";
+import { FiEyeOff } from "react-icons/fi";
+import { IoEyeOutline } from "react-icons/io5";
 
 const LoginFrom = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -97,18 +103,23 @@ const LoginFrom = () => {
               <Form.Control.Feedback type="invalid">
                 {errors.email}
               </Form.Control.Feedback>
-              <Form.Control
-                onChange={handleChange}
-                type="password"
-                placeholder="Password"
-                value={values.password}
-                name={"password"}
-                required
-                isInvalid={!!errors.password}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.password}
-              </Form.Control.Feedback>
+              <div className={classes.eye}>
+                <Form.Control
+                  onChange={handleChange}
+                  type={isOpen ? "text" : "password"}
+                  placeholder="Password"
+                  value={values.password}
+                  name={"password"}
+                  required
+                  isInvalid={!!errors.password}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.password}
+                </Form.Control.Feedback>
+                <span style={{ display: errors.password && !!errors.password ? "none" : "block" }} onClick={handleClick}>
+                  {isOpen ? <IoEyeOutline /> : <FiEyeOff />}
+                </span>
+              </div>
               <div className="check">
                 <span>
                   <Form.Check
@@ -125,7 +136,7 @@ const LoginFrom = () => {
 
               {isLoading ? (
                 <Button type="submit" disabled className="w-100 p-2 authButton">
-                  <ClipLoader className="mt-1 btn-loading" color="#000000"  />
+                  <ClipLoader className="mt-1 btn-loading" color="#000000" />
                 </Button>
               ) : (
                 <Button type="submit" className="w-100 p-2 authButton">
