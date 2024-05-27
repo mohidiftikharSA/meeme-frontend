@@ -30,6 +30,7 @@ import { useSelector } from "react-redux";
 import api from "../../APIs/settings";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import CoinsAPI from "../../APIs/coins";
 
 const stripePromise = loadStripe(
   "pk_test_51NzfErL8UjBw116SQB20JlqjZ6znVy11TYwZ7RBNBDKubR5UFeYiu4TcmkyVMG5gDTBA0ja6lJwy2xxFqDW6uNZN00RMBzr0E1"
@@ -50,6 +51,7 @@ const ProfileSetting = () => {
   const [deleteAccountModalShow, setDeleteAccountShow] = useState(false);
   const [show, setShow] = useState(false);
   const [selectedSupportTicket, setSelectedSupportTicket] = useState();
+  const [coinsHistory, setCoinsHistory] = useState([]);
   const [existingCardDetails, setExistingCardDetails] = useState({
     number: "",
     expiry: "",
@@ -79,6 +81,7 @@ const ProfileSetting = () => {
 
   useEffect(() => {
     getUserCard();
+    getHistory();
   }, []);
 
   const getUserCard = async () => {
@@ -91,6 +94,27 @@ const ProfileSetting = () => {
         cvc: existingCard?.cvc,
         brand: existingCard?.brand,
       });
+    }
+  };
+
+  /**
+   * Get Transaction History
+   */
+  const getHistory = async () => {
+    try {
+      const res = await CoinsAPI.transactions();
+
+      const formattedHistory = res?.data?.total_history?.map((item) => {
+        const date = new Date(item.created_at);
+        const options = { year: "numeric", month: "short", day: "2-digit" };
+        const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
+          date
+        );
+        return { ...item, created_at: formattedDate };
+      });
+      setCoinsHistory(formattedHistory, "transaction res");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -150,11 +174,11 @@ const ProfileSetting = () => {
                         </span>
                         <div className="profileDetails">
                           <h6 className="mb-1">Transaction History</h6>
-                          <p>Latest Jan 23 2023</p>
+                          {coinsHistory && coinsHistory[0] ?<p>Latest {coinsHistory[0].created_at}</p> : ''}
                         </div>
                       </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
+                    {/* <Nav.Item>
                       <Nav.Link eventKey="billing">
                         <span>
                           <img src={Wallet} alt="wallet-icon" />
@@ -167,7 +191,7 @@ const ProfileSetting = () => {
                           </p>
                         </div>
                       </Nav.Link>
-                    </Nav.Item>
+                    </Nav.Item> */}
                     <Nav.Item>
                       <Nav.Link eventKey="notifications">
                         <span>
@@ -248,7 +272,7 @@ const ProfileSetting = () => {
                       <FAQ />
                     </Tab.Pane>
                     <Tab.Pane eventKey="transaction">
-                      <Transaction data={transactionData} />
+                      <Transaction data={coinsHistory} />
                     </Tab.Pane>
                     <Tab.Pane eventKey="rule">
                       <RuleList />

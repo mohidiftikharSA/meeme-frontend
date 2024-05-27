@@ -4,7 +4,7 @@ import Heading from "Components/Heading";
 import user from "../../Images/profile1.png";
 import attachment1 from "../../Images/attachment2.png";
 import attachment2 from "../../Images/attachment1.png";
-import logo from "../../Images/scondaryLogo.png";
+import logo from "../../Images/avatar.png";
 import { BsImage } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import { FaSmile } from "react-icons/fa";

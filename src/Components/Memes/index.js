@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import classes from "./index.module.scss";
 import ViewPost from "Components/ViewPost";
-import avatar from "../../Images/avatar.jpg";
+import avatar from "../../Images/avatar.png";
 import MemeItem from "./MemeItem";
 import MemeItemSkeleton from "./MemeItemSkeleton";
 import postAPIs from "../../APIs/dashboard/home";

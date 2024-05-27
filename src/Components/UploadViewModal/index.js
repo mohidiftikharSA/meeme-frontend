@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Modal} from "react-bootstrap";
 import classes from "./index.module.scss";
 import avatar from "../../Images/youuser.png";
-import user from "../../Images/avatar.jpg"
+import user from "../../Images/avatar.png"
 // import ReactImageUploading from "react-images-uploading";
 // import { height } from "@mui/system";
 import api from 'APIs/dashboard/home'

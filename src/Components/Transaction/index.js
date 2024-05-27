@@ -4,32 +4,8 @@ import { Card } from "react-bootstrap";
 import coin from "../../Images/coin.png";
 import classes from "./index.module.scss";
 import { Link } from "react-router-dom";
-import CoinsAPI from "../../APIs/coins";
 
 const Transaction = ({ data, noCard }) => {
-  const [coinsHistory, setCoinsHistory] = useState([]);
-
-  const getHistory = async () => {
-    try {
-      const res = await CoinsAPI.transactions();
-
-      const formattedHistory = res?.data?.total_history?.map((item) => {
-        const date = new Date(item.created_at);
-        const options = { year: "numeric", month: "short", day: "2-digit" };
-        const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
-          date
-        );
-        return { ...item, created_at: formattedDate };
-      });
-      setCoinsHistory(formattedHistory, "transaction res");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getHistory();
-  }, []);
 
 
   return (
@@ -47,8 +23,8 @@ const Transaction = ({ data, noCard }) => {
       <ul
         className={`${classes.transaction} ${noCard && `${classes.minHeight}`}`}
       >
-        {coinsHistory && coinsHistory[0] ? (
-          coinsHistory?.map((item, ind) => {
+        {data && data[0] ? (
+          data?.map((item, ind) => {
             return (
               <li key={ind}>
                 <div className={classes.head}>

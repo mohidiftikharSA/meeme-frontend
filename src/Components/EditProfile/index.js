@@ -2,7 +2,7 @@ import Heading from "Components/Heading";
 import React, { useRef, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import classes from "./index.module.scss";
-import avatar from "../../Images/avatar.jpg";
+import avatar from "../../Images/avatar.png";
 import { AiFillCamera } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
@@ -52,10 +52,9 @@ const EditProfile = () => {
       .email("Invalid email address")
       .required("Email is required"),
     phone: Yup.string()
-      .required("Phone is required")
       .matches(/^[0-9]+$/, "Phone must contain only digits")
-      .min(8, "Phone must be at least 8 characters long")
-      .max(15, "Phone must be at most 15 characters long"),
+      .min(5, "Phone must be at least 5 characters long")
+      .max(20, "Phone must be at most 20 characters long"),
     bio: Yup.string()
       .min(10, "Bio must be at least ten characters long"),
   });
@@ -174,7 +173,6 @@ const EditProfile = () => {
                       isValid={touched.email && !errors.email}
                       isInvalid={touched.email && !!errors.email}
                       disabled
-
                     />
 
                   </Form.Group>

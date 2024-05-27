@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classes from "./index.module.scss";
 import { Form } from 'react-bootstrap';
-import user from "../../Images/avatar.jpg"
+import user from "../../Images/avatar.png"
 import attachment from "../../Images/attachement.svg";
 import { useSelector } from "react-redux";
 import PostContentModal from "Components/TournamentModal";

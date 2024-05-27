@@ -4,7 +4,7 @@ import Search from "Components/Search";
 import React, { useEffect, useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import postAPIs from "../../APIs/dashboard/home";
-import avatar from "../../Images/avatar.jpg";
+import avatar from "../../Images/avatar.png";
 
 const Explore = () => {
   const [recentPosts, setRecentPosts] = useState([]);

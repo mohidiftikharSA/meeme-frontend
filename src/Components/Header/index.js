@@ -7,7 +7,7 @@ import SearchResults from "Components/Search/SearchResult";
 import Navigation from "Components/Nav";
 import { Link, useNavigate } from "react-router-dom";
 import coin from "../../Images/coin.png";
-import avatar from "../../Images/avatar.jpg";
+import avatar from "../../Images/avatar.png";
 import { useDispatch, useSelector } from "react-redux";
 import api from "APIs/dashboard/home";
 import SpinnerLoader from "../Loader/SpinnerLoader";

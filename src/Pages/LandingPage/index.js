@@ -47,7 +47,7 @@ const LandingPage = () => {
         <Col xl={6} md={8} className={`p-lg-0 content-responsive center-side ${isActive ? "active" : ""}`}>
           <section>
             <Container>
-              <TabDetails first={"following"} main />
+              <TabDetails first={"memes"} main />
             </Container>
           </section>
         </Col>

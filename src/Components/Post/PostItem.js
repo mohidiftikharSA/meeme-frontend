@@ -7,8 +7,8 @@ import classes from "./index.module.scss";
 import like from "../../Images/like.svg";
 import message from "../../Images/message.svg";
 import send from "../../Images/sendbtn.png";
-import user2 from "../../Images/avatar.jpg";
-import avatar from "../../Images/avatar.jpg";
+import user2 from "../../Images/avatar.png";
+import avatar from "../../Images/avatar.png";
 import FlagPostModal from "Components/FlagPostModal";
 import ReportPostModal from "Components/ReportPostModal";
 

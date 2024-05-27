@@ -5,7 +5,7 @@ import {IoIosSend} from "react-icons/io";
 
 import user1 from "../../Images/chatuser.png";
 import user2 from "../../Images/profile1.png";
-import avatar from '../../Images/avatar.jpg'
+import avatar from '../../Images/avatar.png'
 import {FiSmile} from "react-icons/fi";
 import {CgAttachment} from "react-icons/cg";
 import {BsFillChatDotsFill} from "react-icons/bs";

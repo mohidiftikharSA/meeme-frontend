@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SkeletonPostsLoading from '../Loader/SkeletonPostsLoading'
 import PostItem from "./PostItem";
-import avatar from "../../Images/avatar.jpg";
+import avatar from "../../Images/avatar.png";
 import { useSelector } from "react-redux";
 
 const Posts = ({ postData, comment, isLoading, disable, likePost }) => {

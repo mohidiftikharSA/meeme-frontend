@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import classes from "./index.module.scss";
-import userimg from "../../Images/avatar.jpg";
+import userimg from "../../Images/avatar.png";
 import { Button } from "react-bootstrap";
 import setting from "../../Images/SettingIcon.png";
 import edit from "../../Images/editUser.png";

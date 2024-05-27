@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 import { timeFormat } from "../../Helper/Converters";
 import userimg from "../../Images/user1.png";
 import classes from "./index.module.scss";
-import user2 from "../../Images/avatar.jpg";
+import user2 from "../../Images/avatar.png";
 import { useSelector } from "react-redux";
 import DashboardAPIs from '../../APIs/dashboard/home';
 

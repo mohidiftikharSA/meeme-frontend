@@ -149,8 +149,9 @@ const TabDetails = ({
   const [isLoadingTrendingPosts, setIsLoadingTrendingPosts] = useState(false);
   const { data } = useSelector((state) => state.searchTagData);
 
-  const [activeTab, setActiveTab] = useState("following");
+  const [activeTab, setActiveTab] = useState("memes");
   const changeTab = (tabKey) => {
+    console.log("Changes tab =", tabKey);
     setActiveTab(tabKey);
   };
 
@@ -207,7 +208,7 @@ const TabDetails = ({
       handleButtonClick();
     } else {
       setTagTrendingPost([]);
-      setActiveTab("following");
+      setActiveTab("memes");
     }
   }, [data]);
 

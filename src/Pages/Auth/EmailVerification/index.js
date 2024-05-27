@@ -16,21 +16,30 @@ const EmailVerification = () => {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
+    .email("Invalid email address")
+    .test('dot-after-at', 'Dot should be present after "@"', function (value) {
+      if (value) {
+        const atIndex = value.indexOf('@');
+        const dotIndex = value.indexOf('.', atIndex);
+        return dotIndex > atIndex && dotIndex !== -1;
+      }
+      return false;
+    })
+    .required("Email is required"),
   });
 
   const sendResetPasswordLink = async (data) => {
     try {
-      await AuthAPIs.forgetPassword(data.email);
-      setSuccess(true);
-      setSmShow(true);
-
-      // Delay navigation for a few seconds (e.g., 2 seconds)
-      setTimeout(() => {
-        setSmShow(false); // Hide the modal
-        navigate(`/otpVerification?email=${data.email}`);
-      }, 2000); // 2000 milliseconds (2 seconds)
+      const res =await AuthAPIs.forgetPassword(data.email);
+      if(res){
+        setSuccess(true);
+        setSmShow(true);
+          setTimeout(() => {
+          setSmShow(false); 
+          navigate(`/otpVerification?email=${data.email}`);
+        }, 2000);
+      }
+    
     } catch (error) {
       console.error("Error sending reset password link:", error);
     }

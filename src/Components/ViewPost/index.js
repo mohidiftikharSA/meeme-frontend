@@ -6,7 +6,7 @@ import postAPIs from "../../APIs/dashboard/home";
 import {useSelector} from "react-redux";
 
 // change code
-import user2 from "../../Images/avatar.jpg";
+import user2 from "../../Images/avatar.png";
 
 
 const ViewPost = ({ setIsModalOpen, ...props}) => {

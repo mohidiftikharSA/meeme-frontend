@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './SearchResult.module.scss';
 import {useNavigate} from "react-router-dom";
-import avatar from  '../../Images/avatar.jpg'
+import avatar from  '../../Images/avatar.png'
 
 const SearchResult = ({results, clearResult}) => {
     const navigate = useNavigate();

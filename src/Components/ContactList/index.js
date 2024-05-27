@@ -2,7 +2,7 @@ import React from 'react'
 import classes from "./index.module.scss"
 import Search from 'Components/Search'
 import { useNavigate } from 'react-router-dom'
-import avatar from '../../Images/avatar.jpg'
+import avatar from '../../Images/avatar.png'
 
 
 

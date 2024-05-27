@@ -14,7 +14,7 @@ import Loader from "Components/Loader";
 
 const BuyCoin = ({ purchase }) => {
   const [sliderValue, setSliderValue] = useState(0);
-  const [calVal, setCalVal] = useState(0);
+  const [calVal, setCalVal] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const minValue = 0;
   const maxValue = 14000;
@@ -30,10 +30,13 @@ const BuyCoin = ({ purchase }) => {
 
   const buyCoins = async () => {
     try {
+      if(calVal === 0 || isNaN(calVal)){
+        toast.error("Please Select Price.");
+        return;
+      }
       setIsLoading(true);
       console.log("slider vale  == ", sliderValue);
       console.log("calVal vale  == ", parseFloat(calVal));
-
       const res = await CoinsAPIs.createCheckoutSession({
         product_name: sliderValue,
         amount: parseFloat(calVal),
@@ -118,6 +121,7 @@ const BuyCoin = ({ purchase }) => {
                 value={calVal}
                 // value={inputValue}
                 // value={calVal}
+                placeholder="0"
                 onChange={handleInput}
                 className={classes.buyCoinInput}
               />

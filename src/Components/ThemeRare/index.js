@@ -17,17 +17,23 @@ const ThemeRare = ({ data2, card , purchasedList}) => {
 
   const buyTheme = async (name, amount) => {
     setIsLoading(true);
-    console.log("buyTheme ", name, amount);
-    const buy = await ThemesAPIs.buyItem({ name, amount });
-    if (buy) {
-      console.log("Theme Purshased Successfully ",buy.data?.message);
-      if(buy.data?.message === 'Item Exists'){
-        toast.error(buy.data?.message)
-      }else{
-        toast.success(buy.data?.message)
-        dispatch(coinsUsed(amount));
+    try {
+      console.log("buyTheme ", name, amount);
+      const buy = await ThemesAPIs.buyItem({ name, amount });
+      if (buy) {
+        console.log("Theme Purshased Successfully ",buy.data?.message);
+        if(buy.data?.message === 'Item Exists'){
+          toast.error(buy.data?.message)
+        }else{
+          toast.success(buy.data?.message)
+          dispatch(coinsUsed(amount));
+        }
       }
+    } catch (error) {
+      console.log("Error in Theme buy =", error);
+      toast.error("Try Again After Some time")
     }
+   
     setIsLoading(false);
   };
 

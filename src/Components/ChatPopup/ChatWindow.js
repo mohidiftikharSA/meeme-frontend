@@ -3,7 +3,7 @@ import { useState } from "react";
 import { LiaTimesSolid } from "react-icons/lia";
 import { IoIosSend } from "react-icons/io";
 import classes from "./index.module.scss";
-import user2 from "../../Images/avatar.jpg";
+import user2 from "../../Images/avatar.png";
 import { CgAttachment } from "react-icons/cg";
 import { Form } from "react-bootstrap";
 import { FaSmile } from "react-icons/fa";

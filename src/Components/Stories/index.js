@@ -4,7 +4,7 @@ import classes from "./index.module.scss";
 import avatar from "../../Images/youuser.png";
 import Slider from "react-slick";
 import {useSelector} from "react-redux";
-import user from "../../Images/avatar.jpg"
+import user from "../../Images/avatar.png"
 
 import {Col, Row} from "react-bootstrap";
 import UploadModal from "Components/UploadViewModal";

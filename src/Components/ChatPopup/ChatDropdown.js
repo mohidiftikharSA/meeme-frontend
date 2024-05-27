@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BsFillChatDotsFill } from "react-icons/bs";
 import Dropdown from "react-bootstrap/Dropdown";
 import classes from "./index.module.scss";
-import avatar from "../../Images/avatar.jpg";
+import avatar from "../../Images/avatar.png";
 import { timeAgo } from "../../Helper/Converters";
 
 
