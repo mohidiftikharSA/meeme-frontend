@@ -32,7 +32,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CoinsAPI from "../../APIs/coins";
 
-const stripePromise = loadStripe(process.env.STRIPE_KEY);
+const stripePromise = loadStripe(`${process.env.STRIPE_KEY}`);
 
 const transactionData = [
   {
