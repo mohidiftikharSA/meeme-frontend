@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import GoogleAuth from "../../../Components/Auth/GoogleAuth";
 import FooterTabs from "Components/FooterTabs";
 import { FaFacebook } from "react-icons/fa";
+import FacebookLogin from 'react-facebook-login';
 
 const Home = () => {
   const [show, setshow] = useState(false);
@@ -23,6 +24,10 @@ const Home = () => {
     toast.error("Coming Soon.");
     return;
   };
+
+  const responseFacebook = (response) => {
+    console.log("Facebook Login ===",response);
+  }
 
 
   return (
@@ -38,14 +43,20 @@ const Home = () => {
               Continue with Email
             </Button>
               <GoogleAuth className="google-custom-button"/>
-            <Button
+            {/* <Button
               className="mt-3"
               variant="outline-light"
               onClick={comingSoon}
             >
               <FaFacebook style={{ color: "#5090ff" }} />
               Continue with Facebook
-            </Button>
+            </Button> */}
+            <FacebookLogin
+            appId="655238713421201"
+            autoLoad={true}
+            fields="name,email,picture"
+            // onClick={componentClicked}
+            callback={responseFacebook} />
           </div>
           <div className={classes.loginLinks}>
             <p className={classes.dark}>
