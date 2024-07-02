@@ -70,7 +70,7 @@ const GoogleAuth = () => {
 
     return (
         <div>
-            <Button className="mb-0" variant="outline-light" onClick={googleLogin}>
+            <Button  variant="outline-light" onClick={googleLogin}>
                 <FcGoogle />
                 Continue with Google
             </Button>

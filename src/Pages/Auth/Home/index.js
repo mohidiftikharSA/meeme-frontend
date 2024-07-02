@@ -73,21 +73,17 @@ const Home = () => {
               Continue with Email
             </Button>
               <GoogleAuth className="google-custom-button"/>
-            {/* <Button
-              className="mt-3"
-              variant="outline-light"
-              onClick={comingSoon}
-            >
-              <FaFacebook style={{ color: "#5090ff" }} />
-              Continue with Facebook
-            </Button> */}
+            <div className="custom">
             <FacebookLogin
             appId="655238713421201"
             autoLoad={false}
             fields="name,email,picture"
+            cssClass="btn btn-outline-light"
             // onClick={responseFacebook}
             callback={responseFacebook}
+            icon={<FaFacebook style={{ color: "#5090ff" }} />}
              />
+            </div>
           </div>
           <div className={classes.loginLinks}>
             <p className={classes.dark}>
