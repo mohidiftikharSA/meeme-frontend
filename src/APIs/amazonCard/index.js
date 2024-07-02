@@ -18,7 +18,7 @@ const buyItem = async(data)=>{
 }
 
 const getPuchasedItems = async()=>{
-  return await API.getMethod(ENDPOINT.stores.buy_item, true);
+  return await API.getMethod(ENDPOINT.stores.buy_item,true,false);
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
