@@ -75,7 +75,7 @@ const Home = () => {
               <GoogleAuth className="google-custom-button"/>
             <div className="custom">
             <FacebookLogin
-            appId="655238713421201"
+            appId={`${process.env.REACT_FACEBOOK_APP_ID}`}
             autoLoad={false}
             fields="name,email,picture"
             cssClass="btn btn-outline-light"
