@@ -11,10 +11,15 @@ import GoogleAuth from "../../../Components/Auth/GoogleAuth";
 import FooterTabs from "Components/FooterTabs";
 import { FaFacebook } from "react-icons/fa";
 import FacebookLogin from 'react-facebook-login';
+import AuthAPIs from "../../Auth/Home";
+import { authSuccess } from "Redux/reducers/authSlice";
+import { useDispatch } from "react-redux";
+
 
 const Home = () => {
   const [show, setshow] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const nextPage = () => {
     navigate(`/login`);
@@ -26,8 +31,33 @@ const Home = () => {
   };
 
   const responseFacebook = (response) => {
-    console.log("Facebook Login ===",response);
+    console.log("Facebook Login ===",response?.accessToken);
+    handleFacebookLoginSuccess(response?.accessToken);
   }
+
+  const handleFacebookLoginSuccess = async (tokenResponse) => {
+    console.log(tokenResponse);
+    try {
+        const res = await AuthAPIs.socialLogin('google_web', tokenResponse);
+        if (res) {
+            console.log("Response of Social API = ", res.data);
+            dispatch(
+                authSuccess({
+                    user: res.data?.user,
+                    accessToken: res.data.token,
+                })
+            );
+            navigate(`/home`);
+            toast.success("Login Successfully", {
+                position: "top-right",
+                autoClose: 2000,
+            });
+            localStorage.setItem("accessToken", res.data.token);
+        }
+    } catch (error) {
+        console.error("Error while verifying:", error);
+    }
+};
 
 
   return (
@@ -53,6 +83,7 @@ const Home = () => {
             </Button> */}
             <FacebookLogin
             appId="655238713421201"
+            // appId="833457641724704"
             autoLoad={true}
             fields="name,email,picture"
             // onClick={componentClicked}
