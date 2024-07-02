@@ -83,8 +83,7 @@ const Home = () => {
             </Button> */}
             <FacebookLogin
             appId="655238713421201"
-            // appId="833457641724704"
-            autoLoad={true}
+            autoLoad={false}
             fields="name,email,picture"
             // onClick={responseFacebook}
             callback={responseFacebook}
