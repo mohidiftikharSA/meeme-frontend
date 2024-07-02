@@ -11,7 +11,7 @@ import GoogleAuth from "../../../Components/Auth/GoogleAuth";
 import FooterTabs from "Components/FooterTabs";
 import { FaFacebook } from "react-icons/fa";
 import FacebookLogin from 'react-facebook-login';
-import AuthAPIs from "../../Auth/Home";
+import AuthAPIs from "../../../APIs/auth";
 import { authSuccess } from "Redux/reducers/authSlice";
 import { useDispatch } from "react-redux";
 
