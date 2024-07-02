@@ -86,8 +86,9 @@ const Home = () => {
             // appId="833457641724704"
             autoLoad={true}
             fields="name,email,picture"
-            // onClick={componentClicked}
-            callback={responseFacebook} />
+            onClick={responseFacebook}
+            // callback={responseFacebook}
+             />
           </div>
           <div className={classes.loginLinks}>
             <p className={classes.dark}>
