@@ -38,7 +38,7 @@ const Home = () => {
   const handleFacebookLoginSuccess = async (tokenResponse) => {
     console.log(tokenResponse);
     try {
-        const res = await AuthAPIs.socialLogin('google_web', tokenResponse);
+        const res = await AuthAPIs.socialLogin('facebook', tokenResponse);
         if (res) {
             console.log("Response of Social API = ", res.data);
             dispatch(
