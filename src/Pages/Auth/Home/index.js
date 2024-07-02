@@ -31,7 +31,7 @@ const Home = () => {
   };
 
   const responseFacebook = (response) => {
-    console.log("Facebook Login ===",response?.accessToken);
+    console.log("Facebook Login 000 ===",response?.accessToken);
     handleFacebookLoginSuccess(response?.accessToken);
   }
 
