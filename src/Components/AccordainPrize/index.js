@@ -8,17 +8,17 @@ const data = [
     {
         no: "1st",
         icon : amazon,
-        title:"$100 Amazon Gift Card"
+        title:"£100 Amazon Gift Card"
     },
     {
         no: "2nd",
         icon : amazon,
-        title:"$100 Amazon Gift Card"
+        title:"£100 Amazon Gift Card"
     },
     {
         no: "3rd",
         icon : amazon,
-        title:"$100 Amazon Gift Card",
+        title:"£100 Amazon Gift Card",
     },
     {
         no: "4th",
@@ -28,32 +28,32 @@ const data = [
     {
         no: "5th",
         icon : coin,
-        title:"11,000 Coins",
+        title:"10,000 Coins",
     },
     {
         no: "6th",
         icon : coin,
-        title:"10,000 Coins",
+        title:"9,000 Coins",
     },
     {
         no: "7th",
         icon : coin,
-        title:"9,000 Coins",
+        title:"8,000 Coins",
     },
     {
         no: "8th",
         icon : coin,
-        title:"8,000 Coins",
+        title:"7,000 Coins",
     },
     {
         no: "9th",
         icon : coin,
-        title:"7,000 Coins",
+        title:"6,000 Coins",
     },
     {
         no: "10th",
         icon : coin,
-        title:"6,000 Coins",
+        title:"5,000 Coins",
     },
 ]
 

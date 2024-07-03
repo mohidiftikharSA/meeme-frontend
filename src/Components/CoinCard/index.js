@@ -94,7 +94,7 @@ const CoinCard = ({ data }) => {
                   style={{ maxWidth: "100%" }}
                 >
                   <span className={"text"}>
-                    Buy for ${Math.round(item.price)}
+                    Buy for £{Math.round(item.price)}
                   </span>
                 </Link>
               </Card>

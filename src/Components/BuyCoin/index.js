@@ -130,7 +130,7 @@ const BuyCoin = ({ purchase }) => {
               ) : (
                 <div className={classes.currencyBox}>
                   <img width={"22px"} src={coin} alt="coin" />
-                  USD
+                  £
                 </div>
               )}
             </Form.Group>

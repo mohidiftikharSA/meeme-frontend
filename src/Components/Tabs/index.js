@@ -32,6 +32,7 @@ import UltraRare from "Components/UltraRare";
 import ThemeRare from "Components/ThemeRare";
 import postAPIs from "APIs/dashboard/home";
 import { useSelector } from "react-redux";
+import ThemesAPIs from "../../APIs/amazonCard";
 
 const backgroundOverlayData = [
   {
@@ -148,8 +149,9 @@ const TabDetails = ({
   const [isLoadingRecentPosts, setIsLoadingRecentPosts] = useState(false);
   const [isLoadingTrendingPosts, setIsLoadingTrendingPosts] = useState(false);
   const { data } = useSelector((state) => state.searchTagData);
-
+  const [purchasedItems, setPurchasedItems] = useState([]);
   const [activeTab, setActiveTab] = useState("memes");
+
   const changeTab = (tabKey) => {
     console.log("Changes tab =", tabKey);
     setActiveTab(tabKey);
@@ -193,6 +195,7 @@ const TabDetails = ({
   };
 
   useEffect(() => {
+    getPurchasedItems();
     const fetchData = async () => {
       await getRecentPost();
       await getTrendingPost();
@@ -211,6 +214,15 @@ const TabDetails = ({
       setActiveTab("memes");
     }
   }, [data]);
+
+  const getPurchasedItems = async () => {
+    const res = await ThemesAPIs.getPuchasedItems();
+    if (res) {
+      console.log("Response of the Purchased  == ", res.data);
+      setPurchasedItems(res.data?.store);
+    }
+  };
+
 
   /**
    * Set Active tab
@@ -514,11 +526,8 @@ const TabDetails = ({
           id="uncontrolled-tab-example"
           className="mb-5 noBg"
         >
-          <Tab eventKey="Icons" title="Icons">
-            <UltraRare noCoin data={data44} />
-          </Tab>
           <Tab eventKey="themes" title="Themes">
-            <ThemeRare card data2={data2} />
+            <ThemeRare card data2={purchasedItems} />
           </Tab>
           <Tab eventKey="overlay" title="Background Overlay">
             <BackgroundOverlay noCoin data={backgroundOverlayData} />
