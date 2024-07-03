@@ -53,7 +53,7 @@ const ThemeRare = ({ data2, card , purchasedList}) => {
               >
                 {card ? <h6>{item.title}</h6> : ""}
                 <div className={"imgBox mb-3"}>
-                  <img src={item.path} alt="img" />
+                  <img src={item.path || item?.theme_image} alt="img" />
                 </div>
 
                 {card ? (

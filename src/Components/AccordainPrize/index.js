@@ -13,12 +13,12 @@ const data = [
     {
         no: "2nd",
         icon : amazon,
-        title:"£100 Amazon Gift Card"
+        title:"£50 Amazon Gift Card"
     },
     {
         no: "3rd",
         icon : amazon,
-        title:"£100 Amazon Gift Card",
+        title:"£25 Amazon Gift Card",
     },
     {
         no: "4th",
