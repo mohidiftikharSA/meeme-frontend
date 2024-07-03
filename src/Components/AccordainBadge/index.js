@@ -26,7 +26,7 @@ const AccordianBadge = ({ data, expolore, onTagSelect }) => {
           <Badge
             bg="secondary"
             className={`${
-              activeState === (item || item.title).toLowerCase()
+              activeState === (item || item?.title)?.toLowerCase()
                 ? "active p-3"
                 : "p-3"
             } ${expolore ? `explore-badge` : ""}`}

@@ -61,7 +61,7 @@ const Explore = () => {
     if (value.length > 0) {
       const filteredData = recentPosts.filter((item) => {
         const postTags = (item.post.tag_list || []).map((tag) =>
-          tag.toLowerCase()
+          tag?.toLowerCase()
         );
         return value.some((searchTag) =>
           postTags.some((postTag) => postTag.includes(searchTag))
@@ -83,7 +83,7 @@ const Explore = () => {
   const onTextSearch = (value) => {
     if (value.length > 0) {
       const filteredData = recentPosts.filter((recentPost) => {
-        return recentPost.username.toLowerCase().includes(value.toLowerCase());
+        return recentPost.username?.toLowerCase().includes(value?.toLowerCase());
       });
       setFilteredPost(filteredData);
     } else {
