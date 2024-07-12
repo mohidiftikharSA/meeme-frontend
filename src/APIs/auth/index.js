@@ -39,6 +39,11 @@ const getCurrentUserProfile = async () => {
   return await API.getMethod(ENDPOINT.users.currentUserProfile, true);
 };
 
+const getMyPosts = async (id) => {
+  return await API.getMethod(`${ENDPOINT.post.getMyPosts}?user_id=${id}`, true);
+};
+
+
 const updateUser = async (data) => {
   return await API.putMethod(ENDPOINT.users.updateUser, true, data, true);
 };
@@ -70,4 +75,5 @@ export default {
   otherUserProfile,
   getcoinprices,
   createPost,
+  getMyPosts
 };

@@ -10,10 +10,12 @@ const OtherProfile = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [profile , setProfile ] = useState();
+  const [userPosts , setUserPosts ] = useState();
   const { id } = useParams();
 
   useEffect(() => {
     getOtherUserProfile();
+    if(id) getOtherUserPosts(id)
   }, [id]);
 
   const getOtherUserProfile = async () => {
@@ -25,6 +27,18 @@ const OtherProfile = () => {
     setIsLoading(false);
   }
 
+
+ const getOtherUserPosts = async(id)=>{
+    setIsLoading(true);
+    console.log("currentUser ---- ", id);
+    const userPosts = await AuthAPIs.getMyPosts(id);
+    if (userPosts) {
+      console.log("Get My Posts =", userPosts);
+      setUserPosts(userPosts.data?.user_posts);
+      setIsLoading(false);
+    }
+ }
+
   return (
     <>
       <Loader isLoading={isLoading} />
@@ -32,7 +46,7 @@ const OtherProfile = () => {
       <section>
         <div className="sectionHolder py-5">
           <EarnBadge />
-          <TabDetails otherProfile profile profilePosts={profile?.profile_posts}/>
+          <TabDetails otherProfile profile profilePosts={userPosts}/>
         </div>
       </section>
     </>
