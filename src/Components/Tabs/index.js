@@ -522,7 +522,7 @@ const TabDetails = ({
       )}
       {customizeProfile && (
         <Tabs
-          defaultActiveKey={"Icons"}
+          defaultActiveKey={"themes"}
           id="uncontrolled-tab-example"
           className="mb-5 noBg"
         >

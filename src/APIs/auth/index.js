@@ -40,7 +40,7 @@ const getCurrentUserProfile = async () => {
 };
 
 const getMyPosts = async (id) => {
-  return await API.getMethod(`${ENDPOINT.post.getMyPosts}?user_id=${id}`, true);
+  return await API.getMethod(`${ENDPOINT.post.getMyPosts}?user_id=${id}`, true, false);
 };
 
 
