@@ -4,13 +4,18 @@ import searchIcon from "../../Images/Search.png";
 import searchIcon2 from "../../Images/Searchwhite.png";
 import classes from "./index.module.scss";
 
-const Search = ({ expolore, text, contactList, badgeList, onSearchChange }) => {
+const Search = ({ expolore, text, contactList, badgeList, onSearchChange, onSearchSubmit}) => {
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
     setSearchValue(value);
     onSearchChange(value);
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      onSearchSubmit(searchValue);
+    }
   };
 
   return (
@@ -23,6 +28,7 @@ const Search = ({ expolore, text, contactList, badgeList, onSearchChange }) => {
         placeholder={text}
         value={searchValue}
         onChange={handleSearchChange} 
+        onKeyDown={handleKeyDown}
       />
     </InputGroup>
   );

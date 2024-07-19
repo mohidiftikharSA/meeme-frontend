@@ -134,19 +134,25 @@ const SubTabs = ({ icon, themes }) => {
           <Tab eventKey="common" title="Common">
             <ThemeRare
               purchasedList={purchasedItems}
-              data2={themesAPI.filter((theme) => theme.rarity === "common")}
+              data2={themesAPI.filter((theme) => theme.rarity === "common")
+                .sort((a, b) => a.coin - b.coin)
+              }
             />
           </Tab>
           <Tab eventKey="rare" title="Rare">
             <ThemeRare
               purchasedList={purchasedItems}
-              data2={themesAPI.filter((theme) => theme.rarity === "rare")}
+              data2={themesAPI.filter((theme) => theme.rarity === "rare")
+                .sort((a, b) => a.coin - b.coin)
+              }
             />
           </Tab>
           <Tab eventKey="ultra" title="Ultra Rare">
             <ThemeRare
               purchasedList={purchasedItems}
-              data2={themesAPI.filter((theme) => theme.rarity === "ultra_rare")}
+              data2={themesAPI.filter((theme) => theme.rarity === "ultra_rare")
+                .sort((a, b) => a.coin - b.coin)
+              }
             />
           </Tab>
         </Tabs>

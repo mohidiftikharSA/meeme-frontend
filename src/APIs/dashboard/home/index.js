@@ -67,6 +67,10 @@ const deletePosts = async (data) => {
   return API.deleteMethod(ENDPOINT.post.delete_posts, true, data);
 };
 
+const searchPostByUsernameAndTag = async(data)=>{
+   return await API.postMethod(ENDPOINT.post.serach_by_username_tag,true,data, false , false);
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getRecentPosts,
@@ -84,4 +88,5 @@ export default {
   getUserNotificationsList,
   user_search_tag,
   deletePosts,
+  searchPostByUsernameAndTag
 };

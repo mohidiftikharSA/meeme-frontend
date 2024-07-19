@@ -20,37 +20,39 @@ const Explore = () => {
       if (firstAPICall && pageNumberRef.current === 1) {
         return;
       }
-      const res = await postAPIs.getRecentPosts(pageNumberRef.current);
-      if (res.status === 200) {
-        firstAPICall = true;
-        // Extract IDs of recent posts
-        const existingPostIds = new Set(
-          recentPosts.map((post) => post.post.id)
-        );
-        // Filter out new posts that are not duplicates
-        const newPosts = res.data.recent_posts.filter(
-          (post) => !existingPostIds.has(post.post.id)
-        );
-        // Filter out posts with duplicate IDs
-        const uniqueNewPosts = newPosts.filter(
-          (post, index, self) =>
-            index === self.findIndex((p) => p.post.id === post.post.id)
-        );
+      if (!filteredPosts[0]) {
+        const res = await postAPIs.getRecentPosts(pageNumberRef.current);
+        if (res.status === 200) {
+          firstAPICall = true;
+          // Extract IDs of recent posts
+          const existingPostIds = new Set(
+            recentPosts.map((post) => post.post.id)
+          );
+          // Filter out new posts that are not duplicates
+          const newPosts = res.data.recent_posts.filter(
+            (post) => !existingPostIds.has(post.post.id)
+          );
+          // Filter out posts with duplicate IDs
+          const uniqueNewPosts = newPosts.filter(
+            (post, index, self) =>
+              index === self.findIndex((p) => p.post.id === post.post.id)
+          );
 
-        setRecentPosts((prevPosts) => [...prevPosts, ...uniqueNewPosts]);
-        setFilteredPost((prevPosts) => [...prevPosts, ...uniqueNewPosts]);
-        setLoading(false);
-        pageNumberRef.current++;
-        if (uniqueNewPosts.length === 0) {
-          setHasMore(false);
+          setRecentPosts((prevPosts) => [...prevPosts, ...uniqueNewPosts]);
+          setFilteredPost((prevPosts) => [...prevPosts, ...uniqueNewPosts]);
+          setLoading(false);
+          pageNumberRef.current++;
+          if (uniqueNewPosts.length === 0) {
+            setHasMore(false);
+          }
+        } else {
+          console.error("Error: Unexpected status code", res.status);
         }
-      } else {
-        console.error("Error: Unexpected status code", res.status);
-      }
 
-      const resTags = await postAPIs.getTags();
-      if (resTags) {
-        setTags(resTags.data.tags);
+        const resTags = await postAPIs.getTags();
+        if (resTags) {
+          setTags(resTags.data.tags);
+        }
       }
     } catch (error) {
       console.error("Error while fetching data:", error);
@@ -80,18 +82,33 @@ const Explore = () => {
     }
   };
 
-  const onTextSearch = (value) => {
+  const onTextSearch = async (value) => {
+    console.log(value);
+    console.log("Set the value in the stat ");
+    if (value.length <= 0) {
+      setFilteredPost(recentPosts);
+    }
+  };
+
+  const onSearchSubmit = async (value) => {
     if (value.length > 0) {
-      const filteredData = recentPosts.filter((recentPost) => {
-        return recentPost.username?.toLowerCase().includes(value?.toLowerCase());
-      });
-      setFilteredPost(filteredData);
+      try {
+        const data = {
+          tag: `#${value}`,
+          username: `${value}`,
+        };
+        const responsePosts = await postAPIs.searchPostByUsernameAndTag(data);
+        setFilteredPost(responsePosts.data.explore_posts);
+      } catch (error) {
+        setFilteredPost([]);
+      }
     } else {
       setFilteredPost(recentPosts);
     }
   };
+
   useEffect(() => {
-    getRecentPostAndTags();
+      getRecentPostAndTags();
   }, []);
 
   useEffect(() => {
@@ -113,10 +130,15 @@ const Explore = () => {
     };
   }, []);
 
+  
+
   const handleIntersection = async (entries) => {
     const target = entries[0];
     if (target.isIntersecting && hasMore) {
-      await getRecentPostAndTags();
+      console.log("Filtered posts in interation  == ", filteredPosts);
+      if(!filteredPosts[0]){
+        await getRecentPostAndTags();
+      }
     }
   };
 
@@ -128,6 +150,7 @@ const Explore = () => {
             expolore
             text={"Search hashtags, usernames"}
             onSearchChange={onTextSearch}
+            onSearchSubmit={onSearchSubmit}
           />
           <AccordianBadge data={tags} expolore onTagSelect={onTagSearch} />
           <MemesDetails

@@ -40,6 +40,7 @@ export const ENDPOINT = {
     createPost: `${API_URL}/posts`,
     user_search_tag: `${API_URL}/posts/user_search_tags`,
     delete_posts: `${API_URL}/posts/destroy_multiple`,
+    serach_by_username_tag: `${API_URL}/posts/post_search_user_and_tag`
   },
 
   comment: {
