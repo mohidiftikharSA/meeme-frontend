@@ -3,6 +3,8 @@ import { Modal} from 'react-bootstrap'
 import TabDetails from 'Components/Tabs'
 
 const FooterTabs = (props) => {
+  const { onHide } = props;
+
   return (
     <Modal className='aboutModal'
       {...props}
@@ -11,7 +13,7 @@ const FooterTabs = (props) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Title id="contained-modal-title-vcenter" onClick={onHide}>
           <i className="fa fa-angle-left" aria-hidden="true"></i>
         </Modal.Title>
       </Modal.Header>

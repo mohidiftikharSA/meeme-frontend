@@ -18,6 +18,7 @@ const Header = () => {
   const { profile, user } = useSelector((state) => state.auth);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
   const navigateToStore = (id) => {
@@ -33,6 +34,7 @@ const Header = () => {
   };
 
   const onSearch = async (value) => {
+    setSearchValue(value);
     clearTimeout(timeoutId);
     timeoutId = setTimeout(async () => {
       if (value !== "" && value != null) {
@@ -99,17 +101,29 @@ const Header = () => {
             </div>
           </div>
         </>
-      ) : (
-        searchResults?.length > 0 && (
+      ) : searchResults?.length === 0 && searchValue.length > 0 ? (
+        <>
           <div className={classes.overlay}>
-            <div className={classes.floatingResults}>
-              <SearchResults
-                clearResult={() => setSearchResults([])}
-                style={{ marginTop: "20px" }}
-                results={searchResults}
-              />
+            <div className={`${classes.floatingLoader}`}>
+              <h5 className="text-white text-center mt-3">No Result Found</h5>
             </div>
           </div>
+        </>
+      ) : (
+        searchResults?.length > 0 &&
+        searchValue?.length > 0 &&   
+        (
+          <>
+            <div className={classes.overlay}>
+              <div className={classes.floatingResults}>
+                <SearchResults
+                  clearResult={() => setSearchResults([])}
+                  style={{ marginTop: "20px" }}
+                  results={searchResults}
+                />
+              </div>
+            </div>
+          </>
         )
       )}
     </header>

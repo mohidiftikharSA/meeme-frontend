@@ -41,7 +41,8 @@ const Home = () => {
         const res = await AuthAPIs.socialLogin('facebook', tokenResponse);
         if (res) {
             console.log("Response of Social API = ", res.data);
-            dispatch(
+            if(res.data.token){
+              dispatch(
                 authSuccess({
                     user: res.data?.user,
                     accessToken: res.data.token,
@@ -53,6 +54,8 @@ const Home = () => {
                 autoClose: 2000,
             });
             localStorage.setItem("accessToken", res.data.token);
+            }
+           
         }
     } catch (error) {
         console.error("Error while verifying:", error);

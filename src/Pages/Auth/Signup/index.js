@@ -121,7 +121,7 @@ const Signup = () => {
                     name="name"
                     value={values.name}
                     onChange={handleChange}
-                    isValid={touched.name && !errors.name}
+                    // isValid={touched.name && !errors.name}
                     isInvalid={touched.name && !!errors.name}
                   />
                   <Form.Control.Feedback type="invalid">
@@ -136,7 +136,7 @@ const Signup = () => {
                     name="email"
                     value={values.email}
                     onChange={handleChange}
-                    isValid={touched.email && !errors.email}
+                    // isValid={touched.email && !errors.email}
                     isInvalid={touched.email && !!errors.email}
                   />
                   <Form.Control.Feedback type="invalid">
@@ -152,7 +152,7 @@ const Signup = () => {
                     maxLength={15}
                     value={values.phone}
                     onChange={handleChange}
-                    isValid={touched.phone && !errors.phone}
+                    // isValid={touched.phone && !errors.phone}
                     isInvalid={touched.phone && !!errors.phone}
                   />
                   <Form.Control.Feedback type="invalid">
@@ -167,7 +167,7 @@ const Signup = () => {
                       name="password"
                       value={values.password}
                       onChange={handleChange}
-                      isValid={touched.password && !errors.password}
+                      // isValid={touched.password && !errors.password}
                       isInvalid={touched.password && !!errors.password}
                     />
 
@@ -187,7 +187,7 @@ const Signup = () => {
                       name="confirmPassword"
                       value={values.confirmPassword}
                       onChange={handleChange}
-                      isValid={touched.confirmPassword && !errors.confirmPassword}
+                      // isValid={touched.confirmPassword && !errors.confirmPassword}
                       isInvalid={
                         touched.confirmPassword && !!errors.confirmPassword
                       }

@@ -43,7 +43,7 @@ const DeleteConfirmationModal = (props) => {
             </Modal.Header>
             <Modal.Body className='delAccounts'>
                 <p className='py-2'>Please enter the word “DELETE” before we delete your account.</p>
-                <input placeholder="Delete" value={confirmationText}
+                <input placeholder="DELETE" value={confirmationText}
                        type="text"
                        onChange={(e) => setConfirmationText(e.target.value)}
                        class="form-control mb-4"></input>

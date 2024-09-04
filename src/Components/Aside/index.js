@@ -76,12 +76,12 @@ export const Aside = ({isActive, toggleActive}) => {
                 </span>
                 Account Details
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => handleDropdownItemClick("billing")}>
+              {/* <Dropdown.Item onClick={() => handleDropdownItemClick("billing")}>
                 <span>
                   <img src={Wallet} alt="Wallet" />
                 </span>
                 Billing Details
-              </Dropdown.Item>
+              </Dropdown.Item> */}
               <Dropdown.Item onClick={() => handleDropdownItemClick("notifications")}>
                 <span>
                   <img src={Notification} alt="Notification" />

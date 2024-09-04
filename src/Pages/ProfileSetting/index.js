@@ -121,7 +121,7 @@ const ProfileSetting = () => {
       <section className="mb-5" style={{ position: "unset" }}>
         <Container>
           <div className="vertical-NavHolder">
-            <Heading title="Setting" linkPath={"profile"} />
+            <Heading title="Settings" linkPath={"home"} />
             <Tab.Container id="verticalNav" defaultActiveKey={textParam}>
               <Row>
                 <Col

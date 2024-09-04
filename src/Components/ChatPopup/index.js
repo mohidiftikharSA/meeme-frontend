@@ -21,6 +21,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const fileInputRef = useRef(null);
   const [msgSent, setMsgSent] = useState();
   const [subscriptionEstablished, setSubscriptionEstablished] = useState(false);
+  const [emoji , setEmoji ] = useState('');
 
   useEffect(() => {
     setIsChatVisible(isOpen);
@@ -84,6 +85,11 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
+
+  useEffect(()=>{
+    console.log("EMoji in useEffect =", emoji);
+    setInputText((prevText) => prevText + emoji);
+  },[emoji])
 
   const sendMessage = async () => {
     console.log("Send Message ");
@@ -200,6 +206,8 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
     return trueCount;
   }
 
+
+
   return (
     <>
       <ActionCableProvider
@@ -230,6 +238,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
             handleFileInput={handleFileInput}
             handleFileChange={handleFileChange}
             fileInputRef={fileInputRef}
+            setEmoji={setEmoji}
           />
         )}
         {/* ActionCable component from react-actioncable-provider */}

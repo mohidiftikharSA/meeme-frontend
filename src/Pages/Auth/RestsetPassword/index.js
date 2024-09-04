@@ -100,7 +100,7 @@ const ResetPassword = () => {
               <Form.Control.Feedback type="invalid">
                 {errors.confirmPassword}
               </Form.Control.Feedback>
-              <Button className="btn-primary w-100 p-2 h-auto" type="submit">
+              <Button className="btn-primary w-100 p-2 h-auto mt-3" type="submit">
                 Create New Password
               </Button>
             </Form>

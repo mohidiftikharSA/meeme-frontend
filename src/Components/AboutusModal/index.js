@@ -3,6 +3,7 @@ import React from 'react'
 import { Modal } from 'react-bootstrap'
 
 const AboutusModal = (props) => {
+    const { onHide } = props;
     return (
         <Modal className='aboutModal'
             {...props}
@@ -11,8 +12,8 @@ const AboutusModal = (props) => {
             centered
         >
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    <i className="fa fa-angle-left" aria-hidden="true"></i>
+                <Modal.Title id="contained-modal-title-vcenter" onClick={onHide}>
+                    <i className="fa fa-angle-left" aria-hidden="true" ></i>
                 </Modal.Title>
             </Modal.Header>
             <h4 className='title'>About Us</h4>
