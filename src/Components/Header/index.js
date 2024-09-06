@@ -117,7 +117,10 @@ const Header = () => {
             <div className={classes.overlay}>
               <div className={classes.floatingResults}>
                 <SearchResults
-                  clearResult={() => setSearchResults([])}
+                  clearResult={() => {
+                    setSearchResults([]);
+                    setSearchValue('');
+                  }}
                   style={{ marginTop: "20px" }}
                   results={searchResults}
                 />
