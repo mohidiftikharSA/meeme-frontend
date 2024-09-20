@@ -10,7 +10,7 @@ const Search = ({ expolore, text, contactList, badgeList, onSearchChange, onSear
   const handleSearchChange = (event) => {
     const value = event.target.value;
     setSearchValue(value);
-    // onSearchChange(value);
+    onSearchChange(value);
   };
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
