@@ -33,6 +33,7 @@ import ThemeRare from "Components/ThemeRare";
 import postAPIs from "APIs/dashboard/home";
 import { useSelector } from "react-redux";
 import ThemesAPIs from "../../APIs/amazonCard";
+import SettingAPIs from "../../APIs/settings";
 
 const backgroundOverlayData = [
   {
@@ -151,6 +152,8 @@ const TabDetails = ({
   const { data } = useSelector((state) => state.searchTagData);
   const [purchasedItems, setPurchasedItems] = useState([]);
   const [activeTab, setActiveTab] = useState("memes");
+  const [policy, setPolicy] = useState("");
+  const [term, setTerm] = useState("");
 
   const changeTab = (tabKey) => {
     console.log("Changes tab =", tabKey);
@@ -196,6 +199,7 @@ const TabDetails = ({
 
   useEffect(() => {
     getPurchasedItems();
+    getPrivacyPolicy();
     const fetchData = async () => {
       await getRecentPost();
       await getTrendingPost();
@@ -204,6 +208,17 @@ const TabDetails = ({
       fetchData();
     }
   }, []);
+
+  const getPrivacyPolicy = async () => {
+    const policy = await SettingAPIs.getAudits("Privacy");
+    if (policy) {
+      setPolicy(policy?.data?.description);
+    }
+    const term = await SettingAPIs.getAudits("Term");
+    if (term) {
+      setTerm(term?.data?.description);
+    }
+  };
 
   useEffect(() => {
     if (data && data[0]) {
@@ -223,12 +238,11 @@ const TabDetails = ({
     }
   };
 
-
   /**
    * Set Active tab
    */
   useEffect(() => {
-    if (first === "tournament" || first === "store" || first === "judge" ) {
+    if (first === "tournament" || first === "store" || first === "judge") {
       setActiveTab(first);
     }
   }, [first]);
@@ -291,75 +305,7 @@ const TabDetails = ({
             className="CustTabContent scroller"
           >
             <div className={classes.modalContant}>
-              <p>Welcome to MeMee!</p>
-              <p>
-                Welcome to MeMee! The following terminology applies to these
-                Terms and Conditions, Privacy Statement and Disclaimer Notice
-                and all Agreements: "Client", "You" and "Your" refers to you,
-                the person log on this website and compliant to the Company’s
-                terms and conditions. "The Company", "Ourselves", "We", "Our"
-                and "Us", refers to our Company. "Party", "Parties", or "Us",
-                refers to both the Client and ourselves. All terms refer to the
-                offer, acceptance and consideration of payment necessary to
-                undertake the process of our assistance to the Client in the
-                most appropriate manner for the express purpose of meeting the
-                Client’s needs in respect of provision of the Company’s stated
-                services, in accordance with and subject to, prevailing law of
-                Netherlands. Any use of the above terminology or other words in
-                the singular, plural, capitalisation and/or he/she or they, are
-                taken as interchangeable and therefore as referring to same.
-              </p>
-              <p>
-                Welcome to MeMee! The following terminology applies to these
-                Terms and Conditions, Privacy Statement and Disclaimer Notice
-                and all Agreements: "Client", "You" and "Your" refers to you,
-                the person log on this website and compliant to the Company’s
-                terms and conditions. "The Company", "Ourselves", "We", "Our"
-                and "Us", refers to our Company. "Party", "Parties", or "Us",
-                refers to both the Client and ourselves. All terms refer to the
-                offer, acceptance and consideration of payment necessary to
-                undertake the process of our assistance to the Client in the
-                most appropriate manner for the express purpose of meeting the
-                Client’s needs in respect of provision of the Company’s stated
-                services, in accordance with and subject to, prevailing law of
-                Netherlands. Any use of the above terminology or other words in
-                the singular, plural, capitalisation and/or he/she or they, are
-                taken as interchangeable and therefore as referring to same.
-              </p>
-              <p>
-                Welcome to MeMee! The following terminology applies to these
-                Terms and Conditions, Privacy Statement and Disclaimer Notice
-                and all Agreements: "Client", "You" and "Your" refers to you,
-                the person log on this website and compliant to the Company’s
-                terms and conditions. "The Company", "Ourselves", "We", "Our"
-                and "Us", refers to our Company. "Party", "Parties", or "Us",
-                refers to both the Client and ourselves. All terms refer to the
-                offer, acceptance and consideration of payment necessary to
-                undertake the process of our assistance to the Client in the
-                most appropriate manner for the express purpose of meeting the
-                Client’s needs in respect of provision of the Company’s stated
-                services, in accordance with and subject to, prevailing law of
-                Netherlands. Any use of the above terminology or other words in
-                the singular, plural, capitalisation and/or he/she or they, are
-                taken as interchangeable and therefore as referring to same.
-              </p>
-              <p>
-                Welcome to MeMee! The following terminology applies to these
-                Terms and Conditions, Privacy Statement and Disclaimer Notice
-                and all Agreements: "Client", "You" and "Your" refers to you,
-                the person log on this website and compliant to the Company’s
-                terms and conditions. "The Company", "Ourselves", "We", "Our"
-                and "Us", refers to our Company. "Party", "Parties", or "Us",
-                refers to both the Client and ourselves. All terms refer to the
-                offer, acceptance and consideration of payment necessary to
-                undertake the process of our assistance to the Client in the
-                most appropriate manner for the express purpose of meeting the
-                Client’s needs in respect of provision of the Company’s stated
-                services, in accordance with and subject to, prevailing law of
-                Netherlands. Any use of the above terminology or other words in
-                the singular, plural, capitalisation and/or he/she or they, are
-                taken as interchangeable and therefore as referring to same.
-              </p>
+              <p dangerouslySetInnerHTML={{ __html: term }} />
             </div>
           </Tab>
           <Tab
@@ -368,75 +314,7 @@ const TabDetails = ({
             className="CustTabContent"
           >
             <div className={classes.modalContant}>
-              <p>Welcome to MeMee!</p>
-              <p>
-                Welcome to MeMee! The following terminology applies to these
-                Terms and Conditions, Privacy Statement and Disclaimer Notice
-                and all Agreements: "Client", "You" and "Your" refers to you,
-                the person log on this website and compliant to the Company’s
-                terms and conditions. "The Company", "Ourselves", "We", "Our"
-                and "Us", refers to our Company. "Party", "Parties", or "Us",
-                refers to both the Client and ourselves. All terms refer to the
-                offer, acceptance and consideration of payment necessary to
-                undertake the process of our assistance to the Client in the
-                most appropriate manner for the express purpose of meeting the
-                Client’s needs in respect of provision of the Company’s stated
-                services, in accordance with and subject to, prevailing law of
-                Netherlands. Any use of the above terminology or other words in
-                the singular, plural, capitalisation and/or he/she or they, are
-                taken as interchangeable and therefore as referring to same.
-              </p>
-              <p>
-                Welcome to MeMee! The following terminology applies to these
-                Terms and Conditions, Privacy Statement and Disclaimer Notice
-                and all Agreements: "Client", "You" and "Your" refers to you,
-                the person log on this website and compliant to the Company’s
-                terms and conditions. "The Company", "Ourselves", "We", "Our"
-                and "Us", refers to our Company. "Party", "Parties", or "Us",
-                refers to both the Client and ourselves. All terms refer to the
-                offer, acceptance and consideration of payment necessary to
-                undertake the process of our assistance to the Client in the
-                most appropriate manner for the express purpose of meeting the
-                Client’s needs in respect of provision of the Company’s stated
-                services, in accordance with and subject to, prevailing law of
-                Netherlands. Any use of the above terminology or other words in
-                the singular, plural, capitalisation and/or he/she or they, are
-                taken as interchangeable and therefore as referring to same.
-              </p>
-              <p>
-                Welcome to MeMee! The following terminology applies to these
-                Terms and Conditions, Privacy Statement and Disclaimer Notice
-                and all Agreements: "Client", "You" and "Your" refers to you,
-                the person log on this website and compliant to the Company’s
-                terms and conditions. "The Company", "Ourselves", "We", "Our"
-                and "Us", refers to our Company. "Party", "Parties", or "Us",
-                refers to both the Client and ourselves. All terms refer to the
-                offer, acceptance and consideration of payment necessary to
-                undertake the process of our assistance to the Client in the
-                most appropriate manner for the express purpose of meeting the
-                Client’s needs in respect of provision of the Company’s stated
-                services, in accordance with and subject to, prevailing law of
-                Netherlands. Any use of the above terminology or other words in
-                the singular, plural, capitalisation and/or he/she or they, are
-                taken as interchangeable and therefore as referring to same.
-              </p>
-              <p>
-                Welcome to MeMee! The following terminology applies to these
-                Terms and Conditions, Privacy Statement and Disclaimer Notice
-                and all Agreements: "Client", "You" and "Your" refers to you,
-                the person log on this website and compliant to the Company’s
-                terms and conditions. "The Company", "Ourselves", "We", "Our"
-                and "Us", refers to our Company. "Party", "Parties", or "Us",
-                refers to both the Client and ourselves. All terms refer to the
-                offer, acceptance and consideration of payment necessary to
-                undertake the process of our assistance to the Client in the
-                most appropriate manner for the express purpose of meeting the
-                Client’s needs in respect of provision of the Company’s stated
-                services, in accordance with and subject to, prevailing law of
-                Netherlands. Any use of the above terminology or other words in
-                the singular, plural, capitalisation and/or he/she or they, are
-                taken as interchangeable and therefore as referring to same.
-              </p>
+              <p dangerouslySetInnerHTML={{ __html: policy }} />
             </div>
           </Tab>
           <Tab eventKey="faq" title="FAQ" className="CustTabContent faq">

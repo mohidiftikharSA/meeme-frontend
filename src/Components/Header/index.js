@@ -24,7 +24,6 @@ const Header = () => {
   const navigateToStore = (id) => {
     navigate(`/BuyCoin`);
   };
-  let timeoutId;
   const handleScroll = () => {
     if (window.scrollY > 80) {
       setScrolling(true);
@@ -32,7 +31,8 @@ const Header = () => {
       setScrolling(false);
     }
   };
-
+  
+  let timeoutId;
   const onSearch = async (value) => {
     setSearchValue(value);
     clearTimeout(timeoutId);
@@ -51,6 +51,7 @@ const Header = () => {
       }
     }, 1000);
   };
+  
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -70,7 +71,7 @@ const Header = () => {
         <div className="d-flex align-items-center justify-content-between">
           <Logo link={"/home"} />
           <div className={classes.rightSide}>
-            <Search text={"Search"} onSearchChange={onSearch} />
+            <Search text={"Search"} onSearchSubmit={onSearch} />
             <Navigation header />
             <ButtonGroup className="align-items-center" id="profile-btn">
               <div className={`btn ${classes.iconBtn}`}>

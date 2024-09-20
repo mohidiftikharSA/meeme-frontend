@@ -121,7 +121,7 @@ const LoginFrom = () => {
                   required
                   isInvalid={!!errors.password}
                 />
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback className="mb-2" type="invalid">
                   {errors.password}
                 </Form.Control.Feedback>
                 <span style={{ display: errors.password && !!errors.password ? "none" : "block" }} onClick={handleClick}>
