@@ -1,5 +1,5 @@
 import Logo from "Components/Logo";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { ButtonGroup, Container } from "react-bootstrap";
 import classes from "./index.module.scss";
 import Search from "Components/Search";
@@ -8,30 +8,29 @@ import Navigation from "Components/Nav";
 import { Link, useNavigate } from "react-router-dom";
 import coin from "../../Images/coin.png";
 import avatar from "../../Images/avatar.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import api from "APIs/dashboard/home";
 import SpinnerLoader from "../Loader/SpinnerLoader";
 import { coinConvert } from "Helper/Converters";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
-  const { profile, user } = useSelector((state) => state.auth);
+  const { profile } = useSelector((state) => state.auth);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [showSearchResults, setShowSearchResults] = useState(false);  // New state to control visibility
   const navigate = useNavigate();
+  const floatingResultsRef = useRef();  // Reference to floating results
 
-  const navigateToStore = (id) => {
+  const navigateToStore = () => {
     navigate(`/BuyCoin`);
   };
+
   const handleScroll = () => {
-    if (window.scrollY > 80) {
-      setScrolling(true);
-    } else {
-      setScrolling(false);
-    }
+    setScrolling(window.scrollY > 80);
   };
-  
+
   let timeoutId;
   const onSearch = async (value) => {
     setSearchValue(value);
@@ -43,19 +42,39 @@ const Header = () => {
         const response = await api.searchUser(value).finally(() => {
           setIsLoading(false);
         });
-        setSearchResults(response?.data?.similar_users);
+        setSearchResults(response?.data?.similar_users || []);
+        setShowSearchResults(true);  // Show search results
       } else {
-        //  setTimeout(() => {
         setSearchResults([]);
-        //       }, 1000)
+        setShowSearchResults(false);  // Hide search results if empty
       }
     }, 1000);
   };
 
-  const onChangeSearch = (value)=>{
+  const onChangeSearch = (value) => {
     setSearchValue(value);
-  }
-  
+    if (value === "") {
+      setSearchResults([]);  // Clear results when input is cleared
+      setShowSearchResults(false);  // Hide search box when cleared
+    }
+  };
+
+  // Click outside to hide search results
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (floatingResultsRef.current && !floatingResultsRef.current.contains(event.target)) {
+        setSearchResults([]);  // Clear results when clicking outside
+        setSearchValue('');    // Clear search value
+        setShowSearchResults(false);  // Hide search box when clicking outside
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -86,7 +105,6 @@ const Header = () => {
                   <span className={classes.text}>
                     {coinConvert(myCoins.allCoins)}
                   </span>
-                  {/* <span className={classes.text}>{myCoins.allCoins}</span> */}
                   <img src={coin} alt="icon" />
                 </Link>
               </div>
@@ -98,41 +116,25 @@ const Header = () => {
           </div>
         </div>
       </Container>
-      {searchResults?.length === 0 && isLoading ? (
-        <>
-          <div className={classes.overlay}>
-            <div className={`${classes.floatingLoader}`}>
-              <SpinnerLoader className="mt-5"></SpinnerLoader>
-            </div>
-          </div>
-        </>
-      ) : searchResults?.length === 0 && searchValue.length > 0 ? (
-        <>
-          <div className={classes.overlay}>
-            <div className={`${classes.floatingLoader}`}>
+      {showSearchResults && (
+        <div className={classes.overlay}>
+          <div className={classes.floatingResults} ref={floatingResultsRef}>
+            {isLoading ? (
+              <SpinnerLoader className="mt-5" />
+            ) : searchResults?.length > 0 ? (
+              <SearchResults
+                clearResult={() => {
+                  setSearchResults([]);
+                  setSearchValue('');
+                  setShowSearchResults(false);  // Hide after clearing results
+                }}
+                results={searchResults}
+              />
+            ) : searchValue.length > 0 ? (
               <h5 className="text-white text-center mt-3">No Result Found</h5>
-            </div>
+            ) : null}
           </div>
-        </>
-      ) : (
-        searchResults?.length > 0 &&
-        searchValue?.length > 0 &&   
-        (
-          <>
-            <div className={classes.overlay}>
-              <div className={classes.floatingResults}>
-                <SearchResults
-                  clearResult={() => {
-                    setSearchResults([]);
-                    setSearchValue('');
-                  }}
-                  style={{ marginTop: "20px" }}
-                  results={searchResults}
-                />
-              </div>
-            </div>
-          </>
-        )
+        </div>
       )}
     </header>
   );
