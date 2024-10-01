@@ -199,6 +199,7 @@ const TabDetails = ({
   };
 
   useEffect(() => {
+    getFaqs();
     getPurchasedItems();
     getPrivacyPolicy();
     const fetchData = async () => {
