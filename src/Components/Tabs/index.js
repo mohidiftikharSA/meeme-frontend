@@ -154,6 +154,7 @@ const TabDetails = ({
   const [activeTab, setActiveTab] = useState("memes");
   const [policy, setPolicy] = useState("");
   const [term, setTerm] = useState("");
+  const [faqs, setFaqs] = useState([]);
 
   const changeTab = (tabKey) => {
     console.log("Changes tab =", tabKey);
@@ -247,6 +248,13 @@ const TabDetails = ({
     }
   }, [first]);
 
+  const getFaqs = async () => {
+    const res = await SettingAPIs.getAudits("Faq");
+    if (res) {
+      setFaqs(res.data);
+    }
+  };
+
   return (
     <>
       {main && (
@@ -319,26 +327,20 @@ const TabDetails = ({
           </Tab>
           <Tab eventKey="faq" title="FAQ" className="CustTabContent faq">
             <div className={classes.modalContant}>
-              <h3 className="faqTitle">How can we help you</h3>
-              <p className="faqSubTitle">How do I buy coins?</p>
-              <p>
-                Aliqua id fugiat nostrud irure ex duis ea quis id quis ad et.
-                Sunt qui esse pariatur duis deserunt mollit dolore cillum minim
-                tempor enim. Elit aute irure tempor cupidatat incididunt sint
-                deserunt ut voluptate aute id deserunt nisi. Aliqua id fugiat
-                nostrud irure ex duis ea quis id quis ad et. Sunt qui esse
-                pariatur duis deserunt mollit dolore cillum minim tempor enim.
-                Elit aute irure tempor cupidatat incididunt sint deserunt ut
-                voluptate aute id deserunt nisi.
-              </p>
-              <p className="faqSubTitle">
-                {" "}
-                What methods of payment does memee accept?
-              </p>
-              <p>
-                Memee accepts variety of payment methods which includes PayPal,
-                Bitcoin, Bank trasnfers, Credit/Debit Cards, Google Pay, Apple
-              </p>
+              {faqs[0] ? (
+                faqs?.map((item) => {
+                  return (
+                    <>
+                      <h5 className="faqTitle">{item?.title}</h5>
+                      <p
+                        dangerouslySetInnerHTML={{ __html: item?.description }}
+                      />
+                    </>
+                  );
+                })
+              ) : (
+                <p style={{ textAlign: "center" }}>No FAQs to Show</p>
+              )}
             </div>
           </Tab>
         </Tabs>
