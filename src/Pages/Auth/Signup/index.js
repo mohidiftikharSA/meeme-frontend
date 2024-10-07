@@ -71,9 +71,9 @@ const Signup = () => {
         "Password must be alphanumeric with at least one number"
       )
       .min(8, "Password must be at least eight characters long"),
-    name: Yup.string()
+      name: Yup.string()
       .required("Username is required")
-      .min(2, "Name must be at least 2 characters long"),
+      .min(6, "Name must be at least six characters long"),
     phone: Yup.string()
       .required("Phone is required")
       .min(8, "Phone must be at least 8 characters long")
