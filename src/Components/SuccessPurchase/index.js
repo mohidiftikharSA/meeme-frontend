@@ -15,7 +15,7 @@ const SuccessPurchae = (props) => {
       <Modal.Body>
         <div className="mb-3"></div>
         {/* <h6>SELECT YOUR CARD</h6> */}
-        <p className="text-light">Successfully Coins Buy</p>
+        <p className="text-light">Coins purchased successfully</p>
       </Modal.Body>
     </Modal>
   );

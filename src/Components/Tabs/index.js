@@ -143,6 +143,7 @@ const TabDetails = ({
   postRemoved,
   otherProfile,
   tournamentPosts,
+  setActive
 }) => {
   const [recentPosts, setRecentPosts] = useState([]);
   const [trendingPosts, setTrendingPosts] = useState([]);
@@ -159,6 +160,7 @@ const TabDetails = ({
   const changeTab = (tabKey) => {
     console.log("Changes tab =", tabKey);
     setActiveTab(tabKey);
+    setActive(tabKey)
   };
 
   const handleButtonClick = () => {
@@ -246,6 +248,7 @@ const TabDetails = ({
   useEffect(() => {
     if (first === "tournament" || first === "store" || first === "judge") {
       setActiveTab(first);
+      setActive(first)
     }
   }, [first]);
 
@@ -361,9 +364,9 @@ const TabDetails = ({
           <Tab eventKey="overlay" title="Background Overlay">
             <BackgroundOverlay data={backgroundOverlayData} />
           </Tab>
-          <Tab eventKey="profile" title="Profile Overlay">
+          {/* <Tab eventKey="profile" title="Profile Overlay">
             <ProfileOverlay data={ProfileOverlayData} />
-          </Tab>
+          </Tab> */}
         </Tabs>
       )}
       {profile && (

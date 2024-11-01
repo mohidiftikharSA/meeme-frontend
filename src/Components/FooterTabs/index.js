@@ -14,7 +14,7 @@ const FooterTabs = (props) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter" onClick={onHide}>
-          <i className="fa fa-angle-left" aria-hidden="true"></i>
+          <i className="fa fa-angle-left back-arrow" aria-hidden="true"></i>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className='subTitle' style={{background:'transparent' , padding: '0' , margin: '0'}}  >

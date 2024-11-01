@@ -105,7 +105,8 @@ const ProfilePost = ({ data, postRemoved, myProfile, otherProfile }) => {
             </span>
           </>
         ) : (
-          ""
+          <p className="text-center w-100"> No Posts Available</p>
+           
         )}
       </div>
       <div className={classes.postHolder}>

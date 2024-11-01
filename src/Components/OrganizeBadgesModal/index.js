@@ -95,7 +95,7 @@ const OrganizeBadges = (props) => {
     >
       <Modal.Header>
         <Modal.Title>
-          <i className='fa fa-angle-left' aria-hidden='true' onClick={props.onHide}></i>
+          <i className='fa fa-angle-left back-arrow' aria-hidden='true' onClick={props.onHide}></i>
           <h4 className='title mb-0'>Organize Badges</h4>
         </Modal.Title>
       </Modal.Header>

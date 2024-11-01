@@ -1754,3 +1754,9 @@ aside.EmojiPickerReact.epr-main {
 .btn-loading{
   border-width: 5px !important;
 }
+
+.back-arrow{
+  &:hover {
+    cursor: pointer;
+  }
+}
