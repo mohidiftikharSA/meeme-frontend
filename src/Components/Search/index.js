@@ -45,12 +45,14 @@ const Search = ({
           onKeyDown={handleKeyDown}
         />
       </InputGroup>
-      <ul className={classes.searchDropdown}>
-        <li>
-          <h6>Title</h6>
-          <div>Email</div>
-        </li>
-      </ul>
+      <div className={classes.searchDropdown}>
+        <ul>
+          <li>
+            <h6>Title</h6>
+            <div>Email</div>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
