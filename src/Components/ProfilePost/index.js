@@ -86,7 +86,7 @@ const ProfilePost = ({ data, postRemoved, myProfile, otherProfile }) => {
     <>
       {isLoading && <Loader isLoading={isLoading} />}
       <div className="d-flex align-items-center justify-content-between flex-wrap mb-3">
-        {!otherProfile ? (
+        {!otherProfile && (
           <>
             <Form.Check
               type="checkbox"
@@ -104,14 +104,12 @@ const ProfilePost = ({ data, postRemoved, myProfile, otherProfile }) => {
               <FaTrash size={12} />
             </span>
           </>
-        ) : (
-          <p className="text-center w-100"> No Posts Available</p>
-           
-        )}
+        ) 
+      }
       </div>
       <div className={classes.postHolder}>
         <div className={classes.box}>
-          {data
+          {data && data[0] ? data
             ?.slice()
             ?.reverse()
             ?.map((item, ind) => (
@@ -167,7 +165,7 @@ const ProfilePost = ({ data, postRemoved, myProfile, otherProfile }) => {
                   )}
                 </label>
               </div>
-            ))}
+            )): <p className="text-center w-100"> No Post Available</p>}
         </div>
       </div>
       <PostViewModal
