@@ -22,7 +22,7 @@ const DeleteAccountModal = (props) => {
       >
         <Modal.Header>
           <Modal.Title>
-            <i className="fa fa-angle-left" aria-hidden="true"></i>
+            <i className="fa fa-angle-left back-arrow"  onClick={props.onHide}aria-hidden="true"></i>
             <h4 className="title">Delete Account</h4>
           </Modal.Title>
         </Modal.Header>

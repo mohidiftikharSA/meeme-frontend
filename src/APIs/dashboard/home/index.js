@@ -5,11 +5,11 @@ const getRecentPosts = async (page=1) => {
     return await API.getMethod(`${ENDPOINT.getRecentPosts}?page=${page}`, true)
 }
 const getTrendingPosts = async () => {
-  return await API.getMethod(ENDPOINT.getTrendingPost, true);
+  return await API.getMethod(ENDPOINT.getTrendingPost, true,false);
 };
 
 const getStories = async () => {
-  return await API.getMethod(ENDPOINT.stories, true);
+  return await API.getMethod(ENDPOINT.stories, true,false);
 };
 
 const getFollowingPosts = async () => {

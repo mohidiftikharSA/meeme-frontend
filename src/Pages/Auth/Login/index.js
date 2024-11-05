@@ -1,4 +1,4 @@
-import React, { useState, CSSProperties } from "react";
+import React, { useState, CSSProperties, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import classes from "../index.module.scss";
 import Logo from "Components/Logo";
@@ -19,6 +19,12 @@ import { IoEyeOutline } from "react-icons/io5";
 
 const LoginFrom = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [userLogin , setUserLogin ] = useState({
+    email:'',
+    password:'',
+    remember: false
+  });
+
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
@@ -35,22 +41,38 @@ const LoginFrom = () => {
     borderColor: "red",
   };
 
+  useEffect(()=>{
+    checkRemeberlogins()
+  },[])
+
+  const checkRemeberlogins= ()=>{
+    const user =  localStorage.getItem('user_login');
+    console.log(user);
+    setUserLogin(user);
+  }
+
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-    .email("Invalid email address")
-    .test('dot-after-at', 'Dot should be present after "@"', function (value) {
-      if (value) {
-        const atIndex = value.indexOf('@');
-        const dotIndex = value.indexOf('.', atIndex);
-        return dotIndex > atIndex && dotIndex !== -1;
-      }
-      return false;
-    })
-    .required("Email is required"),
+      .email("Invalid email address")
+      .test('dot-after-at', 'Dot should be present after "@"', function (value) {
+        if (value) {
+          const atIndex = value.indexOf('@');
+          const dotIndex = value.indexOf('.', atIndex);
+          return dotIndex > atIndex && dotIndex !== -1;
+        }
+        return false;
+      })
+      .required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
 
   const loginRes = async (data) => {
+    console.log("data  -", data);
+    const { remember, ...rest } = data
+    if (remember) {
+      console.log("storing local")
+      localStorage.setItem("user_login", JSON.stringify(data));
+    }
     setIsLoading(true);
     try {
       const res = await AuthAPIs.login(data?.email, data?.password);
@@ -91,8 +113,9 @@ const LoginFrom = () => {
             loginRes(values);
           }}
           initialValues={{
-            email: "",
-            password: "",
+            email: userLogin.email || "",
+            password: userLogin.password || "" ,
+            remember: userLogin.remember || true
           }}
           validationSchema={validationSchema}
           validateOnChange={false}
@@ -132,9 +155,12 @@ const LoginFrom = () => {
                 <span>
                   <Form.Check
                     type="checkbox"
-                    id="check"
+                    id="remember"
                     label="Remember me"
+                    name="remember"
                     className={classes.customCheckbox}
+                    checked={values.remember}
+                    onChange={handleChange}
                   />
                 </span>
                 <p className={classes.password} onClick={nextPage}>

@@ -38,18 +38,24 @@ import SettingAPIs from "../../APIs/settings";
 const backgroundOverlayData = [
   {
     img: img13,
-    coin: "100",
+    coin: 2500,
     title: "Pink Sky",
+    pathNo:14,
+    name: 'Profile Background 1',
   },
   {
     img: img14,
-    coin: "100",
+    coin: 2500,
     title: "Galaxy",
+    pathNo:15,
+    name: 'Profile Background 2',
   },
   {
     img: img15,
-    coin: "100",
+    coin: 2500,
     title: "Cloudy Sky",
+    pathNo:16,
+    name: 'Profile Background 3',
   },
 ];
 const ProfileOverlayData = [
@@ -62,11 +68,13 @@ const ProfileOverlayData = [
     img: img17,
     coin: "100",
     title: "Pink",
+  
   },
   {
     img: img18,
     coin: "100",
     title: "Orange",
+   
   },
 ];
 const ProfileOverlayDataProfile = [
@@ -160,7 +168,9 @@ const TabDetails = ({
   const changeTab = (tabKey) => {
     console.log("Changes tab =", tabKey);
     setActiveTab(tabKey);
-    setActive(tabKey)
+    if(setActive){
+      setActive(tabKey)
+    }
   };
 
   const handleButtonClick = () => {
@@ -396,9 +406,9 @@ const TabDetails = ({
           <Tab eventKey="overlay" title="Background Overlay">
             <BackgroundOverlay noCoin data={backgroundOverlayData} />
           </Tab>
-          <Tab eventKey="profile" title="Profile Overlay">
+          {/* <Tab eventKey="profile" title="Profile Overlay">
             <ProfileOverlay noCoin data={ProfileOverlayDataProfile} />
-          </Tab>
+          </Tab> */}
         </Tabs>
       )}
     </>
