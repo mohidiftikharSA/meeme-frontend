@@ -64,7 +64,7 @@ const BackgroundOverlay = ({ data, noCoin }) => {
             {data.map((item, ind) => {
                 return (
                     <Col md={4} sm={6} key={ind} className="mb-md-0 mb-3">
-                        <div className={`${noCoin && `tab-card-box`}`}>
+                        <div className={`${noCoin && `tab-card-box`} text-center`}>
                             {noCoin ? <h6>{item.title}</h6> : ""}
                             <div className={`imgBox mb-3 ${classes.imgBox}`}>
                                 <img src={item.img} alt="img" />
@@ -73,13 +73,13 @@ const BackgroundOverlay = ({ data, noCoin }) => {
                                 noCoin ?
                                     ""
                                     :
-                                    <Link
+                                    <button
                                         onClick={() => { buyBackground(item?.name, item?.coin) }}
-                                        className={`btn ${isItemPurchase(item?.name) ? 'purchasedPill' : 'iconBtncust'} `}
-                                        style={{ maxWidth: "85px", height: "30px" }}>
+                                        className={`btn ${isItemPurchase(item?.name) ? 'purchasedPill px-2' : 'iconBtncust'} `}
+                                        disabled={isItemPurchase(item?.name)}>
                                         {!isItemPurchase(item?.name) && <img width={100} src={coin} alt="icon" />}
                                         <span className={"text"}>{isItemPurchase(item?.name) ? 'Purchased' : coinConvert((item.coin))}</span>
-                                    </Link>
+                                    </button>
                             }
                         </div>
                     </Col>

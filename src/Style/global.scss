@@ -1207,9 +1207,9 @@ main {
     margin: 10px 10px 0 0;
 
     img {
-      display: block;
-      width: 32px;
-      height: auto;
+      width: 38px;
+      height: 38px;
+      object-fit: cover;
       border-radius: 50%;
     }
   }
@@ -1756,6 +1756,8 @@ aside.EmojiPickerReact.epr-main {
 }
 
 .back-arrow{
+  display: flex;
+  align-items: center;
   &:hover {
     cursor: pointer;
   }
