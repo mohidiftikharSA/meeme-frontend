@@ -108,7 +108,7 @@ const ProfilePost = ({ data, postRemoved, myProfile, otherProfile }) => {
       }
       </div>
       <div className={classes.postHolder}>
-        <div className={classes.box}>
+        <div className={data && data[0] ? classes.box : ''}>
           {data && data[0] ? data
             ?.slice()
             ?.reverse()
@@ -166,7 +166,7 @@ const ProfilePost = ({ data, postRemoved, myProfile, otherProfile }) => {
                 </label>
               </div>
             )): <p className="text-center w-100"> No Post Available</p>}
-        </div>
+            </div>
       </div>
       <PostViewModal
         data={modalData}
