@@ -33,29 +33,29 @@ const Header = () => {
 
   let timeoutId;
   const onSearch = async (value) => {
-    setSearchValue(value);
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(async () => {
-      if (value !== "" && value != null) {
-        setSearchResults([]);
-        setIsLoading(true);
-        const response = await api.searchUser(value).finally(() => {
-          setIsLoading(false);
-        });
-        setSearchResults(response?.data?.similar_users || []);
-        setShowSearchResults(true);  // Show search results
-      } else {
-        setSearchResults([]);
-        setShowSearchResults(false);  // Hide search results if empty
-      }
-    }, 1000);
+    // setSearchValue(value);
+    // clearTimeout(timeoutId);
+    // timeoutId = setTimeout(async () => {
+    //   if (value !== "" && value != null) {
+    //     setSearchResults([]);
+    //     setIsLoading(true);
+    //     const response = await api.searchUser(value).finally(() => {
+    //       setIsLoading(false);
+    //     });
+    //     setSearchResults(response?.data?.similar_users || []);
+    //     setShowSearchResults(true); 
+    //   } else {
+    //     setSearchResults([]);
+    //     setShowSearchResults(false); 
+    //   }
+    // }, 1000);
   };
 
   const onChangeSearch = (value) => {
     setSearchValue(value);
     if (value === "") {
-      setSearchResults([]);  // Clear results when input is cleared
-      setShowSearchResults(false);  // Hide search box when cleared
+      setSearchResults([]);
+      setShowSearchResults(false);  
     }
   };
 
