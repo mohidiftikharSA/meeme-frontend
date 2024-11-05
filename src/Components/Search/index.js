@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import searchIcon from "../../Images/Search.png";
 import searchIcon2 from "../../Images/Searchwhite.png";
@@ -19,12 +19,14 @@ const Search = ({
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const searchRef = useRef(null);
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
     setSearchValue(value);
     onSearchChange(value);
   };
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       console.log("key down in search component -", searchValue);
@@ -50,7 +52,7 @@ const Search = ({
         console.log("inside set time out -- ");
         const response = await api.searchUser(value).finally((res) => {
           setIsLoading(false);
-          console.log("reesponse of search =", res);
+          console.log("response of search =", res);
         });
         setSearchResults(response?.data?.similar_users || []);
         setShowSearchResults(true);
@@ -61,8 +63,21 @@ const Search = ({
     }, 1000);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setShowSearchResults(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className={classes.searchForm}>
+    <div ref={searchRef} className={classes.searchForm}>
       <InputGroup
         className={`${classes.search} ${
           expolore ? `${classes.fullWidth}` : ""
@@ -95,7 +110,7 @@ const Search = ({
               results={searchResults}
             />
           ) : (
-            <h5 className="text-white text-center mt-3">No Result Found</h5>
+            <h5 className="text-white text-center my-3">No Result Found</h5>
           ))}
       </div>
     </div>

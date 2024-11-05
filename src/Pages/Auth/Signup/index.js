@@ -210,7 +210,7 @@ const Signup = () => {
           <div className={classes.loginLinks}>
             <p className={classes.dark}>
               Already on memee?{" "}
-              <Link className={classes.light} to="/login">
+              <Link className={classes.light} to="/">
                 Sign in
               </Link>
             </p>
