@@ -11,13 +11,18 @@
   .rightSide {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     padding: 8px 0;
-    width: calc(100% - 130px);
-    margin-left: 50px;
+    width: 100%;
+    margin-left: 100px;
+
     @include media("<widescreen") {
       margin-left: 150px;
     }
-
+    @include media("<desktop") {
+      margin-left: 12px;
+    }
+    
     @include media("<xs-phone") {
       margin-left: 25px;
       width: 100%;

@@ -1,17 +1,18 @@
 .searchForm {
   position: relative;
-
-  .searchDropDown {
+  width: 100%;
+  .searchDropdown {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+    background-color: #3d3b3f;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    color: black;
+    border-radius: 8px;
   }
 }
 .search {
