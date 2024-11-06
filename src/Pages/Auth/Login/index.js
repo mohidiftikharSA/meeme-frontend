@@ -72,6 +72,8 @@ const LoginFrom = () => {
     if (remember) {
       console.log("storing local")
       localStorage.setItem("user_login", JSON.stringify(data));
+    }else if(!remember){
+      localStorage.clear();
     }
     setIsLoading(true);
     try {
