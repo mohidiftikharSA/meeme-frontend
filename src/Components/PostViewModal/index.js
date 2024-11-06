@@ -7,7 +7,7 @@ import { formatDate } from 'Helper/Converters';
 import postAPIs from 'APIs/dashboard/home'
 import { toast } from 'react-toastify';
 
-const PostViewModal = ({ data, ...props }) => {
+const PostViewModal = ({ data, tournament,...props }) => {
   const [likes, setLikes] = useState(0)
   const [disLikes, setDisLikes] = useState(0)
   // const [LikedByCurrrentUser ,setLikedByCurrrentUser ] = useState(0)
@@ -49,10 +49,6 @@ const PostViewModal = ({ data, ...props }) => {
       LikedByCurrrentUser.current = data?.like_by_current_user
     }
   }, [data])
-
-  const dislikePosts = ()=>{
-    toast.error('Only Tournament Posts can be disliked.')
-  }
   return (
     <Modal
       className={"PostContentModal postView"}
@@ -78,8 +74,8 @@ const PostViewModal = ({ data, ...props }) => {
           <img src={data?.post_image || memeeimg} alt="img" />
         </div>
         <div >
-          <Button className="green" onClick={() => { likePost(data.post_id) }} ><AiFillHeart />{likes}</Button>
-          <Button className="red" onClick={dislikePosts} ><FaTimes />{data?.post_dislikes}</Button>
+         {!tournament && <Button className="green" onClick={() => { likePost(data.post_id) }} ><AiFillHeart />{likes}</Button>}
+         {/* {tournament && <Button className="red" onClick={dislikePosts} ><FaTimes />{data?.post_dislikes}</Button>} */}
         </div>
       </Modal.Body>
     </Modal>

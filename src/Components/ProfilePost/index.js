@@ -9,7 +9,7 @@ import Loader from "Components/Loader";
 import Skeleton from "react-loading-skeleton";
 
 
-const ProfilePost = ({ data, postRemoved, myProfile, otherProfile }) => {
+const ProfilePost = ({ data, postRemoved, tournament ,myProfile, otherProfile }) => {
   const [selectedPostIds, setSelectedPostIds] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [PostViewModalShow, setPostViewModalShow] = useState(false);
@@ -172,6 +172,7 @@ const ProfilePost = ({ data, postRemoved, myProfile, otherProfile }) => {
         data={modalData}
         show={PostViewModalShow}
         onHide={() => setPostViewModalShow(false)}
+        tournament={tournament}
       />
     </>
   );

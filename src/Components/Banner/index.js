@@ -128,9 +128,14 @@ const Banner = ({ other, profile }) => {
               {profile?.user?.bio}
             </h6>
             {!other && <div className={classes.btnGroup}>
-              <Button onClick={nextPage}>
+
+              {  /**
+              @Customiz_screen button is disabled temporarily bcz themes cannot be applied on thw webapp
+              */}
+              {/* <Button onClick={nextPage}>
                 <img src={edit} alt="img" />
-              </Button>
+              </Button> */}
+              
               <Button onClick={nextPages}>
                 <img src={setting} alt="img" />
               </Button>

@@ -14,6 +14,7 @@ const Search = ({
   badgeList,
   onSearchChange,
   onSearchSubmit,
+  userSearch
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -30,8 +31,12 @@ const Search = ({
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       console.log("key down in search component -", searchValue);
-      onSearch(searchValue);
       setSearchValue(searchValue);
+      if (expolore) {
+        onSearchSubmit(searchValue)
+      } else if (userSearch) {
+        onSearch(searchValue);
+      }
       if (searchValue === "") {
         setSearchResults([]);
         setShowSearchResults(false);
@@ -39,10 +44,22 @@ const Search = ({
     }
   };
 
+  const onIconClick = () => {
+    setSearchValue(searchValue);
+    if (expolore) {
+      onSearchSubmit(searchValue)
+    } else if (userSearch) {
+      onSearch(searchValue);
+    }
+    if (searchValue === "") {
+      setSearchResults([]);
+      setShowSearchResults(false);
+    }
+  }
+
   let timeoutId;
   const onSearch = async (value) => {
     console.log("onSearch =", value);
-
     setSearchValue(value);
     clearTimeout(timeoutId);
     timeoutId = setTimeout(async () => {
@@ -79,13 +96,11 @@ const Search = ({
   return (
     <div ref={searchRef} className={classes.searchForm}>
       <InputGroup
-        className={`${classes.search} ${
-          expolore ? `${classes.fullWidth}` : ""
-        } ${contactList ? `${classes.contactList}` : ""} ${
-          badgeList && `${classes.search} ${classes.badgeList}`
-        }`}
+        className={`${classes.search} ${expolore ? `${classes.fullWidth}` : ""
+          } ${contactList ? `${classes.contactList}` : ""} ${badgeList && `${classes.search} ${classes.badgeList}`
+          }`}
       >
-        <span>
+        <span onClick={onIconClick}>
           <img src={expolore ? searchIcon2 : searchIcon} alt="icon" />
         </span>
         <Form.Control

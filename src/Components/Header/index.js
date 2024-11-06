@@ -94,7 +94,7 @@ const Header = () => {
         <div className="d-flex align-items-center justify-content-between">
           <Logo link={"/home"} />
           <div className={classes.rightSide}>
-            <Search text={"Search"} onSearchChange={onChangeSearch} onSearchSubmit={onSearch} />
+            <Search userSearch text={"Search"} onSearchChange={onChangeSearch} onSearchSubmit={onSearch} />
             <Navigation header />
             <ButtonGroup className="align-items-center" id="profile-btn">
               <div className={`btn ${classes.iconBtn}`}>

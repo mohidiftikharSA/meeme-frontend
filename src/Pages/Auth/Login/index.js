@@ -47,8 +47,8 @@ const LoginFrom = () => {
 
   const checkRemeberlogins= ()=>{
     const user =  localStorage.getItem('user_login');
-    console.log(user);
-    setUserLogin(user);
+    console.log(JSON.parse(user));
+    setUserLogin(JSON.parse(user));
   }
 
   const validationSchema = Yup.object().shape({
@@ -115,10 +115,11 @@ const LoginFrom = () => {
           initialValues={{
             email: userLogin?.email || "",
             password: userLogin?.password || "" ,
-            remember: userLogin?.remember || true
+            remember: userLogin?.remember || false
           }}
           validationSchema={validationSchema}
           validateOnChange={false}
+          enableReinitialize={true}
         >
           {({ handleSubmit, handleChange, values, errors }) => (
             <Form className="formHolder" noValidate onSubmit={handleSubmit}>

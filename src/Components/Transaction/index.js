@@ -14,7 +14,7 @@ const Transaction = ({ data, noCard }) => {
         <>
           <div className={classes.headingBox}>
             <h5 className="mb-0">Purchasing History</h5>
-            <Link href={""}>View all</Link>
+            {/* <Link href={""}>View all</Link> */}
           </div>
         </>
       ) : (

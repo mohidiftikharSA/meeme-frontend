@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "Components/Loader";
 import AuthAPIs from "APIs/auth";
 import { useSelector } from "react-redux";
+import ProfileAPIs from 'APIs/profile/settings'
 
 const ProfilePage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,11 +13,22 @@ const ProfilePage = () => {
   const [postRemoved, setPostRemoved] = useState();
   const [userPosts , setUserPosts ] = useState([]);
   const  currentUser = useSelector((state) => state.auth);
+  const [userTournamentPost , setUserTournamentPost ] = useState([]);
 
   useEffect(() => {
     getUserProfile();
     getMyPosts();
+    getUserTournamentPosts();
   }, []);
+
+  const getUserTournamentPosts = async ()=>{
+
+    const res = await ProfileAPIs.current_user_tournament_posts();
+    if(res){
+      console.log("Tournament posts response  - ", res.data.current_user_tournament_posts);
+      setUserTournamentPost(res.data.current_user_tournament_posts);
+    }
+  }
 
   const getUserProfile = async () => {
     setIsLoading(true);
@@ -58,7 +70,7 @@ const ProfilePage = () => {
               <EarnBadge />
               <TabDetails
                 profile
-                tournamentPosts={profile?.tournament_posts}
+                tournamentPosts={userTournamentPost}
                 profilePosts={userPosts}
                 postRemoved={setPostRemoved}
               />

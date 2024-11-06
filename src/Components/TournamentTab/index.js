@@ -9,7 +9,8 @@ import TournamentJoinSuccess from "Components/PostContentModal";
 import TournamentAPIs from '../../APIs/tournaments';
 import Loader from "Components/Loader";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import cupImg from '../../Images/tournamentCup.png'
+
 
 
 const TournamentTabs = () => {
@@ -112,7 +113,7 @@ const TournamentTabs = () => {
           <div className={`imgBox mb-4 position-relative ${classes.imgBox}`}>
             {/* <img src={img} alt="img" /> */}
             <div className={classes.bannerCard} >
-              <div className={classes.bannerImg}> <img src={banner?.tournament_banner_image} alt="Bannerimage" /></div>
+              <div className={classes.bannerImg}> <img src={banner?.tournament_banner_image || cupImg} alt="Bannerimage" /></div>
 
               {/* <h2>{banner?.tournament?.title}</h2> */}
               <h2>FOR THE {getCurrentMonth()?.toUpperCase()}<br></br>{banner?.tournament?.title}</h2>
