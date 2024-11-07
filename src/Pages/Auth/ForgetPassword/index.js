@@ -24,7 +24,7 @@ const Forgetpassword = () => {
                 <AuthHeader
                     title={"Forgot Password?"}
                     description={
-                        "Select your email ID  or phone number associated with your account, and we’ll send a verification code to reset your password"
+                        "Enter your email ID associated with your account, and we’ll send a verification code to reset your password"
                     }
                 />
                 <div className="formHolder">

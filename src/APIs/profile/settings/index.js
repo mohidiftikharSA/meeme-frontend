@@ -7,7 +7,7 @@ const deleteUserAccount = async (id) => {
 }
 
 const current_user_tournament_posts = async()=>{
-    return await API.getMethod(ENDPOINT.post.current_user_tournament_posts,true);
+    return await API.getMethod(ENDPOINT.post.current_user_tournament_posts,true,false);
 }
 
 export default {
