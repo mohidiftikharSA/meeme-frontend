@@ -11,6 +11,7 @@ import apis from "../../APIs/dashboard/home";
 import postAPIs from '../../APIs/dashboard/home';
 import { useDispatch } from "react-redux";
 import { setSearchTagData } from "Redux/reducers/searchTagData";
+import Loader from "Components/Loader";
 
 const data = [
     "Funny",

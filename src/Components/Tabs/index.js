@@ -34,27 +34,28 @@ import postAPIs from "APIs/dashboard/home";
 import { useSelector } from "react-redux";
 import ThemesAPIs from "../../APIs/amazonCard";
 import SettingAPIs from "../../APIs/settings";
+import Loader from "Components/Loader";
 
 const backgroundOverlayData = [
   {
     img: img13,
     coin: 2500,
     title: "Pink Sky",
-    pathNo:14,
+    pathNo: 14,
     name: 'Profile Background 1',
   },
   {
     img: img14,
     coin: 2500,
     title: "Galaxy",
-    pathNo:15,
+    pathNo: 15,
     name: 'Profile Background 2',
   },
   {
     img: img15,
     coin: 2500,
     title: "Cloudy Sky",
-    pathNo:16,
+    pathNo: 16,
     name: 'Profile Background 3',
   },
 ];
@@ -68,13 +69,13 @@ const ProfileOverlayData = [
     img: img17,
     coin: "100",
     title: "Pink",
-  
+
   },
   {
     img: img18,
     coin: "100",
     title: "Orange",
-   
+
   },
 ];
 const ProfileOverlayDataProfile = [
@@ -164,11 +165,13 @@ const TabDetails = ({
   const [policy, setPolicy] = useState("");
   const [term, setTerm] = useState("");
   const [faqs, setFaqs] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const changeTab = (tabKey) => {
     console.log("Changes tab =", tabKey);
     setActiveTab(tabKey);
-    if(setActive){
+    if (setActive) {
       setActive(tabKey)
     }
   };
@@ -235,13 +238,18 @@ const TabDetails = ({
   };
 
   useEffect(() => {
-    if (data && data[0]) {
-      setTagTrendingPost(data);
-      handleButtonClick();
-    } else {
-      setTagTrendingPost([]);
-      setActiveTab("memes");
-    }
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      if (data && data[0]) {
+        setTagTrendingPost(data);
+        handleButtonClick();
+      } else {
+        setTagTrendingPost([]);
+        setActiveTab("memes");
+      }
+    }, 2000);
+
   }, [data]);
 
   const getPurchasedItems = async () => {
@@ -271,6 +279,7 @@ const TabDetails = ({
 
   return (
     <>
+      <Loader isLoading={isLoading} />
       {main && (
         <Tabs
           defaultActiveKey={first}
