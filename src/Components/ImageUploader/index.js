@@ -63,7 +63,7 @@ const ImageUploader = () => {
            
               onClick={() => setModalShow(true)}
             >
-              <span>Add story</span>
+              <span>Add story </span>
               <div className={classes.prilfe}>
                 <img src={profile} alt="img" />
                 <p>You</p>

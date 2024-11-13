@@ -604,6 +604,7 @@ main {
       display: flex;
       align-items: center;
       color: #fff;
+      cursor: pointer;
 
       i {
         font-weight: 400;
@@ -1431,6 +1432,7 @@ aside.EmojiPickerReact.epr-main {
       justify-content: space-between;
       width: 100%;
       font-size: 14px;
+      cursor: pointer;
 
       span {
         padding-left: 15px;
@@ -1760,5 +1762,27 @@ aside.EmojiPickerReact.epr-main {
   align-items: center;
   &:hover {
     cursor: pointer;
+  }
+}
+.image-preview-chat{
+  position: fixed;
+  bottom: 53px;
+  img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+  }
+  .remove-btn{
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    cursor: pointer;
+    svg{
+      background: #f9bf29;
+      width: 18px;
+      height: 18px;
+      padding: 3px;
+      border-radius: 50%;
+    }
   }
 }

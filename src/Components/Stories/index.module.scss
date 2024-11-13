@@ -1,82 +1,95 @@
 @import "../../Style/base";
-.ImgWrapper{
-    .imgUploader{
-        background-color: #201E23;
-        border-radius: 12px;
-        border: none;
-        height: 200px;
-        width: 100%;
-        color: #fff;
-        font-weight: 500;
-        position: relative;
-        margin-bottom: 20px;
+.ImgWrapper {
+  .imgUploader {
+    background-color: #201e23;
+    border-radius: 12px;
+    border: none;
+    height: 200px;
+    width: 100%;
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  span {
+    position: absolute;
+    top: 25%;
+    text-align: center;
+    left: 0;
+    right: 0;
+    font-size: 16px;
+  }
+
+  .profile {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+    font-weight: 500;
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      margin-bottom: 8px;
+      object-fit: cover;
     }
-    span{
-        position: absolute;
-        top: 25%;
-        text-align: center;
-        left: 0;
-        right: 0;
-        font-size: 16px;
+    span {
+      position: absolute;
+      top: 23px;
+      right: -20px;
+
+      svg {
+        background: #f9bf29;
+        width: 16px;
+        height: 16px;
+        padding: 3px;
+        border-radius: 50%;
+      }
     }
-    
-    .prilfe{
-        position: absolute;
-        bottom: 0;
-        margin-bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        color: #fff;
-        font-weight: 500;
-        img{
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-            border: 2px solid #fff;
-            border-radius: 50%;
-            margin-bottom: 8px;
-            object-fit: cover;
-        }
-        p{
-            margin: 0;
-        }
+    p {
+      margin: 0;
     }
-    
-    .ImgBox{
-        position: relative;
-        padding: 0 10px;
-        cursor: pointer;
-        @include media("<xs-phone"){
-            padding: 0;
-        }
-        .prilfe{
-            z-index: 99999;
-            img{
-                height: 40px;
-                width: 40px;
-                border-radius: 50%;
-                object-fit: cover;
-            }
-        }
-        &:after{
-            position: absolute;
-            content: "";
-            left: 10px;
-            right: 10px;
-            top: 0;
-            bottom: 0;
-            background-color: #201E23;
-            opacity: 0.4;
-            border-radius: 15px;
-        }
-        img{
-            display: block;
-            height: 200px;
-            width: 100%;
-            border-radius: 15px;
-            object-fit: cover;
-            object-position: top;
-        }
+  }
+
+  .ImgBox {
+    position: relative;
+    padding: 0 10px;
+    cursor: pointer;
+    @include media("<xs-phone") {
+      padding: 0;
     }
+    .prilfe {
+      z-index: 99999;
+      img {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+    &:after {
+      position: absolute;
+      content: "";
+      left: 10px;
+      right: 10px;
+      top: 0;
+      bottom: 0;
+      background-color: #201e23;
+      opacity: 0.4;
+      border-radius: 15px;
+    }
+    img {
+      display: block;
+      height: 200px;
+      width: 100%;
+      border-radius: 15px;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
 }

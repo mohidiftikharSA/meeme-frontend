@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LiaTimesSolid } from "react-icons/lia";
 import { IoIosSend } from "react-icons/io";
 import classes from "./index.module.scss";
@@ -22,11 +21,11 @@ const ChatWindow = ({
   handleImageUpload,
   handleFileChange,
   fileInputRef,
-  setEmoji
+  setEmoji,
 }) => {
-//   const [emojis,] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [messageText, setMessageText] = useState("");
+  const [previewImage, setPreviewImage] = useState(null);
 
   useEffect(() => {
     setMessageText(inputText);
@@ -37,10 +36,26 @@ const ChatWindow = ({
   };
 
   const handleEmojiSelect = (emoji) => {
-    console.log("Emoji == ", emoji.emoji);
-    console.log("Input text =", messageText);
     setEmoji(emoji.emoji);
   };
+
+  const handleFilePreview = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+    handleFileChange(event); // Call the original file handler
+  };
+
+  const removePreviewImage = () => {
+    setPreviewImage(null);
+    fileInputRef.current.value = ""; // Clear the file input
+  };
+
   return (
     <div className="chat">
       <div className="chat-window">
@@ -61,79 +76,35 @@ const ChatWindow = ({
         </div>
         <div className="messages">
           {msgsList &&
-            msgsList.map((item, index) => {
-              return (
-                <>
-                  {" "}
-                  {item?.sender_id !== user.id ? (
-                    <>
-                      <div key={`${item.id}_${index}`} className="receiverBox">
-                        <div className="userImg">
-                          <img src={item?.sender_image || user2} alt="img" />
+            msgsList.map((item, index) => (
+              <div
+                key={`${item.id}_${index}`}
+                className={item.sender_id === user.id ? "senderBox" : "receiverBox"}
+              >
+                <div className="userImg">
+                  <img src={item.sender_image || user2} alt="img" />
+                </div>
+                <div className={`message ${item.sender_id === user.id ? "sent" : "received"}`}>
+                  <div className="messageBox">
+                    <div className="message-text">{item.body}</div>
+                    {item.message_images &&
+                      item.message_images.map((img, ind) => (
+                        <div key={`${ind}_img`} className="message-user">
+                          <img src={typeof img === "string" ? img : img.message_image} alt="attachment" />
                         </div>
-                        <div key={index} className="message received">
-                          <div className="messageBox">
-                            <div className="message-user">{item.body}</div>
-                            {item?.message_images &&
-                              item?.message_images?.map((img, ind) => {
-                                return (
-                                  <>
-                                    <div
-                                      id={`${ind}_img`}
-                                      className="message-user"
-                                    >
-                                      {typeof img === "string" ? (
-                                        <img src={img} />
-                                      ) : (
-                                        <img src={img?.message_image} />
-                                      )}
-                                    </div>
-                                  </>
-                                );
-                              })}
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div key={`${item.id}_${index}`} className="senderBox">
-                        <div
-                          key={index}
-                          className={`message ${
-                            item.sender_id === user.id ? "sent" : "received"
-                          }`}
-                        >
-                          <div className="userImg">
-                            <img src={item?.sender_image || user2} alt="img" />
-                          </div>
-                          <div className="messageBox">
-                            <div className="message-text ">{item?.body}</div>
-                            {item?.message_images &&
-                              item?.message_images?.map((img, ind) => {
-                                return (
-                                  <>
-                                    <div
-                                      key={`${ind}_img`}
-                                      className="message-user"
-                                    >
-                                      {typeof img === "string" ? (
-                                        <img src={img} />
-                                      ) : (
-                                        <img src={img?.message_image} />
-                                      )}
-                                    </div>
-                                  </>
-                                );
-                              })}
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}{" "}
-                </>
-              );
-            })}
+                      ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+              {previewImage && (
+            <div className="image-preview-chat">
+              <img src={previewImage} alt="preview" className="preview-image" />
+              <span className="remove-btn" onClick={removePreviewImage}>
+                <LiaTimesSolid />
+              </span>
+            </div>
+          )}
         </div>
         <div className="sendBox emoji">
           <Form.Control
@@ -143,30 +114,24 @@ const ChatWindow = ({
             onChange={handleInputChange}
             onKeyDown={handleKeyPress}
           />
-          <div className={"iconBox"}>
+          <div className="iconBox">
             <span className={classes.smiley} onClick={handleEmojiClick}>
               <FaSmile />
             </span>
-
-            {showEmojiPicker && (
-              <EmojiPicker onEmojiClick={handleEmojiSelect} disableAutoFocus />
-            )}
-            <span
-              className={classes.uploadBtn}
-              onChange={handleFileInput}
-              onClick={handleImageUpload}
-            >
-              <CgAttachment />
+            {showEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiSelect} disableAutoFocus />}
+            <span className={classes.uploadBtn}>
+              <CgAttachment onClick={() => fileInputRef.current.click()} />
               <input
                 type="file"
                 accept="image/*"
                 ref={fileInputRef}
-                onChange={handleFileChange}
+                onChange={handleFilePreview}
                 style={{ display: "none" }}
               />
             </span>
             <IoIosSend color="#ffcd2f" onClick={sendMessage} />
           </div>
+          
         </div>
       </div>
     </div>

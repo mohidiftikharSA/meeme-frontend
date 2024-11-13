@@ -8,6 +8,7 @@ import user from "../../Images/avatar.png"
 import api from 'APIs/dashboard/home'
 import NotificationService from "../../Services/NotificationService";
 import SpinnerLoader from "../Loader/SpinnerLoader";
+import { CiCirclePlus } from "react-icons/ci";
 
 const UploadModal = (props) => {
     const {title, addStory, stories} = props;
@@ -111,7 +112,7 @@ const UploadModal = (props) => {
             </div>
             }
             {!addStory ? <>
-                <div className={classes.prilfe}>
+                <div className={classes.profile}>
                     <img src={story?.user_image || user} alt='img' style={{objectFit: "cover"}}/>
                     <p>{story?.username}</p>
                 </div>
@@ -144,7 +145,7 @@ const UploadModal = (props) => {
                             style={{cursor: "pointer", display: "block"}}
                         >
                             <div style={{cursor: 'pointer'}}>
-                                Browse Image
+                                Browse Image 
                             </div>
                             <input
                                 type="file"
