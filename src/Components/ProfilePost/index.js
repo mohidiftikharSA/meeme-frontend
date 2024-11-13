@@ -9,7 +9,7 @@ import Loader from "Components/Loader";
 import Skeleton from "react-loading-skeleton";
 
 
-const ProfilePost = ({ data, postRemoved, tournament ,myProfile, otherProfile }) => {
+const ProfilePost = ({ data, postRemoved, tournament, myProfile, otherProfile }) => {
   const [selectedPostIds, setSelectedPostIds] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
   const [PostViewModalShow, setPostViewModalShow] = useState(false);
@@ -104,69 +104,68 @@ const ProfilePost = ({ data, postRemoved, tournament ,myProfile, otherProfile })
               <FaTrash size={12} />
             </span>
           </>
-        ) 
-      }
+        )}
       </div>
       <div className={classes.postHolder}>
         <div className={data && data[0] ? classes.box : ''}>
           {data && data[0] ? data
-            ?.slice()
-            ?.reverse()
-            ?.map((item, ind) => (
+            .slice()
+            .reverse()
+            .map((item, ind) => (
               <div key={ind} className={classes.imgBox}>
-                <label className={classes.checkboxLabel}>
-                  {!otherProfile ? (
+                <div className={classes.checkboxContainer}>
+                  {!otherProfile && (
                     <Form.Check
                       type="checkbox"
                       checked={selectedPostIds.includes(item.post_id)}
                       onChange={() => toggleSelectPost(item.post_id)}
                     />
-                  ) : (
-                    ""
                   )}
-                  {isImage(item) ? (
-                    <>
-                      <div
-                        className={classes.imgBox}
+                </div>
+                {isImage(item) ? (
+                  <>
+                    <div
+                      className={classes.imgBox}
+                      style={{
+                        display: imagesLoaded[ind] ? "none" : "block",
+                      }}
+                    >
+                      <Skeleton
+                        baseColor="#7c7b7c"
+                        highlightColor="#969696"
+                        height={300}
+                        width="300px"
                         style={{
-                          display: imagesLoaded[ind] ? "none" : "block",
+                          marginTop: "10px",
+                          borderRadius: "20px",
                         }}
-                      >
-                        <Skeleton
-                          baseColor="#7c7b7c"
-                          highlightColor="#969696"
-                          height={300}
-                          width="300px"
-                          style={{
-                            marginTop: "10px",
-                            borderRadius: "20px",
-                          }}
-                        />
-                      </div>
-                      <img
-                        style={{
-                          display: imagesLoaded[ind] ? "block" : "none",
-                        }}
-                        onLoad={() => handleImageLoad(ind)}
-                        onError={() => handleImageError(ind)}
-                        onClick={() => {
-                          setPostViewModalShow(true);
-                          setModalData(item);
-                        }}
-                        src={item?.post_image}
-                        alt="img"
                       />
-                    </>
-                  ) : (
-                    <video width="100%" height="auto" controls>
-                      <source src={item.post_image} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  )}
-                </label>
+                    </div>
+                    <img
+                      style={{
+                        display: imagesLoaded[ind] ? "block" : "none",
+                        cursor: "pointer", // Optional: to indicate it's clickable for modal
+                      }}
+                      onLoad={() => handleImageLoad(ind)}
+                      onError={() => handleImageError(ind)}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent the checkbox toggle
+                        setPostViewModalShow(true);
+                        setModalData(item);
+                      }}
+                      src={item?.post_image}
+                      alt="img"
+                    />
+                  </>
+                ) : (
+                  <video width="100%" height="auto" controls autoPlay loop muted>
+                    <source src={item.post_image} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                )}
               </div>
-            )): <p className="text-center w-100"> No Post Available</p>}
-            </div>
+            )) : <p className="text-center w-100"> No Post Available</p>}
+        </div>
       </div>
       <PostViewModal
         data={modalData}
@@ -175,6 +174,7 @@ const ProfilePost = ({ data, postRemoved, tournament ,myProfile, otherProfile })
         tournament={tournament}
       />
     </>
+
   );
 };
 

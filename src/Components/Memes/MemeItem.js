@@ -36,7 +36,7 @@ const MemeItem = ({item, openModal}) => {
                     />
                 </div>
             ) : (
-                <video controls>
+                <video autoPlay muted controls loop>
                     <source src={item.compress_image} type={item.post_type}/>
                     Your browser does not support the video tag.
                 </video>

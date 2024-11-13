@@ -9,7 +9,7 @@ import AuthAPIs from "../../APIs/auth";
 import TournamentAPIs from "../../APIs/tournaments";
 import PostContentModal from "Components/PostContentModal";
 
-export default function TournamentModal({ setPostCount, ...props }) {
+export default function TournamentModal({ setPostCount, setNewPost ,...props }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
@@ -65,6 +65,7 @@ export default function TournamentModal({ setPostCount, ...props }) {
     if (props.post) {
       const res = await AuthAPIs.createPost(data);
       if (res) {
+        setNewPost(res.data)
         toast.success("Post Created Successfully");
         props.onHide();
       }

@@ -90,7 +90,7 @@ const LoginFrom = () => {
         dispatch(coinsBuy(res.data?.user.coins));
 
         navigate(`/home`);
-        toast.success("Login Successfully", {
+        toast.success("Successful Login", {
           position: "top-right",
           autoClose: 2000,
         });

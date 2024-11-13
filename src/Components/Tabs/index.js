@@ -166,6 +166,7 @@ const TabDetails = ({
   const [term, setTerm] = useState("");
   const [faqs, setFaqs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [newPost, setNewPost] = useState();
 
 
   const changeTab = (tabKey) => {
@@ -182,11 +183,16 @@ const TabDetails = ({
     }
   };
 
-  const getRecentPost = async () => {
-    setIsLoadingRecentPosts(true);
+  const getRecentPost = async (newPost = false) => {
+    if (!newPost){
+      setIsLoadingRecentPosts(true);
+    }else{
+      setIsLoading(true)
+    }
     try {
       const res = await postAPIs.getRecentPosts();
       if (res.status === 200) {
+        console.log("Recent Posts  ==", res.data.recent_posts)
         setRecentPosts(res.data.recent_posts);
       } else {
         console.error("Error: Unexpected status code", res.status);
@@ -195,6 +201,7 @@ const TabDetails = ({
       console.error("Error while fetching data:", error);
     } finally {
       setIsLoadingRecentPosts(false);
+      setIsLoading(false);
     }
   };
   const getTrendingPost = async () => {
@@ -252,6 +259,12 @@ const TabDetails = ({
 
   }, [data]);
 
+  useEffect(() => {
+    console.log("UseEffect of nee Post in main comp --- ", newPost)
+    changeTab('memes')
+    getRecentPost(true)
+  }, [newPost])
+
   const getPurchasedItems = async () => {
     const res = await ThemesAPIs.getPuchasedItems();
     if (res) {
@@ -289,7 +302,7 @@ const TabDetails = ({
           className="mb-lg-5 mb-3"
         >
           <Tab eventKey="following" title="Following">
-            <FollowingContent />
+            <FollowingContent setNewPost={setNewPost} />
           </Tab>
           <Tab eventKey="memes" title="New Memes">
             <MemesDetails
@@ -390,7 +403,7 @@ const TabDetails = ({
       )}
       {profile && (
         <Tabs defaultActiveKey={"post"} className="mb-5 double">
-          <Tab eventKey="post" title="Post">
+          <Tab eventKey="post" title="Posts">
             <ProfilePost
               myProfile
               otherProfile={otherProfile}

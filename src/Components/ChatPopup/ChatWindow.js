@@ -17,6 +17,7 @@ const ChatWindow = ({
   handleKeyPress,
   sendMessage,
   user,
+  closePreview,
   handleFileInput,
   handleImageUpload,
   handleFileChange,
@@ -30,6 +31,13 @@ const ChatWindow = ({
   useEffect(() => {
     setMessageText(inputText);
   }, [inputText]);
+
+  /**
+   * @To_Close the image Preview on Message Send 
+   */
+  useEffect(()=>{
+    setPreviewImage(null)
+  },[closePreview])
 
   const handleEmojiClick = () => {
     setShowEmojiPicker(!showEmojiPicker);
@@ -97,7 +105,7 @@ const ChatWindow = ({
                 </div>
               </div>
             ))}
-              {previewImage && (
+          {previewImage && (
             <div className="image-preview-chat">
               <img src={previewImage} alt="preview" className="preview-image" />
               <span className="remove-btn" onClick={removePreviewImage}>
@@ -131,7 +139,7 @@ const ChatWindow = ({
             </span>
             <IoIosSend color="#ffcd2f" onClick={sendMessage} />
           </div>
-          
+
         </div>
       </div>
     </div>

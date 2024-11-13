@@ -98,7 +98,7 @@ const JudgePage = () => {
                                             src={item.post_image} alt="img"
                                         />
                                     </div>) : (
-                                        <video width="93%" height="700px" style={{ objectFit: "cover" }} controls>
+                                        <video loop muted autoPlay width="93%" height="700px" style={{ objectFit: "cover" }} controls >
                                             <source src={item.post_image} type="video/mp4" />
                                             Your browser does not support the video tag.
                                         </video>

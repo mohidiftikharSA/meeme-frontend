@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import postAPIs from "APIs/dashboard/home";
 import followingPostsData from '../Post/folllowingData.json'
 
-const FollowingContent = () => {
+const FollowingContent = ({setNewPost}) => {
 
     const [storyData, setStoryData] = useState([]);
     const [followingData, setFollowingData] = useState([]);
@@ -94,7 +94,7 @@ const FollowingContent = () => {
 
     return (<>
         <Stories data={storyData} onStoryUpdate={onStoryUpdate}/>
-        <UploadPost/>
+        <UploadPost setNewPost={setNewPost}/>
         <Posts postData={followingData} isLoading={isLoading} likePost={likePost} />
     </>);
 };

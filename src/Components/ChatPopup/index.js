@@ -22,6 +22,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const [msgSent, setMsgSent] = useState();
   const [subscriptionEstablished, setSubscriptionEstablished] = useState(false);
   const [emoji , setEmoji ] = useState('');
+  const [closePreview , setClosePreview] = useState();
 
   useEffect(() => {
     setIsChatVisible(isOpen);
@@ -110,6 +111,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
       "conversation_id",
       selectedChat.conversation_id || res.data?.conversation?.id
     );
+
     data.append(
       "receiver_id",
       selectedChat.sender_id === user.id
@@ -117,6 +119,8 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
         : selectedChat.sender_id
     );
     data.append("body", inputText);
+    console.log("Set close the prreview w===",inputText)
+    
     if (imgForAPI) {
       data.append("message_images[]", imgForAPI);
     }
@@ -129,6 +133,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
       user: user,
     };
     setImgForAPI(null);
+    setClosePreview(inputText)
     setInputText("");
   };
 
@@ -239,6 +244,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
             handleFileChange={handleFileChange}
             fileInputRef={fileInputRef}
             setEmoji={setEmoji}
+            closePreview={closePreview}
           />
         )}
         {/* ActionCable component from react-actioncable-provider */}

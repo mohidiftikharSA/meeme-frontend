@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import PostContentModal from "Components/TournamentModal";
 
 
-const UploadPost = () => {
+const UploadPost = ({setNewPost}) => {
   const { profile } = useSelector((state) => state.auth);
   const [tournamentModalShow, settournamentModalShow] = useState(false);
 
@@ -28,7 +28,7 @@ const UploadPost = () => {
 
         </Form.Group>
       </div>
-      <PostContentModal post show={tournamentModalShow} onHide={() => settournamentModalShow(false)} />
+      <PostContentModal setNewPost={setNewPost} post show={tournamentModalShow} onHide={() => settournamentModalShow(false)} />
     </>
   )
 }
