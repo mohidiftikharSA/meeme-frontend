@@ -8,6 +8,7 @@ import Loader from "Components/Loader";
 const Tournament = () => {
   let { tab } = useParams();
   const [active , setActive ] = useState();
+  console.log("taab  ---",tab)
   
   return (
     <>

@@ -192,7 +192,7 @@ const TabDetails = ({
     try {
       const res = await postAPIs.getRecentPosts();
       if (res.status === 200) {
-        console.log("Recent Posts  ==", res.data.recent_posts)
+        // console.log("Recent Posts  ==", res.data.recent_posts)
         setRecentPosts(res.data.recent_posts);
       } else {
         console.error("Error: Unexpected status code", res.status);
@@ -278,8 +278,10 @@ const TabDetails = ({
    */
   useEffect(() => {
     if (first === "tournament" || first === "store" || first === "judge") {
+      console.log("Setting tab in useEffect=== ", first)
       setActiveTab(first);
       setActive(first)
+      changeTab(first)
     }
   }, [first]);
 

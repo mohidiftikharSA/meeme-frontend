@@ -164,7 +164,7 @@ function Navigation({ header, footer }) {
                 <img src={judge} alt="icon" />
                 Judge
             </Nav.Link>
-            <Nav.Link as={Link} to="/BuyCoin" className="btn btn-primary btn-bg judge mb-3">
+            <Nav.Link as={Link} to="/tornament/store" className="btn btn-primary btn-bg judge mb-3">
                 <img src={shop} alt="icon" />
                 Store
             </Nav.Link>
