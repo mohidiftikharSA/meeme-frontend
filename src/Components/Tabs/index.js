@@ -31,10 +31,11 @@ import Theme3 from "../../Images/Theme3.png";
 import UltraRare from "Components/UltraRare";
 import ThemeRare from "Components/ThemeRare";
 import postAPIs from "APIs/dashboard/home";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ThemesAPIs from "../../APIs/amazonCard";
 import SettingAPIs from "../../APIs/settings";
 import Loader from "Components/Loader";
+import { setSearchTagData } from "Redux/reducers/searchTagData";
 
 const backgroundOverlayData = [
   {
@@ -168,6 +169,7 @@ const TabDetails = ({
   const [faqs, setFaqs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [newPost, setNewPost] = useState();
+  const dispatch = useDispatch();
 
 
   const changeTab = (tabKey) => {
@@ -233,6 +235,11 @@ const TabDetails = ({
     getFaqs();
     getPurchasedItems();
     getPrivacyPolicy();
+    dispatch(
+      setSearchTagData({
+          data: null
+      })
+  )
     const fetchData = async () => {
       await getRecentPost();
       await getTrendingPost();
@@ -259,6 +266,7 @@ const TabDetails = ({
       setIsLoading(false);
       if (data && data[0]) {
         setTagTrendingPost(data);
+        console.log("Setting tab into trendig");
         setActiveHomeTab("trending");
         handleButtonClick();
       } else {
@@ -291,7 +299,7 @@ const TabDetails = ({
       console.log("Setting tab in useEffect=== ", first)
       setActiveTab(first);
       setActive(first)
-      changeTab(first)
+      // changeTab(first)
     }
   }, [first]);
 
