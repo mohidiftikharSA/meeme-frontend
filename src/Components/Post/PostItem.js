@@ -100,7 +100,7 @@ const PostItem = ({
                             src={item.compress_image} alt="img"
                             key={ind}
                         />
-                    </div>) : (<video autoPlay width="100%" height="auto" controls>
+                    </div>) : (<video loop muted autoPlay width="100%" height="auto" controls>
                         <source src={item.post_image} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>)} 
