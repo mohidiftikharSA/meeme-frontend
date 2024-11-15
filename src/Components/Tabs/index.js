@@ -161,7 +161,8 @@ const TabDetails = ({
   const [isLoadingTrendingPosts, setIsLoadingTrendingPosts] = useState(false);
   const { data } = useSelector((state) => state.searchTagData);
   const [purchasedItems, setPurchasedItems] = useState([]);
-  const [activeTab, setActiveTab] = useState("memes");
+  const [activeTab, setActiveTab] = useState("");
+  const [activeHomeTab, setActiveHomeTab] = useState("memes");
   const [policy, setPolicy] = useState("");
   const [term, setTerm] = useState("");
   const [faqs, setFaqs] = useState([]);
@@ -171,6 +172,14 @@ const TabDetails = ({
 
   const changeTab = (tabKey) => {
     console.log("Changes tab =", tabKey);
+    setActiveHomeTab(tabKey);
+    if (setActive) {
+      setActive(tabKey)
+    }
+  };
+
+  const changeTabTournament = (tabKey) => {
+    console.log("Changes tournament page tab =", tabKey);
     setActiveTab(tabKey);
     if (setActive) {
       setActive(tabKey)
@@ -250,10 +259,11 @@ const TabDetails = ({
       setIsLoading(false);
       if (data && data[0]) {
         setTagTrendingPost(data);
+        setActiveHomeTab("trending");
         handleButtonClick();
       } else {
         setTagTrendingPost([]);
-        setActiveTab("memes");
+        setActiveHomeTab("memes");
       }
     }, 2000);
 
@@ -298,7 +308,7 @@ const TabDetails = ({
       {main && (
         <Tabs
           defaultActiveKey={first}
-          activeKey={activeTab}
+          activeKey={activeHomeTab}
           onSelect={(tabKey) => changeTab(tabKey)}
           id="uncontrolled-tab-example"
           className="mb-lg-5 mb-3"
@@ -327,7 +337,7 @@ const TabDetails = ({
           <Tabs
             defaultActiveKey={first}
             activeKey={activeTab}
-            onSelect={(tabKey) => changeTab(tabKey)}
+            onSelect={(tabKey) => changeTabTournament(tabKey)}
             id="uncontrolled-tab-example"
             className="mb-3"
           >
@@ -413,7 +423,7 @@ const TabDetails = ({
               postRemoved={postRemoved}
             />
           </Tab>
-          <Tab eventKey="tournament" title="Tournament Entry">
+          <Tab eventKey="tournament" title="Tournament Entries">
             <ProfilePost otherProfile tournament data={tournamentPosts} />
           </Tab>
         </Tabs>

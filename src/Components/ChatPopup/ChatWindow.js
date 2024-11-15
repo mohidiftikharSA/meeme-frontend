@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { LiaTimesSolid } from "react-icons/lia";
 import { IoIosSend } from "react-icons/io";
 import classes from "./index.module.scss";
@@ -27,17 +27,28 @@ const ChatWindow = ({
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [messageText, setMessageText] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
+  const messagesEndRef = useRef(null); // Ref to track the end of the messages container
 
   useEffect(() => {
     setMessageText(inputText);
   }, [inputText]);
 
   /**
-   * @To_Close the image Preview on Message Send 
+   * Scroll to the bottom of the chat messages
    */
-  useEffect(()=>{
-    setPreviewImage(null)
-  },[closePreview])
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom(); // Scroll when the component mounts or updates
+  }, [msgsList, previewImage]); // Run on messages or preview changes
+
+  useEffect(() => {
+    setPreviewImage(null);
+  }, [closePreview]);
 
   const handleEmojiClick = () => {
     setShowEmojiPicker(!showEmojiPicker);
@@ -56,12 +67,12 @@ const ChatWindow = ({
       };
       reader.readAsDataURL(file);
     }
-    handleFileChange(event); // Call the original file handler
+    handleFileChange(event);
   };
 
   const removePreviewImage = () => {
     setPreviewImage(null);
-    fileInputRef.current.value = ""; // Clear the file input
+    fileInputRef.current.value = "";
   };
 
   return (
@@ -113,6 +124,7 @@ const ChatWindow = ({
               </span>
             </div>
           )}
+          <div ref={messagesEndRef} /> {/* Marker for the end of the messages */}
         </div>
         <div className="sendBox emoji">
           <Form.Control
@@ -139,7 +151,6 @@ const ChatWindow = ({
             </span>
             <IoIosSend color="#ffcd2f" onClick={sendMessage} />
           </div>
-
         </div>
       </div>
     </div>

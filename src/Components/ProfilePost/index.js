@@ -50,7 +50,7 @@ const ProfilePost = ({ data, postRemoved, tournament, myProfile, otherProfile })
       const res = await PostsAPIs.deletePosts({ post_ids: selectedPostIds });
       if (res) {
         postRemoved(res.data);
-        toast.success("Posts Deleted Successfully.");
+        toast.success("Post Deleted Successfully.");
         setIsLoading(false);
       }
     } else {

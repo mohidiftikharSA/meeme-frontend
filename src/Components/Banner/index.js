@@ -65,7 +65,7 @@ const Banner = ({ other, profile }) => {
       if (unfollow) {
         setIsFollowing(false);
         console.log("Unfollow Successfully =", unfollow);
-        toast.success('Unfollow Successfully', {
+        toast.success('Unfollowed Successfully', {
           position: "top-right",
           autoClose: 2000,
         });
@@ -101,21 +101,21 @@ const Banner = ({ other, profile }) => {
                 <Button onClick={handleOpenChat}>Message</Button>
               </div>
             )}
-            <ul className={classes.userInfoBox}>
+            <ul className={`${classes.userInfoBox}`}>
               <li>
-                <h5>
+                <h5 className="show-mouse-arrow" >
                   {profile?.all_post_count} <span>Posts</span>
                 </h5>
               </li>
               <li>
-                <h5 onClick={() => {
+                <h5 className={profile?.user?.id !== user?.id && 'show-mouse-arrow'} onClick={() => {
                   if (profile?.user?.id === user?.id) { setfollowrshow(true) }
                 }}>
                   {profile?.followers} <span>Followers</span>
                 </h5>
               </li>
               <li>
-                <h5 onClick={() => {
+                <h5 className={profile?.user?.id !== user?.id && 'show-mouse-arrow'} onClick={() => {
                   if (profile?.user?.id === user?.id) {
                     setShow(true)
                   }

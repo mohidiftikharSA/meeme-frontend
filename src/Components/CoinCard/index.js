@@ -27,18 +27,25 @@ const CoinCard = ({ data }) => {
     const searchParams = new URLSearchParams(location.search);
     const amount = searchParams.get("amount");
     const coins = searchParams.get("coins");
-
-    let curr_coins = myCoins?.allCoins;
     if (amount && coins) {
-      curr_coins = parseInt(curr_coins) +  parseInt(coins)
-      dispatch(coinsBuy(curr_coins));
+      getCurrentUser();
       setShowSuccessModal(true);
     }
   }, [location.search]);
 
+  const getCurrentUser = async () => {
+    const res = await AuthAPIs.getCurrentUserProfile();
+    if (res) {
+      console.log("curret uusert  == ", res.data.profile?.user?.coins);
+      if (res.data.profile?.user?.coins)
+        dispatch(coinsBuy(res.data.profile?.user?.coins));
+
+    }
+  }
+
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
-  };                                                                                        
+  };
   const handleCloseSuccessModal = () => {
     setShowSuccessModal(false);
   };
@@ -108,7 +115,7 @@ const CoinCard = ({ data }) => {
         show={showPurchaseModal}
         onHide={handleClosePurchaseModal}
         buycoins={buyCoins}
-        // flag={allCards.status === 404}
+      // flag={allCards.status === 404}
       />
       {showSuccessModal && (
         <SuccessPurchase
