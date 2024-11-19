@@ -1,18 +1,19 @@
+import React, { useEffect, useRef, useState } from "react";
+import { Container } from "react-bootstrap";
 import AccordianBadge from "Components/AccordainBadge";
 import MemesDetails from "Components/Memes";
 import Search from "Components/Search";
-import React, { useEffect, useRef, useState } from "react";
-import { Container } from "react-bootstrap";
 import postAPIs from "../../APIs/dashboard/home";
 import avatar from "../../Images/avatar.png";
 
 const Explore = () => {
   const [recentPosts, setRecentPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filteredPosts, setFilteredPost] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const [tags, setTags] = useState([]);
   const pageNumberRef = useRef(1);
   const [hasMore, setHasMore] = useState(true);
+  const [searchMode, setSearchMode] = useState(false); // New state to handle search mode
   let firstAPICall = false;
 
   const getRecentPostAndTags = async () => {
@@ -20,26 +21,23 @@ const Explore = () => {
       if (firstAPICall && pageNumberRef.current === 1) {
         return;
       }
-      if (!filteredPosts[0]) {
+
+      if (!searchMode) { // Only fetch posts if not in search mode
         const res = await postAPIs.getRecentPosts(pageNumberRef.current);
         if (res.status === 200) {
           firstAPICall = true;
-          // Extract IDs of recent posts
           const existingPostIds = new Set(
             recentPosts.map((post) => post.post.id)
           );
-          // Filter out new posts that are not duplicates
           const newPosts = res.data.recent_posts.filter(
             (post) => !existingPostIds.has(post.post.id)
           );
-          // Filter out posts with duplicate IDs
           const uniqueNewPosts = newPosts.filter(
             (post, index, self) =>
               index === self.findIndex((p) => p.post.id === post.post.id)
           );
 
           setRecentPosts((prevPosts) => [...prevPosts, ...uniqueNewPosts]);
-          setFilteredPost((prevPosts) => [...prevPosts, ...uniqueNewPosts]);
           setLoading(false);
           pageNumberRef.current++;
           if (uniqueNewPosts.length === 0) {
@@ -60,6 +58,9 @@ const Explore = () => {
   };
 
   const onTagSearch = async (value) => {
+    setSearchMode(true); // Enter search mode
+    setFilteredPosts([]); // Clear filtered posts to avoid merging issues
+
     if (value.length > 0) {
       const filteredData = recentPosts.filter((item) => {
         const postTags = (item.post.tag_list || []).map((tag) =>
@@ -69,28 +70,35 @@ const Explore = () => {
           postTags.some((postTag) => postTag.includes(searchTag))
         );
       });
+
       if (!filteredData[0]) {
         const resTag = await postAPIs.user_search_tag({ tag: value[0] });
         if (resTag) {
-          setFilteredPost(resTag.data.recent_posts);
+          setFilteredPosts(resTag.data.recent_posts);
           return;
         }
       }
-      setFilteredPost(filteredData);
+      setFilteredPosts(filteredData);
     } else {
-      setFilteredPost(recentPosts);
+      setSearchMode(false); // Exit search mode if no tag is provided
+      setFilteredPosts(recentPosts);
     }
   };
 
   const onTextSearch = async (value) => {
-    console.log(value);
-    console.log("Set the value in the stat ");
+    setSearchMode(true); // Enter search mode
+    setFilteredPosts([]); // Clear filtered posts to avoid merging issues
+
     if (value.length <= 0) {
-      setFilteredPost(recentPosts);
+      setSearchMode(false); // Exit search mode
+      setFilteredPosts(recentPosts);
     }
   };
 
   const onSearchSubmit = async (value) => {
+    setSearchMode(true); // Enter search mode
+    setFilteredPosts([]); // Clear filtered posts to avoid merging issues
+
     if (value.length > 0) {
       try {
         const data = {
@@ -98,17 +106,18 @@ const Explore = () => {
           username: `${value}`,
         };
         const responsePosts = await postAPIs.searchPostByUsernameAndTag(data);
-        setFilteredPost(responsePosts.data.explore_posts);
+        setFilteredPosts(responsePosts.data.explore_posts);
       } catch (error) {
-        setFilteredPost([]);
+        setFilteredPosts([]);
       }
     } else {
-      setFilteredPost(recentPosts);
+      setSearchMode(false); // Exit search mode
+      setFilteredPosts(recentPosts);
     }
   };
 
   useEffect(() => {
-      getRecentPostAndTags();
+    getRecentPostAndTags();
   }, []);
 
   useEffect(() => {
@@ -130,15 +139,10 @@ const Explore = () => {
     };
   }, []);
 
-  
-
   const handleIntersection = async (entries) => {
     const target = entries[0];
-    if (target.isIntersecting && hasMore) {
-      console.log("Filtered posts in interation  == ", filteredPosts);
-      if(!filteredPosts[0]){
-        await getRecentPostAndTags();
-      }
+    if (target.isIntersecting && hasMore && !searchMode) { // Prevent infinite scroll in search mode
+      await getRecentPostAndTags();
     }
   };
 
@@ -155,7 +159,7 @@ const Explore = () => {
           <AccordianBadge data={tags} expolore onTagSelect={onTagSearch} />
           <MemesDetails
             isLoading={loading}
-            newMemesData={filteredPosts}
+            newMemesData={searchMode ? filteredPosts : recentPosts} // Use filteredPosts only in search mode
             avatar={avatar}
             explore
           />
@@ -167,5 +171,3 @@ const Explore = () => {
 };
 
 export default Explore;
-
-// comment
