@@ -109,7 +109,11 @@ const ChatWindow = ({
                     {item.message_images &&
                       item.message_images.map((img, ind) => (
                         <div key={`${ind}_img`} className="message-user">
-                          <img src={typeof img === "string" ? img : img.message_image} alt="attachment" />
+                          <img
+                            src={typeof img === "string" ? img : img.message_image}
+                            alt="attachment"
+                            onLoad={scrollToBottom} // Ensure scrolling after the image is loaded
+                          />
                         </div>
                       ))}
                   </div>
@@ -118,7 +122,12 @@ const ChatWindow = ({
             ))}
           {previewImage && (
             <div className="image-preview-chat">
-              <img src={previewImage} alt="preview" className="preview-image" />
+              <img
+                src={previewImage}
+                alt="preview"
+                className="preview-image"
+                onLoad={scrollToBottom} // Ensure scrolling after preview image is loaded
+              />
               <span className="remove-btn" onClick={removePreviewImage}>
                 <LiaTimesSolid />
               </span>
@@ -126,6 +135,7 @@ const ChatWindow = ({
           )}
           <div ref={messagesEndRef} /> {/* Marker for the end of the messages */}
         </div>
+
         <div className="sendBox emoji">
           <Form.Control
             type="text"
