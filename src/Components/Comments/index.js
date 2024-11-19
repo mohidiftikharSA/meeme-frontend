@@ -80,7 +80,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
 
   return (
     <div className="py-lg-5 py-3 px-3">
-      <Heading title={"Comments"} onHide={onHide} />
+      <Heading title={"Comments"} comment onHide={onHide} />
       
       <ul className={classes.commentList}>
         {allCommentsArr
