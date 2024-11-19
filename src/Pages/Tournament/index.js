@@ -7,19 +7,18 @@ import Loader from "Components/Loader";
 
 const Tournament = () => {
   let { tab } = useParams();
-  const [active , setActive ] = useState();
-  console.log("taab  ---",tab)
-  
+  const [active, setActive] = useState();
+  console.log("taab  ---", tab)
+
   return (
     <>
-        <section className="py-3">
-          <Container>
-            {active === 'tournament' && <h5 className={classes.heading}>Tournaments</h5>}
-            <div className={"sectionHolder"}>
-              <TabDetails setActive={setActive} first={`${tab}`} tournament  />
-            </div>
-          </Container>
-        </section>
+      <section className="py-3">
+        <Container>
+          <div className={"sectionHolder"}>
+            <TabDetails setActive={setActive} first={`${tab}`} tournament />
+          </div>
+        </Container>
+      </section>
     </>
   );
 };

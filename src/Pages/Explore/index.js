@@ -148,7 +148,7 @@ const Explore = () => {
         <Container fluid>
           <Search
             expolore
-            text={"Search hashtags, usernames"}
+            text={"Search by hashtags or usernames"}
             onSearchChange={onTextSearch}
             onSearchSubmit={onSearchSubmit}
           />

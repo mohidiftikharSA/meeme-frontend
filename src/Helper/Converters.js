@@ -24,32 +24,31 @@ export function formatNumber(n) {
 
 export function timeFormat(timestampStr) {
   const timestamp = new Date(timestampStr);
-
-// Current time
+  if (isNaN(timestamp)) {
+    throw new Error('Invalid timestamp provided');
+  }
   const currentTime = new Date();
-
-// Calculate the time difference in milliseconds
   const timeDifference = currentTime - timestamp;
-
-// Convert milliseconds to seconds
+  if (timeDifference < 0) {
+    return 'just now';
+  }
   const secondsAgo = Math.floor(timeDifference / 1000);
-
-// Calculate minutes, hours, and days
   const minutesAgo = Math.floor(secondsAgo / 60);
   const hoursAgo = Math.floor(minutesAgo / 60);
   const daysAgo = Math.floor(hoursAgo / 24);
 
-// Print the results
+  // Return the formatted result
   if (daysAgo > 0) {
-    return `${daysAgo} d`
+    return `${daysAgo} d`;
   } else if (hoursAgo > 0) {
-    return `${hoursAgo} h`
+    return `${hoursAgo} h`;
   } else if (minutesAgo > 0) {
-    return `${minutesAgo} m`
+    return `${minutesAgo} m`;
   } else {
-    return `${secondsAgo} s`
+    return `${secondsAgo} s`;
   }
 }
+
 
 export function timeAgo(timestamp) {
   const currentDate = new Date();

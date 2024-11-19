@@ -108,7 +108,7 @@ function Navigation({ header, footer }) {
                                 <ul style={{ overflowY: 'auto', maxHeight: '400px' }}>
                                     <span className="list">
                                         <p className="white">
-                                            Notification
+                                            Notifications
                                         </p>
                                         {/* <p className="yellow">Mark all as read</p>*/}
                                     </span>
