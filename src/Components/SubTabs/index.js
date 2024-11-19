@@ -84,6 +84,7 @@ const SubTabs = ({ icon, themes }) => {
   const [themesAPI, setThemesAPI] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [purchasedItems, setPurchasedItems] = useState([]);
+  const [newThemePurchased , setNewThemePurchased ] = useState();
 
   useEffect(() => {
     getThemes();
@@ -109,6 +110,11 @@ const SubTabs = ({ icon, themes }) => {
     }
   };
 
+  useEffect(()=>{
+    getThemes();
+    getPurchasedItems();
+  },[newThemePurchased])
+
   return (
     <>
       {isLoading && <Loader isLoading={isLoading} />}
@@ -133,6 +139,7 @@ const SubTabs = ({ icon, themes }) => {
         >
           <Tab eventKey="common" title="Common">
             <ThemeRare
+              newThemePurchased={setNewThemePurchased}
               purchasedList={purchasedItems}
               data2={themesAPI.filter((theme) => theme.rarity === "common")
                 .sort((a, b) => a.coin - b.coin)
@@ -141,6 +148,7 @@ const SubTabs = ({ icon, themes }) => {
           </Tab>
           <Tab eventKey="rare" title="Rare">
             <ThemeRare
+              newThemePurchased={setNewThemePurchased}
               purchasedList={purchasedItems}
               data2={themesAPI.filter((theme) => theme.rarity === "rare")
                 .sort((a, b) => a.coin - b.coin)
@@ -149,6 +157,7 @@ const SubTabs = ({ icon, themes }) => {
           </Tab>
           <Tab eventKey="ultra" title="Ultra Rare">
             <ThemeRare
+              newThemePurchased={setNewThemePurchased}
               purchasedList={purchasedItems}
               data2={themesAPI.filter((theme) => theme.rarity === "ultra_rare")
                 .sort((a, b) => a.coin - b.coin)

@@ -11,7 +11,7 @@ import { coinsUsed } from "Redux/reducers/buyCoins";
 import { coinConvert } from "Helper/Converters";
 
 
-const ThemeRare = ({ data2, card, purchasedList }) => {
+const ThemeRare = ({ data2, card, purchasedList , newThemePurchased}) => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch()
 
@@ -25,6 +25,7 @@ const ThemeRare = ({ data2, card, purchasedList }) => {
         if (buy.data?.message === 'Item Exists') {
           toast.error(buy.data?.message)
         } else {
+          newThemePurchased(buy.data?.message)
           toast.success(buy.data?.message)
           dispatch(coinsUsed(amount));
         }
