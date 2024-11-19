@@ -1,7 +1,16 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const SuccessPurchae = (props) => {
+
+  const navigate = useNavigate();
+
+  const handleClose = () => {
+    console.log("Close clickeed == ");
+    navigate('/BuyCoin')
+  };
+
   return (
     <Modal
       className={"transparentModa"}
@@ -11,7 +20,7 @@ const SuccessPurchae = (props) => {
       centered
       backdrop
     >
-      <Modal.Header closeButton></Modal.Header>
+      <Modal.Header closeButton onHide={handleClose}></Modal.Header>
       <Modal.Body>
         <div className="mb-3"></div>
         {/* <h6>SELECT YOUR CARD</h6> */}
