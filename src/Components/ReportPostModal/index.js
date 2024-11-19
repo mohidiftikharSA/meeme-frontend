@@ -67,7 +67,7 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
         </Modal.Header>
         <Modal.Body >
           <div className='imagBox'>
-            <img src={image || profile} />
+          {image?.post_type !== "video/mp4" && <img src={image?.compress_image || profile} />}
           </div>
           {isFlagSectionVisible && (
             <Form>

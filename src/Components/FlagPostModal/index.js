@@ -64,15 +64,15 @@ const FlagPostModal = ({ image, postId, postRemovalId, ...props }) => {
           onHide={() => {
             if (flagSuccess)
               postRemovalId(postId);
-              setConfirmationSectionVisibility(false);
-              setFlagSuccess(false)
+            setConfirmationSectionVisibility(false);
+            setFlagSuccess(false)
           }} >
           <Modal.Title id="contained-modal-title-vcenter">
           </Modal.Title>
         </Modal.Header>
         <Modal.Body >
           <div className='imagBox'>
-            <img src={image || profile} />
+            {image?.post_type !== "video/mp4" && <img src={image?.compress_image || profile} />}
           </div>
           {/* <div className='icon-box'> 
         <i className="fas fa-download"><span>Download</span></i> 

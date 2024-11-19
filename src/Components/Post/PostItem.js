@@ -129,8 +129,8 @@ const PostItem = ({
                     </li>
                 </ul>
             </div>
-            <FlagPostModal post show={FlagPostModalShow} image={item.compress_image} postId={item.post.id} onHide={() => setFlagPostModalShow(false)} postRemovalId={postRemovalId} />
-            <ReportPostModal post show={ReportPostModalShow} image={item.compress_image} postId={item.post.id} onHide={() => setReportPostModalShow(false)} postRemovalId={postRemovalId} />
+            <FlagPostModal post show={FlagPostModalShow} image={item} postId={item.post.id} onHide={() => setFlagPostModalShow(false)} postRemovalId={postRemovalId} />
+            <ReportPostModal post show={ReportPostModalShow} image={item} postId={item.post.id} onHide={() => setReportPostModalShow(false)} postRemovalId={postRemovalId} />
         </>
     );
 };
