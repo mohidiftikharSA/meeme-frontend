@@ -13,6 +13,7 @@ const Heading = ({
   linkPath,
   likedCounts,
   noLink,
+  comment,
   onHide,
 }) => {
   const [modalShow, setModalShow] = useState(false);
@@ -50,7 +51,8 @@ const Heading = ({
         >
           {onHide ? (
             <h5>
-              <IoIosArrowBack onClick={onHide} />
+              {comment !== true && <IoIosArrowBack onClick={onHide} />}
+
               {title}
             </h5>
           ) : (

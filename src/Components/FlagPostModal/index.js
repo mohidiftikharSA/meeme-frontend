@@ -81,7 +81,7 @@ const FlagPostModal = ({ image, postId, postRemovalId, ...props }) => {
          </div> */}
 
           {!isConfirmationSectionVisible && <div className='flag-btn mt-5'>
-            <p className='mb-4'>Why are you flagging this photo?</p>
+            <p className='mb-4' style={{color:"#fff", fontWeight:"bold"}}>Why are you flagging this photo?</p>
             <div className="flag-options">
               {flagReasons?.map((reason, index) => (
                 <button
