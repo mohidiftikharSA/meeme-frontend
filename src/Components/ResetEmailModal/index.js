@@ -16,7 +16,7 @@ const ResetEmailModal = (props) => {
             </Modal.Header>
             <Modal.Body className='checkEmail'>
             <img src={emailcheck} alt="check" />
-            <p>Your reset password link has been sent to your email.</p>
+            <p>Your reset password OTP has been sent to your email.</p>
             </Modal.Body>
         </Modal>
     )

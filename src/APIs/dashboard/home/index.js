@@ -2,7 +2,7 @@ import API from "APIs/base";
 import { ENDPOINT } from "config/constants";
 
 const getRecentPosts = async (page=1) => {
-    return await API.getMethod(`${ENDPOINT.getRecentPosts}?page=${page}`, true)
+    return await API.getMethod(`${ENDPOINT.getRecentPosts}?page=${page}`, true,false)
 }
 const getTrendingPosts = async () => {
   return await API.getMethod(ENDPOINT.getTrendingPost, true,false);

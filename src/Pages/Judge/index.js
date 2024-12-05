@@ -75,7 +75,7 @@ const JudgePage = () => {
                         {isLoading ? <SkeletonTournamentPostsLoading /> : tournamentPosts?.length === 0 ? (
                             <p style={{
                                 marginTop: '10px', textAlign: 'center'
-                            }}> There's no Tournament Posts to Show</p>
+                            }}> There are no Tournament Posts to Show</p>
                         ) : tournamentPosts?.map((item, ind) => {
                             return (
                                 <div

@@ -105,7 +105,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
         setSelectedChat(resObj);
       }
     }
-    if (inputText.trim() === "") return;
+    // if (inputText.trim() === "") return;
     const data = new FormData();
     data.append(
       "conversation_id",

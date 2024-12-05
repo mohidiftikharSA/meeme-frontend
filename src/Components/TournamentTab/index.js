@@ -119,7 +119,7 @@ const TournamentTabs = () => {
               <h2>FOR THE {getCurrentMonth()?.toUpperCase()}<br></br>{banner?.tournament?.title}</h2>
             </div>
             <div className={classes.scoreBoard}>
-              <span>{banner?.tournament_users_count} Particpants</span>
+              <span>{banner?.tournament_users_count} Participants</span>
               <span>{banner?.tournament_posts_count} Meme Posts</span>
             </div>
           </div>

@@ -28,7 +28,7 @@ const OtpVerfication = () => {
       const res = await AuthAPIs.verificationOtp(email, otpValue);
       if (res) {
         navigate(`/restsetPassword?email=${email}`);
-        toast.success("Verify Successfully", {
+        toast.success("Verified Successfully", {
           position: "top-right",
           autoClose: 2000,
         });

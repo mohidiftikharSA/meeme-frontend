@@ -93,6 +93,7 @@ const ProfilePost = ({ data, postRemoved, tournament, myProfile, otherProfile })
               label="Select All"
               checked={selectAll}
               onChange={toggleSelectAll}
+              className="checkbox-profile"
             />
             <span
               onClick={() => {
