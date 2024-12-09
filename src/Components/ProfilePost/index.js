@@ -159,7 +159,7 @@ const ProfilePost = ({ data, postRemoved, tournament, myProfile, otherProfile })
                     />
                   </>
                 ) : (
-                  <video width="100%" height="auto" controls autoPlay loop muted>
+                  <video className="videoTagProfile" width="100%" height="auto" controls autoPlay loop muted>
                     <source src={item.post_image} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>

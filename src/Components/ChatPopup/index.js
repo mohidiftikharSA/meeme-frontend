@@ -7,6 +7,7 @@ import {
 } from "react-actioncable-provider";
 import ChatDropdown from "./ChatDropdown";
 import ChatWindow from "./ChatWindow";
+import { MoonLoader } from "react-spinners";
 
 const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const [inputText, setInputText] = useState("");
@@ -21,8 +22,9 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const fileInputRef = useRef(null);
   const [msgSent, setMsgSent] = useState();
   const [subscriptionEstablished, setSubscriptionEstablished] = useState(false);
-  const [emoji , setEmoji ] = useState('');
-  const [closePreview , setClosePreview] = useState();
+  const [emoji, setEmoji] = useState('');
+  const [closePreview, setClosePreview] = useState();
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setIsChatVisible(isOpen);
@@ -87,12 +89,13 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
     setInputText(e.target.value);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("EMoji in useEffect =", emoji);
     setInputText((prevText) => prevText + emoji);
-  },[emoji])
+  }, [emoji])
 
   const sendMessage = async () => {
+    setIsLoading(true);
     console.log("Send Message ");
     if (!selectedChat.conversation_id) {
       var res = await MessagesAPIs.createConversation({
@@ -105,7 +108,11 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
         setSelectedChat(resObj);
       }
     }
-    // if (inputText.trim() === "") return;
+    if (inputText.trim() === "" && !imgForAPI) {
+      console.log("Emptyy message ", imgForAPI)
+      setIsLoading(false);
+      return
+    }
     const data = new FormData();
     data.append(
       "conversation_id",
@@ -119,8 +126,8 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
         : selectedChat.sender_id
     );
     data.append("body", inputText);
-    console.log("Set close the prreview w===",inputText)
-    
+    console.log("Set close the prreview w===", inputText)
+
     if (imgForAPI) {
       data.append("message_images[]", imgForAPI);
     }
@@ -133,8 +140,9 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
       user: user,
     };
     setImgForAPI(null);
-    setClosePreview(inputText)
+    setClosePreview(Math.floor(Math.random() * 10))
     setInputText("");
+    setIsLoading(false);
   };
 
   const handleClick = async (chat) => {
@@ -230,6 +238,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
         />
         {isChatVisible && (
           <ChatWindow
+            isLoading={isLoading}
             isChatVisible={isChatVisible}
             chatToggle={chatToggle}
             selectedChat={selectedChat}

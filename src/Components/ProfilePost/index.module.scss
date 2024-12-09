@@ -20,6 +20,7 @@
           position: absolute;
           top: 12px;
           left: 12px;
+          z-index: 2;
         }
         img{
             display: block;
@@ -35,4 +36,7 @@
   z-index: 999999 !important;
 }
 
+.videoTagProfile{
+  z-index: -3333 !important;
+}
 

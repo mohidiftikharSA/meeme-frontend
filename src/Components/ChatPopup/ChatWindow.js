@@ -7,8 +7,10 @@ import { CgAttachment } from "react-icons/cg";
 import { Form } from "react-bootstrap";
 import { FaSmile } from "react-icons/fa";
 import EmojiPicker from "emoji-picker-react";
+import { MoonLoader } from "react-spinners";
 
 const ChatWindow = ({
+  isLoading,
   chatToggle,
   selectedChat,
   msgsList,
@@ -47,6 +49,7 @@ const ChatWindow = ({
   }, [msgsList, previewImage]); // Run on messages or preview changes
 
   useEffect(() => {
+    console.log("Close preview hii");
     setPreviewImage(null);
   }, [closePreview]);
 
@@ -159,7 +162,16 @@ const ChatWindow = ({
                 style={{ display: "none" }}
               />
             </span>
-            <IoIosSend color="#ffcd2f" onClick={sendMessage} />
+            {isLoading ?
+              <MoonLoader
+                color={"#FFCD30"}
+                loading={isLoading}
+                cssOverride={""}
+                size={20}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              /> :
+              <IoIosSend color="#ffcd2f" onClick={sendMessage} />}
           </div>
         </div>
       </div>
