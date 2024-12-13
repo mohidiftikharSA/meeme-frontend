@@ -3,6 +3,7 @@ import classes from "./index.module.scss";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import EarnCoinsModal from "Components/EarnCoinsModal";
+import { toast } from "react-toastify";
 
 const historyData = [{
     days: "01", memeNo: "40", status: false,
@@ -38,7 +39,7 @@ const History = ({ tournamentData }) => {
             </ul>
             <ul className={` ${classes.list} ${classes.historyList}`}>
                 {judgedPosts.map((item, ind) => {
-                    return (<li key={`${item.id}_${ind}`} onClick={() => { if (ind === 0) { nextPage(item.judged_post_date_count) } }}>
+                    return (<li key={`${item.id}_${ind}`} onClick={() => { if (ind === 0) { nextPage(item.judged_post_date_count) }else {toast.error('Your selected day has passed')} }}>
                         <div className={classes.counter}>
                             <span>{ind + 1}</span>
                         </div>

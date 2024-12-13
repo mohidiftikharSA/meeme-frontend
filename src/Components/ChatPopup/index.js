@@ -118,7 +118,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
       "conversation_id",
       selectedChat.conversation_id || res.data?.conversation?.id
     );
-
+    setIsLoading(false);
     data.append(
       "receiver_id",
       selectedChat.sender_id === user.id
@@ -142,7 +142,6 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
     setImgForAPI(null);
     setClosePreview(Math.floor(Math.random() * 10))
     setInputText("");
-    setIsLoading(false);
   };
 
   const handleClick = async (chat) => {
