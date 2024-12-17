@@ -72,7 +72,7 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
           {isFlagSectionVisible && (
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Control as="textarea" onChange={(e) => { setMessage(e.target.value) }} rows={7} disabled={isFormDisabled} />
+                <Form.Control className='report_modal' placeholder='Why are you reporting this person?' as="textarea" onChange={(e) => { setMessage(e.target.value) }} rows={7} disabled={isFormDisabled} />
               </Form.Group>
               <a className='btn flag report' onClick={reportPost}>Report</a>
             </Form>

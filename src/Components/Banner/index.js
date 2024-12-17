@@ -104,7 +104,7 @@ const Banner = ({ other, profile }) => {
             <ul className={`${classes.userInfoBox}`}>
               <li>
                 <h5 className="show-mouse-arrow" >
-                  {profile?.all_post_count} <span>Posts</span>
+                  {profile?.user_post_count || profile?.all_post_count} <span>Posts</span>
                 </h5>
               </li>
               <li>

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { LiaTimesSolid } from "react-icons/lia";
 import clapping from "../../Images/clapping.png";
+import Cup from "../../Images/tournamentCup.png";
 import EarnCoinsModal from "Components/EarnCoinsModal";
 
-const CongratsModal = (props) => {
+const CongratsModal = ({ notification, ...props }) => {
   const [modalShow, setModalShow] = useState(false);
 
-  const clickHandler = () =>{
+  const clickHandler = () => {
     setModalShow(true)
     props.onHide()
   }
@@ -25,18 +26,20 @@ const CongratsModal = (props) => {
             <LiaTimesSolid />
           </span>
         </Modal.Header>
-        <Modal.Body className="m-0 congrats">
+        <Modal.Body className="m-0 congrats tournament">
           <div
             className="imgBox mb-4"
             style={{ width: "75px", margin: "auto", marginTop: "150px" }}
           >
-            <img src={clapping} alt="clapping"></img>
+            {/* <img src={clapping} alt="clapping"></img> */}
           </div>
-          <h4 className="title">Congratulations</h4>
-          <p className="m-0">You Earn 50 coins for judging!</p>
+          <div className="congrats_text">
+            <h4 className="title">Congratulations</h4>
+            <p className="m-0">{notification ? notification : " You Earn 50 coins for judging!"}</p>
+          </div>
         </Modal.Body>
       </Modal>
-      <EarnCoinsModal show={modalShow} onHide={() => setModalShow(false)} />
+      {!notification && <EarnCoinsModal show={modalShow} onHide={() => setModalShow(false)} />}
     </>
   );
 };

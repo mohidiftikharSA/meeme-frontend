@@ -513,16 +513,18 @@ main {
       background-color: transparent !important;
 
       &.congrats {
-        background-image: url(../Images/congrats.png);
-        background-size: 420px;
+        background-image: url(../Images/tournamentEntrySuccess.png);
+        background-size: 450px;
         background-position: center -90px;
         background-repeat: no-repeat;
-        // &.tournament{
-        //   background-image: url(../Images/tournamenmodal.png);
-        //   background-size: 420px;
-        //   background-position: center -90px;
-        //   background-repeat: no-repeat;
-        // }
+        background-position-y:center;
+        &.tournament{
+          background-image: url(../Images/tournamentCup.png);
+          background-size: 300px;
+          background-position: center -90px;
+          background-repeat: no-repeat;
+          background-position-y:center;
+        }
       }
 
       &.Postsuccess {
@@ -1629,20 +1631,20 @@ aside.EmojiPickerReact.epr-main {
 }
 
 .notification {
-  // .bell-icon {
-  //   position: relative;
+  .bell-icon {
+    position: relative;
 
-  //   &:after {
-  //     position: absolute;
-  //     content: "";
-  //     top: 1px;
-  //     right: 2px;
-  //     width: 5px;
-  //     height: 5px;
-  //     border-radius: 50%;
-  //     background-color: #ff0100;
-  //   }
-  // }
+    &:after {
+      position: absolute;
+      content: "";
+      top: 1px;
+      right: 2px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: #ff0100;
+    }
+  }
 
   .dropdown {
     margin: 0 10px;
@@ -1789,4 +1791,12 @@ aside.EmojiPickerReact.epr-main {
 
 .show-mouse-arrow{
   cursor: default !important;;
+}
+
+.report_modal::placeholder{
+  color: #D9D9D9 !important;
+}
+
+.congrats_text{
+  margin-top: 23rem !important;
 }

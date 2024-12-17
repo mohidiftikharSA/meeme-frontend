@@ -67,7 +67,7 @@ const ProfilePage = () => {
           <Banner profile={profile} />
           <section>
             <div className="sectionHolder py-md-5 py-3">
-              <EarnBadge />
+              <EarnBadge data={profile?.badges} />
               <TabDetails
                 profile
                 tournamentPosts={userTournamentPost}

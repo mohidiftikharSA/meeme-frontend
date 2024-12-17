@@ -8,7 +8,8 @@ import badge5 from "../../Images/badge6.png";
 import badge6 from "../../Images/badge7.png";
 import OrganizeBadges from "Components/OrganizeBadgesModal";
 import Slider from "react-slick";
-const EarnBadge = () => {
+const EarnBadge = ({ data }) => {
+  console.log("Data is Earned badges  --- ", data);
   const [organizeModalShow, setOrganizeShow] = useState(false);
   const settings = {
     dots: false,
@@ -24,7 +25,7 @@ const EarnBadge = () => {
           slidesToShow: 5,
           slidesToScroll: 1,
           infinite: true,
-         
+
         },
       },
       {
@@ -33,7 +34,7 @@ const EarnBadge = () => {
           slidesToShow: 4,
           slidesToScroll: 1,
           infinite: true,
-         
+
         },
       },
       {
@@ -42,7 +43,7 @@ const EarnBadge = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-         
+
         },
       },
     ],
@@ -58,45 +59,20 @@ const EarnBadge = () => {
         </div>
 
         <ul className={classes.listBadge}>
-          <Slider {...settings}>
+          {data && data[0] ? data.map((item, index) => {
+            return (<Slider {...settings}>
+              <li key={index}>
+                <div className={classes.iconBox}>
+                  <img src={item.badge_image} alt="img"></img>
+                </div>
+                <p>{item?.title}</p>
+              </li>
+            </Slider>
+            )
+          })
+            :
             <p>No Badges Available</p>
-            {/* <li>
-              <div className={classes.iconBox}>
-                <img src={badge} alt="img"></img>
-              </div>
-              <p>1st Place</p>
-            </li>
-            <li>
-              <div className={classes.iconBox}>
-                <img src={badge1} alt="img"></img>
-              </div>
-              <p>2nd Place</p>
-            </li>
-            <li>
-              <div className={classes.iconBox}>
-                <img src={badge2} alt="img"></img>
-              </div>
-              <p>3rd Place</p>
-            </li>
-            <li>
-              <div className={classes.iconBox}>
-                <img src={badge4} alt="img"></img>
-              </div>
-              <p>100 Hrs Spent</p>
-            </li>
-            <li>
-              <div className={classes.iconBox}>
-                <img src={badge5} alt="img"></img>
-              </div>
-              <p>Most Wins</p>
-            </li>
-            <li>
-              <div className={classes.iconBox}>
-                <img src={badge6} alt="img"></img>
-              </div>
-              <p>Top shot</p>
-            </li> */}
-          </Slider>
+          }
         </ul>
       </div>
       <OrganizeBadges
