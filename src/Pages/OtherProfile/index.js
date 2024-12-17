@@ -45,7 +45,7 @@ const OtherProfile = () => {
       <Banner other profile={profile} />
       <section>
         <div className="sectionHolder py-5">
-          <EarnBadge />
+          <EarnBadge data={profile?.badges} />
           <TabDetails otherProfile profile profilePosts={userPosts}/>
         </div>
       </section>

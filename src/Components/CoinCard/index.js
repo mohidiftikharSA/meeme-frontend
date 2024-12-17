@@ -39,7 +39,6 @@ const CoinCard = ({ data }) => {
       console.log("curret uusert  == ", res.data.profile?.user?.coins);
       if (res.data.profile?.user?.coins)
         dispatch(coinsBuy(res.data.profile?.user?.coins));
-
     }
   }
 

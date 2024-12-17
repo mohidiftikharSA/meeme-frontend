@@ -59,20 +59,20 @@ const EarnBadge = ({ data }) => {
         </div>
 
         <ul className={classes.listBadge}>
-          {data && data[0] ? data.map((item, index) => {
-            return (<Slider {...settings}>
-              <li key={index}>
-                <div className={classes.iconBox}>
-                  <img src={item.badge_image} alt="img"></img>
-                </div>
-                <p>{item?.title}</p>
-              </li>
-            </Slider>
-            )
-          })
-            :
-            <p>No Badges Available</p>
-          }
+          <Slider {...settings}>
+            {data && data[0] ? data.map((item, index) => {
+              return (
+                <li key={index}>
+                  <div className={classes.iconBox}>
+                    <img src={item.badge_image} alt="img"></img>
+                  </div>
+                  <p>{item?.title}</p>
+                </li>
+              )
+            }) :
+              <p>No Badges Available</p>
+            }
+          </Slider>
         </ul>
       </div>
       <OrganizeBadges

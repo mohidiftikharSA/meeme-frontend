@@ -22,7 +22,7 @@ export default function PostContentModal(props) {
             <LiaTimesSolid />
           </span>
         </Modal.Header>
-        <Modal.Body className="m-0 congrats tournament">
+        <Modal.Body className="m-0 congrats">
           <div
             className="imgBox  mb-4"
             style={{ width: "75px", margin: "auto", marginTop: "150px" }}

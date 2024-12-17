@@ -17,9 +17,11 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import ab from "../../Images/ab.png";
 import api from 'APIs/dashboard/home'
 import dayjs from 'dayjs';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { coinConvert } from "Helper/Converters";
 import CongratsModal from "Components/CongratsModal";
+import { coinsBuy } from "Redux/reducers/buyCoins";
+import AuthAPIs from "../../APIs/auth";
 
 function Navigation({ header, footer }) {
     const location = useLocation();
@@ -27,7 +29,8 @@ function Navigation({ header, footer }) {
     const navigate = useNavigate();
     const { allCoins } = useSelector((state) => state.coins);
     const [modalShow, setModalShow] = useState(false);
-    const [notificationMessage , setNotificationMessage ] = useState('');
+    const dispatch = useDispatch();
+    const [notificationMessage, setNotificationMessage] = useState('');
 
     const isLinkActive = (path) => {
         return location.pathname === path ? 'active' : '';
@@ -58,6 +61,7 @@ function Navigation({ header, footer }) {
     }
     useEffect(() => {
         fetchUserNotifications()
+        getCurrentUser();
     }, []);
 
     const handleDeleteModal = () => {
@@ -66,11 +70,20 @@ function Navigation({ header, footer }) {
 
     const navigateToOtherProfile = (noti) => {
         console.log("Shoo noti", noti);
-        if(noti.notification_type === 'tournament_winner' || noti.notification_type === 'tournament_judge'){
+        if (noti.notification_type === 'tournament_winner' || noti.notification_type === 'tournament_judge') {
             setModalShow(true);
             setNotificationMessage(noti.body);
-        }else{
+        } else {
             navigate(`/otherProfile/${noti?.sender_id}`)
+        }
+    }
+
+    const getCurrentUser = async () => {
+        const res = await AuthAPIs.getCurrentUserProfile();
+        if (res) {
+            console.log("curret uusert  == ", res.data.profile?.user?.coins);
+            if (res.data.profile?.user?.coins)
+                dispatch(coinsBuy(res.data.profile?.user?.coins));
         }
     }
 
@@ -128,7 +141,7 @@ function Navigation({ header, footer }) {
                                                 {/* <p className="yellow">Mark all as read</p>*/}
                                             </span>
                                             {notifications.length ? notifications.map((notification, index) => (<li key={index}>
-                                                <div onClick={() => { navigateToOtherProfile( notification) }}>
+                                                <div onClick={() => { navigateToOtherProfile(notification) }}>
                                                     {notification.sender_image ? <img src={notification.sender_image} decoding={"async"} /> :
                                                         <div className={classes.roundedImageContainer}>
                                                             <p className={classes.letter}>

@@ -518,13 +518,13 @@ main {
         background-position: center -90px;
         background-repeat: no-repeat;
         background-position-y:center;
-        &.tournament{
-          background-image: url(../Images/tournamentCup.png);
-          background-size: 300px;
-          background-position: center -90px;
-          background-repeat: no-repeat;
-          background-position-y:center;
-        }
+      }
+      &.tournament{
+        background-image: url(../Images/tournamentCup.png);
+        background-size: 300px;
+        background-position: center -90px;
+        background-repeat: no-repeat;
+        background-position-y:center;
       }
 
       &.Postsuccess {
