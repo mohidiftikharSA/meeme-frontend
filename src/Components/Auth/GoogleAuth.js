@@ -51,7 +51,7 @@ const GoogleAuth = () => {
                     })
                 );
                 navigate(`/home`);
-                toast.success("Login Successfully", {
+                toast.success("Successful Login", {
                     position: "top-right",
                     autoClose: 2000,
                 });
