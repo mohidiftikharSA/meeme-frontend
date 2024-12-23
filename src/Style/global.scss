@@ -1634,16 +1634,16 @@ aside.EmojiPickerReact.epr-main {
   .bell-icon {
     position: relative;
 
-    &:after {
-      position: absolute;
-      content: "";
-      top: 1px;
-      right: 2px;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background-color: #ff0100;
-    }
+    // &:after {
+    //   position: absolute;
+    //   content: "";
+    //   top: 1px;
+    //   right: 2px;
+    //   width: 5px;
+    //   height: 5px;
+    //   border-radius: 50%;
+    //   background-color: #ff0100;
+    // }
   }
 
   .dropdown {
