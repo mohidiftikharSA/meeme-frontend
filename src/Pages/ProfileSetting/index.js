@@ -190,7 +190,7 @@ const ProfileSetting = () => {
                         </div>
                       </Nav.Link>
                     </Nav.Item> */}
-                    <Nav.Item>
+                    {/* <Nav.Item>
                       <Nav.Link eventKey="notifications">
                         <span>
                           <img src={Notification} alt="notification-icon" />
@@ -200,7 +200,7 @@ const ProfileSetting = () => {
                           <p>Enabled</p>
                         </div>
                       </Nav.Link>
-                    </Nav.Item>
+                    </Nav.Item> */}
                     <Nav.Item>
                       <Nav.Link eventKey="support">
                         <span>
