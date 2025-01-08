@@ -73,6 +73,9 @@ function Navigation({ header, footer }) {
         if (noti.notification_type === 'tournament_winner' || noti.notification_type === 'tournament_judge') {
             setModalShow(true);
             setNotificationMessage(noti.body);
+        }else if(noti.notification_type === 'admin_chat'){
+            navigate(`/profile-setting?text=support&ticket=${noti?.message_tickets}`)
+
         } else {
             navigate(`/otherProfile/${noti?.sender_id}`)
         }

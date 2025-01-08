@@ -5,6 +5,7 @@ import classes from "./index.module.scss";
 import { useWizard } from "react-use-wizard";
 import MessageAPIs from '../../APIs/messages';
 import Loader from "Components/Loader";
+import { useLocation } from "react-router-dom";
 
 const supportData = [
   {
@@ -45,6 +46,15 @@ const Support = ({ supportTicket }) => {
   const { goToStep, nextStep } = useWizard();
   const [isLoading, setIsLoading] = useState(false);
   const [allChatsData, setAllChatsData] = useState([]);
+  const location = useLocation();
+  const ticket = new URLSearchParams(location.search).get("ticket");
+
+  useEffect(() => {
+    if (ticket) {
+      supportTicket({ message_ticket: ticket });
+      goToStep(2);
+    }
+  },[ticket])
 
   useEffect(() => {
     getAllChats();

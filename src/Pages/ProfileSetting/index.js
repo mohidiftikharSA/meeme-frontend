@@ -19,7 +19,7 @@ import RuleList from "Components/RuleList";
 import BillingDetails from "Components/BillingDetails";
 import DeleteAccountModal from "Components/DeleteAccountModal";
 import Support from "Components/Support";
-import { Wizard } from "react-use-wizard";
+import { useWizard, Wizard } from "react-use-wizard";
 import SupportChat from "Components/SupportChat";
 import SupportDetail from "Components/SupportDetail";
 import TutorialModals from "Components/Tutorial";
@@ -59,7 +59,7 @@ const ProfileSetting = () => {
   const location = useLocation();
 
   const textParam = new URLSearchParams(location.search).get("text");
-
+ 
   const { profile } = useSelector((state) => state.auth);
 
   const deleteClick = () => {
@@ -126,9 +126,8 @@ const ProfileSetting = () => {
               <Row>
                 <Col
                   lg={6}
-                  className={` aside-responsive profile-setting ${
-                    isActive ? "active" : ""
-                  }`}
+                  className={` aside-responsive profile-setting ${isActive ? "active" : ""
+                    }`}
                 >
                   <span
                     className={`nav-opener ${isActive ? "active" : ""}`}
@@ -172,7 +171,7 @@ const ProfileSetting = () => {
                         </span>
                         <div className="profileDetails">
                           <h6 className="mb-1">Transaction History</h6>
-                          {coinsHistory && coinsHistory[0] ?<p>Latest {coinsHistory[0].created_at}</p> : ''}
+                          {coinsHistory && coinsHistory[0] ? <p>Latest {coinsHistory[0].created_at}</p> : ''}
                         </div>
                       </Nav.Link>
                     </Nav.Item>
@@ -255,9 +254,8 @@ const ProfileSetting = () => {
                 </Col>
                 <Col
                   lg={6}
-                  className={`p-lg-0 content-responsive profile-setting ${
-                    isActive ? "active" : ""
-                  }`}
+                  className={`p-lg-0 content-responsive profile-setting ${isActive ? "active" : ""
+                    }`}
                 >
                   <Tab.Content>
                     <Tab.Pane eventKey="account">
