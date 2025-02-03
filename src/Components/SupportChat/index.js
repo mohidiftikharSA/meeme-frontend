@@ -18,10 +18,11 @@ const SupportChat = ({ selectedSupportTicket }) => {
   const { goToStep } = useWizard();
   const [allMsgsArr, setAllMsgsArr] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [reply, setReply] = useState();
+  const [reply, setReply] = useState('');
   const [file, setFile] = useState();
   const [sent, setSent] = useState();
   const [emojis, setEmojis] = useState([]);
+  const emojiPickerRef = useRef(null);
 
 
   useEffect(() => {
@@ -34,10 +35,10 @@ const SupportChat = ({ selectedSupportTicket }) => {
       message_ticket: selectedSupportTicket?.message_ticket,
       admin_user_id: 1,
     };
-    console.log("Data --- ", data);
+    // console.log("Data --- ", data);
     const msgs = await MessagesAPIs.getTicketMessages(data);
     if (msgs) {
-      console.log("Ticket messages successfull - ", msgs?.data?.messages);
+      // console.log("Ticket messages successfull - ", msgs?.data?.messages);
       const arr = [...msgs?.data?.messages];
       setAllMsgsArr(arr.reverse());
     }
@@ -45,6 +46,8 @@ const SupportChat = ({ selectedSupportTicket }) => {
   };
 
   const sendReply = async () => {
+    console.log("Send reply ==", reply)
+    console.log("Send selectedSupportTicket ==", selectedSupportTicket)
     if (reply && selectedSupportTicket) {
       setIsLoading(true);
       setIsLoading(true);
@@ -108,11 +111,28 @@ const SupportChat = ({ selectedSupportTicket }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const handleEmojiClick = () => {
-    setShowEmojiPicker(!showEmojiPicker);
+    setShowEmojiPicker((prev) => !prev);
   };
 
+  const handleClickOutside = (event) => {
+    if (
+      emojiPickerRef.current &&
+      !emojiPickerRef.current.contains(event.target)
+    ) {
+      setShowEmojiPicker(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
   const handleEmojiSelect = (emoji) => {
-    setReplye(replye + emoji.emoji);
+    setReply(reply + emoji.emoji);
   };
 
   const handleKeyDown = (e) => {
@@ -216,16 +236,18 @@ const SupportChat = ({ selectedSupportTicket }) => {
         <div className={classes.sendBox}>
           <Form.Control
             placeholder="Aa"
-            value={replye}
-            onChange={(e) => setReplye(e.target.value)}
+            value={reply}
+            onChange={(e) => { setReply(e.target.value) }}
             onKeyDown={handleKeyDown}
           />
           <span className={classes.smiley} onClick={handleEmojiClick}>
             <FaSmile />
           </span>
-
+          
           {showEmojiPicker && (
-            <EmojiPicker onEmojiClick={handleEmojiSelect} disableAutoFocus />
+            <div ref={emojiPickerRef} style={{ position: "absolute", zIndex: 10 }}>
+              <EmojiPicker  onEmojiClick={handleEmojiSelect}  disableAutoFocus />
+            </div>
           )}
         </div>
         <span
