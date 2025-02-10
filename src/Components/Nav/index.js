@@ -74,7 +74,7 @@ function Navigation({ header, footer }) {
             setModalShow(true);
             setNotificationMessage(noti.body);
         }else if(noti.notification_type === 'admin_chat'){
-            navigate(`/profile-setting?text=support&ticket=${noti?.message_tickets}`)
+            navigate(`/profile-setting?text=support&ticket=${noti?.message_ticket}`)
 
         } else {
             navigate(`/otherProfile/${noti?.sender_id}`)

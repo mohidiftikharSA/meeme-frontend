@@ -11,6 +11,10 @@ import user2 from "../../Images/avatar.png";
 import avatar from "../../Images/avatar.png";
 import FlagPostModal from "Components/FlagPostModal";
 import ReportPostModal from "Components/ReportPostModal";
+import { useDispatch, useSelector } from "react-redux";
+import PostsAPIs from '../../APIs/dashboard/home';
+import { toast } from "react-toastify";
+import { setDeletedPostId } from "Redux/reducers/postDeletionSlice";
 
 const PostItem = ({
     item,
@@ -25,19 +29,36 @@ const PostItem = ({
     imagesLoaded,
     comment,
     postRemovalId,
-    setIsModalOpen
+    setIsModalOpen,
+    sharePost
 }) => {
     const navigate = useNavigate();
     const [FlagPostModalShow, setFlagPostModalShow] = useState(false);
     const [ReportPostModalShow, setReportPostModalShow] = useState(false);
+    const { profile } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+
     const onClickLikePost = (id) => {
         likePost(id)
     }
 
-
     function isImage(item) {
         return item.post_type && item.post_type.startsWith("image/");
     }
+    
+      const deleteSelectedPosts = async (post_id) => {
+        console.log("Deletion IDs: ", post_id);
+
+        const res = await PostsAPIs.deletePosts({ post_ids: [post_id] });
+        if (res) {
+            toast.success("Post Deleted Successfully.");
+            dispatch(
+                setDeletedPostId({
+                    postId: post_id
+                })
+            )
+          }
+      };
 
     return (
         <>
@@ -52,7 +73,7 @@ const PostItem = ({
                         <div className={classes.userDetail}>
                             <h6 onClick={() => {
                                 redirectToOtherProfile(item)
-                            }}>{item.username}</h6>
+                            }}>{item?.username}</h6>
                             <p>{timeAgo(item?.post?.created_at)}</p>
                         </div>
                     </div>
@@ -63,17 +84,22 @@ const PostItem = ({
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1" onClick={() => {
-                                setFlagPostModalShow(true);
-                            }} ><i className="far fa-flag"></i> Flag
-                                Post</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2" onClick={() => {
-                                setReportPostModalShow(true);
-                            }}><i
-                                className="fas fa-exclamation" ></i>Report</Dropdown.Item>
+                          { profile?.user?.id !== item?.post?.user_id &&
+                           <><Dropdown.Item href="#/action-1" onClick={() => {
+                                    setFlagPostModalShow(true);
+                                } }><i className="far fa-flag"></i> Flag
+                                    Post</Dropdown.Item><Dropdown.Item href="#/action-2" onClick={() => {
+                                        setReportPostModalShow(true);
+                                    } }><i
+                                        className="fas fa-exclamation"></i>Report</Dropdown.Item></>}
                             <Dropdown.Item href="#/action-3" onClick={() => {
                                 downloadMedia(item.compress_image, item)
-                            }}><i className="fas fa-download"></i>Download</Dropdown.Item>
+                            }}><i className="fas fa-download"></i>Download
+                            </Dropdown.Item>
+                           {profile?.user?.id === item?.post?.user_id && <Dropdown.Item href="#/action-3" onClick={() => {
+                                deleteSelectedPosts(item.post.id)
+                            }}><i className="fas fa-trash"></i>Delete
+                            </Dropdown.Item>}
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
@@ -123,9 +149,10 @@ const PostItem = ({
 
                     <li>
                         <img onClick={() => {
+                            sharePost(item.post.id)
                             copyToClipboard(item.compress_image)
                         }} src={send} alt="img" />
-                        {/* <span>{formatNumber(item.post.share_count)}</span> */}
+                        <span>{formatNumber(item.post.share_count)}</span>
                     </li>
                 </ul>
             </div>

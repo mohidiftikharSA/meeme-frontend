@@ -4,6 +4,7 @@ import UploadPost from "Components/UploadPost";
 import React, {useEffect, useState} from "react";
 import postAPIs from "APIs/dashboard/home";
 import followingPostsData from '../Post/folllowingData.json'
+import { toast } from "react-toastify";
 
 const FollowingContent = ({setNewPost}) => {
 
@@ -90,12 +91,47 @@ const FollowingContent = ({setNewPost}) => {
         }
 
     };
+    const sharePost = async (post_id) => {
+        console.log("share post in root -----", post_id);
+        try {
+                    console.log("caling api ")
+                    const res = await postAPIs.sharePost({ post_id });
+                    console.log("rrssponse -- ",res)
+                    if (res) {
+                        toast.success("Post Shared Successfully");
+                        // Find index of the post that needs updating
+                        const index = followingData.findIndex(item => item.post.id === post_id);
+            
+                        if (index !== -1) {
+                            // Create a shallow copy of postData
+                            const updatedPostData = [...followingData];
+            
+                            // Update the share count of the found post
+                            updatedPostData[index] = {
+                                ...updatedPostData[index],
+                                post: {
+                                    ...updatedPostData[index].post,
+                                    share_count: (updatedPostData[index].post.share_count || 0) + 1
+                                }
+                            };
+            
+                            // Update the state
+                            setFollowingData(updatedPostData);
+                        }
+                    } else {
+                        console.error("Error: Unexpected status code", res);
+                    }
+                } catch (error) {
+                    console.error("Error while fetching data:", error);
+                }
+
+    };
 
 
     return (<>
         <Stories data={storyData} onStoryUpdate={onStoryUpdate}/>
         <UploadPost setNewPost={setNewPost}/>
-        <Posts postData={followingData} isLoading={isLoading} likePost={likePost} />
+        <Posts postData={followingData} isLoading={isLoading} sharePost={sharePost} likePost={likePost} />
     </>);
 };
 

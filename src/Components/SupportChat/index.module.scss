@@ -100,3 +100,44 @@
 
     }
 }
+
+.previewContainer {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.imagePreview {
+  position: relative;
+  margin: 5px 0;
+  
+  img {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    
+    &:hover {
+      background-color: #cc0000;
+    }
+  }
+}

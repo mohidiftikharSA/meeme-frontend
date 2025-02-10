@@ -10,7 +10,7 @@ import user2 from "../../Images/avatar.png";
 
 
 const ViewPost = ({ setIsModalOpen, ...props}) => {
-    const {selectedPostId, onHide, show, postData, avatar, profile, likePost} = props;
+    const {selectedPostId, onHide, show, postData, avatar, profile, likePost, sharePost} = props;
     const [commentsData, setCommentsData] = useState([]);
     const [childCommentCreated, setChildCommentCreated] = useState();
 
@@ -60,6 +60,7 @@ const ViewPost = ({ setIsModalOpen, ...props}) => {
             getComments(selectedPostId);
         }
     }, [selectedPostId, childCommentCreated]);
+
     return (
         <Modal
             className={"comment-modal"}
@@ -74,7 +75,7 @@ const ViewPost = ({ setIsModalOpen, ...props}) => {
             <Modal.Body>
                 <Row className='text-start'>
                     <Col lg={7} className='view-modal'>
-                        <Posts postData={[selectedPost]} avatar={user2} likePost={likePost} comment setIsModalOpen/>
+                        <Posts postData={[selectedPost]} avatar={user2} likePost={likePost} sharePost={sharePost} comment setIsModalOpen/>
                     </Col>
                     <Col lg={5} className='position-relative'>
                         <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId}

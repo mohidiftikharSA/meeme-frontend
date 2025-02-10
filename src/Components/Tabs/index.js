@@ -170,7 +170,14 @@ const TabDetails = ({
   const [isLoading, setIsLoading] = useState(false);
   const [newPost, setNewPost] = useState();
   const dispatch = useDispatch();
-
+  const deletedPost = useSelector((state) => state.postDeletionSlice);
+  
+  useEffect(()=>{
+    if (deletedPost?.postId) {
+            const updatedData = recentPosts.filter(item => item?.post?.id !== deletedPost.postId);
+            setRecentPosts(updatedData);
+        }
+  },[deletedPost])
 
   const changeTab = (tabKey) => {
     console.log("Changes tab =", tabKey);
@@ -203,7 +210,6 @@ const TabDetails = ({
     try {
       const res = await postAPIs.getRecentPosts();
       if (res.status === 200) {
-        // console.log("Recent Posts  ==", res.data.recent_posts)
         setRecentPosts(res.data.recent_posts);
       } else {
         console.error("Error: Unexpected status code", res.status);
@@ -299,7 +305,6 @@ const TabDetails = ({
       console.log("Setting tab in useEffect=== ", first)
       setActiveTab(first);
       setActive(first)
-      // changeTab(first)
     }
   }, [first]);
 

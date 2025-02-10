@@ -5,6 +5,8 @@ import avatar from "../../Images/avatar.png";
 import MemeItem from "./MemeItem";
 import MemeItemSkeleton from "./MemeItemSkeleton";
 import postAPIs from "../../APIs/dashboard/home";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const MemesDetails = ({newMemesData, explore, isLoading}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,12 +20,15 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
     };
 
     useEffect(() => {
+        setSelectedPostId(null);
+        setIsModalOpen(false)
         setPostData(newMemesData);
     }, [newMemesData, isLoading]);
 
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
     const likePost = async (post_id) => {
         try {
             const res = await postAPIs.likePost({post_id});
@@ -42,6 +47,40 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
                 setPostData(updatedItems);
             } else {
                 console.error("Error: Unexpected status code", res.status);
+            }
+        } catch (error) {
+            console.error("Error while fetching data:", error);
+        }
+    }
+    const sharePost = async (post_id) => {
+        
+        try {
+            console.log("caling api ")
+            const res = await postAPIs.sharePost({ post_id });
+            console.log("rrssponse -- ",res)
+            if (res) {
+                toast.success("Post Shared Successfully");
+                // Find index of the post that needs updating
+                const index = postData.findIndex(item => item.post.id === post_id);
+    
+                if (index !== -1) {
+                    // Create a shallow copy of postData
+                    const updatedPostData = [...postData];
+    
+                    // Update the share count of the found post
+                    updatedPostData[index] = {
+                        ...updatedPostData[index],
+                        post: {
+                            ...updatedPostData[index].post,
+                            share_count: (updatedPostData[index].post.share_count || 0) + 1
+                        }
+                    };
+    
+                    // Update the state
+                    setPostData(updatedPostData);
+                }
+            } else {
+                console.error("Error: Unexpected status code", res);
             }
         } catch (error) {
             console.error("Error while fetching data:", error);
@@ -69,6 +108,7 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
                 postData={postData}
                 avatar={avatar}
                 likePost={likePost}
+                sharePost={sharePost}
                 explore
             />
         </>

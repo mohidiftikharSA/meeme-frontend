@@ -113,7 +113,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                 >
                   {item?.child_comment?.length === 0 ? null : (
                     <span style={{ paddingLeft: "50px" }}>
-                      View {item?.child_comment?.length} more replay.....
+                      View {item?.child_comment?.length} more reply.....
                     </span>
                   )}
                 </div>

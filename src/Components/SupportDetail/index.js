@@ -67,7 +67,7 @@ const SupportDetail = () => {
           <Heading title={'Support'} noLink/>
         </span>
         <Form.Select aria-label="Select Subject" onChange={(e) => { setSelectedSubject(e.target.value); }} value={selectedSubject} >
-          <option>Select Subject</option>
+          <option disabled hidden>Select Subject</option>
           <option value="Abuse">Abuse</option>
           <option value="Payment">Payment</option>
           <option value="Image">Image</option>

@@ -8,7 +8,7 @@ import PostItem from "./PostItem";
 import avatar from "../../Images/avatar.png";
 import { useSelector } from "react-redux";
 
-const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
+const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemovalIdRoot, sharePost }) => {
     const [isModalOpen, setIsModalOpenfull] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [followingData, setFollowingData] = useState([]);
@@ -16,7 +16,7 @@ const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
     const [imagesLoaded, setImagesLoaded] = useState([]);
     const [postRemovalId, setPostRemovalId] = useState();
     const {userId } = useSelector(state => state.auth);
-
+      
     const openModal = (postId) => {
         console.log('postId', postId)
         if (!comment) {
@@ -48,16 +48,10 @@ const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
         navigator.clipboard.writeText(linkToCopy)
             .then(() => {
                 console.log('Link copied to clipboard:', linkToCopy);
-                toast.success('Link Copied Successfully', {
-                    position: "top-right", autoClose: 2000,
-                });
 
             })
             .catch(err => {
                 console.error('Unable to copy link to clipboard', err);
-                toast.error('Failed Link Copy', {
-                    position: "top-right", autoClose: 2000,
-                });
             });
     }
 
@@ -117,26 +111,17 @@ const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
         setImagesLoaded(imagesLoaded);
     };
 
-    /**
-     * Remove the post from Array when Flagged or Report
-     */
-    useEffect(() => {
-        // console.log("Post Removal id ===", postRemovalId);
-        // console.log("followingData ===", followingData);
-        // if (postRemovalId) {
-        //     const updatedData = followingData.filter(item => item?.post?.id !== postRemovalId);
-        //     setFollowingData(updatedData);
-        // }
-
-    }, [postRemovalId])
-
     return (<>
         <iframe id="my_iframe" style={{ display: "none" }}></iframe>
-        {isLoading ? <SkeletonPostsLoading /> : followingData.map((item, ind) => <PostItem
+        {console.log("item in following loop ==", followingData)}
+        {isLoading ? <SkeletonPostsLoading /> : followingData[0] && followingData.map((item, ind) => 
+        <>
+        <PostItem
             key={ind}
             item={item}
             ind={ind}
             likePost={likePost}
+            sharePost={sharePost}
             downloadMedia={downloadMedia}
             redirectToOtherProfile={redirectToOtherProfile}
             openModal={openModal}
@@ -146,12 +131,14 @@ const Posts = ({ postData, comment, isLoading, disable, likePost }) => {
             imagesLoaded={imagesLoaded}
             comment={comment}
             disable
-            postRemovalId={setPostRemovalId}
-        />)}
+            postRemovalId={setPostRemovalIdRoot}
+        /></>
+        )}
 
         {isModalOpen &&
             <ViewPost
                 likePost={likePost}
+                sharePost={sharePost}
                 onHide={closeModal} show={isModalOpen} selectedPostId={selectedPostId} postData={followingData}
                 avatar={avatar} />}
     </>);

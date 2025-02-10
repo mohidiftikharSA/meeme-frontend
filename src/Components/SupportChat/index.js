@@ -20,6 +20,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [reply, setReply] = useState('');
   const [file, setFile] = useState();
+  const [previewUrl, setPreviewUrl] = useState();
   const [sent, setSent] = useState();
   const [emojis, setEmojis] = useState([]);
   const emojiPickerRef = useRef(null);
@@ -35,12 +36,14 @@ const SupportChat = ({ selectedSupportTicket }) => {
       message_ticket: selectedSupportTicket?.message_ticket,
       admin_user_id: 1,
     };
-    // console.log("Data --- ", data);
     const msgs = await MessagesAPIs.getTicketMessages(data);
     if (msgs) {
-      // console.log("Ticket messages successfull - ", msgs?.data?.messages);
       const arr = [...msgs?.data?.messages];
-      setAllMsgsArr(arr.reverse());
+      // Sort messages by created_at in ascending order (oldest to newest)
+      const sortedMessages = arr.sort((a, b) => 
+        new Date(a.created_at) - new Date(b.created_at)
+      );
+      setAllMsgsArr(sortedMessages);
     }
     setIsLoading(false);
   };
@@ -48,7 +51,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
   const sendReply = async () => {
     console.log("Send reply ==", reply)
     console.log("Send selectedSupportTicket ==", selectedSupportTicket)
-    if (reply && selectedSupportTicket) {
+    if (selectedSupportTicket) {
       setIsLoading(true);
       setIsLoading(true);
       const data = new FormData();
@@ -64,6 +67,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
         setReply("");
         setFile(null);
         console.log("Reply sent successfully = ", send.data);
+        setPreviewUrl(null)
       }
     }
     setIsLoading(false);
@@ -97,9 +101,25 @@ const SupportChat = ({ selectedSupportTicket }) => {
   const fileInputRef = useRef(null);
 
   const fileInputHandler = (e) => {
-    console.log("File selected - ", e.target.files[0]);
-    setFile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    console.log("File selected - ", selectedFile);
+    setFile(selectedFile);
+    
+    // Create preview URL for image
+    if (selectedFile && selectedFile.type.startsWith('image/')) {
+      const url = URL.createObjectURL(selectedFile);
+      setPreviewUrl(url);
+    }
   };
+
+  // Clean up preview URL when component unmounts
+  useEffect(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
 
   const triggerFileInput = () => {
     if (fileInputRef.current) {
@@ -210,7 +230,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
           </div>
           <p className={classes.msg}>
             These rules and regulations for the use of Memee, located at
-            Stumble’scom. By accessing this website we assume you accept these
+            Stumble'scom. By accessing this website we assume you accept these
             terms and conditions. Do not continue to use if you do not agree to
             take all of the terms and conditions stated on this page. By
             accessing this
@@ -219,8 +239,24 @@ const SupportChat = ({ selectedSupportTicket }) => {
       </div>
 
       <div className={`postionBottom ${classes.sendBox}`}>
-        <span>
-          <p className="overflowText">{file ? file?.name : ""}</p>
+        <span className={classes.previewContainer}>
+          {previewUrl && (
+            <div className={classes.imagePreview}>
+              <img 
+                src={previewUrl} 
+                alt="Preview"
+              />
+              <button 
+                className={classes.closeButton}
+                onClick={() => {
+                  setPreviewUrl(null);
+                  setFile(null);
+                }}
+              >
+                ×
+              </button>
+            </div>
+          )}
         </span>
         <span className={classes.attachBtn}>
           <span className={classes.attachBtn} onClick={triggerFileInput}>

@@ -5,6 +5,8 @@ import defaultImage from "../../Images/default.png";
 import Skeleton from "react-loading-skeleton";
 
 const MemeItem = ({item, openModal}) => {
+    // console.log("item.username == ", item.username);
+    // console.log("Meme Item == ", item);
     const [imageLoaded, setImageLoaded] = useState(false);
 
     function isImage(item) {
@@ -37,13 +39,13 @@ const MemeItem = ({item, openModal}) => {
                 </div>
             ) : (
                 <video autoPlay muted controls loop>
-                    <source src={item.compress_image} type={item.post_type}/>
+                    <source src={item.post_image || item.compress_image} type={'video/mp4'}/>
                     Your browser does not support the video tag.
                 </video>
             )}
             <div className={classes.profileDetail}>
                 <img src={item.user_image || dummyUser} alt="icon"/>
-                <span>{item.username}</span>
+                <span>{item?.username}</span>
             </div>
         </div>
     );

@@ -5,7 +5,7 @@ const getRecentPosts = async (page=1) => {
     return await API.getMethod(`${ENDPOINT.getRecentPosts}?page=${page}`, true,false)
 }
 const getTrendingPosts = async () => {
-  return await API.getMethod(ENDPOINT.getTrendingPost, true,false);
+  return await API.getMethod(`${ENDPOINT.getTrendingPost}?page=1&per_page=100`, true,false);
 };
 
 const getStories = async () => {
@@ -36,6 +36,10 @@ const createChildComment = async (data) => {
 
 const likePost = async (data) => {
   return await API.postMethod(ENDPOINT.likePost, true, data);
+};
+
+const sharePost = async (data) => {
+  return await API.postMethod(ENDPOINT.post.share_post, true, data);
 };
 
 const getTags = async () => {
@@ -88,5 +92,6 @@ export default {
   getUserNotificationsList,
   user_search_tag,
   deletePosts,
-  searchPostByUsernameAndTag
+  searchPostByUsernameAndTag,
+  sharePost
 };
