@@ -56,7 +56,8 @@ const EditProfile = () => {
       .min(5, "Phone must be at least 5 characters long")
       .max(20, "Phone must be at most 20 characters long"),
     bio: Yup.string()
-      .min(10, "Bio must be at least ten characters long"),
+      .min(10, "Bio must be at least ten characters long")
+      .max(200, "Bio must be at most 200 characters long"),
   });
 
 

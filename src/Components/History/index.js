@@ -12,7 +12,7 @@ const historyData = [{
 }, {
     days: "03", memeNo: "100", status: true,
 }, {
-    days: "04", memeNo: "100", status: true,
+    days: "04", memeNo: "100", status: false,
 },];
 const History = ({ tournamentData }) => {
     const [judgedPosts, setJudgedPosts] = useState([])
@@ -39,17 +39,19 @@ const History = ({ tournamentData }) => {
             </ul>
             <ul className={` ${classes.list} ${classes.historyList}`}>
                 {judgedPosts.map((item, ind) => {
-                    return (<li key={`${item.id}_${ind}`} onClick={() => { if (ind === 0) { nextPage(item.judged_post_date_count) }else {toast.error('Your selected day has passed')} }}>
+                    return (<li key={`${item.id}_${ind}`} onClick={() => { if (ind === 0) { nextPage(item.judged_post_date_count) } else { toast.error('Your selected day has passed') } }}>
                         <div className={classes.counter}>
                             <span>{ind + 1}</span>
                         </div>
                         <div  >{item.judged_post_date_count}/100 </div>
                         <div className={classes.checkboxHolder}>
                             <Form.Check
-                                type={"checkbox"}
-                                className="custom-checkbox"
+                                type="checkbox"
+                                className={`custom-checkbox ${ind === 0 ? "no-cross" : ""}`}
                                 checked={item.status}
+                                readOnly
                             />
+
                         </div>
                     </li>);
                 })}

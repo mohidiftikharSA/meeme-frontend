@@ -1,20 +1,37 @@
 .custom-checkbox {
   margin: 10px;
+
   input {
     width: 30px;
     height: 30px;
     border-radius: 50% !important;
     background-color: rgba(255, 255, 255, 0.10);
     border: none;
-    &:checked{
-        background-color: rgba(255, 255, 255, 0.10);
-        background-image: url("../Images/check.png") !important;
-        background-size: 15px;
-        background-position: center;
+
+    &:checked {
+      background-color: rgba(255, 255, 255, 0.10);
+      background-image: url("../Images/check.png") !important;
+      background-size: 15px;
+      background-position: center;
+      background-repeat: no-repeat;
     }
-    &:focus{
-        border: none;
-        box-shadow: none;
+
+    &:not(:checked) {
+      background-color: rgba(255, 255, 255, 0.10);
+      background-image: url("../Images/cross.png") !important;
+      background-size: 15px;
+      background-position: center;
+      background-repeat: no-repeat;
     }
+
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
+  }
+
+  // Prevent cross icon on the first checkbox (index 0)
+  &.no-cross input:not(:checked) {
+    background-image: none !important;
   }
 }

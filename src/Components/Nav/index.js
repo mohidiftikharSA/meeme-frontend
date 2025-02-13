@@ -31,6 +31,7 @@ function Navigation({ header, footer }) {
     const [modalShow, setModalShow] = useState(false);
     const dispatch = useDispatch();
     const [notificationMessage, setNotificationMessage] = useState('');
+    const [notificationType, setNotificationType] = useState('');
 
     const isLinkActive = (path) => {
         return location.pathname === path ? 'active' : '';
@@ -71,8 +72,10 @@ function Navigation({ header, footer }) {
     const navigateToOtherProfile = (noti) => {
         console.log("Shoo noti", noti);
         if (noti.notification_type === 'tournament_winner' || noti.notification_type === 'tournament_judge') {
+            console.log("noti ---", noti)
             setModalShow(true);
-            setNotificationMessage(noti.body);
+            setNotificationType(noti.notification_type);
+            setNotificationMessage(noti);
         }else if(noti.notification_type === 'admin_chat'){
             navigate(`/profile-setting?text=support&ticket=${noti?.message_ticket}`)
 
@@ -92,7 +95,7 @@ function Navigation({ header, footer }) {
 
     return (
         <>
-            <CongratsModal notification={notificationMessage} show={modalShow} onHide={handleDeleteModal} />
+            <CongratsModal notification={notificationMessage} type={notificationType} show={modalShow} onHide={handleDeleteModal} />
             <Navbar
                 expand="lg"
                 className={header ? "navBar" : "navBar aside pt-lg-5 pb-lg-3 py-3"}
