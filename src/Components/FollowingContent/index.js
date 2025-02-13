@@ -98,8 +98,7 @@ const FollowingContent = ({setNewPost}) => {
                     const res = await postAPIs.sharePost({ post_id });
                     console.log("rrssponse -- ",res)
                     if (res) {
-                        toast.success("Post Shared Successfully");
-                        // Find index of the post that needs updating
+                        toast.success("Link Copied Successfully");
                         const index = followingData.findIndex(item => item.post.id === post_id);
             
                         if (index !== -1) {

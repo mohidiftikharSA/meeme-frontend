@@ -59,7 +59,7 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
             const res = await postAPIs.sharePost({ post_id });
             console.log("rrssponse -- ",res)
             if (res) {
-                toast.success("Post Shared Successfully");
+                toast.success("Link Copied Successfully");
                 // Find index of the post that needs updating
                 const index = postData.findIndex(item => item.post.id === post_id);
     
