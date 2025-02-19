@@ -8,7 +8,6 @@ import EarnCoinsModal from "Components/EarnCoinsModal";
 
 const CongratsModal = ({ notification, type,...props }) => {
   const [modalShow, setModalShow] = useState(false);
-  console.log("Notification open --", notification);
 
   const clickHandler = () => {
     setModalShow(true)

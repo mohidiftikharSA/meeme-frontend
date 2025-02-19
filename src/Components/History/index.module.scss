@@ -66,3 +66,46 @@
     }
   }
 }
+
+
+.infoModal {
+  [class*="modal-content"] {
+      border-radius: 28px;
+      border: 2px solid #dcdcdc;
+      background: #1c1c1c !important;
+      padding: 0 !important;
+  }
+
+  [class*="modal-header"] {
+      padding: 0;
+  }
+
+  [class*="modal-body"] {
+      background-color: transparent !important;
+  }
+
+  [class*="modal-dialog"] {
+      max-width: 350px;
+  }
+h4{
+  padding-left: 0 !important;
+  text-align: center;
+}
+  .closeBtn {
+      background-color: #d10a0b;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      color: #fff;
+      text-align: center;
+      line-height: 30px;
+      position: relative;
+      top: -8px;
+      right: -8px;
+      cursor: pointer;
+  }
+  .text{
+      padding: 0 21px;
+  }
+  
+}

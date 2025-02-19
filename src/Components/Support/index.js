@@ -48,10 +48,12 @@ const Support = ({ supportTicket }) => {
   const [allChatsData, setAllChatsData] = useState([]);
   const location = useLocation();
   const ticket = new URLSearchParams(location.search).get("ticket");
+  const conversation_id = new URLSearchParams(location.search).get("conversation_id");
 
   useEffect(() => {
+    console.log("ticket in useEffect  --- ", ticket)
     if (ticket) {
-      supportTicket({ message_ticket: ticket });
+      supportTicket({ message_ticket: ticket, conversation_id: conversation_id });
       goToStep(2);
     }
   },[ticket])

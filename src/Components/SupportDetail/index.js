@@ -13,7 +13,7 @@ const SupportDetail = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedFileName, setSelectedFileName] = useState('');
-  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState('Abuse');
   const [msgError, setMsgError] = useState('');
   const [subjectError, setSubjectError] = useState('');
   const [msg, setMsg] = useState('');

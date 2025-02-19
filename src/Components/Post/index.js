@@ -113,7 +113,6 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
 
     return (<>
         <iframe id="my_iframe" style={{ display: "none" }}></iframe>
-        {console.log("item in following loop ==", followingData)}
         {isLoading ? <SkeletonPostsLoading /> : followingData[0] && followingData.map((item, ind) => 
         <>
         <PostItem

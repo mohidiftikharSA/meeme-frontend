@@ -24,11 +24,15 @@ const SupportChat = ({ selectedSupportTicket }) => {
   const [sent, setSent] = useState();
   const [emojis, setEmojis] = useState([]);
   const emojiPickerRef = useRef(null);
-
+  const chatContainerRef = useRef(null);
 
   useEffect(() => {
     getTicketMessages();
   }, [selectedSupportTicket, sent]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [allMsgsArr]);
 
   const getTicketMessages = async () => {
     setIsLoading(true);
@@ -167,10 +171,16 @@ const SupportChat = ({ selectedSupportTicket }) => {
     setReplye(newReplye);
   };
 
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  };
+
   return (
     <>
       <Loader isLoading={isLoading} />
-      <div className={classes.ChatBoxHolder}>
+      <div className={classes.ChatBoxHolder} ref={chatContainerRef}>
         <span
           style={{ display: "inline-block", width: "105px" }}
           onClick={() => goToStep(0)}
@@ -262,6 +272,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
           <span className={classes.attachBtn} onClick={triggerFileInput}>
             <input
               type="file"
+              accept="image/*"
               onChange={fileInputHandler}
               ref={fileInputRef}
               style={{ display: "none" }}
@@ -281,8 +292,20 @@ const SupportChat = ({ selectedSupportTicket }) => {
           </span>
           
           {showEmojiPicker && (
-            <div ref={emojiPickerRef} style={{ position: "absolute", zIndex: 10 }}>
-              <EmojiPicker  onEmojiClick={handleEmojiSelect}  disableAutoFocus />
+            <div 
+              ref={emojiPickerRef} 
+              style={{ 
+                position: "absolute", 
+                bottom: "100%",
+                right: "0",
+                marginBottom: "10px",
+                zIndex: 1000
+              }}
+            >
+              <EmojiPicker 
+                onEmojiClick={handleEmojiSelect} 
+                disableAutoFocus 
+              />
             </div>
           )}
         </div>
