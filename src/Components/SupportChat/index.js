@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import classes from "./index.module.scss";
 import Heading from "Components/Heading";
 import user from "../../Images/profile1.png";
+import user2 from "../../Images/avatar1.jpg";
+import MemeePng from "../../Images/memee.png";
 import attachment1 from "../../Images/attachment2.png";
 import attachment2 from "../../Images/attachment1.png";
 import logo from "../../Images/avatar.png";
@@ -197,12 +199,13 @@ const SupportChat = ({ selectedSupportTicket }) => {
                     "d-flex align-items-start justify-content-between mb-3"
                   }
                 >
+                  {console.log("item chat support -- ",item)}
                   <div className={classes.textBox}>
                     <div className={classes.profileImg}>
-                      <img src={item?.sender_image || user} alt="img" />
+                      <img src={ item?.sender_name === "" ?  MemeePng : item?.sender_image || user2} alt="img" />
                     </div>
                     <div className={classes.userInfo}>
-                      <h5>{item?.sender_name}</h5>
+                      <h5>{item?.sender_name === "" ? "Memee Admin" : item?.sender_name}</h5>
                       <p>{formatDate(item?.created_at)}</p>
                     </div>
                   </div>

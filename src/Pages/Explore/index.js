@@ -13,53 +13,54 @@ const Explore = () => {
   const [tags, setTags] = useState([]);
   const pageNumberRef = useRef(1);
   const [hasMore, setHasMore] = useState(true);
-  const [searchMode, setSearchMode] = useState(false); // New state to handle search mode
-  let firstAPICall = false;
+  const [searchMode, setSearchMode] = useState(false);
+  const isLoadingRef = useRef(false);
 
   const getRecentPostAndTags = async () => {
     try {
-      if (firstAPICall && pageNumberRef.current === 1) {
+      if (isLoadingRef.current || !hasMore || searchMode) {
         return;
       }
 
-      if (!searchMode) { // Only fetch posts if not in search mode
-        const res = await postAPIs.getRecentPosts(pageNumberRef.current);
-        if (res.status === 200) {
-          firstAPICall = true;
-          const existingPostIds = new Set(
-            recentPosts.map((post) => post.post.id)
-          );
-          const newPosts = res.data.recent_posts.filter(
-            (post) => !existingPostIds.has(post.post.id)
-          );
-          const uniqueNewPosts = newPosts.filter(
-            (post, index, self) =>
-              index === self.findIndex((p) => p.post.id === post.post.id)
-          );
+      isLoadingRef.current = true;
 
-          setRecentPosts((prevPosts) => [...prevPosts, ...uniqueNewPosts]);
-          setLoading(false);
-          pageNumberRef.current++;
-          if (uniqueNewPosts.length === 0) {
-            setHasMore(false);
-          }
-        } else {
-          console.error("Error: Unexpected status code", res.status);
-        }
-
+      // Fetch tags if they haven't been loaded yet
+      if (tags.length === 0) {
         const resTags = await postAPIs.getTags();
-        if (resTags) {
+        if (resTags?.data?.tags) {
           setTags(resTags.data.tags);
         }
       }
+
+      const res = await postAPIs.getRecentPosts(pageNumberRef.current);
+      if (res.status === 200) {
+        const newPosts = res.data.recent_posts;
+        
+        setRecentPosts(prevPosts => {
+          const existingPostIds = new Set(prevPosts.map(post => post.post.id));
+          const uniqueNewPosts = newPosts.filter(post => !existingPostIds.has(post.post.id));
+          
+          if (uniqueNewPosts.length === 0) {
+            setHasMore(false);
+            return prevPosts;
+          }
+          
+          pageNumberRef.current++;
+          return [...prevPosts, ...uniqueNewPosts];
+        });
+
+        setLoading(false);
+      }
     } catch (error) {
       console.error("Error while fetching data:", error);
+    } finally {
+      isLoadingRef.current = false;
     }
   };
 
   const onTagSearch = async (value) => {
-    setSearchMode(true); // Enter search mode
-    setFilteredPosts([]); // Clear filtered posts to avoid merging issues
+    setSearchMode(true);
+    setFilteredPosts([]);
 
     if (value.length > 0) {
       const filteredData = recentPosts.filter((item) => {
@@ -80,24 +81,24 @@ const Explore = () => {
       }
       setFilteredPosts(filteredData);
     } else {
-      setSearchMode(false); // Exit search mode if no tag is provided
+      setSearchMode(false);
       setFilteredPosts(recentPosts);
     }
   };
 
   const onTextSearch = async (value) => {
-    setSearchMode(true); // Enter search mode
-    setFilteredPosts([]); // Clear filtered posts to avoid merging issues
+    setSearchMode(true);
+    setFilteredPosts([]);
 
     if (value.length <= 0) {
-      setSearchMode(false); // Exit search mode
+      setSearchMode(false);
       setFilteredPosts(recentPosts);
     }
   };
 
   const onSearchSubmit = async (value) => {
-    setSearchMode(true); // Enter search mode
-    setFilteredPosts([]); // Clear filtered posts to avoid merging issues
+    setSearchMode(true);
+    setFilteredPosts([]);
 
     if (value.length > 0) {
       try {
@@ -111,7 +112,7 @@ const Explore = () => {
         setFilteredPosts([]);
       }
     } else {
-      setSearchMode(false); // Exit search mode
+      setSearchMode(false);
       setFilteredPosts(recentPosts);
     }
   };
@@ -141,7 +142,7 @@ const Explore = () => {
 
   const handleIntersection = async (entries) => {
     const target = entries[0];
-    if (target.isIntersecting && hasMore && !searchMode) { // Prevent infinite scroll in search mode
+    if (target.isIntersecting && hasMore && !searchMode && !isLoadingRef.current) {
       await getRecentPostAndTags();
     }
   };
@@ -159,7 +160,7 @@ const Explore = () => {
           <AccordianBadge data={tags} expolore onTagSelect={onTagSearch} />
           <MemesDetails
             isLoading={loading}
-            newMemesData={searchMode ? filteredPosts : recentPosts} // Use filteredPosts only in search mode
+            newMemesData={searchMode ? filteredPosts : recentPosts}
             avatar={avatar}
             explore
           />
