@@ -84,10 +84,10 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
                 'Content-Type': 'application/octet-stream'
             }
           });
-      
-        //   if (!response.ok) {
-        //     throw new Error('Failed to download the file');
-        //   }
+          console.log("downloadMedia response, ",response)
+          if (!response.ok) {
+            throw new Error('Failed to download the file');
+          }
       
           const blob = await response.blob();
           const url = window.URL.createObjectURL(blob);
