@@ -63,9 +63,6 @@ const JudgePage = () => {
     }, []);
 
 
-
-
-
     return (
         <>
             <section>

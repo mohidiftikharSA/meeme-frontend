@@ -22,9 +22,10 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
       return;
     }
     const data = {
-      type: "flag",
+      type: "report",
       post_id: postId,
-      message: message
+      message: message,
+      admin_user_id:1
     };
 
     setIsLoading(true);

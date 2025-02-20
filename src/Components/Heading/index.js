@@ -70,7 +70,7 @@ const Heading = ({
               >
                 {likedCounts ?? 0}
               </span>
-              /100
+              /25
             </div>
           )}
           {badge && (
