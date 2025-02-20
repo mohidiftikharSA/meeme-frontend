@@ -9,16 +9,9 @@
       }
     }
     &.exploreBox{
-      column-count: 4;
-      @include media("<tablet-x"){
-        column-count: 3;
-      }
-      @include media("<phone"){
-        column-count: 2;
-      }
-      @include media("<xs-phone"){
-        column-count: 1;
-      }
+      display: flex;
+        flex-wrap: wrap;
+        align-items: center;
       .imgBox{
         cursor: pointer;
         &:first-child{
@@ -27,12 +20,24 @@
       }
     }
   .imgBox {
+    flex: 0 0 25%;
     position: relative;
     display: inline-block;
     padding: 12px;
     vertical-align: top;
     width: 100%;
     cursor: pointer;
+    @include media("<tablet-x") {
+        flex: 0 0 33.33%;
+      }
+    
+      @include media("<phone") {
+        flex: 0 0 50%;
+      }
+    
+      @include media("<xs-phone") {
+        flex: 0 0 100%;
+      }
     &:first-child{
         margin-top: 35px;
         @include media("<xs-phone"){
