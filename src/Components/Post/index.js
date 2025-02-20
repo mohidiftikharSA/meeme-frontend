@@ -78,11 +78,16 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
         try {
           const response = await fetch(mediaUrl, {
             method: 'GET',
+            mode: 'no-cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/octet-stream'
+            }
           });
       
-          if (!response.ok) {
-            throw new Error('Failed to download the file');
-          }
+        //   if (!response.ok) {
+        //     throw new Error('Failed to download the file');
+        //   }
       
           const blob = await response.blob();
           const url = window.URL.createObjectURL(blob);
@@ -97,6 +102,8 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
           console.error(error);
         }
       };
+
+    
 
     const handleImageLoad = (index) => {
         setImagesLoaded((prevImagesLoaded) => {

@@ -56,7 +56,7 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
         <Modal.Header closeButton
           onHide={() => {
             if (reportSuccess)
-              postRemovalId(postId);
+              // postRemovalId(postId);
             setConfirmationSectionVisibility(false);
             setReportSuccess(false);
             setFlagSectionVisibility(true);

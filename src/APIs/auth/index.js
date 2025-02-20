@@ -62,6 +62,13 @@ const createPost = async (data) => {
   return await API.postMethod(ENDPOINT.post.createPost, true, data, true);
 };
 
+const current_user_locked_badges = async () => {
+  return await API.getMethod(ENDPOINT.users.current_user_locked_badges, true);
+};
+
+const updatePost = async(data)=>{
+    return await API.putMethod(ENDPOINT.post.update_post,true,data);
+}
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   login,
@@ -75,5 +82,7 @@ export default {
   otherUserProfile,
   getcoinprices,
   createPost,
-  getMyPosts
+  getMyPosts,
+  current_user_locked_badges,
+  updatePost
 };

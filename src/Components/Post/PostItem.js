@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PostsAPIs from '../../APIs/dashboard/home';
 import { toast } from "react-toastify";
 import { setDeletedPostId } from "Redux/reducers/postDeletionSlice";
+import EditPostModal from "Components/EditPostModal";
 
 const PostItem = ({
     item,
@@ -37,6 +38,7 @@ const PostItem = ({
     const [ReportPostModalShow, setReportPostModalShow] = useState(false);
     const { profile } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    const [editModalShow, setEditModalShow] = useState(false);
 
     const onClickLikePost = (id) => {
         likePost(id)
@@ -87,8 +89,8 @@ const PostItem = ({
                           { profile?.user?.id !== item?.post?.user_id &&
                            <><Dropdown.Item href="#/action-1" onClick={() => {
                                     setFlagPostModalShow(true);
-                                } }><i className="far fa-flag"></i> Flag
-                                    Post</Dropdown.Item><Dropdown.Item href="#/action-2" onClick={() => {
+                                } }><i className="far fa-flag"></i> 
+                                Flag Post</Dropdown.Item><Dropdown.Item href="#/action-2" onClick={() => {
                                         setReportPostModalShow(true);
                                     } }><i
                                         className="fas fa-exclamation"></i>Report</Dropdown.Item></>}
@@ -100,6 +102,11 @@ const PostItem = ({
                                 deleteSelectedPosts(item.post.id)
                             }}><i className="fas fa-trash"></i>Delete
                             </Dropdown.Item>}
+                           {/* {profile?.user?.id === item?.post?.user_id && <Dropdown.Item href="#/action-3" onClick={() => {
+
+                                setEditModalShow(true);
+                            }}><i className="fas fa-edit"></i>Edit
+                            </Dropdown.Item>} */}
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>
@@ -158,6 +165,20 @@ const PostItem = ({
             </div>
             <FlagPostModal post show={FlagPostModalShow} image={item} postId={item.post.id} onHide={() => setFlagPostModalShow(false)} postRemovalId={postRemovalId} />
             <ReportPostModal post show={ReportPostModalShow} image={item} postId={item.post.id} onHide={() => setReportPostModalShow(false)} postRemovalId={postRemovalId} />
+            <EditPostModal
+                show={editModalShow}
+                onHide={() => setEditModalShow(false)}
+                post={{
+                    id: item.post.id,
+                    image: item.compress_image,
+                    title: item.post.description,
+                    description: item.post.tag_list
+                }}
+                onUpdate={(updatedPost) => {
+                    // Handle the updated post data here
+                    console.log("Updated Post:", updatedPost);
+                }}
+            />
         </>
     );
 };
