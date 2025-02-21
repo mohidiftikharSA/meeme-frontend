@@ -1818,6 +1818,7 @@ aside.EmojiPickerReact.epr-main {
 
 .explore-item {
   padding: 0 5px;
+  position: relative;
 }
 
 .explore-image-container {
@@ -1833,4 +1834,34 @@ aside.EmojiPickerReact.epr-main {
 
 .explore-image-container:hover img {
   transform: scale(1.05);
+}
+
+.profileDetail{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex
+;
+  align-items: center;
+  color: #fff;
+  margin: 20px;
+  font-size: 12px;
+  img{
+    object-fit: cover;
+    width: 35px;
+    height: 35px;
+    margin-right: 8px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: block;
+  }
+  span{
+    color: #fff;
+    font-size: 12px;
+
+  }
+}
+
+.EditPostModal{
+  background-color: #000000ab;
 }

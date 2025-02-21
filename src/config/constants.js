@@ -46,6 +46,7 @@ export const ENDPOINT = {
     current_user_tournament_posts: `${API_URL}/posts/current_user_tournament_posts`,
     share_post: `${API_URL}/posts/share_post`,
     update_post: `${API_URL}/posts/update_posts`,
+    other_posts: `${API_URL}/posts/other_posts`,
   },
 
   comment: {

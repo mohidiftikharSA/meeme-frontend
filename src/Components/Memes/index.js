@@ -109,7 +109,7 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
                 avatar={avatar}
                 likePost={likePost}
                 sharePost={sharePost}
-                explore
+                explore={explore}
             />
         </>
     );

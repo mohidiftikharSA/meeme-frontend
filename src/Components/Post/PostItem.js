@@ -102,11 +102,10 @@ const PostItem = ({
                                 deleteSelectedPosts(item.post.id)
                             }}><i className="fas fa-trash"></i>Delete
                             </Dropdown.Item>}
-                           {/* {profile?.user?.id === item?.post?.user_id && <Dropdown.Item href="#/action-3" onClick={() => {
-
+                           {profile?.user?.id === item?.post?.user_id && <Dropdown.Item href="#/action-3" onClick={() => {
                                 setEditModalShow(true);
                             }}><i className="fas fa-edit"></i>Edit
-                            </Dropdown.Item>} */}
+                            </Dropdown.Item>}
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>

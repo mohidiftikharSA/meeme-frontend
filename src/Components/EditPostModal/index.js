@@ -9,7 +9,7 @@ import AuthAPIs from "../../APIs/auth";
 export default function EditPostModal({ post, onUpdate, ...props }) {
   const [selectedImage, setSelectedImage] = useState(post.image || null);
   const [title, setTitle] = useState(post.title || "");
-  const [description, setDescription] = useState(post.description || "");
+  const [description, setDescription] = useState(post.description || []);
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
@@ -17,7 +17,7 @@ export default function EditPostModal({ post, onUpdate, ...props }) {
     props.onHide();
     setSelectedImage(post.image || null);
     setTitle(post.title || "");
-    setDescription(post.description || "");
+    setDescription(post.description || []);
   };
 
   const handleImageUpload = (e) => {
@@ -60,20 +60,36 @@ export default function EditPostModal({ post, onUpdate, ...props }) {
       }
     }
     const formattedTags = tags.join(" ");
-    setDescription(formattedTags);
+    setDescription(tags);
+    post.description = tags;
+  };
+
+  const uploadImageFromUrl = async (imageUrl) => {
+    try {
+      const response = await fetch(imageUrl); // Fetch image as Blob
+      const blob = await response.blob();
+      return new File([blob], "media.jpg", { type: "image/jpeg" }); // Convert to File
+    } catch (error) {
+      console.error("Error converting image to Blob:", error);
+      return null;
+    }
   };
 
   const handleSubmit = async () => {
     setIsLoading(true);
-    const data = new FormData();
-    data.append("description", title || "");
-    data.append("tag_list", description || "");
-    console.log("title, ",title)
-    console.log(" post.id, ", post.id)
-    data.append('post_id', post.id);
-    data.append('post_image', post.image);
-    if (selectedImage) {
-      data.append("post_image", selectedImage);
+    console.log("post ----", post);
+    let imageFile;
+    if(post.post_type !== "video/mp4") {
+      imageFile = await uploadImageFromUrl(post.compress_image);
+    } else {
+      imageFile = await uploadImageFromUrl(post.image);
+    }
+    console.log("imageFile ----", post.description);
+
+    const data = {
+        post_id: post.id,
+        description: title || "",
+        tag_list: post.description,
     }
 
     const res = await AuthAPIs.updatePost(data);
@@ -87,13 +103,13 @@ export default function EditPostModal({ post, onUpdate, ...props }) {
 
   return (
     <>
-      {isLoading && <Loader isLoading={isLoading} />}
       <Modal
         className={"EditPostModal"}
         {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        backdrop={true}
       >
         <Modal.Header closeButton={true}>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -116,7 +132,7 @@ export default function EditPostModal({ post, onUpdate, ...props }) {
               <Form.Control
                 type="text"
                 placeholder="Edit tags"
-                value={description}
+                value={description.join(" ")}
                 onChange={handleDescriptionChange}
                 style={{ backgroundColor: '#f8f9fa', color: '#212529' }}
               />
@@ -124,7 +140,7 @@ export default function EditPostModal({ post, onUpdate, ...props }) {
           </Form>
           {selectedImage && (
             <div>
-              <img src={selectedImage} alt="img" style={{ width: "100%", height: "auto" }} />
+              <img src={selectedImage} alt="img" style={{ width: "400px", margin: "auto" ,borderRadius:"8px"}} />
             </div>
           )}
           {!selectedImage && (
@@ -154,8 +170,8 @@ export default function EditPostModal({ post, onUpdate, ...props }) {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button className="btn" onClick={handleSubmit}>
-            Save Changes
+          <Button disabled={isLoading} className="btn" onClick={handleSubmit}>
+            {isLoading ? "Updating..." : "Save Changes"}
           </Button>
         </Modal.Footer>
       </Modal>

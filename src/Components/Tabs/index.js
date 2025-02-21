@@ -437,7 +437,7 @@ const TabDetails = ({
             />
           </Tab>
           <Tab eventKey="tournament" title="Tournament Entries">
-            <ProfilePost otherProfile tournament data={ tournamentPosts && tournamentPosts[0] ?  [...tournamentPosts]?.reverse() : []} />
+            <ProfilePost otherProfile tournament data={ tournamentPosts} />
           </Tab>
         </Tabs>
       )}

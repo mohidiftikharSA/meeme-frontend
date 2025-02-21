@@ -74,6 +74,9 @@ const deletePosts = async (data) => {
 const searchPostByUsernameAndTag = async(data)=>{
    return await API.postMethod(ENDPOINT.post.serach_by_username_tag,true,data, false , false);
 }
+const otherPosts = async(data)=>{
+  return await API.postMethod(ENDPOINT.post.other_posts,true,data,false,false);
+}
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -93,5 +96,6 @@ export default {
   user_search_tag,
   deletePosts,
   searchPostByUsernameAndTag,
-  sharePost
+  sharePost,
+  otherPosts
 };

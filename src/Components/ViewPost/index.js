@@ -1,18 +1,24 @@
 import Comments from 'Components/Comments';
 import Posts from 'Components/Post';
-import React, {useEffect, useState} from 'react';
-import {Modal, Row, Col} from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Modal, Row, Col } from 'react-bootstrap';
 import postAPIs from "../../APIs/dashboard/home";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import dummyUser from "../../Images/user-dummy.png";
 
 // change code
 import user2 from "../../Images/avatar.png";
+import Skeleton from 'react-loading-skeleton';
+import MemeItem from 'Components/Memes/MemeItem';
 
 
 const ViewPost = ({ exploresetIsModalOpen, ...props }) => {
-    const {selectedPostId, onHide, show, postData, avatar, profile, likePost, sharePost} = props;
+    const { selectedPostId, onHide, show, postData, avatar, profile, likePost, sharePost, explore } = props;
     const [commentsData, setCommentsData] = useState([]);
     const [childCommentCreated, setChildCommentCreated] = useState();
+    const [otherPosts, setOtherPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     // Find the selected post by postId
     var selectedPost = null;
@@ -22,8 +28,10 @@ const ViewPost = ({ exploresetIsModalOpen, ...props }) => {
         selectedPost = postData
     }
     // const selectedPost = 12
-    const {user} = useSelector((state) => state.auth);
-
+    const { user } = useSelector((state) => state.auth);
+    function isImage(item) {
+        return item.post_type && item.post_type.startsWith("image/");
+    }
 
     const getComments = async (id) => {
         try {
@@ -59,7 +67,35 @@ const ViewPost = ({ exploresetIsModalOpen, ...props }) => {
         if (selectedPostId) {
             getComments(selectedPostId);
         }
+        /**
+         * only get when explore page is true
+         */
+        if (explore) {
+            getOtherPosts();
+        }
     }, [selectedPostId, childCommentCreated]);
+
+    const getOtherPosts = async () => {
+        setLoading(true);
+        try {
+            if (selectedPost) {
+                const res = await postAPIs.otherPosts({
+                    post_id: selectedPostId,
+                    tag: selectedPost.post.tag_list[0]
+                });
+                console.log("res ----", res.data.explore_posts);
+                if (res) {
+                    setOtherPosts(res.data.explore_posts);
+                    setLoading(false);
+                }
+            }
+        } catch (error) {
+            console.error("Error while fetching data:", error);
+            setOtherPosts([]);
+            setLoading(false);
+        }
+
+    }
 
     return (
         <Modal
@@ -75,32 +111,52 @@ const ViewPost = ({ exploresetIsModalOpen, ...props }) => {
             <Modal.Body>
                 <Row className='text-start'>
                     <Col lg={7} className='view-modal'>
-                        <Posts postData={[selectedPost]} avatar={user2} likePost={likePost} sharePost={sharePost} comment setIsModalOpen/>
+                        <Posts postData={[selectedPost]} avatar={user2} likePost={likePost} sharePost={sharePost} comment setIsModalOpen />
                     </Col>
                     <Col lg={5} className='position-relative'>
                         <Comments data={commentsData} avatar={avatar} postComment={postComment} postId={selectedPostId}
-                                  user={user} setChildCommentCreated={setChildCommentCreated} onHide={props.onHide}/>
+                            user={user} setChildCommentCreated={setChildCommentCreated} onHide={props.onHide} />
                     </Col>
                 </Row>
             </Modal.Body>
-            {props.explore && (
+            {explore && (
                 <div className='explore-post text-center'>
                     <h3 className='mb-3'>Explore more posts</h3>
                     <Row className="explore-grid mt-3">
-                        {[1, 2, 3, 4, 5, 6].map((item) => (
-                            <Col xs={4} key={item} className="explore-item mb-3">
+                        {loading ? (
+                            <p>Loading other posts...</p>
+                        ) : otherPosts[0] && otherPosts ? otherPosts.slice(0, 6).map((item) => (
+                            <Col xs={4} key={item?.post?.id} className="explore-item mb-3">
                                 <div className="explore-image-container">
-                                    <img
-                                        src={user2}
-                                        alt={`Explore post ${item}`}
-                                        className="w-100 h-100 object-fit-cover"
-                                    />
+                                    {item?.post_type === 'video/mp4' ? (
+                                        <video
+                                            src={item?.post_image}
+                                            alt={`Explore video = ${item?.post_image}`}
+                                            className="w-100 h-100 object-fit-cover"
+                                            controls
+                                            autoPlay
+                                        />
+                                    ) : (
+                                        <img
+                                            src={item?.post_image}
+                                            alt={`Explore post = ${item?.post_image}`}
+                                            className="w-100 h-100 object-fit-cover"
+                                        />
+                                    )}
+                                </div>
+                                <div className={"profileDetail"}>
+                                    <img src={item.user_image || dummyUser} alt="icon" />
+                                    <span>{item?.username}</span>
                                 </div>
                             </Col>
-                        ))}
+
+                        )) : <p>No similar posts found</p>}
                     </Row>
                 </div>
+
             )}
+
+
         </Modal>
     );
 };

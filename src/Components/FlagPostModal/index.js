@@ -63,7 +63,7 @@ const FlagPostModal = ({ image, postId, postRemovalId, ...props }) => {
         <Modal.Header closeButton
           onHide={() => {
             if (flagSuccess)
-              postRemovalId(postId);
+              // postRemovalId(postId);
             setConfirmationSectionVisibility(false);
             setFlagSuccess(false)
           }} >

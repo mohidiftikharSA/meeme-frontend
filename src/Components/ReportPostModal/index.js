@@ -35,9 +35,15 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
       toast.error('Type any Message to Report.');
       return;
     }
-    const imageFile = await uploadImageFromUrl(image?.post_image);
+    console.log("image ----", image);
+    let imageFile;
+    if(image?.post_type !== "video/mp4") {
+      imageFile = await uploadImageFromUrl(image?.post_image);
+    } else {
+      imageFile = await uploadImageFromUrl(image?.post_thumbnail);
+    }
 
-    console.log("imaage ----", imageFile);
+    console.log("image ----", imageFile);
     const data = new FormData();
     data.append("type", "report");
     data.append("admin_user_id", "1");
@@ -101,7 +107,7 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
           {/* Your confirmation section */}
           {isConfirmationSectionVisible && (
             <div className='textBox'>
-              <h6>Photo Reported</h6>
+              <h6>{image?.post_type !== "video/mp4" ? "Photo" : "Video"} Reported</h6>
               <p className='text'>Photo successfully reported. We will review your report. Thank you for your cooperation.</p>
             </div>
           )}
