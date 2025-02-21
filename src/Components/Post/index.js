@@ -75,7 +75,7 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
 
     const downloadMedia = async (mediaUrl, post) => {
         console.log("Download  == ", post);
-        if(post.post_type === "video/mp4"){
+        if(post.post_type !== "video/mp4"){
             try {
           const response = await fetch(mediaUrl, {
             method: 'GET',
