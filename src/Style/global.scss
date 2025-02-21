@@ -1807,3 +1807,30 @@ aside.EmojiPickerReact.epr-main {
 .congrats_text{
   margin-top: 23rem !important;
 }
+.explore-post {
+  padding: 20px;
+  border-top: 1px solid #dee2e6;
+}
+
+.explore-grid {
+  margin: 0 -5px;
+}
+
+.explore-item {
+  padding: 0 5px;
+}
+
+.explore-image-container {
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.explore-image-container img {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.explore-image-container:hover img {
+  transform: scale(1.05);
+}

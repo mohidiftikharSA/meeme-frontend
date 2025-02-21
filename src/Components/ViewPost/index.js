@@ -9,7 +9,7 @@ import {useSelector} from "react-redux";
 import user2 from "../../Images/avatar.png";
 
 
-const ViewPost = ({ setIsModalOpen, ...props}) => {
+const ViewPost = ({ exploresetIsModalOpen, ...props }) => {
     const {selectedPostId, onHide, show, postData, avatar, profile, likePost, sharePost} = props;
     const [commentsData, setCommentsData] = useState([]);
     const [childCommentCreated, setChildCommentCreated] = useState();
@@ -83,6 +83,24 @@ const ViewPost = ({ setIsModalOpen, ...props}) => {
                     </Col>
                 </Row>
             </Modal.Body>
+            {props.explore && (
+                <div className='explore-post text-center'>
+                    <h3 className='mb-3'>Explore more posts</h3>
+                    <Row className="explore-grid mt-3">
+                        {[1, 2, 3, 4, 5, 6].map((item) => (
+                            <Col xs={4} key={item} className="explore-item mb-3">
+                                <div className="explore-image-container">
+                                    <img
+                                        src={user2}
+                                        alt={`Explore post ${item}`}
+                                        className="w-100 h-100 object-fit-cover"
+                                    />
+                                </div>
+                            </Col>
+                        ))}
+                    </Row>
+                </div>
+            )}
         </Modal>
     );
 };
