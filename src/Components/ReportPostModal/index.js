@@ -4,6 +4,7 @@ import profile from "../../Images/post2.png"
 import DashboardAPIs from '../../APIs/dashboard/home';
 import Loader from 'Components/Loader'
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
 
@@ -13,6 +14,19 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [reportSuccess, setReportSuccess] = useState(false);
+  const { user } = useSelector(state => state.auth);
+
+
+  const uploadImageFromUrl = async (imageUrl) => {
+    try {
+      const response = await fetch(imageUrl); // Fetch image as Blob
+      const blob = await response.blob();
+      return new File([blob], "media.jpg", { type: "image/jpeg" }); // Convert to File
+    } catch (error) {
+      console.error("Error converting image to Blob:", error);
+      return null;
+    }
+  };
 
 
   const reportPost = async () => {
@@ -21,11 +35,17 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
       toast.error('Type any Message to Report.');
       return;
     }
-    const data = {
-      type: "flag",
-      post_id: postId,
-      message: message
-    };
+    const imageFile = await uploadImageFromUrl(image?.post_image);
+
+    console.log("imaage ----", imageFile);
+    const data = new FormData();
+    data.append("type", "report");
+    data.append("admin_user_id", "1");
+    data.append("message_images[]", imageFile);
+    data.append("body", message);
+    data.append("post_id", postId);
+    data.append("user_id", image?.post?.user_id);
+
 
     setIsLoading(true);
     try {
@@ -56,7 +76,7 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
         <Modal.Header closeButton
           onHide={() => {
             if (reportSuccess)
-              postRemovalId(postId);
+              // postRemovalId(postId);
             setConfirmationSectionVisibility(false);
             setReportSuccess(false);
             setFlagSectionVisibility(true);

@@ -63,7 +63,7 @@ const History = ({ tournamentData }) => {
                             <div className={classes.counter}>
                                 <span>{ind + 1}</span>
                             </div>
-                            <div>{item.judged_post_date_count}/100</div>
+                            <div>{item.judged_post_date_count}/25</div>
                             <div className={classes.checkboxHolder}>
                                 <Form.Check
                                     type="checkbox"
@@ -95,7 +95,7 @@ const History = ({ tournamentData }) => {
                 <Modal.Body className="m-0">
                     <h4 className='title'>Judge</h4>
                     <p className='text'>
-                        To qualify for coin rewards, you need to judge 100 memes per day
+                        To qualify for coin rewards, you need to judge 25 memes per day
                     </p>
                     <Button
                         onClick={() => {

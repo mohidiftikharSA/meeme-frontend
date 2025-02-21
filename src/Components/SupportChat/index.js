@@ -40,7 +40,7 @@ const SupportChat = ({ selectedSupportTicket }) => {
     setIsLoading(true);
     const data = {
       message_ticket: selectedSupportTicket?.message_ticket,
-      admin_user_id: 1,
+      admin_user_id: "1",
     };
     const msgs = await MessagesAPIs.getTicketMessages(data);
     if (msgs) {

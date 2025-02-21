@@ -59,7 +59,7 @@ const TutorialModals = (props) => {
             </div>
           </li>
           <li>
-          <p className={classes.title}>  There are also other ways to accumulate coins. Judging is another way of acquiring coins from the app. End Users can  judge 100 memes daily and gain 50 coins on a daily basis.</p>
+          <p className={classes.title}>  There are also other ways to accumulate coins. Judging is another way of acquiring coins from the app. End Users can  judge 25 memes daily and gain 50 coins on a daily basis.</p>
             <div className={classes.box}>
             <div className="imgBox">
                 <img src={img11} alt="" />

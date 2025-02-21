@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Container } from "react-bootstrap";
 import AccordianBadge from "Components/AccordainBadge";
 import MemesDetails from "Components/Memes";
@@ -16,7 +16,7 @@ const Explore = () => {
   const [searchMode, setSearchMode] = useState(false);
   const isLoadingRef = useRef(false);
 
-  const getRecentPostAndTags = async () => {
+  const getRecentPostAndTags = useCallback(async () => {
     try {
       if (isLoadingRef.current || !hasMore || searchMode) {
         return;
@@ -35,16 +35,16 @@ const Explore = () => {
       const res = await postAPIs.getRecentPosts(pageNumberRef.current);
       if (res.status === 200) {
         const newPosts = res.data.recent_posts;
-        
+
         setRecentPosts(prevPosts => {
           const existingPostIds = new Set(prevPosts.map(post => post.post.id));
           const uniqueNewPosts = newPosts.filter(post => !existingPostIds.has(post.post.id));
-          
+
           if (uniqueNewPosts.length === 0) {
             setHasMore(false);
             return prevPosts;
           }
-          
+
           pageNumberRef.current++;
           return [...prevPosts, ...uniqueNewPosts];
         });
@@ -56,7 +56,7 @@ const Explore = () => {
     } finally {
       isLoadingRef.current = false;
     }
-  };
+  }, [hasMore, searchMode, tags.length]);
 
   const onTagSearch = async (value) => {
     setSearchMode(true);
@@ -119,7 +119,7 @@ const Explore = () => {
 
   useEffect(() => {
     getRecentPostAndTags();
-  }, []);
+  }, [getRecentPostAndTags]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleIntersection, {
@@ -171,4 +171,4 @@ const Explore = () => {
   );
 };
 
-export default Explore;
+export default React.memo(Explore);

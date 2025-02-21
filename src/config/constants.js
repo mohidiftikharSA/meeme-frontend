@@ -15,6 +15,8 @@ export const ENDPOINT = {
     verificationOtp: `${API_URL}/users/verify_otp`,
     updateUser: `${API_URL}/users/update_user`,
     otherUserProfile: `${API_URL}/users/open_some_other_user`,
+    current_user_locked_badges: `${API_URL}/badges/current_user_locked_badges`,
+    active_status_change: `${API_URL}/users/active_status_change`,
   },
 
   messages: {
@@ -42,7 +44,8 @@ export const ENDPOINT = {
     delete_posts: `${API_URL}/posts/destroy_multiple`,
     serach_by_username_tag: `${API_URL}/posts/post_search_user_and_tag`,
     current_user_tournament_posts: `${API_URL}/posts/current_user_tournament_posts`,
-    share_post: `${API_URL}/posts/share_post`
+    share_post: `${API_URL}/posts/share_post`,
+    update_post: `${API_URL}/posts/update_posts`,
   },
 
   comment: {

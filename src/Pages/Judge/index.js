@@ -10,6 +10,7 @@ import { FaTimes } from 'react-icons/fa';
 import api from 'APIs/tournaments'
 import SkeletonTournamentPostsLoading from "../../Components/Loader/SkeletonTournamentPostsLoading";
 import Skeleton from "react-loading-skeleton";
+import { toast } from "react-toastify";
 
 
 const JudgePage = () => {
@@ -30,13 +31,18 @@ const JudgePage = () => {
         setLikedPostsCount(likedCounts)*/
     }
     const likeDislikePost = async (post_id, isLike = true) => {
-        const response = isLike ? await api.likeTournamentPost({ post_id }) : await api.disLikeTournamentPost({ post_id });
-        if (response?.status == 200) {
-            removePostFromList(post_id)
-            setImagesLoaded([])
-            setLikedPostsCount(prevState => {
-                return parseInt(prevState) + 1
-            })
+        
+        if(likedPostsCount !== 25){
+            const response = isLike ? await api.likeTournamentPost({ post_id }) : await api.disLikeTournamentPost({ post_id });
+            if (response?.status == 200) {
+                removePostFromList(post_id)
+                setImagesLoaded([])
+                setLikedPostsCount(prevState => {
+                    return parseInt(prevState) + 1
+                })
+            }
+        }else{
+            toast.error('You can only like 25 posts per day')
         }
     }
     const removePostFromList = (selected_post_id) => {
@@ -61,9 +67,6 @@ const JudgePage = () => {
         setImagesLoaded([]);
         setLikedPostsCount(new URLSearchParams(location.search).get('count') ?? 0);
     }, []);
-
-
-
 
 
     return (

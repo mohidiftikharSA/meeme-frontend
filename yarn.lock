@@ -8789,6 +8789,13 @@ react-images-uploading@^3.1.7:
   resolved "https://registry.npmjs.org/react-images-uploading/-/react-images-uploading-3.1.7.tgz"
   integrity sha512-woET50eCezm645iIeP4gCoN7HjdR3T64UXC5l53yd+2vHFp+pwABH8Z/aAO5IXDeC1aP6doQ+K738L701zswAw==
 
+react-infinite-scroll-component@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/react-infinite-scroll-component/-/react-infinite-scroll-component-6.1.0.tgz#7e511e7aa0f728ac3e51f64a38a6079ac522407f"
+  integrity sha512-SQu5nCqy8DxQWpnUVLx7V7b7LcA37aM7tvoWjTLZp1dk6EJibM5/4EJKzOnl07/BsM1Y40sKLuqjCwwH/xV0TQ==
+  dependencies:
+    throttle-debounce "^2.1.0"
+
 react-input-verification-code@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/react-input-verification-code/-/react-input-verification-code-1.0.2.tgz"

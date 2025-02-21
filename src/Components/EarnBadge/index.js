@@ -8,8 +8,13 @@ import badge5 from "../../Images/badge6.png";
 import badge6 from "../../Images/badge7.png";
 import OrganizeBadges from "Components/OrganizeBadgesModal";
 import Slider from "react-slick";
-const EarnBadge = ({ data }) => {
-  console.log("Data is Earned badges  --- ", data);
+import { useSelector } from "react-redux";
+const EarnBadge = ({ profile ,data }) => {
+    const { user } = useSelector((state) => state.auth);
+  
+  // console.log("Data is Earned badges  --- ", data);
+  // console.log("Profile in Earned badges  --- ", profile?.user?.id);
+  // console.log("user in Earned badges  --- ", user.id);
   const [organizeModalShow, setOrganizeShow] = useState(false);
   const settings = {
     dots: false,
@@ -53,9 +58,9 @@ const EarnBadge = ({ data }) => {
       <div className={classes.badgeHolder}>
         <div className={classes.header}>
           <h5 className="mb-0">Earned Badges</h5>
-          <p className={`mb-0 ${classes.btn}`} onClick={() => setOrganizeShow(true)}>
+          {user.id === profile?.user?.id && <p className={`mb-0 ${classes.btn}`} onClick={() => setOrganizeShow(true)}>
             Organize Badges
-          </p>
+          </p>}
         </div>
 
         <ul className={classes.listBadge}>
@@ -78,6 +83,7 @@ const EarnBadge = ({ data }) => {
       <OrganizeBadges
         show={organizeModalShow}
         onHide={() => setOrganizeShow(false)}
+        userId={profile?.user?.id}
       />
     </>
   );
