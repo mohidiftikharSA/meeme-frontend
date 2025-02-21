@@ -14,7 +14,8 @@ import Faq from "../../Images/Faq.png";
 import Logout from "../../Images/Logout.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "Redux/reducers/authSlice";
-import { useNavigate } from "react-router-dom"; // Import useHistory
+import { useNavigate } from "react-router-dom";
+import AuthAPIs from "APIs/auth";
 
 
 export const Aside = ({isActive, toggleActive}) => {
@@ -23,9 +24,20 @@ export const Aside = ({isActive, toggleActive}) => {
   const { profile } = useSelector((state) => state.auth);
 
 
+  /**
+   * To Set the Active Status of the User
+   */
+  const active_status_change = async()=>{
+    const data = {
+      status: "false"
+    }
+    const response = await AuthAPIs.active_status_change(data);
+    console.log("active_status_change response, ",response)
+  }
 
   const logoutUser = () => {
     navigate('/')
+    active_status_change();
     dispatch(logout());
     localStorage.removeItem("accessToken");
   };
@@ -33,9 +45,6 @@ export const Aside = ({isActive, toggleActive}) => {
   const handleDropdownItemClick = (text) => {
     navigate(`/profile-setting?text=${text}`);
   };
-
-
-
  
   return (
     <>

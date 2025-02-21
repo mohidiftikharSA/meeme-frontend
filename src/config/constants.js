@@ -15,7 +15,8 @@ export const ENDPOINT = {
     verificationOtp: `${API_URL}/users/verify_otp`,
     updateUser: `${API_URL}/users/update_user`,
     otherUserProfile: `${API_URL}/users/open_some_other_user`,
-    current_user_locked_badges: `${API_URL}/badges/current_user_locked_badges`
+    current_user_locked_badges: `${API_URL}/badges/current_user_locked_badges`,
+    active_status_change: `${API_URL}/users/active_status_change`,
   },
 
   messages: {

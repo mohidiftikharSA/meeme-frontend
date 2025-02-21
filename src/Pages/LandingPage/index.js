@@ -17,8 +17,20 @@ const LandingPage = () => {
 
   useEffect(()=>{
     getUserProfile();
+    active_status_change();
   },[])
 
+  /**
+   * To Set the Active Status of the User
+   */
+  const active_status_change = async()=>{
+
+    const data = {
+      status: "true"
+    }
+    const response = await AuthAPIs.active_status_change(data);
+    console.log("active_status_change response, ",response)
+  }
 
   const getUserProfile = async ()=>{
     setIsLoading(true);

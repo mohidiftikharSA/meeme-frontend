@@ -69,6 +69,10 @@ const current_user_locked_badges = async () => {
 const updatePost = async(data)=>{
     return await API.putMethod(ENDPOINT.post.update_post,true,data);
 }
+
+const active_status_change = async(data)=>{
+    return await API.postMethod(ENDPOINT.users.active_status_change,true,data);
+}
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   login,
@@ -84,5 +88,6 @@ export default {
   createPost,
   getMyPosts,
   current_user_locked_badges,
-  updatePost
+  updatePost,
+  active_status_change
 };
