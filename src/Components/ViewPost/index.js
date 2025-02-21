@@ -128,7 +128,7 @@ const ViewPost = ({ exploresetIsModalOpen, ...props }) => {
                         ) : otherPosts[0] && otherPosts ? otherPosts.slice(0, 6).map((item) => (
                             <Col xs={4} key={item?.post?.id} className="explore-item mb-3">
                                 <div className="explore-image-container">
-                                    {item?.post_type === 'video/mp4' ? (
+                                    {item?.post_type === 'video/mp4' || item?.post_type === 'video/quicktime' ? (
                                         <video
                                             src={item?.post_image}
                                             alt={`Explore video = ${item?.post_image}`}
@@ -150,7 +150,7 @@ const ViewPost = ({ exploresetIsModalOpen, ...props }) => {
                                 </div>
                             </Col>
 
-                        )) : <p>No similar posts found</p>}
+                        )) : <p>No similar Memes found</p>}
                     </Row>
                 </div>
 

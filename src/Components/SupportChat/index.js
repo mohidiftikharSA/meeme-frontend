@@ -15,6 +15,7 @@ import { useWizard } from "react-use-wizard";
 import MessagesAPIs from "../../APIs/messages";
 import Loader from "Components/Loader";
 import EmojiPicker from "emoji-picker-react";
+import { toast } from "react-toastify";
 
 const SupportChat = ({ selectedSupportTicket }) => {
   const { goToStep } = useWizard();
@@ -109,12 +110,19 @@ const SupportChat = ({ selectedSupportTicket }) => {
   const fileInputHandler = (e) => {
     const selectedFile = e.target.files[0];
     console.log("File selected - ", selectedFile);
-    setFile(selectedFile);
     
-    // Create preview URL for image
-    if (selectedFile && selectedFile.type.startsWith('image/')) {
-      const url = URL.createObjectURL(selectedFile);
-      setPreviewUrl(url);
+    // Check if the selected file is not in HEIC format
+    if (selectedFile && selectedFile.type !== 'image/heic') {
+      setFile(selectedFile);
+      
+      // Create preview URL for image
+      if (selectedFile && selectedFile.type.startsWith('image/')) {
+        const url = URL.createObjectURL(selectedFile);
+        setPreviewUrl(url);
+      }
+    } else {
+      console.log("HEIC format is not supported.");
+      toast.error('File formate not supported');;
     }
   };
 

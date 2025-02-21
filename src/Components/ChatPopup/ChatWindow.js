@@ -8,6 +8,7 @@ import { Form } from "react-bootstrap";
 import { FaSmile } from "react-icons/fa";
 import EmojiPicker from "emoji-picker-react";
 import { MoonLoader } from "react-spinners";
+import { toast } from "react-toastify";
 
 const ChatWindow = ({
   isLoading,
@@ -63,14 +64,19 @@ const ChatWindow = ({
 
   const handleFilePreview = (event) => {
     const file = event.target.files[0];
-    if (file) {
+    
+    // Check if the selected file is not in HEIC format
+    if (file && file.type !== 'image/heic') {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreviewImage(reader.result);
       };
       reader.readAsDataURL(file);
+      handleFileChange(event);
+    } else {
+      console.log("HEIC format is not supported.");
+      toast.error('File format not supported');
     }
-    handleFileChange(event);
   };
 
   const removePreviewImage = () => {

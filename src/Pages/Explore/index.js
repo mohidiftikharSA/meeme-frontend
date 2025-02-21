@@ -5,6 +5,7 @@ import MemesDetails from "Components/Memes";
 import Search from "Components/Search";
 import postAPIs from "../../APIs/dashboard/home";
 import avatar from "../../Images/avatar.png";
+import { useSelector } from "react-redux";
 
 const Explore = () => {
   const [recentPosts, setRecentPosts] = useState([]);
@@ -15,6 +16,18 @@ const Explore = () => {
   const [hasMore, setHasMore] = useState(true);
   const [searchMode, setSearchMode] = useState(false);
   const isLoadingRef = useRef(false);
+  const deletedPost = useSelector((state) => state.postDeletionSlice);
+
+  // useEffect(() => {
+  //   console.log("Use effect of delete in explore ", deletedPost);
+    
+  //   setLoading(true); 
+
+  //   pageNumberRef.current = 1; 
+  //   setRecentPosts([]); 
+
+  //   getRecentPostAndTags()
+  // }, [deletedPost]);
 
   const getRecentPostAndTags = useCallback(async () => {
     try {

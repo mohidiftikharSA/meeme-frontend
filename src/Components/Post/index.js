@@ -74,17 +74,18 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
 
 
     const downloadMedia = async (mediaUrl, post) => {
-        console.log("Download  == ",post);
-        try {
+        console.log("Download  == ", post);
+        if(post.post_type === "video/mp4"){
+            try {
           const response = await fetch(mediaUrl, {
             method: 'GET',
-            mode: 'no-cors',
+            mode: 'cors',           // Ensures CORS is handled
             cache: 'no-cache',
             headers: {
                 'Content-Type': 'application/octet-stream'
             }
           });
-          console.log("downloadMedia response, ",response)
+          console.log("downloadMedia response, ", response);
           if (!response.ok) {
             throw new Error('Failed to download the file');
           }
@@ -98,8 +99,12 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
+          // Revoke the object URL after download
+          window.URL.revokeObjectURL(url);
         } catch (error) {
           console.error(error);
+        }}else{
+            toast.error('Videos cannot be downloaded')
         }
       };
 

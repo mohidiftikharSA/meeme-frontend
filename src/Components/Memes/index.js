@@ -12,6 +12,7 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [postData, setPostData] = useState([]);
+    const deletedPost = useSelector((state) => state.postDeletionSlice);
 
     const openModal = (postId) => {
         setSelectedPostId(postId);
@@ -28,6 +29,10 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
+    useEffect(()=>{
+        setIsModalOpen(false);
+    },[deletedPost])
 
     const likePost = async (post_id) => {
         try {

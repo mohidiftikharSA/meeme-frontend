@@ -1,33 +1,61 @@
 .supportDropdown {
-    padding: 0 0 40px 40px;
-    .texts{
-        padding-top: 20px;
-    }
+  padding: 0 0 40px 40px;
+  .texts {
+    padding-top: 20px;
+  }
 }
 
-
 option {
-    border-radius: 15px;
-    border: 1px solid #454545;
-    background: #201E23;
-    border-radius: 10px !important;
-    padding: 10px;
-    font-family: 'Glass Antiqua';
-    font-size: 16px;
+  border-radius: 15px;
+  border: 1px solid #454545;
+  background: #201e23;
+  border-radius: 10px !important;
+  padding: 10px;
+  font-family: "Glass Antiqua";
+  font-size: 16px;
 }
 
 .box {
-    text-align: center;
-    padding: 40px 0;
-    
+  text-align: center;
+  padding: 40px 0;
 
-    img {
-        padding: 15px 0;
-    }
+  img {
+    padding: 15px 0;
+  }
 
-    .text {
-        color: #FFF;
-        font-size: 14px;
-    }
+  .text {
+    color: #fff;
+    font-size: 14px;
+  }
 }
 
+.previewContainer {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping to the next line if needed */
+  gap: 10px; /* Space between previews */
+}
+
+.imageWrapper {
+  position: relative; /* For positioning the remove button */
+}
+
+.imagePreview {
+  width: 100px; /* Fixed width for the preview */
+  height: 100px; /* Fixed height for the preview */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  border-radius: 5px; /* Optional: rounded corners */
+}
+
+.removeButton {
+  position: absolute; 
+  top: 5px; 
+  right: 5px; 
+  background-color: transparent; /* Make background transparent */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  padding: 0; /* Remove padding */
+}
+
+.removeButton:hover {
+  background-color: darkred; /* Darker shade on hover */
+}

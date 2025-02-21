@@ -11,20 +11,29 @@ import Loader from 'Components/Loader';
 const SupportDetail = () => {
   const { previousStep, nextStep } = useWizard();
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedFileName, setSelectedFileName] = useState('');
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [selectedFileNames, setSelectedFileNames] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState('Abuse');
   const [msgError, setMsgError] = useState('');
   const [subjectError, setSubjectError] = useState('');
   const [msg, setMsg] = useState('');
 
-
   const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedImage(file);
-      setSelectedFileName(file.name);
+    const files = Array.from(e.target.files);
+    if (selectedImages.length + files.length > 3) {
+      toast.error("You can only upload up to 3 images.");
+      return;
     }
+    const newImages = files.filter(file => !selectedImages.some(img => img.name === file.name));
+    setSelectedImages(prev => [...prev, ...newImages]);
+    setSelectedFileNames(prev => [...prev, ...newImages.map(file => file.name)]);
+  };
+
+  const removeImage = (index) => {
+    const newImages = selectedImages.filter((_, i) => i !== index);
+    const newFileNames = selectedFileNames.filter((_, i) => i !== index);
+    setSelectedImages(newImages);
+    setSelectedFileNames(newFileNames);
   };
 
   const submitHandler = async () => {
@@ -47,8 +56,10 @@ const SupportDetail = () => {
     data.append('admin_user_id', 1);
     data.append('body', msg);
     data.append('subject', selectedSubject);
-    if (selectedImage) {
-      data.append("message_images[]", selectedImage);
+    if (selectedImages.length > 0) {
+      selectedImages.forEach(image => {
+        data.append("message_images[]", image);
+      });
     }
     const createTicket = await MessageAPIs.createTicket(data);
     toast.success("Ticket Created Successfully", {
@@ -96,6 +107,7 @@ const SupportDetail = () => {
           type="file"
           accept="image/*"
           onChange={handleImageUpload}
+          multiple
           style={{ display: 'none' }}
           id="imageInput"
         />
@@ -103,7 +115,18 @@ const SupportDetail = () => {
           <img src={pic} alt='icon' />
         </label>
         <p className={classes.text}>Attach images or proof</p>
-        {selectedFileName && <p className="extraText">{selectedFileName}</p>}
+        <div className={classes.previewContainer}>
+          {selectedImages.map((image, index) => (
+            <div key={index} className={classes.imageWrapper}>
+              <img src={URL.createObjectURL(image)} alt={`preview-${index}`} className={classes.imagePreview} />
+              <button className={classes.removeButton} onClick={() => removeImage(index)}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="white" viewBox="0 0 16 16">
+                  <path d="M1.5 1.5l13 13m0-13l-13 13" stroke="red" strokeWidth="2" />
+                </svg>
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
       <div className={'postionBottom'}>
         <button
