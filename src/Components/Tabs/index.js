@@ -170,7 +170,7 @@ const TabDetails = ({
   const [isLoading, setIsLoading] = useState(false);
   const [newPost, setNewPost] = useState();
   const dispatch = useDispatch();
-  const deletedPost = useSelector((state) => state.postDeletionSlice);
+  const deletedPost = useSelector((state) => state.postEditAndDeletionSlice);
   
   useEffect(()=>{
     if (deletedPost?.postId) {

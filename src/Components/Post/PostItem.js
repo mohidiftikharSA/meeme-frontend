@@ -14,7 +14,7 @@ import ReportPostModal from "Components/ReportPostModal";
 import { useDispatch, useSelector } from "react-redux";
 import PostsAPIs from '../../APIs/dashboard/home';
 import { toast } from "react-toastify";
-import { setDeletedPostId } from "Redux/reducers/postDeletionSlice";
+import { setDeletedPostId } from "Redux/reducers/postEditAndDeletionSlice";
 import EditPostModal from "Components/EditPostModal";
 
 const PostItem = ({

@@ -16,18 +16,15 @@ const Explore = () => {
   const [hasMore, setHasMore] = useState(true);
   const [searchMode, setSearchMode] = useState(false);
   const isLoadingRef = useRef(false);
-  const deletedPost = useSelector((state) => state.postDeletionSlice);
-
-  // useEffect(() => {
-  //   console.log("Use effect of delete in explore ", deletedPost);
-    
-  //   setLoading(true); 
-
-  //   pageNumberRef.current = 1; 
-  //   setRecentPosts([]); 
-
-  //   getRecentPostAndTags()
-  // }, [deletedPost]);
+  const deletedPost = useSelector((state) => state.postEditAndDeletionSlice);
+  
+  useEffect(()=>{
+    console.log("Delete post in useeffect explore == ",deletedPost)
+    if (deletedPost?.postId) {
+            const updatedData = recentPosts.filter(item => item?.post?.id !== deletedPost.postId);
+            setRecentPosts(updatedData);
+        }
+  },[deletedPost])
 
   const getRecentPostAndTags = useCallback(async () => {
     try {

@@ -1,13 +1,14 @@
 @import "../../Style/base";
 .flexBox {
-    column-count: 2;
-    column-gap: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  .imgBox {
+    flex: 0 0 50% !important;
     @include media("<xs-phone"){
-      column-count: 1;
-      .imgBox{
-        display: block !important;
-      }
+      flex: 0 0 100% !important;
     }
+  }
     &.exploreBox{
       display: flex;
         flex-wrap: wrap;

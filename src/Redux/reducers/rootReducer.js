@@ -4,7 +4,7 @@ import notificationSlice from "./notificationSlice";
 import searchTagData from "./searchTagData";
 import coinsSlice from "./buyCoins";
 import fetchAllCardID from "./fetchCardID";
-import  postDeletionSlice from "./postDeletionSlice";
+import  postEditAndDeletionSlice from "./postEditAndDeletionSlice";
 
 export const rootReducer = combineReducers({
   auth: authReducer,
@@ -12,5 +12,5 @@ export const rootReducer = combineReducers({
   searchTagData: searchTagData,
   coins: coinsSlice,
   cardID: fetchAllCardID,
-  postDeletionSlice: postDeletionSlice
+  postEditAndDeletionSlice: postEditAndDeletionSlice
 });

@@ -12,7 +12,7 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [postData, setPostData] = useState([]);
-    const deletedPost = useSelector((state) => state.postDeletionSlice);
+    const deletedPost = useSelector((state) => state.postEditAndDeletionSlice);
 
     const openModal = (postId) => {
         setSelectedPostId(postId);
