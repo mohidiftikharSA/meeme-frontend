@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import Loader from "Components/Loader";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
 import AuthAPIs from "../../APIs/auth";
+import { setEditedPost } from "Redux/reducers/postEditAndDeletionSlice";
 
 export default function EditPostModal({ post, onUpdate, ...props }) {
     const [selectedImage, setSelectedImage] = useState(post.image || null);
     const [title, setTitle] = useState(post.title || "");
     const [description, setDescription] = useState(post.description || []);
     const [isLoading, setIsLoading] = useState(false);
+    const dispatch = useDispatch();
     const { user } = useSelector((state) => state.auth);
 
     const onClose = () => {
@@ -94,6 +96,14 @@ export default function EditPostModal({ post, onUpdate, ...props }) {
 
         const res = await AuthAPIs.updatePost(data);
         if (res) {
+            console.log("on update post --", res.data?.post.id)
+            console.log("on update post --", res.data?.post)
+            dispatch(
+                setEditedPost({
+                    postId: res.data?.post.id,
+                    post: res.data?.post
+                })
+            )
             onUpdate(res.data);
             toast.success("Post Updated Successfully");
             onClose();

@@ -18,13 +18,32 @@ const Explore = () => {
   const isLoadingRef = useRef(false);
   const deletedPost = useSelector((state) => state.postEditAndDeletionSlice);
   
-  useEffect(()=>{
-    console.log("Delete post in useeffect explore == ",deletedPost)
-    if (deletedPost?.postId) {
-            const updatedData = recentPosts.filter(item => item?.post?.id !== deletedPost.postId);
-            setRecentPosts(updatedData);
+  useEffect(() => {
+    console.log("Delete or Edit post in useEffect explore == ", deletedPost );
+  
+    if (deletedPost?.postId && deletedPost.action === 'delete') {
+      console.log("inside if  ===")
+      const updatedData = recentPosts.filter(item => item?.post?.id !== deletedPost.postId);
+      setRecentPosts(updatedData);
+    } else if (deletedPost?.postId && deletedPost.action === 'edit') {
+      const updatedData = recentPosts.map(item => {
+        if (item?.post?.id === deletedPost?.postId) {
+          console.log("Inside map ===", item)
+          return {
+            ...item,
+            post: {
+              ...item.post,
+              description: deletedPost.post.description, 
+              tag_list: deletedPost.post.duplicate_tags
+            }
+          };
         }
-  },[deletedPost])
+        return item;
+      });
+  
+      setRecentPosts(updatedData);
+    }
+  }, [deletedPost]);
 
   const getRecentPostAndTags = useCallback(async () => {
     try {

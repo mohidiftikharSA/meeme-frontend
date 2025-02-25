@@ -172,12 +172,30 @@ const TabDetails = ({
   const dispatch = useDispatch();
   const deletedPost = useSelector((state) => state.postEditAndDeletionSlice);
   
-  useEffect(()=>{
-    if (deletedPost?.postId) {
-            const updatedData = recentPosts.filter(item => item?.post?.id !== deletedPost.postId);
-            setRecentPosts(updatedData);
+  useEffect(() => {
+    console.log("Delete or Edit post in useEffect explore == ", deletedPost );
+  
+    if (deletedPost?.postId && deletedPost.action === 'delete') {
+      const updatedData = recentPosts.filter(item => item?.post?.id !== deletedPost.postId);
+      setRecentPosts(updatedData);
+    } else if (deletedPost?.postId && deletedPost.action === 'edit') {
+      const updatedData = recentPosts.map(item => {
+        if (item?.post?.id === deletedPost?.postId) {
+          return {
+            ...item,
+            post: {
+              ...item.post,
+              description: deletedPost.post.description, 
+              tag_list: deletedPost.post.duplicate_tags
+            }
+          };
         }
-  },[deletedPost])
+        return item;
+      });
+  
+      setRecentPosts(updatedData);
+    }
+  }, [deletedPost]);
 
   const changeTab = (tabKey) => {
     console.log("Changes tab =", tabKey);

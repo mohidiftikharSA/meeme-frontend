@@ -4,9 +4,9 @@
   flex-wrap: wrap;
   align-items: center;
   .imgBox {
-    flex: 0 0 50% !important;
+    flex: 0 0 50%;
     @include media("<xs-phone"){
-      flex: 0 0 100% !important;
+      flex: 0 0 100%;
     }
   }
     &.exploreBox{
@@ -15,30 +15,32 @@
         align-items: center;
       .imgBox{
         cursor: pointer;
+        flex: 0 0 25% !important;
         &:first-child{
           margin: 0;
+        }
+        @include media("<tablet-x") {
+          flex: 0 0 33.33% !important;
+        }
+      
+        @include media("<phone") {
+          flex: 0 0 50% !important;
+        }
+      
+        @include media("<xs-phone") {
+          flex: 0 0 100% !important;
         }
       }
     }
   .imgBox {
-    flex: 0 0 25%;
+   
     position: relative;
     display: inline-block;
     padding: 12px;
     vertical-align: top;
     width: 100%;
     cursor: pointer;
-    @include media("<tablet-x") {
-        flex: 0 0 33.33%;
-      }
     
-      @include media("<phone") {
-        flex: 0 0 50%;
-      }
-    
-      @include media("<xs-phone") {
-        flex: 0 0 100%;
-      }
     &:first-child{
         margin-top: 35px;
         @include media("<xs-phone"){
