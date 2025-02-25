@@ -1,16 +1,21 @@
 import Posts from "Components/Post";
 import Stories from "Components/Stories";
 import UploadPost from "Components/UploadPost";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import postAPIs from "APIs/dashboard/home";
 import followingPostsData from '../Post/folllowingData.json'
 import { toast } from "react-toastify";
+import Loader from "Components/Loader";
+import TailSpinLoader from "Components/TailSpin";
 
-const FollowingContent = ({setNewPost}) => {
+const FollowingContent = ({ setNewPost }) => {
 
     const [storyData, setStoryData] = useState([]);
     const [followingData, setFollowingData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const postsRef = useRef(null);
+    const pageNumberRef = useRef(1);
+
     const getStories = async () => {
         try {
             const res = await postAPIs.getStories();
@@ -32,11 +37,10 @@ const FollowingContent = ({setNewPost}) => {
     const getFollowerPosts = async () => {
         try {
             setIsLoading(true)
-            const res = await postAPIs.getFollowingPosts();
+            const res = await postAPIs.getFollowingPosts(pageNumberRef.current, 10);
             if (res.status === 200) {
-                // Assuming a 200 status code means success
+                pageNumberRef.current++
                 setFollowingData(res.data.following_posts);
-                // Assuming the data is in a property called 'data'
             } else {
                 console.error("Error: Unexpected status code", res.status);
             }
@@ -45,7 +49,6 @@ const FollowingContent = ({setNewPost}) => {
         } finally {
             setIsLoading(false)
         }
-
     };
     const onStoryUpdate = () => {
         console.log('story refresh')
@@ -57,12 +60,6 @@ const FollowingContent = ({setNewPost}) => {
             await getStories()
         }
         fetchData();
-        /** this for testing purposes**/
-        /* setIsLoading(true)
-         setTimeout(() => {
-             setFollowingData(followingPostsData)
-             setIsLoading(false)
-         }, 3000)*/
         return () => console.log("Cleanup..");
     }, []);
 
@@ -94,43 +91,83 @@ const FollowingContent = ({setNewPost}) => {
     const sharePost = async (post_id) => {
         console.log("share post in root -----", post_id);
         try {
-                    console.log("caling api ")
-                    const res = await postAPIs.sharePost({ post_id });
-                    console.log("rrssponse -- ",res)
-                    if (res) {
-                        toast.success("Link Copied Successfully");
-                        const index = followingData.findIndex(item => item.post.id === post_id);
-            
-                        if (index !== -1) {
-                            // Create a shallow copy of postData
-                            const updatedPostData = [...followingData];
-            
-                            // Update the share count of the found post
-                            updatedPostData[index] = {
-                                ...updatedPostData[index],
-                                post: {
-                                    ...updatedPostData[index].post,
-                                    share_count: (updatedPostData[index].post.share_count || 0) + 1
-                                }
-                            };
-            
-                            // Update the state
-                            setFollowingData(updatedPostData);
+            const res = await postAPIs.sharePost({ post_id });
+            if (res) {
+                toast.success("Link Copied Successfully");
+                const index = followingData.findIndex(item => item.post.id === post_id);
+
+                if (index !== -1) {
+                    // Create a shallow copy of postData
+                    const updatedPostData = [...followingData];
+
+                    // Update the share count of the found post
+                    updatedPostData[index] = {
+                        ...updatedPostData[index],
+                        post: {
+                            ...updatedPostData[index].post,
+                            share_count: (updatedPostData[index].post.share_count || 0) + 1
                         }
-                    } else {
-                        console.error("Error: Unexpected status code", res);
-                    }
-                } catch (error) {
-                    console.error("Error while fetching data:", error);
+                    };
+
+                    setFollowingData(updatedPostData);
                 }
+            } else {
+                console.error("Error: Unexpected status code", res);
+            }
+        } catch (error) {
+            console.error("Error while fetching data:", error);
+        }
 
     };
 
+    const loadMorePosts = async () => {
+        console.log("Loading more follower posts...", pageNumberRef.current);
+        try {
+            const res = await postAPIs.getFollowingPosts(pageNumberRef.current, 10);
+            if (res.status === 200) {
+                pageNumberRef.current++
+                // setFollowingData((prevPosts) => [...prevPosts, ...res.data.following_posts]);
+            } else {
+                console.error("Error: Unexpected status code", res.status);
+            }
+        } catch (error) {
+            console.error("Error while fetching data:", error);
+        } finally {
+            setIsLoading(false)
+        }
+
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (postsRef.current) {
+                const { scrollTop, scrollHeight, clientHeight } = postsRef.current;
+                if (scrollTop + clientHeight >= scrollHeight - 10) {
+                    loadMorePosts();
+                }
+            }
+        };
+
+        const currentRef = postsRef.current;
+        if (currentRef) {
+            currentRef.addEventListener("scroll", handleScroll);
+        }
+
+        return () => {
+            if (currentRef) {
+                currentRef.removeEventListener("scroll", handleScroll);
+            }
+        };
+    }, []);
 
     return (<>
-        <Stories data={storyData} onStoryUpdate={onStoryUpdate}/>
-        <UploadPost setNewPost={setNewPost}/>
-        <Posts postData={followingData} isLoading={isLoading} sharePost={sharePost} likePost={likePost} />
+        <div ref={postsRef} className="scrollable">
+            <Stories data={storyData} onStoryUpdate={onStoryUpdate} />
+            <UploadPost setNewPost={setNewPost} />
+            <div>
+                <Posts postData={followingData} isLoading={isLoading} sharePost={sharePost} likePost={likePost} />
+            </div>
+        </div>
     </>);
 };
 

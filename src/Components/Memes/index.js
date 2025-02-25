@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import classes from "./index.module.scss";
 import ViewPost from "Components/ViewPost";
 import avatar from "../../Images/avatar.png";
@@ -8,11 +8,13 @@ import postAPIs from "../../APIs/dashboard/home";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-const MemesDetails = ({newMemesData, explore, isLoading}) => {
+const MemesDetails = ({newMemesData, explore, isLoading, onScrollEnd}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [postData, setPostData] = useState([]);
     const deletedPost = useSelector((state) => state.postEditAndDeletionSlice);
+
+    const memesRef = useRef(null);
 
     const openModal = (postId) => {
         setSelectedPostId(postId);
@@ -33,6 +35,28 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
     useEffect(()=>{
         setIsModalOpen(false);
     },[deletedPost])
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (memesRef.current) {
+                const { scrollTop, scrollHeight, clientHeight } = memesRef.current;
+                if (scrollTop + clientHeight >= scrollHeight - 10) {
+                    onScrollEnd();
+                }
+            }
+        };
+
+        const currentRef = memesRef.current;
+        if (currentRef) {
+            currentRef.addEventListener("scroll", handleScroll);
+        }
+
+        return () => {
+            if (currentRef) {
+                currentRef.removeEventListener("scroll", handleScroll);
+            }
+        };
+    }, [onScrollEnd]);
 
     const likePost = async (post_id) => {
         try {
@@ -65,15 +89,11 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
             console.log("rrssponse -- ",res)
             if (res) {
                 toast.success("Link Copied Successfully");
-                // Find index of the post that needs updating
                 const index = postData.findIndex(item => item.post.id === post_id);
     
                 if (index !== -1) {
-                    // Create a shallow copy of postData
                     const updatedPostData = [...postData];
-    
-                    // Update the share count of the found post
-                    updatedPostData[index] = {
+                        updatedPostData[index] = {
                         ...updatedPostData[index],
                         post: {
                             ...updatedPostData[index].post,
@@ -97,9 +117,8 @@ const MemesDetails = ({newMemesData, explore, isLoading}) => {
             {
                 isLoading ? <MemeItemSkeleton explore={explore}/> :
                     <div
-                        className={`${classes.flexBox} ${
-                            explore ? `${classes.exploreBox}` : ""
-                        }`}
+                        ref={memesRef}
+                        className={`${classes.flexBox} ${explore ? `${classes.exploreBox}` : ""} ${classes.scrollable}`}
                     >
                         {postData.map((item, ind) => (
                             <MemeItem key={ind} item={item} openModal={openModal} explore/>

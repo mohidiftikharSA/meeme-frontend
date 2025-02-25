@@ -110,6 +110,7 @@ const Stories = (props) => {
                   </div>
                 </div>
               ))} */}
+              {console.log("Story Data  === ", storyData)}
               {storyData &&
                 storyData.map((item, index) => {
                   return (
@@ -118,8 +119,15 @@ const Stories = (props) => {
                       className={classes.ImgBox}
                       onClick={() => openModalWithStory(index)}
                     >
-                      <img src={item.story_image} alt="img" />
-                      <div className={classes.prilfe}>
+                      {item.story_type === "video/quicktime" || item.story_type === "video" ? (
+                        <video className={classes.storyvideo} autoPlay muted>
+                          <source src={item.story_image} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      ) : (
+                        <img src={item.story_image} alt="img" />
+                      )}
+                      <div id={classes.story_pic} className={classes.prilfe}>
                         {/* <img src={item?.user_image} alt="img"/> */}
                         <img
                           src={item?.user_image || user}

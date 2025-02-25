@@ -79,3 +79,12 @@
     }
   }
 }
+
+.scrollable {
+  overflow-y: auto;
+  max-height: 800px; 
+}
+
+.scrollable::-webkit-scrollbar{
+  display: none;
+}

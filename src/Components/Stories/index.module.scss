@@ -93,3 +93,28 @@
     }
   }
 }
+
+.storyvideo {
+  width: -webkit-fill-available;
+  height: 196px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+#story_pic {
+  bottom: 11px;
+  position: absolute;
+  left: 20px;
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+#story_pic p {
+  margin: 0px;
+}
+#story_pic img {
+  width: 20px;
+  height: 20px;
+}

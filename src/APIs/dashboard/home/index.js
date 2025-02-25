@@ -1,19 +1,19 @@
 import API from "APIs/base";
 import { ENDPOINT } from "config/constants";
 
-const getRecentPosts = async (page=1) => {
-    return await API.getMethod(`${ENDPOINT.getRecentPosts}?page=${page}`, true,false)
+const getRecentPosts = async (page=1,per_page =25) => {
+    return await API.getMethod(`${ENDPOINT.getRecentPosts}?page=${page}&per_page=${per_page}`, true,false)
 }
-const getTrendingPosts = async () => {
-  return await API.getMethod(`${ENDPOINT.getTrendingPost}?page=1&per_page=100`, true,false);
+const getTrendingPosts = async (page=1,per_page =10) => {
+  return await API.getMethod(`${ENDPOINT.getTrendingPost}?page=${page}&per_page=${per_page}`, true,false);
 };
 
 const getStories = async () => {
   return await API.getMethod(ENDPOINT.stories, true,false);
 };
 
-const getFollowingPosts = async () => {
-  return await API.getMethod(ENDPOINT.followingPosts, true);
+const getFollowingPosts = async (page=1,per_page =10) => {
+  return await API.getMethod(`${ENDPOINT.followingPosts}?page=${page}&per_page=${per_page}`, true);
 };
 
 const getCommentsByPost = async (id) => {

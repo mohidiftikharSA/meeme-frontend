@@ -61,6 +61,9 @@ const UploadModal = (props) => {
         console.log("Loaded")
         setStoryLoaded(true)
     }
+    const handleVideoLoad = () => {
+        setStoryLoaded(true);
+    }
     const onClickStoryImage = (e) => {
         const {clientX, target} = e;
         const {left, width} = target.getBoundingClientRect();
@@ -121,15 +124,29 @@ const UploadModal = (props) => {
                         <div style={{
                             display: storyLoaded ? 'none' : 'block'
                         }}>
-                            <SpinnerLoader></SpinnerLoader>
+                            <SpinnerLoader />
                         </div>
-                        <img
-                            style={{display: storyLoaded ? 'block' : 'none'}}
-                            src={story?.story_image}
-                            onClick={onClickStoryImage}
-                            onLoad={handleImageLoad}
-                            onError={handleImageError}
-                            alt="Selected Story"/>
+                        {story.story_type === "video/quicktime" || story.story_type === "video" ? (
+                            <video
+                            className={classes.story_video}
+                                style={{ display: storyLoaded ? 'block' : 'none' }}
+                                controls
+                                onLoadedData={handleVideoLoad}
+                                onError={handleImageError}
+                            >
+                                <source src={story?.story_image} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        ) : (
+                            <img
+                                style={{ display: storyLoaded ? 'block' : 'none' }}
+                                src={story?.story_image}
+                                onClick={onClickStoryImage}
+                                onLoad={handleImageLoad}
+                                onError={handleImageError}
+                                alt="Selected Story"
+                            />
+                        )}
                     </>)}
                 </div>
             </> : <>

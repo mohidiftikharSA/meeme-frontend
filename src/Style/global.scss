@@ -1865,3 +1865,12 @@ aside.EmojiPickerReact.epr-main {
 .EditPostModal{
   background-color: #000000ab;
 }
+
+.scrollable {
+  overflow-y: auto;
+  max-height: 800px; 
+}
+
+.scrollable::-webkit-scrollbar{
+  display: none;
+}

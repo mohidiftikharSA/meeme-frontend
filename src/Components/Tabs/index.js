@@ -1,6 +1,6 @@
 import FollowingContent from "Components/FollowingContent";
 import MemesDetails from "Components/Memes";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Button, Tab, Tabs } from "react-bootstrap";
 import img13 from "../../Images/bg1.png";
 import img14 from "../../Images/bg2.png";
@@ -171,10 +171,10 @@ const TabDetails = ({
   const [newPost, setNewPost] = useState();
   const dispatch = useDispatch();
   const deletedPost = useSelector((state) => state.postEditAndDeletionSlice);
-  
+  const newMemesPageNumberRef = useRef(1);
+  const trendingPageNumberRef = useRef(1);
+
   useEffect(() => {
-    console.log("Delete or Edit post in useEffect explore == ", deletedPost );
-  
     if (deletedPost?.postId && deletedPost.action === 'delete') {
       const updatedData = recentPosts.filter(item => item?.post?.id !== deletedPost.postId);
       setRecentPosts(updatedData);
@@ -185,14 +185,13 @@ const TabDetails = ({
             ...item,
             post: {
               ...item.post,
-              description: deletedPost.post.description, 
+              description: deletedPost.post.description,
               tag_list: deletedPost.post.duplicate_tags
             }
           };
         }
         return item;
       });
-  
       setRecentPosts(updatedData);
     }
   }, [deletedPost]);
@@ -220,14 +219,15 @@ const TabDetails = ({
   };
 
   const getRecentPost = async (newPost = false) => {
-    if (!newPost){
+    if (!newPost) {
       setIsLoadingRecentPosts(true);
-    }else{
+    } else {
       setIsLoading(true)
     }
     try {
-      const res = await postAPIs.getRecentPosts();
+      const res = await postAPIs.getRecentPosts(newMemesPageNumberRef.current, 10);
       if (res.status === 200) {
+        newMemesPageNumberRef.current++;
         setRecentPosts(res.data.recent_posts);
       } else {
         console.error("Error: Unexpected status code", res.status);
@@ -242,8 +242,9 @@ const TabDetails = ({
   const getTrendingPost = async () => {
     try {
       setIsLoadingTrendingPosts(true);
-      const res = await postAPIs.getTrendingPosts();
+      const res = await postAPIs.getTrendingPosts(trendingPageNumberRef.current,10);
       if (res.status === 200) {
+        trendingPageNumberRef.current++;
         setTrendingPosts(res.data.trending_posts);
       } else {
         console.error("Error: Unexpected status code", res.status);
@@ -261,9 +262,9 @@ const TabDetails = ({
     getPrivacyPolicy();
     dispatch(
       setSearchTagData({
-          data: null
+        data: null
       })
-  )
+    )
     const fetchData = async () => {
       await getRecentPost();
       await getTrendingPost();
@@ -333,6 +334,47 @@ const TabDetails = ({
     }
   };
 
+  const loadMoreFollowing = () => {
+    // Logic to fetch the next page of following posts
+    console.log("loading more loadMoreFollowing")
+  };
+
+  const loadMoreMemes = async () => {
+    try {
+      console.log("loading more loadMoreMemes pageref ===", newMemesPageNumberRef.current);
+      const res = await postAPIs.getRecentPosts(newMemesPageNumberRef.current,10);
+      if (res.status === 200) {
+        newMemesPageNumberRef.current++;
+        // Append new posts to the existing ones
+        setRecentPosts((prevPosts) => [...prevPosts, ...res.data.recent_posts]);
+      } else {
+        console.error("Error: Unexpected status code", res.status);
+      }
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+    } finally {
+      setIsLoadingRecentPosts(false);
+      setIsLoading(false);
+    }
+  };
+
+  const loadMoreTrending = async () => {
+    console.log("loading more loadMoreTrending == ", trendingPageNumberRef.current)
+    try {
+      const res = await postAPIs.getTrendingPosts(trendingPageNumberRef.current, 10);
+      if (res.status === 200) {
+        trendingPageNumberRef.current++;
+        setTrendingPosts((prevPosts) => [...prevPosts, ...res.data.trending_posts]);
+      } else {
+        console.error("Error: Unexpected status code", res.status);
+      }
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+    } finally {
+      setIsLoadingTrendingPosts(false);
+    }
+  };
+
   return (
     <>
       <Loader isLoading={isLoading} />
@@ -345,12 +387,13 @@ const TabDetails = ({
           className="mb-lg-5 mb-3"
         >
           <Tab eventKey="following" title="Following">
-            <FollowingContent setNewPost={setNewPost} />
+            <FollowingContent setNewPost={setNewPost} onScrollEnd={loadMoreFollowing} />
           </Tab>
           <Tab eventKey="memes" title="New Memes">
             <MemesDetails
               newMemesData={recentPosts}
               isLoading={isLoadingRecentPosts}
+              onScrollEnd={loadMoreMemes}
             />
           </Tab>
           <Tab eventKey="trending" title="Trending">
@@ -359,6 +402,7 @@ const TabDetails = ({
                 tagTrendingPost[0] ? tagTrendingPost : trendingPosts
               }
               isLoading={isLoadingTrendingPosts}
+              onScrollEnd={loadMoreTrending}
             />
           </Tab>
         </Tabs>
@@ -455,7 +499,7 @@ const TabDetails = ({
             />
           </Tab>
           <Tab eventKey="tournament" title="Tournament Entries">
-            <ProfilePost otherProfile tournament data={ tournamentPosts} />
+            <ProfilePost otherProfile tournament data={tournamentPosts} />
           </Tab>
         </Tabs>
       )}
