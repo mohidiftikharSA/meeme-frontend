@@ -75,7 +75,7 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
 
     const downloadMedia = async (mediaUrl, post) => {
         console.log("Download  == ", post);
-        if (post.post_type !== "video/mp4") {
+        if (post.post_type !== "video/mp4" &&  post.post_type !=='video/quicktime') {
             try {
                 const response = await fetch(mediaUrl, {
                     method: 'GET',
@@ -104,28 +104,40 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
             } catch (error) {
                 console.error(error);
             }
-        } else {
-            console.log("Media url -=",);
-            // window.open(post?.post_image, "_blank");
-            // toast.error('Videos cannot be downloaded')
-            const videoUrl = post?.post_image;
-            const response = await fetch(videoUrl, {
-                method: 'GET',
-                mode: 'cors',          
-                cache: 'no-cache',
-                headers: {
-                    'Content-Type': 'application/octet-stream'
-                }
-            });
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `${post.username}_${post.post.id}.mp4`;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            window.URL.revokeObjectURL(url);
+        } else if (post.post_type === "video/mp4" || post.post_type ==='video/quicktime'){
+            // Show processing toast
+            const toastId = toast.loading("Processing your video download...");
+
+            try {
+                console.log("Media url -=",);
+                const videoUrl = post?.post_image;
+                const response = await fetch(videoUrl, {
+                    method: 'GET',
+                    mode: 'cors',          
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/octet-stream'
+                    }
+                });
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = `${post.username}_${post.post.id}.mp4`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+
+                // Close the toast after download is complete
+                toast.dismiss(toastId);
+                toast.success("Video downloaded successfully!");
+            } catch (error) {
+                console.error(error);
+                // Close the toast and show error message
+                toast.dismiss(toastId);
+                toast.error("Failed to download video.");
+            }
         }
     };
 
