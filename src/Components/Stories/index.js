@@ -110,7 +110,6 @@ const Stories = (props) => {
                   </div>
                 </div>
               ))} */}
-              {console.log("Story Data  === ", storyData)}
               {storyData &&
                 storyData.map((item, index) => {
                   return (

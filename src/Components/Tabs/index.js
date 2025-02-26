@@ -342,9 +342,11 @@ const TabDetails = ({
   const loadMoreMemes = async () => {
     try {
       console.log("loading more loadMoreMemes pageref ===", newMemesPageNumberRef.current);
-      const res = await postAPIs.getRecentPosts(newMemesPageNumberRef.current,10);
+      // Increment the page number before making the API call
+      const currentPage = newMemesPageNumberRef.current;
+      newMemesPageNumberRef.current++;
+      const res = await postAPIs.getRecentPosts(currentPage, 10);
       if (res.status === 200) {
-        newMemesPageNumberRef.current++;
         // Append new posts to the existing ones
         setRecentPosts((prevPosts) => [...prevPosts, ...res.data.recent_posts]);
       } else {
@@ -359,7 +361,7 @@ const TabDetails = ({
   };
 
   const loadMoreTrending = async () => {
-    console.log("loading more loadMoreTrending == ", trendingPageNumberRef.current)
+    // console.log("loading more loadMoreTrending == ", trendingPageNumberRef.current)
     try {
       const res = await postAPIs.getTrendingPosts(trendingPageNumberRef.current, 10);
       if (res.status === 200) {
