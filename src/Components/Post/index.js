@@ -15,8 +15,8 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
     const navigate = useNavigate();
     const [imagesLoaded, setImagesLoaded] = useState([]);
     const [postRemovalId, setPostRemovalId] = useState();
-    const {userId } = useSelector(state => state.auth);
-      
+    const { userId } = useSelector(state => state.auth);
+
     const openModal = (postId) => {
         console.log('postId', postId)
         if (!comment) {
@@ -41,7 +41,7 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
         setFollowingData(postData);
     }, [postData, isLoading]);
 
- 
+
 
     const copyToClipboard = (linkToCopy) => {
         console.log("Copy Link function =", linkToCopy);
@@ -75,40 +75,61 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
 
     const downloadMedia = async (mediaUrl, post) => {
         console.log("Download  == ", post);
-        if(post.post_type !== "video/mp4"){
+        if (post.post_type !== "video/mp4") {
             try {
-          const response = await fetch(mediaUrl, {
-            method: 'GET',
-            mode: 'cors',           // Ensures CORS is handled
-            cache: 'no-cache',
-            headers: {
-                'Content-Type': 'application/octet-stream'
-            }
-          });
-          console.log("downloadMedia response, ", response);
-          if (!response.ok) {
-            throw new Error('Failed to download the file');
-          }
-      
-          const blob = await response.blob();
-          const url = window.URL.createObjectURL(blob);
-      
-          const link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', `Meme_${post?.username}_${post?.post?.id}.png`);
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          // Revoke the object URL after download
-          window.URL.revokeObjectURL(url);
-        } catch (error) {
-          console.error(error);
-        }}else{
-            toast.error('Videos cannot be downloaded')
-        }
-      };
+                const response = await fetch(mediaUrl, {
+                    method: 'GET',
+                    mode: 'cors',           // Ensures CORS is handled
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/octet-stream'
+                    }
+                });
+                console.log("downloadMedia response, ", response);
+                if (!response.ok) {
+                    throw new Error('Failed to download the file');
+                }
 
-    
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', `Meme_${post?.username}_${post?.post?.id}.png`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                // Revoke the object URL after download
+                window.URL.revokeObjectURL(url);
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            console.log("Media url -=",);
+            // window.open(post?.post_image, "_blank");
+            // toast.error('Videos cannot be downloaded')
+            const videoUrl = post?.post_image;
+            const response = await fetch(videoUrl, {
+                method: 'GET',
+                mode: 'cors',          
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/octet-stream'
+                }
+            });
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `${post.username}_${post.post.id}.mp4`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        }
+    };
+
+
 
     const handleImageLoad = (index) => {
         setImagesLoaded((prevImagesLoaded) => {
@@ -125,25 +146,25 @@ const Posts = ({ postData, comment, isLoading, disable, likePost, setPostRemoval
 
     return (<>
         <iframe id="my_iframe" style={{ display: "none" }}></iframe>
-        {isLoading ? <SkeletonPostsLoading /> : followingData[0] && followingData.map((item, ind) => 
-        <>
-        <PostItem
-            key={ind}
-            item={item}
-            ind={ind}
-            likePost={likePost}
-            sharePost={sharePost}
-            downloadMedia={downloadMedia}
-            redirectToOtherProfile={redirectToOtherProfile}
-            openModal={openModal}
-            copyToClipboard={copyToClipboard}
-            handleImageLoad={handleImageLoad}
-            handleImageError={handleImageError}
-            imagesLoaded={imagesLoaded}
-            comment={comment}
-            disable
-            postRemovalId={setPostRemovalIdRoot}
-        /></>
+        {isLoading ? <SkeletonPostsLoading /> : followingData[0] && followingData.map((item, ind) =>
+            <>
+                <PostItem
+                    key={ind}
+                    item={item}
+                    ind={ind}
+                    likePost={likePost}
+                    sharePost={sharePost}
+                    downloadMedia={downloadMedia}
+                    redirectToOtherProfile={redirectToOtherProfile}
+                    openModal={openModal}
+                    copyToClipboard={copyToClipboard}
+                    handleImageLoad={handleImageLoad}
+                    handleImageError={handleImageError}
+                    imagesLoaded={imagesLoaded}
+                    comment={comment}
+                    disable
+                    postRemovalId={setPostRemovalIdRoot}
+                /></>
         )}
 
         {isModalOpen &&

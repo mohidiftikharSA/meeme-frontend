@@ -33,7 +33,7 @@ const OtherProfile = () => {
     console.log("currentUser ---- ", id);
     const userPosts = await AuthAPIs.getMyPosts(id);
     if (userPosts) {
-      console.log("Get My Posts =", userPosts);
+      console.log("Get otherr userr posts =", userPosts);
       setUserPosts(userPosts.data?.user_posts);
       setIsLoading(false);
     }

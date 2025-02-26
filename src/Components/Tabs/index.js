@@ -498,9 +498,9 @@ const TabDetails = ({
               postRemoved={postRemoved}
             />
           </Tab>
-          <Tab eventKey="tournament" title="Tournament Entries">
+         {!otherProfile && <Tab eventKey="tournament" title="Tournament Entries">
             <ProfilePost otherProfile tournament data={tournamentPosts} />
-          </Tab>
+          </Tab>}
         </Tabs>
       )}
       {customizeProfile && (
