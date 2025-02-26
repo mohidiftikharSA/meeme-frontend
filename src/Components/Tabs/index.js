@@ -225,7 +225,7 @@ const TabDetails = ({
       setIsLoading(true)
     }
     try {
-      const res = await postAPIs.getRecentPosts(newMemesPageNumberRef.current, 10);
+      const res = await postAPIs.getRecentPosts(1, 10);
       if (res.status === 200) {
         newMemesPageNumberRef.current++;
         setRecentPosts(res.data.recent_posts);
