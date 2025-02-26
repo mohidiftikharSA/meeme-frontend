@@ -363,9 +363,10 @@ const TabDetails = ({
   const loadMoreTrending = async () => {
     // console.log("loading more loadMoreTrending == ", trendingPageNumberRef.current)
     try {
-      const res = await postAPIs.getTrendingPosts(trendingPageNumberRef.current, 10);
+      const currentPage = trendingPageNumberRef.current;
+      trendingPageNumberRef.current++;
+      const res = await postAPIs.getTrendingPosts(currentPage, 10);
       if (res.status === 200) {
-        trendingPageNumberRef.current++;
         setTrendingPosts((prevPosts) => [...prevPosts, ...res.data.trending_posts]);
       } else {
         console.error("Error: Unexpected status code", res.status);
