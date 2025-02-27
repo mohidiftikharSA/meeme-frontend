@@ -492,7 +492,7 @@ const TabDetails = ({
         </Tabs>
       )}
       {profile && (
-        <Tabs defaultActiveKey={"post"} className="mb-5 double">
+        <Tabs defaultActiveKey={"post"} className={`mb-5 double ${otherProfile && "full-tab"}`}>
           <Tab eventKey="post" title="Posts">
             <ProfilePost
               myProfile

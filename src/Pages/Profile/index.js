@@ -17,12 +17,12 @@ const ProfilePage = () => {
 
   useEffect(() => {
     getUserProfile();
-    getUserTournamentPosts();
     getMyPosts();
+    getUserTournamentPosts();
   }, []);
 
   const getUserTournamentPosts = async ()=>{
-    console.log("getting tournament posts ===")
+
     const res = await ProfileAPIs.current_user_tournament_posts();
     if(res){
       console.log("Tournament posts response  - ", res.data.current_user_tournament_posts);

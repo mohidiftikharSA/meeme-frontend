@@ -3,18 +3,16 @@
   border-bottom: 0;
   font-family: $pt;
   font-weight: 600;
-  @include media("<xs-phone"){
+  @include media("<xs-phone") {
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
     justify-content: flex-start;
     padding-bottom: 5px;
     &::-webkit-scrollbar {
-      height: 4px;              /* height of horizontal scrollbar ← You're missing this */
-      width: 4px;               /* width of vertical scrollbar */
+      height: 4px; /* height of horizontal scrollbar ← You're missing this */
+      width: 4px; /* width of vertical scrollbar */
     }
-    
-    
   }
   &.double {
     background: #201e23;
@@ -30,11 +28,14 @@
       }
     }
   }
+  &.full-tab {
+    .nav-item {
+      flex: 0 0 100%;
+    }
+  }
 
   &.noBg {
-    border-bottom: 1px solid #2C2948;
-    ;
-
+    border-bottom: 1px solid #2c2948;
     .nav-item {
       flex: 1 0 auto;
       max-width: 50%;
@@ -97,7 +98,7 @@
 
   .nav-item {
     flex: 0 0 33.33%;
-    @include media("<xs-phone"){
+    @include media("<xs-phone") {
       flex: 1 0 auto;
     }
 
@@ -139,7 +140,7 @@
   padding: 15px;
   margin: 10px;
   font-size: 12px;
-  color: #9892A5;
+  color: #9892a5;
   @include media("<xs-phone") {
     margin: 10px 0px;
   }
