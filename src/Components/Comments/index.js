@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import DashboardAPIs from '../../APIs/dashboard/home';
 
 
-const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCreated,onHide }) => {
+const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCreated, onHide }) => {
   const [replayVisible, setReplayVisible] = useState(false);
   const [comment, setComment] = useState("");
   const [childComment, setChildComment] = useState('');
@@ -27,7 +27,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
 
 
   const handleSubmit = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     handlePostComment();
   };
   const handlePostComment = () => {
@@ -67,21 +67,21 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
       // console.log("Like and Dislike response  = ", res.data);
       const selectedComment = allCommentsArr?.findIndex(post => post?.id === commentId);
       allCommentsArr[selectedComment].user_comment_like_status = !allCommentsArr[selectedComment].user_comment_like_status
-      if(action === 'like'){
+      if (action === 'like') {
         allCommentsArr[selectedComment].comment_like_count = (allCommentsArr[selectedComment].comment_like_count + 1)
-      }else if(action === 'unlike'){
+      } else if (action === 'unlike') {
         allCommentsArr[selectedComment].comment_like_count = (allCommentsArr[selectedComment].comment_like_count - 1)
       }
       setAllCommentsArr([...allCommentsArr]);
-     
+
     }
   }
- 
+
 
   return (
     <div className="py-lg-5 py-3 px-3">
       <Heading title={"Comments"} comment onHide={onHide} />
-      
+      {console.log("all commentts === ", allCommentsArr)}
       <ul className={classes.commentList}>
         {allCommentsArr
           .slice()
@@ -99,11 +99,12 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                   <div className={classes.commentBox}>
                     <h6 className="mb-0">{item.user}</h6>
                     <p>{item.description}</p>
+                    <img style={{ width: '100px', height: 'auto' }} src={item.comment_image} alt="comment img"></img>
                   </div>
                 </div>
                 <div className={classes.bottomBox}>
                   <span>{timeFormat(item.comment_time)}</span>
-                  {item?.user_comment_like_status ? <span onClick={() => { likeAndUnlikeComment(item?.id,'unlike') }} >unlike</span> : <span onClick={() => { likeAndUnlikeComment(item?.id,'like') }}>Like</span>}
+                  {item?.user_comment_like_status ? <span onClick={() => { likeAndUnlikeComment(item?.id, 'unlike') }} >unlike</span> : <span onClick={() => { likeAndUnlikeComment(item?.id, 'like') }}>Like</span>}
                   <span>{item?.comment_like_count}</span>
                   <span onClick={() => { toggleReplayHolderVisibility(item?.id) }}>Reply</span>
                 </div>
@@ -111,8 +112,8 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                   className={classes.viewmore}
                   onClick={toggleReplayVisibility}
                 >
-                  {item?.child_comment?.length === 0 ? null : (
-                    <span style={{ paddingLeft: "50px" }}>
+                  {replayVisible ? <span style={{ paddingLeft: "50px", cursor: 'pointer' }} onClick={toggleReplayVisibility}> {'< '}Hide reply</span> : item?.child_comment?.length === 0 ? null : (
+                    <span style={{ paddingLeft: "50px", cursor:'pointer' }}>
                       View {item?.child_comment?.length} more reply.....
                     </span>
                   )}
@@ -134,6 +135,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                             >
                               <h6 className="mb-0">{child?.user}</h6>
                               <p>{child?.description}</p>
+                              <img style={{ width: '100px', height: 'auto' }} src={child.comment_image} alt="comment img"></img>
                             </div>
                           </div>
                         </>
@@ -156,7 +158,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                             value={childComment}
                             onChange={(e) => setChildComment(e.target.value)}
                           />
-                            <button type="button" disabled={isloading} onClick={() => { submitChildComment(item?.id) }}>
+                          <button type="button" disabled={isloading} onClick={() => { submitChildComment(item?.id) }}>
                             Post
                           </button>
                         </div>
