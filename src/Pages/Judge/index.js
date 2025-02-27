@@ -42,7 +42,7 @@ const JudgePage = () => {
                 })
             }
         }else{
-            toast.error('You can only like 25 posts per day')
+            toast.error('You can only judge 25 posts per day')
         }
     }
     const removePostFromList = (selected_post_id) => {

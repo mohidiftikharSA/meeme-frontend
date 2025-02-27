@@ -1874,3 +1874,40 @@ aside.EmojiPickerReact.epr-main {
 .scrollable::-webkit-scrollbar{
   display: none;
 }
+
+.rules-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: list-counter;
+}
+
+.rules-list li {
+  position: relative;
+  color: white;
+  padding: 12px 16px 12px 48px;
+  margin: 12px 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.rules-list li::before {
+  content: counter(list-counter);
+  counter-increment: list-counter;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(180deg, #eae3be, #FFA500); /* Gold gradient */
+  color: black;
+  font-weight: bold;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
