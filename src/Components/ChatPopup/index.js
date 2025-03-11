@@ -17,7 +17,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const [inboxList, setInboxList] = useState([]);
   const [selectedChat, setSelectedChat] = useState();
   const [msgsList, setMsgsList] = useState([]);
-  const { user, accessToken } = useSelector((state) => state.auth);
+  const { user, accessToken, ...authSlice } = useSelector((state) => state.auth);
   const [imgForAPI, setImgForAPI] = useState(null);
   const fileInputRef = useRef(null);
   const [msgSent, setMsgSent] = useState();
@@ -90,8 +90,10 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   };
 
   useEffect(() => {
-    console.log("EMoji in useEffect =", emoji);
-    setInputText((prevText) => prevText + emoji);
+    if (emoji) {
+      console.log("EMoji in useEffect =", emoji);
+      setInputText((prevText) => prevText + emoji);
+    }
   }, [emoji])
 
   const sendMessage = async () => {
@@ -118,7 +120,6 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
       "conversation_id",
       selectedChat.conversation_id || res.data?.conversation?.id
     );
-    setIsLoading(false);
     data.append(
       "receiver_id",
       selectedChat.sender_id === user.id
@@ -127,21 +128,35 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
     );
     data.append("body", inputText);
     console.log("Set close the prreview w===", inputText)
+    setInputText("");
+    const newMsg = {
+      sender_id: user.id,
+      body: inputText,
+      sender_image: authSlice?.profile?.user_image,
+      message_images: []
+    };
+    if (!imgForAPI) {
+      setMsgsList((prevState) => [...prevState, newMsg]);
+      setIsLoading(false);
+    }
 
     if (imgForAPI) {
       data.append("message_images[]", imgForAPI);
     }
     const sendMsg = await MessagesAPIs.sendMessage(data);
     if (sendMsg) {
+      if (imgForAPI) {
+        console.log("sendMsg?.data?.message?.message_images === ", sendMsg?.data?.message?.message_images)
+        newMsg['message_images'] = sendMsg?.data?.message?.message_images;
+        setMsgsList((prevState) => [...prevState, newMsg]);
+        setIsLoading(false);
+        setImgForAPI(null);
+      }
       setMsgSent(sendMsg.data);
     }
-    const newMessage = {
-      text: inputText,
-      user: user,
-    };
+    setIsLoading(false);
     setImgForAPI(null);
     setClosePreview(Math.floor(Math.random() * 10))
-    setInputText("");
   };
 
   const handleClick = async (chat) => {
@@ -163,6 +178,9 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   };
 
   const handleReceivedMessage = (response) => {
+    // console.log("recived response ===", response?.body);
+    // console.log("authSlice user id ===", authSlice?.profile?.user_image);
+    if (response?.body?.sender_id === user.id) return
     /**
      * Sometime message replicates that's why there's check implemented
      * if message already exists in the Messages array then don't add in list

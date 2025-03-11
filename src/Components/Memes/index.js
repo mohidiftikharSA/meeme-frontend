@@ -8,7 +8,7 @@ import postAPIs from "../../APIs/dashboard/home";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-const MemesDetails = ({newMemesData, explore, isLoading, onScrollEnd}) => {
+const MemesDetails = ({newMemesData, explore, isLoading, onScrollEnd, searchMode=false, isLoadingSearch=false}) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
     const [postData, setPostData] = useState([]);
@@ -84,9 +84,7 @@ const MemesDetails = ({newMemesData, explore, isLoading, onScrollEnd}) => {
     const sharePost = async (post_id) => {
         
         try {
-            console.log("caling api ")
             const res = await postAPIs.sharePost({ post_id });
-            console.log("rrssponse -- ",res)
             if (res) {
                 toast.success("Link Copied Successfully");
                 const index = postData.findIndex(item => item.post.id === post_id);
@@ -120,9 +118,17 @@ const MemesDetails = ({newMemesData, explore, isLoading, onScrollEnd}) => {
                         ref={memesRef}
                         className={`${classes.flexBox} ${explore ? `${classes.exploreBox}` : ""} ${classes.scrollable}`}
                     >
-                        {postData.map((item, ind) => (
-                            <MemeItem key={ind} item={item} openModal={openModal} explore/>
-                        ))}
+                        {postData.length === 0 && searchMode ? (
+                            isLoadingSearch ? (
+                                <div style={{ width:'-webkit-fill-available', textAlign:'center', marginTop:'60px' }}>Please wait...</div>
+                            ) : (
+                                <div style={{ width:'-webkit-fill-available', textAlign:'center', marginTop:'60px' }}>No results found</div>
+                            )
+                        ) : (
+                            postData.map((item, ind) => (
+                                <MemeItem key={ind} item={item} openModal={openModal} explore/>
+                            ))
+                        )}
                     </div>
             }
             <ViewPost

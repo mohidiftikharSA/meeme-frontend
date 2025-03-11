@@ -53,8 +53,14 @@ const History = ({ tournamentData }) => {
                             key={`${item.id}_${ind}`}
                             onClick={() => {
                                 if (ind === 0) {
-                                    setSelectedCount(item.judged_post_date_count); // Store count
-                                    setShowAgreeModal(true);
+                                    setSelectedCount(item.judged_post_date_count);
+                                    if(!item.status){
+                                        setShowAgreeModal(true);
+                                    }else{
+                                        if (selectedCount !== null) {
+                                            nextPage(selectedCount);
+                                        }
+                                    }
                                 } else {
                                     toast.error('Your selected day has passed');
                                 }
@@ -87,7 +93,7 @@ const History = ({ tournamentData }) => {
                 <Modal.Header className="justify-content-end">
                     <span
                         className={classes.closeBtn}
-                        onClick={() => setShowAgreeModal(false)}
+                        onClick={() => {setShowAgreeModal(false)}}
                     >
                         <LiaTimesSolid />
                     </span>

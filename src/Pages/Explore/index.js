@@ -17,10 +17,10 @@ const Explore = () => {
   const [searchMode, setSearchMode] = useState(false);
   const isLoadingRef = useRef(false);
   const deletedPost = useSelector((state) => state.postEditAndDeletionSlice);
-  
+  const [isLoadingSearch, setIsLoadingSearch] = useState(false)
+
   useEffect(() => {
-    console.log("Delete or Edit post in useEffect explore == ", deletedPost );
-  
+
     if (deletedPost?.postId && deletedPost.action === 'delete') {
       console.log("inside if  ===")
       const updatedData = recentPosts.filter(item => item?.post?.id !== deletedPost.postId);
@@ -33,14 +33,14 @@ const Explore = () => {
             ...item,
             post: {
               ...item.post,
-              description: deletedPost.post.description, 
+              description: deletedPost.post.description,
               tag_list: deletedPost.post.duplicate_tags
             }
           };
         }
         return item;
       });
-  
+
       setRecentPosts(updatedData);
     }
   }, [deletedPost]);
@@ -102,22 +102,26 @@ const Explore = () => {
       });
 
       if (!filteredData[0]) {
+        setIsLoadingSearch(true)
         const resTag = await postAPIs.user_search_tag({ tag: value[0] });
         if (resTag) {
+          setIsLoadingSearch(false)
           setFilteredPosts(resTag.data.recent_posts);
           return;
         }
       }
+      setIsLoadingSearch(false)
       setFilteredPosts(filteredData);
     } else {
+      setIsLoadingSearch(false)
       setSearchMode(false);
       setFilteredPosts(recentPosts);
     }
   };
 
   const onTextSearch = async (value) => {
-    setSearchMode(true);
-    setFilteredPosts([]);
+    // setSearchMode(true);
+    // setFilteredPosts([]);
 
     if (value.length <= 0) {
       setSearchMode(false);
@@ -128,6 +132,7 @@ const Explore = () => {
   const onSearchSubmit = async (value) => {
     setSearchMode(true);
     setFilteredPosts([]);
+    setIsLoadingSearch(true)
 
     if (value.length > 0) {
       try {
@@ -137,10 +142,13 @@ const Explore = () => {
         };
         const responsePosts = await postAPIs.searchPostByUsernameAndTag(data);
         setFilteredPosts(responsePosts.data.explore_posts);
+        setIsLoadingSearch(false)
       } catch (error) {
+        setIsLoadingSearch(false)
         setFilteredPosts([]);
       }
     } else {
+      setIsLoadingSearch(false)
       setSearchMode(false);
       setFilteredPosts(recentPosts);
     }
@@ -192,6 +200,8 @@ const Explore = () => {
             newMemesData={searchMode ? filteredPosts : recentPosts}
             avatar={avatar}
             explore
+            searchMode={searchMode}
+            isLoadingSearch={isLoadingSearch}
           />
           <div id="sentinel"></div>
         </Container>

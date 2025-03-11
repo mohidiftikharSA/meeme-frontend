@@ -165,7 +165,11 @@ const FollowingContent = ({ setNewPost }) => {
             <Stories data={storyData} onStoryUpdate={onStoryUpdate} />
             <UploadPost setNewPost={setNewPost} />
             <div>
-                <Posts postData={followingData} isLoading={isLoading} sharePost={sharePost} likePost={likePost} />
+                {followingData && followingData[0] ? <Posts postData={followingData} isLoading={isLoading} sharePost={sharePost} likePost={likePost} />
+                    : <div style={{ textAlign: 'center' }}>
+                        <p style={{ marginTop: '20%' }}>No posts found</p>
+                    </div>
+                }
             </div>
         </div>
     </>);
