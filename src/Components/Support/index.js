@@ -56,7 +56,7 @@ const Support = ({ supportTicket }) => {
       supportTicket({ message_ticket: ticket, conversation_id: conversation_id });
       goToStep(2);
     }
-  },[ticket])
+  }, [ticket])
 
   useEffect(() => {
     getAllChats();
@@ -77,7 +77,8 @@ const Support = ({ supportTicket }) => {
           date: formatDate(element?.created_at),
           order: element?.status,
           image: element?.message_images[0]?.message_image,
-          message_ticket : element?.message_ticket,
+          content_type: element?.message_images[0]?.content_type,
+          message_ticket: element?.message_ticket,
           conversation_id: element?.conversation_id
         }
         customeArr.push(data);
@@ -88,7 +89,7 @@ const Support = ({ supportTicket }) => {
     setIsLoading(false);
   }
 
-  const openTicketChat = (item)=>{
+  const openTicketChat = (item) => {
     supportTicket(item);
     goToStep(2);
   }
@@ -101,17 +102,20 @@ const Support = ({ supportTicket }) => {
         <ul className={classes.support}>
           {allChatsData[0] ? allChatsData.map((item, ind) => {
             return (
-              <li key={ind} onClick={()=>{openTicketChat(item)}}>
-                <div className={classes.head}>
-                  <img src={item?.image || icon} alt="coin"></img>
-                  <div className={classes.box}>
-                    <p className={classes.title}>{item.title}</p>
-                    <p className={classes.text}>{item.text}</p>
-                    <p className={classes.date}>{item.date}</p>
+              <>
+                {console.log("item supoort detail--- ", item)}
+                <li key={ind} onClick={() => { openTicketChat(item) }}>
+                  <div className={classes.head}>
+                    <img src={item?.content_type === 'video' ? icon : item?.image || icon} alt={icon}></img>
+                    <div className={classes.box}>
+                      <p className={classes.title}>{item.title}</p>
+                      <p className={classes.text}>{item.text}</p>
+                      <p className={classes.date}>{item.date}</p>
+                    </div>
                   </div>
-                </div>
-                <span>{item.order}</span>
-              </li>
+                  <span>{item.order}</span>
+                </li>
+              </>
             );
           }) : <p>No Support Tickets Available</p>}
           <div className="text-center">

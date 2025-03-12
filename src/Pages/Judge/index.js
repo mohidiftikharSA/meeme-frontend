@@ -1,5 +1,5 @@
 import Heading from "Components/Heading";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Button, Container } from "react-bootstrap";
 import { useLocation } from 'react-router-dom';
 import judge1 from "../../Images/judge1.png";
@@ -11,6 +11,7 @@ import api from 'APIs/tournaments'
 import SkeletonTournamentPostsLoading from "../../Components/Loader/SkeletonTournamentPostsLoading";
 import Skeleton from "react-loading-skeleton";
 import { toast } from "react-toastify";
+import Loader from "Components/Loader";
 
 
 const JudgePage = () => {
@@ -19,6 +20,12 @@ const JudgePage = () => {
     const [likedPostsCount, setLikedPostsCount] = useState(0);
     const [tournamentPosts, setTournamentPosts] = useState([])
     const [imagesLoaded, setImagesLoaded] = useState([]);
+    const [isliking, setIsLiking] = useState(false);
+    const likedPostsCountRef = useRef(likedPostsCount);
+
+    useEffect(() => {
+        likedPostsCountRef.current = likedPostsCount;
+    }, [likedPostsCount]);
 
     const getTournamentPosts = async () => {
         setIsLoading(true)
@@ -31,17 +38,20 @@ const JudgePage = () => {
         setLikedPostsCount(likedCounts)*/
     }
     const likeDislikePost = async (post_id, isLike = true) => {
-        
-        if(likedPostsCount <= 25){
+        if (likedPostsCountRef.current < 25) {
+            setIsLiking(true)
             const response = isLike ? await api.likeTournamentPost({ post_id }) : await api.disLikeTournamentPost({ post_id });
             if (response?.status == 200) {
                 removePostFromList(post_id)
                 setImagesLoaded([])
                 setLikedPostsCount(prevState => {
-                    return parseInt(prevState) + 1
+                    const newCount = parseInt(prevState) + (isLike ? 1 : -1);
+                    likedPostsCountRef.current = newCount;
+                    return newCount;
                 })
+                setIsLiking(false)
             }
-        }else{
+        } else {
             toast.error('You can only judge 25 posts per day')
         }
     }
@@ -72,6 +82,7 @@ const JudgePage = () => {
     return (
         <>
             <section>
+                {isliking && <Loader isLoading={isliking} />}
                 <Container>
                     <div className="sectionHolder">
                         <Heading title={"Judge"} judge linkPath={"tornament/judge"} likedCounts={likedPostsCount} />
@@ -109,11 +120,11 @@ const JudgePage = () => {
                                     <div className={classes.btnGroup}>
                                         <Button style={{ zIndex: '2' }} onClick={() => {
                                             likeDislikePost(item.id)
-                                        }}><AiFillHeart /></Button>
+                                        }} ><AiFillHeart /></Button>
 
                                         <Button style={{ zIndex: '2' }} onClick={() => {
                                             likeDislikePost(item.id, false)
-                                        }}><FaTimes /></Button>
+                                        }} ><FaTimes /></Button>
                                     </div>
                                 </div>);
                         })}

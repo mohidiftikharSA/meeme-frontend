@@ -16,9 +16,12 @@ import MessagesAPIs from "../../APIs/messages";
 import Loader from "Components/Loader";
 import EmojiPicker from "emoji-picker-react";
 import { toast } from "react-toastify";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 
 const SupportChat = ({ selectedSupportTicket }) => {
-  const { goToStep } = useWizard();
+  const { goToStep, previousStep } = useWizard();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [allMsgsArr, setAllMsgsArr] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [reply, setReply] = useState('');
@@ -187,13 +190,23 @@ const SupportChat = ({ selectedSupportTicket }) => {
     }
   };
 
+  const handleGoToStep0 = () => {
+
+    console.log("removing params s")
+      const params = new URLSearchParams(searchParams);
+      params.delete("ticket");
+      params.delete("conversation_id");
+      navigate(`${window.location.pathname}?${params.toString()}`, { replace: true });
+      goToStep(0);
+  };
+
   return (
     <>
       <Loader isLoading={isLoading} />
       <div className={classes.ChatBoxHolder} ref={chatContainerRef}>
         <span
-          style={{ display: "inline-block", width: "105px" }}
-          onClick={() => goToStep(0)}
+          style={{ display: "inline-block", width: "105px", cursor:'pointer'}}
+          onClick={handleGoToStep0}
         >
           <Heading title={"<    Support"} noLink />
         </span>
@@ -225,7 +238,14 @@ const SupportChat = ({ selectedSupportTicket }) => {
                 {item && (
                   <div className={classes.attachment}>
                     {item?.message_images?.map((img) => {
-                      return <img src={img?.message_image} alt="img" />;
+                      return img?.content_type?.startsWith('video') ? (
+                        <video controls muted width={'180px'}>
+                          <source src={img?.message_image} type={img?.content_type} />
+                          Your browser does not support the video tag.
+                        </video>
+                      ) : (
+                        <img src={img?.message_image} alt="img" />
+                      );
                     })}
                   </div>
                 )}

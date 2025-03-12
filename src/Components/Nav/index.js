@@ -32,6 +32,7 @@ function Navigation({ header, footer }) {
     const dispatch = useDispatch();
     const [notificationMessage, setNotificationMessage] = useState('');
     const [notificationType, setNotificationType] = useState('');
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const isLinkActive = (path) => {
         return location.pathname === path ? 'active' : '';
@@ -63,7 +64,8 @@ function Navigation({ header, footer }) {
     useEffect(() => {
         fetchUserNotifications()
         getCurrentUser();
-    }, []);
+        setDropdownOpen(false);
+    }, [location]);
 
     const handleDeleteModal = () => {
         setModalShow(false);
@@ -133,7 +135,7 @@ function Navigation({ header, footer }) {
                                 Store
                             </Nav.Link>
                             <span className="notification">
-                                <Dropdown>
+                                <Dropdown show={dropdownOpen} onToggle={() => setDropdownOpen(!dropdownOpen)}>
                                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                                         <span className="bell-icon"> <IoMdNotificationsOutline /></span>
                                     </Dropdown.Toggle>

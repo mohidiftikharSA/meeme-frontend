@@ -59,3 +59,23 @@
     }
   }
 }
+
+.skeleton-loader {
+  width: 100px; /* Adjust width as needed */
+  height: 100px; /* Adjust height as needed */
+  background-color: #e0e0e0;
+  animation: skeleton-loading 1.2s infinite ease-in-out;
+  border-radius: 4px; /* Optional: for rounded corners */
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}

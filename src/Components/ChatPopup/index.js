@@ -25,7 +25,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
   const [emoji, setEmoji] = useState('');
   const [closePreview, setClosePreview] = useState();
   const [isLoading, setIsLoading] = useState(false)
-
+  const [loadingMsgs, setLoadingMsgs] = useState(false)
   useEffect(() => {
     setIsChatVisible(isOpen);
 
@@ -70,10 +70,13 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
 
   const getChatMessages = async (receiverId) => {
     if (receiverId) {
+      setMsgsList([]);
+      setLoadingMsgs(true)
       const msgs = await MessagesAPIs.getChatMessages(receiverId);
       if (msgs) {
         setMsgsList(msgs.data.messages.reverse());
         setSubscriptionEstablished(true);
+        setLoadingMsgs(false)
       }
     }
   };
@@ -271,6 +274,7 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
             fileInputRef={fileInputRef}
             setEmoji={setEmoji}
             closePreview={closePreview}
+            loadingMsgs={loadingMsgs}
           />
         )}
         {/* ActionCable component from react-actioncable-provider */}

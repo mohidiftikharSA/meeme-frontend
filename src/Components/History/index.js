@@ -57,9 +57,10 @@ const History = ({ tournamentData }) => {
                                     if(!item.status){
                                         setShowAgreeModal(true);
                                     }else{
-                                        if (selectedCount !== null) {
-                                            nextPage(selectedCount);
-                                        }
+                                        // if (selectedCount !== null) {
+                                        //     nextPage(selectedCount);
+                                        // }
+                                        toast.error('Your count limit has been reached.')
                                     }
                                 } else {
                                     toast.error('Your selected day has passed');
