@@ -38,6 +38,27 @@ const History = ({ tournamentData }) => {
         hydrateFields();
     }, []);
 
+    const handleItemClick = (item, ind) => {
+        if (ind === 0) {
+            setSelectedCount(item.judged_post_date_count);
+            if (!item.status) {
+                const modalShown = sessionStorage.getItem('agreeModalShown');
+                if (!modalShown) {
+                    setShowAgreeModal(true);
+                    sessionStorage.setItem('agreeModalShown', 'true');
+                } else {
+                    if (selectedCount !== null) {
+                        nextPage(selectedCount);
+                    }
+                }
+            } else {
+                toast.error('Your count limit has been reached.');
+            }
+        } else {
+            toast.error('Your selected day has passed');
+        }
+    };
+
     return (
         <>
             <div className="my-4">
@@ -51,21 +72,7 @@ const History = ({ tournamentData }) => {
                     {judgedPosts.map((item, ind) => (
                         <li
                             key={`${item.id}_${ind}`}
-                            onClick={() => {
-                                if (ind === 0) {
-                                    setSelectedCount(item.judged_post_date_count);
-                                    if(!item.status){
-                                        setShowAgreeModal(true);
-                                    }else{
-                                        // if (selectedCount !== null) {
-                                        //     nextPage(selectedCount);
-                                        // }
-                                        toast.error('Your count limit has been reached.')
-                                    }
-                                } else {
-                                    toast.error('Your selected day has passed');
-                                }
-                            }}
+                            onClick={() => handleItemClick(item, ind)}
                         >
                             <div className={classes.counter}>
                                 <span>{ind + 1}</span>

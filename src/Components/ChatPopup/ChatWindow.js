@@ -33,6 +33,7 @@ const ChatWindow = ({
   const [messageText, setMessageText] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
   const messagesEndRef = useRef(null); // Ref to track the end of the messages container
+  const emojiPickerRef = useRef(null);
 
   useEffect(() => {
     setMessageText(inputText);
@@ -55,6 +56,24 @@ const ChatWindow = ({
     console.log("Close preview hii");
     setPreviewImage(null);
   }, [closePreview]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showEmojiPicker && emojiPickerRef.current && !emojiPickerRef.current.contains(event.target)) {
+        setShowEmojiPicker(false);
+      }
+    };
+
+    if (showEmojiPicker) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showEmojiPicker]);
 
   const handleEmojiClick = () => {
     setShowEmojiPicker(!showEmojiPicker);
@@ -172,7 +191,11 @@ const ChatWindow = ({
               <span className={classes.smiley} onClick={handleEmojiClick}>
                 <FaSmile />
               </span>
-              {showEmojiPicker && <EmojiPicker onEmojiClick={handleEmojiSelect} disableAutoFocus />}
+              {showEmojiPicker && (
+                <div ref={emojiPickerRef}>
+                  <EmojiPicker onEmojiClick={handleEmojiSelect} disableAutoFocus />
+                </div>
+              )}
               <span className={classes.uploadBtn}>
                 <CgAttachment onClick={() => fileInputRef.current.click()} />
                 <input

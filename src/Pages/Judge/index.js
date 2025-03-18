@@ -45,7 +45,7 @@ const JudgePage = () => {
                 removePostFromList(post_id)
                 setImagesLoaded([])
                 setLikedPostsCount(prevState => {
-                    const newCount = parseInt(prevState) + (isLike ? 1 : -1);
+                    const newCount = parseInt(prevState) + (isLike ? 1 : 1);
                     likedPostsCountRef.current = newCount;
                     return newCount;
                 })

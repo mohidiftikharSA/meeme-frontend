@@ -45,15 +45,15 @@ function Navigation({ header, footer }) {
     };
     const [notifications, setNotifications] = useState([]);
     const prepareNotifications = (_notifications) => {
+        setNotifications([]);
+
         _notifications?.forEach(item => {
-            //.filter(row => row.status === 'un_read')
             item?.data?.forEach(row => {
                 setNotifications(prevState => {
                     return [...prevState, { ...row, date: dayjs(row.created_at).format('MMM DD, YYYY h:mm A') }];
-                })
-            })
-
-        })
+                });
+            });
+        });
     }
     const fetchUserNotifications = async () => {
         const response = await api.getUserNotificationsList();

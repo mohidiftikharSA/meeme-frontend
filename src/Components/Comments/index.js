@@ -99,7 +99,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                   <div className={classes.commentBox}>
                     <h6 className="mb-0">{item.user}</h6>
                     <p>{item.description}</p>
-                    <img style={{ width: '100px', height: 'auto' }} src={item.comment_image} alt="comment img"></img>
+                    {item.comment_image && <img style={{ width: '100px', height: 'auto' }} src={item.comment_image} alt="comment img"></img>}
                   </div>
                 </div>
                 <div className={classes.bottomBox}>
@@ -135,7 +135,7 @@ const Comments = ({ data, avatar, postComment, postId, user, setChildCommentCrea
                             >
                               <h6 className="mb-0">{child?.user}</h6>
                               <p>{child?.description}</p>
-                              <img style={{ width: '100px', height: 'auto' }} src={child.comment_image} alt="comment img"></img>
+                              {child.comment_image && <img style={{ width: '100px', height: 'auto' }} src={child.comment_image} alt="comment img"></img>}
                             </div>
                           </div>
                         </>

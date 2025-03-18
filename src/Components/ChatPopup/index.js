@@ -76,8 +76,9 @@ const ChatPopup = ({ isOpen, onClose, profile, data }) => {
       if (msgs) {
         setMsgsList(msgs.data.messages.reverse());
         setSubscriptionEstablished(true);
-        setLoadingMsgs(false)
       }
+      setLoadingMsgs(false)
+      setIsLoading(false)
     }
   };
 

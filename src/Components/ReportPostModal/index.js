@@ -30,14 +30,14 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
 
 
   const reportPost = async () => {
-
     if (!message) {
       toast.error('Type any Message to Report.');
       return;
     }
+    setIsLoading(true);
     console.log("image ----", image);
     let imageFile;
-    if(image?.post_type !== "video/mp4") {
+    if (image?.post_type !== "video/mp4") {
       imageFile = await uploadImageFromUrl(image?.post_image);
     } else {
       imageFile = await uploadImageFromUrl(image?.post_thumbnail);
@@ -53,7 +53,6 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
     data.append("user_id", image?.post?.user_id);
 
 
-    setIsLoading(true);
     try {
       const res = await DashboardAPIs.flagOrReportPost(data);
       if (res) {
@@ -83,7 +82,7 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
           onHide={() => {
             if (reportSuccess)
               // postRemovalId(postId);
-            setConfirmationSectionVisibility(false);
+              setConfirmationSectionVisibility(false);
             setReportSuccess(false);
             setFlagSectionVisibility(true);
             setFormDisabled(false);
@@ -93,22 +92,22 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
         </Modal.Header>
         <Modal.Body >
           <div className='imagBox'>
-          {image?.post_type !== "video/mp4" && <img src={image?.compress_image || profile} />}
+            {image?.post_type !== "video/mp4" && <img src={image?.compress_image || profile} />}
           </div>
           {isFlagSectionVisible && (
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Control className='report_modal' placeholder='Why are you reporting this post?' as="textarea" onChange={(e) => { setMessage(e.target.value) }} rows={7} disabled={isFormDisabled} />
               </Form.Group>
-              <a className='btn flag report' onClick={reportPost}>Report</a>
+              <button className='btn flag report' onClick={reportPost} disabled={isLoading}>{isLoading ? 'Please Wait...' : 'Report'}</button>
             </Form>
           )}
 
           {/* Your confirmation section */}
           {isConfirmationSectionVisible && (
             <div className='textBox'>
-              <h6>{image?.post_type !== "video/mp4" ? "Photo" : "Video"} Reported</h6>
-              <p className='text'>Photo successfully reported. We will review your report. Thank you for your cooperation.</p>
+              <h6>{image?.post_type !== "video/mp4" || image?.post_type === 'video/quicktime' ? "Photo" : "Video"} Reported</h6>
+              <p className='text'>{image?.post_type !== "video/mp4" || image?.post_type === 'video/quicktime' ? 'Video' : 'Photo'} successfully reported. We will review your report. Thank you for your cooperation.</p>
             </div>
           )}
 

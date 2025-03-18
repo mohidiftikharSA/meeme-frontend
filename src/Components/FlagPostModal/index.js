@@ -64,7 +64,7 @@ const FlagPostModal = ({ image, postId, postRemovalId, ...props }) => {
           onHide={() => {
             if (flagSuccess)
               // postRemovalId(postId);
-            setConfirmationSectionVisibility(false);
+              setConfirmationSectionVisibility(false);
             setFlagSuccess(false)
           }} >
           <Modal.Title id="contained-modal-title-vcenter">
@@ -72,7 +72,7 @@ const FlagPostModal = ({ image, postId, postRemovalId, ...props }) => {
         </Modal.Header>
         <Modal.Body >
           <div className='imagBox'>
-            {image?.post_type !== "video/mp4" && <img src={image?.compress_image || profile} />}
+            {(image?.post_type !== "video/mp4" || image?.post_type !== 'video/quicktime') && <img src={image?.compress_image || profile} />}
           </div>
           {/* <div className='icon-box'> 
         <i className="fas fa-download"><span>Download</span></i> 
@@ -81,7 +81,7 @@ const FlagPostModal = ({ image, postId, postRemovalId, ...props }) => {
          </div> */}
 
           {!isConfirmationSectionVisible && <div className='flag-btn mt-5'>
-            <p className='mb-4' style={{color:"#fff", fontWeight:"bold"}}>Why are you flagging this post?</p>
+            <p className='mb-4' style={{ color: "#fff", fontWeight: "bold" }}>Why are you flagging this post?</p>
             <div className="flag-options">
               {flagReasons?.map((reason, index) => (
                 <button
@@ -99,8 +99,8 @@ const FlagPostModal = ({ image, postId, postRemovalId, ...props }) => {
 
           {isConfirmationSectionVisible && (
             <div className='textBox'>
-              <h6>Photo Flagged</h6>
-              <p className='text'>Photo successfully flagged. We will review your report. Thank you for your cooperation.</p>
+              <h6>{image?.post_type === "video/mp4" || image?.post_type === 'video/quicktime' ? 'Video Flagged' : 'Photo Flagged'}</h6>
+              <p className='text'>{image?.post_type === "video/mp4" || image?.post_type === 'video/quicktime' ? 'Video' : 'Photo'} successfully flagged. We will review your report. Thank you for your cooperation.</p>
             </div>
           )}
         </Modal.Body>

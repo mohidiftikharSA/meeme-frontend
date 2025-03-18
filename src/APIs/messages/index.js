@@ -22,7 +22,7 @@ const getInboxList = async () => {
 }
 
 const getChatMessages = async (id) => {
-    return await API.getMethod(`${ENDPOINT.messages.getChatMessages}${id}`, true, false);
+    return await API.getMethod(`${ENDPOINT.messages.getChatMessages}${id}`, true,false);
 }
 
 const sendMessage = async (data) => {
