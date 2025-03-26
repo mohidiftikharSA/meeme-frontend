@@ -107,7 +107,7 @@ const ReportPostModal = ({ image, postId, postRemovalId, ...props }) => {
           {isConfirmationSectionVisible && (
             <div className='textBox'>
               <h6>{image?.post_type !== "video/mp4" || image?.post_type === 'video/quicktime' ? "Photo" : "Video"} Reported</h6>
-              <p className='text'>{image?.post_type !== "video/mp4" || image?.post_type === 'video/quicktime' ? 'Video' : 'Photo'} successfully reported. We will review your report. Thank you for your cooperation.</p>
+              <p className='text'>{image?.post_type !== "video/mp4" || image?.post_type === 'video/quicktime' ? "Photo" : "Video"} successfully reported. We will review your report. Thank you for your cooperation.</p>
             </div>
           )}
 

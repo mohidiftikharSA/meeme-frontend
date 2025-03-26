@@ -53,6 +53,7 @@ const FlagPostModal = ({ image, postId, postRemovalId, ...props }) => {
 
   return (
     <>
+      {console.log("Image in flag post modal", image)}
       {isLoading && <Loader isLoading={isLoading} />}
       <Modal className='fade flagPost'
         {...props}
@@ -72,7 +73,7 @@ const FlagPostModal = ({ image, postId, postRemovalId, ...props }) => {
         </Modal.Header>
         <Modal.Body >
           <div className='imagBox'>
-            {(image?.post_type !== "video/mp4" || image?.post_type !== 'video/quicktime') && <img src={image?.compress_image || profile} />}
+            {(image?.post_type !== "video/mp4" || image?.post_type !== 'video/quicktime') && <img src={image?.compress_image || image?.post_thumbnail} />}
           </div>
           {/* <div className='icon-box'> 
         <i className="fas fa-download"><span>Download</span></i> 
