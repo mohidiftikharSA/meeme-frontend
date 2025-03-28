@@ -32,8 +32,8 @@ export const ENDPOINT = {
   followers: {
     sendFollowRequest: `${API_URL}/followers/send_a_follow_request_to_user`,
     unfollowUser: `${API_URL}/followers/un_follow_user`,
-    followings: `${API_URL}/followers?page=1&key=followings`,
-    followers: `${API_URL}/followers?page=1&key=followers`,
+    followings: `${API_URL}/followers?key=followings`,
+    followers: `${API_URL}/followers?key=followers`,
   },
 
   post: {

@@ -10,12 +10,12 @@ const unfollowUser = async (data) => {
     return await API.postMethod(ENDPOINT.followers.unfollowUser, true, data);
 }
 
-const followingList = async()=>{
-    return await API.getMethod(ENDPOINT.followers.followings,true);
+const followingList = async(page)=>{
+    return await API.getMethod(`${ENDPOINT.followers.followings}&page=${page}`,true);
 }
 
-const followersList = async()=>{
-    return await API.getMethod(ENDPOINT.followers.followers, true);
+const followersList = async(page)=>{
+    return await API.getMethod(`${ENDPOINT.followers.followers}&page=${page}`, true);
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

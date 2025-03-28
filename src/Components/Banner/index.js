@@ -20,6 +20,10 @@ const Banner = ({ other, profile }) => {
   const [showChat, setShowChat] = useState(false);
   const navigate = useNavigate();
   const { user } = useSelector(state => state.auth);
+  const [followingPage, setFollowingPage] = useState(1);
+  const [followerPage, setFollowerPage] = useState(1);
+  const [hasMoreFollowing, setHasMoreFollowing] = useState(true);
+  const [hasMoreFollowers, setHasMoreFollowers] = useState(true);
 
   const nextPage = () => {
     navigate(`/CustomizeProfile`);
@@ -37,16 +41,40 @@ const Banner = ({ other, profile }) => {
   }, [profile]);
 
   const getFollowersAndFollowings = useCallback(async () => {
-    const followings = await FollowerAPIs.followingList();
+    const followings = await FollowerAPIs.followingList(1);
     if (followings) {
       setFollowingList(followings?.data?.followings);
+      setHasMoreFollowing(followings?.data?.followings?.length > 0);
     }
 
-    const followers = await FollowerAPIs.followersList();
+    const followers = await FollowerAPIs.followersList(1);
     if (followers) {
       setFollowersList(followers?.data?.followers);
+      setHasMoreFollowers(followers?.data?.followers?.length > 0);
     }
   }, [profile]);
+
+  const loadMoreFollowing = async () => {
+    const nextPage = followingPage + 1;
+    const followings = await FollowerAPIs.followingList(nextPage);
+    if (followings && followings?.data?.followings?.length > 0) {
+      setFollowingList(prevList => [...prevList, ...followings?.data?.followings]);
+      setFollowingPage(nextPage);
+    } else {
+      setHasMoreFollowing(false);
+    }
+  };
+
+  const loadMoreFollowers = async () => {
+    const nextPage = followerPage + 1;
+    const followers = await FollowerAPIs.followersList(nextPage);
+    if (followers && followers?.data?.followers?.length > 0) {
+      setFollowersList(prevList => [...prevList, ...followers?.data?.followers]);
+      setFollowerPage(nextPage);
+    } else {
+      setHasMoreFollowers(false);
+    }
+  };
 
   const followOrUnfollow = async (action) => {
     // console.log("Follow Profile = ", profile);
@@ -143,8 +171,22 @@ const Banner = ({ other, profile }) => {
           </div>
         </div>
       </div>
-      <FollowModal following show={show} followingList={followingList} onHide={() => setShow(false)} />
-      <FollowModal followers show={follwers} followersList={followersList} onHide={() => setfollowrshow(false)} />
+      <FollowModal 
+        following 
+        show={show} 
+        followingList={followingList} 
+        loadMore={loadMoreFollowing}
+        hasMore={hasMoreFollowing}
+        onHide={() => setShow(false)} 
+      />
+      <FollowModal 
+        followers 
+        show={follwers} 
+        followersList={followersList} 
+        loadMore={loadMoreFollowers}
+        hasMore={hasMoreFollowers}
+        onHide={() => setfollowrshow(false)} 
+      />
 
       {showChat &&
         <ChatPopup profile data={profile} isOpen={showChat} onClose={handleCloseChat} />

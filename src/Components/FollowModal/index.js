@@ -6,7 +6,7 @@ import ContactList from "Components/ContactList";
 import user from "../../Images/following.png"
 import user2 from "../../Images/following2.png"
 
-const FollowModal = ({followingList , followersList ,...props}) => {
+const FollowModal = ({followingList, followersList, loadMore, hasMore, ...props}) => {
 
   
   const followersData = [
@@ -46,7 +46,7 @@ const FollowModal = ({followingList , followersList ,...props}) => {
       className={classes.modal}
       {...props}
       size="sm"
-      aria-labelledby="contained-modal-title-vcenter "onClick={props.onHide}
+      aria-labelledby="contained-modal-title-vcenter" onClick={props.onHide}
       centered
     >
      {
@@ -57,12 +57,24 @@ const FollowModal = ({followingList , followersList ,...props}) => {
      }
       <Modal.Body className="p-0">
         {
-          props.following&&
-          <ContactList link following data={followingList}/>
+          props.following &&
+          <ContactList 
+            link 
+            following 
+            data={followingList} 
+            loadMore={loadMore}
+            hasMore={hasMore}
+          />
         }
         {
-          props.followers&&
-          <ContactList link follower  data={followersList}/>
+          props.followers &&
+          <ContactList 
+            link 
+            follower 
+            data={followersList} 
+            loadMore={loadMore}
+            hasMore={hasMore}
+          />
         }
       </Modal.Body>
     </Modal>
